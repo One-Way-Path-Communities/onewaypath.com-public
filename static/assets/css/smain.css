@@ -104,6 +104,39 @@ footer p{
     font-size: 16px;
 }
 
+.s-btn {
+    margin-bottom: 0px;
+    color: #b6914d;
+    text-align: center;
+    padding-top: 10px;
+    padding-left: 13px;
+    background: #fff;
+    border: 0.5px solid #b6914d;
+}
+
+
+@media (min-width: 1460px) {
+    .container {
+        max-width: 1600px;
+    }
+
+    .hero-banner.community::before {
+        background-image: url(/assets/images/comunity-banner.svg);
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+
+    .hero-banner.budha-overview::before {
+        background-image: url(../images/buddhavipassana/budha-overview-banner.png);
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+}
+
+
+
+
+
 @media (max-width: 1199px) {
     .logo img {
         max-width: 280px;
