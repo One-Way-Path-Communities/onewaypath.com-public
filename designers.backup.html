@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Way Path | Designers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            gold: {
+              50: '#f7f0e4',
+              100: '#eddfc4',
+              200: '#dec592',
+              300: '#cda86a',
+              400: '#be9453',
+              500: '#b6914d',
+              600: '#9c7741',
+              700: '#7e5d34',
+              800: '#644828',
+              900: '#4e3620',
+            },
+            red: {
+              50: '#f4e8e6',
+              100: '#e9d4cf',
+              200: '#d4a9a3',
+              300: '#b97878',
+              400: '#8f4a46',
+              500: '#471d19',
+              600: '#3c1614',
+              700: '#31100f',
+              800: '#250b0a',
+              900: '#190706',
+            },
+            olive: {
+              50: '#f3f4e9',
+              100: '#e3e5c8',
+              200: '#ccd0a0',
+              300: '#aab37c',
+              400: '#929b5f',
+              500: '#818452',
+              600: '#696a42',
+              700: '#525233',
+              800: '#3f3e27',
+              900: '#2d2b1b',
+            },
+            slate: {
+              50: '#f1eded',
+              100: '#e1d9d9',
+              200: '#c3b5b6',
+              300: '#a18f91',
+              400: '#7d6c6d',
+              500: '#3b3132',
+              600: '#322829',
+              700: '#292021',
+              800: '#21191a',
+              900: '#181112',
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --fitwel-gold: #b6914d;
+    }
+    .fitwel-heading {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 22px;
+      line-height: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .fitwel-body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+    .fitwel-heading-sm {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+    .fitwel-hero-title {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 40px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #b6914d;
+    }
+  </style>
+</head>
+<body class="bg-[#f2ede1] text-slate-900 font-sans antialiased min-h-screen flex flex-col">
+  <header class="z-50 bg-[#f2ede1]/95">
+    <nav class="bg-transparent">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto">
+        </a>
+        <div class="hidden flex-wrap items-center gap-5 ml-auto lg:flex">
+          <div class="relative">
+            <button id="projectsButton" data-dropdown-toggle="projectsDropdown" class="fitwel-heading-sm text-olive-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none" type="button">
+              Projects
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div id="projectsDropdown" class="z-20 hidden w-44 divide-y divide-slate-100 rounded-lg border border-slate-200 bg-white text-sm text-slate-800 shadow">
+              <ul class="py-2">
+                <li><a href="#" class="block px-4 py-2 hover:bg-slate-50">Dewitt Road</a></li>
+                <li><a href="#" class="block px-4 py-2 hover:bg-slate-50">Millen Road</a></li>
+              </ul>
+            </div>
+          </div>
+          <a href="designers.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Designers</a>
+          <a href="builders.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Builders</a>
+          <a href="wellness.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Wellness</a>
+          <a href="community.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Community</a>
+          <button type="button" data-collapse-toggle="nav-panel" aria-controls="nav-panel" aria-expanded="false" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Contact</button>
+        </div>
+        <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center gap-2 rounded-lg border border-olive-200 px-4 py-2 text-base font-semibold uppercase text-olive-500 hover:bg-olive-50 lg:hidden">
+          Menu
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden w-full border-t border-slate-200 bg-[#f2ede1] lg:hidden">
+        <div class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-800 space-y-4">
+          <div class="space-y-2">
+            <p class="uppercase text-olive-500 text-sm">Projects</p>
+            <div class="flex flex-col gap-1 pl-2">
+              <a href="#" class="hover:text-olive-800">Dewitt Road</a>
+              <a href="#" class="hover:text-olive-800">Millen Road</a>
+            </div>
+          </div>
+          <a href="designers.html" class="block uppercase text-olive-500 hover:text-olive-800">Designers</a>
+          <a href="builders.html" class="block uppercase text-olive-500 hover:text-olive-800">Builders</a>
+          <a href="wellness.html" class="block uppercase text-olive-500 hover:text-olive-800">Wellness</a>
+          <a href="community.html" class="block uppercase text-olive-500 hover:text-olive-800">Community</a>
+          <a href="#contact" class="block uppercase text-olive-500 hover:text-olive-800">Contact</a>
+        </div>
+      </div>
+      <div id="nav-panel" class="hidden w-full border-t border-slate-200 bg-[#f2ede1]">
+        <div class="mx-auto grid max-w-6xl gap-6 px-6 pb-6 pt-8 text-sm text-slate-800 sm:grid-cols-2">
+          <div class="space-y-2 max-w-sm">
+            <h1 class="fitwel-heading text-gold-400">About</h1>
+            <p class="fitwel-body text-black">One Way Path Communities builds multi-residential housing in liveable communities in and around the Greater Toronto Hamilton Area.</p>
+          </div>
+          <div class="space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+            <h1 class="fitwel-heading text-gold-400">Contact</h1>
+            <p class="fitwel-body text-black">One Way Path Communities<br>77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
+            <p class="fitwel-body text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
+            <a class="fitwel-body text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-red-500 text-white">
+      <div class="absolute inset-0 bg-[url('assets/images/hero-banner.svg')] bg-no-repeat bg-right bg-contain opacity-80"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-red-600/90 via-red-600/70 to-red-500/40"></div>
+      <div class="relative mx-auto max-w-6xl px-8 py-14 lg:py-16 min-h-[340px] flex items-center">
+        <div class="max-w-3xl space-y-6">
+          <h1 class="fitwel-hero-title">
+            Designers
+          </h1>
+          <p class="fitwel-body text-gold-50">
+            Our design partners bring planning, engineering, and building expertise together to deliver healthy communities. Full bios will be added for each collaborator.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#f2ede1]">
+      <div class="mx-auto max-w-6xl px-8 py-20 space-y-12">
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <div class="space-y-1">
+            <h2 class="fitwel-heading text-gold-400">Alex Young</h2>
+            <h3 class="fitwel-heading-sm text-olive-500">Design Lead</h3>
+          </div>
+          <div class="space-y-2 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">Design lead with a background in major public and private projects, aligning risk, infrastructure, and health-focused development. Guides vision and interdisciplinary delivery from concept through construction to keep projects on time and mission-driven.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <div class="space-y-1">
+            <h2 class="fitwel-heading text-gold-400">Miriam Young</h2>
+            <h3 class="fitwel-heading-sm text-olive-500">Design Partner</h3>
+          </div>
+          <div class="space-y-2 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">Healthcare and wellness designer with 15+ years across Thailand, Canada, and Germany. RN and Fitwel Ambassador recognized for health-positive communities, bringing evidence-based design and resident-focused experience to every project.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-stretch">
+          <div class="grid h-full grid-rows-[auto_1fr_auto]">
+            <div>
+              <h2 class="fitwel-heading text-gold-400">Sam Spagnuolo</h2>
+              <h3 class="fitwel-heading-sm text-olive-500">Architect</h3>
+            </div>
+            <div></div>
+            <div class="flex items-end">
+              <img src="logos/csp-newlogo-white-1.png" alt="CSP logo" class="h-5 w-auto" style="filter: brightness(0);">
+            </div>
+          </div>
+          <div class="grid h-full grid-rows-[auto_1fr_auto] text-slate-800 lg:pl-4">
+            <div>
+              <p class="fitwel-body text-black">Architect and principal with deep construction experience, integrating design quality with buildability. Leads complex institutional and residential projects through disciplined coordination, detailing, and a practical field lens that keeps schedules and budgets intact.</p>
+            </div>
+            <div class="min-h-24"></div>
+            <div class="flex items-baseline gap-2 self-end">
+              <span class="fitwel-heading-sm text-olive-500 uppercase tracking-[0.08em]">Credentials:</span>
+              <span class="fitwel-body text-black">Licensed Architect (OAA), MRAIC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <div class="space-y-1">
+            <h2 class="fitwel-heading text-gold-400">John Gladki</h2>
+            <h3 class="fitwel-heading-sm text-olive-500">City Planner</h3>
+          </div>
+          <div class="space-y-2 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">Urban planner with 40+ years in land use, housing, community development, and municipal approvals. Former Toronto planning leader and consultant on major revitalization initiatives, aligning policy with sustainable, inclusive outcomes.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <div class="space-y-1">
+            <h2 class="fitwel-heading text-gold-400">Robert<br>Walter-Joseph</h2>
+            <h3 class="fitwel-heading-sm text-olive-500">City Planner</h3>
+          </div>
+          <div class="space-y-2 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">City planner focused on municipal approvals, regulatory strategy, and community consultation. Aligns project intent with planning frameworks and advances design and community benefit through collaborative processes.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <div class="space-y-1">
+            <h2 class="fitwel-heading text-gold-400">James Samuel</h2>
+            <h3 class="fitwel-heading-sm text-olive-500">Structural Engineer</h3>
+          </div>
+          <div class="space-y-2 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">Founder of J.P. Samuel &amp; Associates, delivering practical structural solutions across steel, concrete, masonry, and timber. Collaborative partner on resilient, constructible designs that meet performance, cost, and schedule targets.</p>
+          </div>
+        </div>
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <div class="space-y-1">
+            <h2 class="fitwel-heading text-gold-400">John Fitzpatrick</h2>
+            <h3 class="fitwel-heading-sm text-olive-500">Specifications &amp; Inspections</h3>
+          </div>
+          <div class="space-y-2 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">Part of Wynspec Engineering, developing specifications and inspections that ensure material performance, system quality, and construction-phase compliance. Supports durable, safe, and long-life buildings from planning through completion.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section id="contact" class="bg-[#f2ede1] lg:hidden">
+    <div class="mx-auto max-w-6xl px-8 py-10">
+      <h2 class="fitwel-heading text-gold-400">Contact</h2>
+      <p class="fitwel-body mt-3 text-black">One Way Path Communities</p>
+      <p class="fitwel-body text-black">77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
+      <p class="fitwel-body mt-2 text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
+      <a class="fitwel-body mt-2 inline-block text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+    </div>
+  </section>
+
+  <footer class="bg-red-500">
+    <div class="mx-auto flex max-w-6xl items-center justify-start px-8 py-6">
+      <p class="text-sm text-white"><span class="font-semibold text-gold-400">© 2025</span> One Way Path Group Limited. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+</body>
+</html>

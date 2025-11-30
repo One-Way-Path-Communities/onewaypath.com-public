@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Way Path</title>
+  <title>One Way Path | Community</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
@@ -71,43 +71,15 @@
   </script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
   <style>
-    :root {
-      --fitwel-gold: #b6914d;
-    }
-    .fitwel-heading {
-      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 22px;
-      line-height: 32px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .fitwel-body {
-      font-family: 'Roboto', sans-serif;
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.65;
-    }
-    .fitwel-heading-sm {
-      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 18px;
-      line-height: 26px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-    .fitwel-hero-title {
-      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 40px;
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #b6914d;
-    }
+    :root { --fitwel-gold: #b6914d; }
+    .fitwel-heading { font-family: 'Roboto Condensed','Roboto',sans-serif; font-size: 22px; line-height: 32px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    .fitwel-heading-sm { font-family: 'Roboto Condensed','Roboto',sans-serif; font-size: 18px; line-height: 26px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; }
+    .fitwel-body { font-family: 'Roboto',sans-serif; font-size: 20px; font-weight: 400; line-height: 1.65; }
+    .fitwel-hero-title { font-family: 'Roboto Condensed','Roboto',sans-serif; font-size: 40px; line-height: 1.1; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: #b6914d; }
+    .fitwel-stat-number { font-family: 'Roboto Condensed','Roboto',sans-serif; font-size: 42px; line-height: 1.05; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #000; }
   </style>
 </head>
-<body class="bg-[#f2ede1] text-slate-900 font-sans antialiased">
+<body class="bg-[#f2ede1] text-slate-900 font-sans antialiased min-h-screen flex flex-col">
   <header class="z-50 bg-[#f2ede1]/95">
     <nav class="bg-transparent">
       <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
@@ -115,9 +87,9 @@
           <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto">
         </a>
         <div class="hidden flex-wrap items-center gap-5 ml-auto lg:flex relative">
-          <a href="index.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800 font-bold">About Us</a>
+          <a href="index.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">About Us</a>
           <div class="relative requires-auth hidden">
-            <button id="projectsButton" data-dropdown-toggle="projectsDropdown" class="fitwel-heading-sm text-olive-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none font-bold" type="button">
+            <button id="projectsButton" data-dropdown-toggle="projectsDropdown" class="fitwel-heading-sm text-olive-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none" type="button">
               Projects
               <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -125,15 +97,15 @@
             </button>
             <div id="projectsDropdown" class="z-20 hidden w-44 divide-y divide-slate-100 rounded-lg border border-olive-200 bg-[#f2ede1] text-sm text-slate-800 shadow">
               <ul class="py-2">
-                <li><a href="#" class="block px-4 py-2 font-semibold hover:bg-olive-50">Dewitt Road</a></li>
-                <li><a href="#" class="block px-4 py-2 font-semibold hover:bg-olive-50">Millen Road</a></li>
+                <li><a href="#" class="block px-4 py-2 font-semibold uppercase hover:bg-olive-50">Dewitt Road</a></li>
+                <li><a href="#" class="block px-4 py-2 font-semibold uppercase hover:bg-olive-50">Millen Road</a></li>
               </ul>
             </div>
           </div>
-          <a href="designers.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800 requires-auth hidden font-bold">Designers</a>
-          <a href="builders.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800 font-bold">Builders</a>
+          <a href="designers.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800 requires-auth hidden">Designers</a>
+          <a href="builders.html" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Builders</a>
           <div class="relative">
-            <button id="communityButton" data-dropdown-toggle="communityDropdown" class="fitwel-heading-sm text-olive-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none font-bold" type="button">
+            <button id="communityButton" data-dropdown-toggle="communityDropdown" class="fitwel-heading-sm text-red-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none font-bold" type="button">
               Community
               <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -148,7 +120,7 @@
               </ul>
             </div>
           </div>
-          <a href="#" data-collapse-toggle="nav-panel" aria-controls="nav-panel" aria-expanded="false" class="fitwel-heading-sm text-olive-500 hover:text-olive-800 font-bold">Contact</a>
+          <a href="#" data-collapse-toggle="nav-panel" aria-controls="nav-panel" aria-expanded="false" class="fitwel-heading-sm text-olive-500 hover:text-olive-800">Contact</a>
           <span id="editor-badge" class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
           <button id="user-button" type="button" class="flex h-10 w-10 items-center justify-center rounded-full border border-olive-200 text-olive-500 hover:bg-olive-50" aria-label="User account">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -183,16 +155,16 @@
       </div>
       <div id="mobile-menu" class="hidden w-full border-t border-slate-200 bg-[#f2ede1] lg:hidden">
         <div class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-800 space-y-4">
-          <a href="index.html" class="block uppercase text-olive-500 hover:text-olive-800 font-bold">About Us</a>
+          <a href="index.html" class="block uppercase text-olive-500 hover:text-olive-800">About Us</a>
           <div class="space-y-2 requires-auth hidden">
             <p class="uppercase text-olive-500 text-sm">Projects</p>
             <div class="flex flex-col gap-1 pl-2">
               <a href="#" class="hover:text-olive-800">Dewitt Road</a>
-              <a href="#" class="hover:text-olive-800">Millen Road</a>
-            </div>
-          </div>
-          <a href="designers.html" class="block uppercase text-olive-500 hover:text-olive-800 requires-auth hidden font-bold">Designers</a>
-          <a href="builders.html" class="block uppercase text-olive-500 hover:text-olive-800 font-bold">Builders</a>
+          <a href="#" class="hover:text-olive-800">Millen Road</a>
+        </div>
+      </div>
+      <a href="designers.html" class="block uppercase text-olive-500 hover:text-olive-800 requires-auth hidden">Designers</a>
+          <a href="builders.html" class="block uppercase text-olive-500 hover:text-olive-800">Builders</a>
           <div class="space-y-1">
             <p class="uppercase text-olive-500 text-sm">Community</p>
             <div class="flex flex-col gap-1 pl-2">
@@ -202,7 +174,7 @@
               <a href="community.html" class="hover:text-olive-800">Environment</a>
             </div>
           </div>
-          <a href="#contact" class="block uppercase text-olive-500 hover:text-olive-800 font-bold">Contact</a>
+         <a href="#contact" class="block uppercase text-olive-500 hover:text-olive-800">Contact</a>
         </div>
       </div>
       <div id="nav-panel" class="hidden w-full border-t border-slate-200 bg-[#f2ede1]">
@@ -222,50 +194,108 @@
     </nav>
   </header>
 
-  <main>
-    <section id="about" class="relative overflow-hidden bg-red-500 text-white">
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-red-500 text-white">
       <div class="absolute inset-0 bg-[url('assets/images/hero-banner.svg')] bg-no-repeat bg-right bg-contain opacity-80"></div>
       <div class="absolute inset-0 bg-gradient-to-r from-red-600/90 via-red-600/70 to-red-500/40"></div>
       <div class="relative mx-auto max-w-6xl px-8 py-14 lg:py-16 min-h-[340px] flex items-center">
         <div class="max-w-3xl space-y-6">
           <h1 class="fitwel-hero-title">
-            About Us
+            Community Impact
           </h1>
           <p class="fitwel-body text-gold-50">
-            One Way Path Communities is a real estate company based in the Greater Toronto Hamilton Area dedicated to designing and building healthy communities.
+            We partner locally to deliver attainable homes and sustainable systems, creating lasting economic, housing, and environmental benefits.
           </p>
         </div>
       </div>
     </section>
 
-    <section id="vision" class="bg-[#f2ede1]">
-      <div class="mx-auto max-w-6xl px-8 py-14 space-y-8">
-        <div class="grid gap-1 border-b border-slate-100 pb-12 lg:grid-cols-[170px_1fr] items-baseline">
-          <h1 class="fitwel-heading text-gold-400">Vision</h1>
-          <div class="space-y-2 text-slate-800">
-            <p class="fitwel-body text-black">Our vision is to build the world’s most liveable communities. A liveable community is a community in which people can lead lives they consider to be worthwhile and enjoyable.</p>
+    <section class="bg-[#f2ede1]">
+      <div class="mx-auto max-w-6xl px-8 py-20 space-y-12">
+
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <h2 class="fitwel-heading text-gold-400">Homes</h2>
+          <div class="space-y-8 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">We address the housing crisis by delivering attainable units across sizes—including three-bedroom, family-friendly suites—so more households can stay and thrive in the communities they love. Thoughtful floorplans, durable materials, and resident-focused amenities create livable homes that support health, stability, and long-term affordability.</p>
+            <div class="space-y-4">
+              <h3 class="fitwel-heading-sm text-olive-500 uppercase tracking-[0.08em] mt-8 mb-6 block">Typical Suite Floorplans</h3>
+              <div class="grid gap-14 sm:grid-cols-3 sm:divide-x sm:divide-slate-200 pb-2">
+                <div class="sm:pr-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">140</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Suites per Project</p>
+                </div>
+                <div class="sm:px-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">24%</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Multi-tenant Units</p>
+                </div>
+                <div class="sm:pl-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">1,000+</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Sq. Ft. Townhouses</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="grid gap-1 border-b border-slate-100 pb-12 lg:grid-cols-[170px_1fr] items-baseline">
-          <h1 class="fitwel-heading text-gold-400">Mission</h1>
-          <div class="space-y-2 text-slate-800">
-            <p class="fitwel-body text-black">Our mission is to build living spaces and provide services that promote mental and physical health.</p>
+        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
+          <h2 class="fitwel-heading text-gold-400">Jobs</h2>
+          <div class="space-y-8 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">We prioritize hiring local, well-paying construction roles and build long-term partnerships with trades. Our model shortens the tender cycle, provides predictable work, and channels investment directly into community crews. By co-planning pipelines with partners, we align project pace and scope with available talent, helping trades grow sustainably while keeping economic benefits within the community.</p>
+            <div class="space-y-4">
+              <h3 class="fitwel-heading-sm text-olive-500 uppercase tracking-[0.08em] mt-8 mb-6 block">Projected Economic Impact Per Project</h3>
+              <div class="grid gap-14 sm:grid-cols-3 sm:divide-x sm:divide-slate-200 pb-2">
+                <div class="sm:pr-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">$50 MILLION</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Investment</p>
+                </div>
+                <div class="sm:px-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">235</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Direct Jobs</p>
+                </div>
+                <div class="sm:pl-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">200</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Indirect Jobs</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="grid gap-1 border-b border-slate-100 pb-12 lg:grid-cols-[170px_1fr] items-baseline">
-          <h1 class="fitwel-heading text-gold-400">Values</h1>
-          <div class="text-slate-800 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-[170px_1fr] sm:gap-x-5 sm:gap-y-6 sm:items-start sm:relative sm:mt-3 md:mt-4">
-            <div class="hidden sm:block absolute inset-y-0 left-[170px] w-px bg-slate-200"></div>
-            <div class="fitwel-heading-sm text-olive-500">Well-being</div>
-            <div class="fitwel-body text-black">We strive to promote community mental and physical health through building design and the services offered in our communities.</div>
-            <div class="fitwel-heading-sm text-olive-500">Quality</div>
-            <div class="fitwel-body text-black">We maintain high standards of service, construction, design, and maintenance to deliver exceptional experiences.</div>
-            <div class="fitwel-heading-sm text-olive-500">Innovation</div>
-            <div class="fitwel-body text-black">We embrace innovative approaches and technologies to continuously improve the quality and functionality of our communities.</div>
-            <div class="fitwel-heading-sm text-olive-500">Continuous Improvement</div>
-            <div class="fitwel-body text-black">We are dedicated to ongoing learning and improvement, seeking feedback and adapting our practices.</div>
+        <div class="grid gap-3 pb-0 lg:grid-cols-[200px_1fr] items-baseline">
+          <h2 class="fitwel-heading text-gold-400">Environment</h2>
+          <div class="space-y-10 text-slate-800 lg:pl-4">
+            <p class="fitwel-body text-black">We integrate geothermal systems, VRF (variable refrigerant flow) technology, and high-efficiency envelopes to cut energy use and carbon. VRF delivers precise heating and cooling with minimal loss, improving comfort and lowering operating costs. By pairing efficient systems with durable, high-performance materials, we reduce environmental impact and provide residents with healthier indoor environments.</p>
+            <div class="space-y-6">
+              <h3 class="fitwel-heading-sm text-olive-500 uppercase tracking-[0.08em] mt-12 mb-8 block">Energy Efficiency Per Year of Operation On-Site</h3>
+              <div class="grid gap-20 sm:grid-cols-3 sm:divide-x sm:divide-slate-200 pb-10">
+                <div class="sm:pr-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">40%+</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Better than NECB/NBC</p>
+                </div>
+                <div class="sm:px-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">80%</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Carbon Reduction</p>
+                </div>
+                <div class="sm:pl-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">120</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Tons CO₂ Avoided</p>
+                </div>
+              </div>
+              <div class="grid gap-20 sm:grid-cols-3 sm:divide-x sm:divide-slate-200 pb-10">
+                <div class="sm:pr-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">1.4 Million</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Litres Water Saved</p>
+                </div>
+                <div class="sm:px-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">60%+</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Energy Reduction</p>
+                </div>
+                <div class="sm:pl-8">
+                  <h3 class="fitwel-stat-number whitespace-nowrap">Zero</h3>
+                  <p class="fitwel-body text-black whitespace-nowrap">Combustion</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -276,7 +306,7 @@
   <section id="contact" class="bg-[#f2ede1] lg:hidden">
     <div class="mx-auto max-w-6xl px-8 py-10">
       <h2 class="fitwel-heading text-gold-400">Contact</h2>
-      <p class="fitwel-body mt-3 text-slate-800">One Way Path Communities</p>
+      <p class="fitwel-body mt-3 text-black">One Way Path Communities</p>
       <p class="fitwel-body text-black">77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
       <p class="fitwel-body mt-2 text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
       <a class="fitwel-body mt-2 inline-block text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
