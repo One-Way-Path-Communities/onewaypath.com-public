@@ -14,6 +14,9 @@ Use this as the single source for typography, colors, and repeatable components.
 - Olive: `olive.500` nav and subhead links; hover `olive.800`.
 - Slate: `slate.700/800` body text; `slate.200` dividers; `#f2ede1` page background.
 
+## Icons
+- Use Feather Icons (thin-stroke SVG set): https://feathericons.com. Prefer inline SVG or `data-feather` with the CDN (`https://unpkg.com/feather-icons`) so icons inherit `currentColor`.
+
 ## Components (reuse)
 - **Nav links (desktop):** Uppercase, `text-base font-medium text-olive-500`, hover `text-olive-800`. Projects uses Flowbite dropdown; other links (Designers, Builders, Wellness, Community, Contact trigger) are single links. Panels are `bg-white border-slate-200 shadow divide-slate-100`.
 - **Mobile menu:** `mobile-menu` collapse contains stacked uppercase links; keep padding `px-8` to align with content. Trigger button on mobile/375: icon-only hamburger, h-6 w-6, bordered, padding `px-3 py-1.5`, right-aligned next to the logo (`ml-auto`), no “Menu” label.
