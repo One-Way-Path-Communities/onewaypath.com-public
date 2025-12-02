@@ -14,8 +14,8 @@ const serverEnvPath = path.resolve(__dirname, "../../serverJS/.env");
 const envPath = [localEnvPath, serverEnvPath].find((p) => fs.existsSync(p));
 dotenv.config(envPath ? { path: envPath } : undefined);
 
-const envPrefix = process.env.MENU_ENV_PREFIX || "DATABASE";
-const databaseOverride = process.env.MENU_DATABASE || "website";
+const envPrefix = process.env.MENU_ENV_PREFIX || "WEBSITES";
+const databaseOverride = process.env.MENU_DATABASE || "websites";
 
 const schemaPrefixRaw = getSchemaPrefix({ envPrefix });
 const schemaPrefix = schemaPrefixRaw ? `${schemaPrefixRaw.toLowerCase()}_` : "";
