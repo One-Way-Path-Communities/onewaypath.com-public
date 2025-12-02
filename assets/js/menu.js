@@ -129,7 +129,9 @@
     const button = document.createElement('button');
     button.type = 'button';
     button.id = `${dropdownId}-btn`;
-    button.dataset.dropdownToggle = dropdownId;
+    button.dataset.owpDropdown = dropdownId;
+    button.setAttribute('aria-controls', dropdownId);
+    button.setAttribute('aria-expanded', 'false');
     button.className =
       'fitwel-heading-sm text-olive-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none font-bold';
     button.textContent = item.label;
@@ -138,7 +140,7 @@
     const dropdown = document.createElement('div');
     dropdown.id = dropdownId;
     dropdown.className =
-      'z-20 hidden min-w-[10rem] rounded-lg border border-olive-200 bg-[#f2ede1] text-sm text-slate-800 shadow';
+      'z-20 hidden absolute left-0 mt-2 min-w-[10rem] rounded-lg border border-olive-200 bg-[#f2ede1] text-sm text-slate-800 shadow';
     const list = document.createElement('ul');
     list.className = 'py-2';
 
@@ -227,22 +229,16 @@
   }
 
   let flowbiteLoadHookAttached = false;
-  let flowbiteInitialized = false;
   function initFlowbiteIfReady() {
-    if (flowbiteInitialized) return;
     if (typeof window.initFlowbite === 'function') {
       window.initFlowbite();
-      flowbiteInitialized = true;
-      return;
     }
-    if (flowbiteLoadHookAttached) return;
-    flowbiteLoadHookAttached = true;
-    window.addEventListener('load', () => {
-      if (typeof window.initFlowbite === 'function' && !flowbiteInitialized) {
-        window.initFlowbite();
-        flowbiteInitialized = true;
-      }
-    });
+    if (!flowbiteLoadHookAttached) {
+      flowbiteLoadHookAttached = true;
+      window.addEventListener('load', () => {
+        if (typeof window.initFlowbite === 'function') window.initFlowbite();
+      });
+    }
   }
 
   function renderMenu(menu) {
@@ -250,7 +246,49 @@
     renderMobile(menu);
     initFlowbiteIfReady();
     applyAuthVisibility();
+    bindCustomDropdowns();
     document.dispatchEvent(new CustomEvent('owp:menu-updated'));
+  }
+
+  let dropdownDelegationBound = false;
+  function bindCustomDropdowns() {
+    if (dropdownDelegationBound) return;
+    dropdownDelegationBound = true;
+
+    const getButtons = () => Array.from(document.querySelectorAll('[data-owp-dropdown]'));
+
+    const closeAll = (exceptId) => {
+      for (const btn of getButtons()) {
+        const targetId = btn.dataset.owpDropdown;
+        if (!targetId || targetId === exceptId) continue;
+        const target = document.getElementById(targetId);
+        if (target) target.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-owp-dropdown]');
+      if (!btn) {
+        // Clicked outside any dropdown trigger
+        closeAll();
+        return;
+      }
+
+      const targetId = btn.dataset.owpDropdown;
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (!target) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const willShow = target.classList.contains('hidden');
+      closeAll(targetId);
+      target.classList.toggle('hidden', !willShow);
+      btn.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAll();
+    });
   }
 
   renderMenu(fallbackMenu);
