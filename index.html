@@ -292,8 +292,10 @@
   <script>
     (function() {
       const AUTH_KEY = 'owp-editor';
-      const USER_EMAIL = 'ayoung@onewaypath.com';
-      const USER_PASS = 'StonePine-4826';
+      const USERS = [
+        { id: 'ayoung@onewaypath.com', pass: 'StonePine-4826' },
+        { id: 'uxrs', pass: 'OA5G9F*BwpVZ!s!h' },
+      ];
 
       const userBtn = document.getElementById('user-button');
       const authPanel = document.getElementById('auth-panel');
@@ -314,7 +316,8 @@
       function handleLogin() {
         const email = (modalEmail.value || '').trim().toLowerCase();
         const pass = modalPass.value || '';
-        if (email === USER_EMAIL.toLowerCase() && pass === USER_PASS) {
+        const ok = USERS.some((u) => u.id.toLowerCase() === email && u.pass === pass);
+        if (ok) {
           localStorage.setItem(AUTH_KEY, 'true');
           setAuthUI(true);
           if (editorBadge) editorBadge.classList.remove('hidden');
