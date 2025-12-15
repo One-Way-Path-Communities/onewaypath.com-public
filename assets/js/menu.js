@@ -1,4 +1,12 @@
 (() => {
+  // ---------------------------
+  // Runtime switches (defaults; can override via URL params or window.API_* before this script loads)
+  // ---------------------------
+  const DEFAULT_MODE = 'remote'; // 'local' | 'remote' | 'auto'
+  const DEFAULT_SITE_ID = '1';
+  const DEFAULT_LOCAL_BASE = 'http://localhost:3000/api/websites';
+  const DEFAULT_REMOTE_BASE = 'https://dev.onewaypath.com/api/websites';
+
   const desktopMenu = document.getElementById('desktop-menu');
   const mobileMenuList = document.getElementById('mobile-menu-list');
   if (!desktopMenu || !mobileMenuList) return;
@@ -35,21 +43,55 @@
   ];
 
   const unique = (list) => [...new Set(list.filter(Boolean))];
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const paramMode = urlParams.get('mode');
+  const paramBase = urlParams.get('base');
+  const paramSiteId = urlParams.get('site_id');
+
+  const envMode = paramMode || window.API_MODE || window.OWP_API_MODE || DEFAULT_MODE;
+  const envLocal = window.API_LOCAL || window.OWP_API_LOCAL || DEFAULT_LOCAL_BASE;
+  const envRemote = window.API_REMOTE || window.OWP_API_REMOTE || DEFAULT_REMOTE_BASE;
+  const siteId = paramSiteId || window.SITE_ID || window.API_SITE_ID || window.OWP_SITE_ID || DEFAULT_SITE_ID;
   const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
   const defaultBase =
     origin && origin.startsWith('http')
       ? `${origin.replace(/\/$/, '')}/api/websites`
       : null;
 
-  const baseCandidates = unique([
-    window.WEBSITES_API_BASE,
-    window.WEBSITES_API_BASE_URL,
-    defaultBase,
-    'https://dev.onewaypath.com/api/websites',
-    origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null,
-  ]);
+  const modeBase =
+    envMode === 'local'
+      ? envLocal || (origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null)
+    : envMode === 'remote'
+      ? envRemote || 'https://dev.onewaypath.com/api/websites'
+      : null;
+
+  const baseCandidates =
+    envMode === 'remote'
+      ? unique([paramBase, modeBase, envRemote || 'https://dev.onewaypath.com/api/websites'])
+      : unique([
+          paramBase,
+          modeBase,
+          window.WEBSITES_API_BASE,
+          window.WEBSITES_API_BASE_URL,
+          defaultBase,
+          envRemote || 'https://dev.onewaypath.com/api/websites',
+          envLocal || (origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null),
+        ]);
+
+  const chosenBase = baseCandidates.find(Boolean);
+  console.log(
+    `[menu.js] Loaded. mode=${envMode || 'auto'} site_id=${siteId} chosenBase=${chosenBase || 'none'} bases=${baseCandidates.join(
+      ', '
+    )}`
+  );
+  if (!chosenBase) {
+    console.warn('[menu.js] No API base resolved; falling back to static menu.');
+  }
 
   const sanitizeBase = (base) => (base || '').replace(/\/+$/, '');
+
+  const allowFallback = (envMode || 'auto') !== 'remote';
 
   async function fetchMenu() {
     const errors = [];
@@ -57,21 +99,49 @@
       const safeBase = sanitizeBase(base);
       if (!safeBase) continue;
       try {
-        const res = await fetch(`${safeBase}/menu`, { headers: { Accept: 'application/json' } });
+        const url = siteId ? `${safeBase}/menu?site_id=${encodeURIComponent(siteId)}` : `${safeBase}/menu`;
+        const res = await fetch(url, { headers: { Accept: 'application/json' } });
         if (!res.ok) {
-          errors.push(`${safeBase} → ${res.status}`);
+          errors.push(`${url} → ${res.status}`);
           continue;
         }
         const body = await res.json();
-        if (Array.isArray(body?.menu) && body.menu.length) return body.menu;
+        const expectedSiteId = siteId ? String(siteId) : null;
+        const bodySiteId = body?.siteId !== undefined && body?.siteId !== null ? String(body.siteId) : null;
+        const menu = Array.isArray(body?.menu) ? body.menu : [];
+
+        if (!menu.length) {
+          errors.push(`${url} → empty menu`);
+          continue;
+        }
+
+        if (expectedSiteId) {
+          const menuMismatch = menu.some((item) => String(item?.siteId || '') !== expectedSiteId);
+          const bodyMismatch = bodySiteId && bodySiteId !== expectedSiteId;
+
+          if (!bodySiteId || bodyMismatch || menuMismatch) {
+            errors.push(
+              `${url} → siteId mismatch/missing (expected ${expectedSiteId}, got body=${bodySiteId || 'none'} menu=${menu
+                .map((m) => m.siteId ?? 'none')
+                .join(',')})`
+            );
+            continue;
+          }
+        }
+
+        return menu;
       } catch (err) {
         errors.push(`${safeBase} → ${err.message}`);
       }
     }
     if (errors.length) {
-      console.warn('Menu fetch failed; using fallback.', errors);
+      console.warn('Menu fetch failed.', errors);
     }
-    return fallbackMenu;
+    if (allowFallback) {
+      console.warn('Using fallback menu.');
+      return fallbackMenu;
+    }
+    return [];
   }
 
   const statusClasses = (status) => (status && status !== 'active' ? ['requires-auth', 'hidden'] : []);

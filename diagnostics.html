@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Diagnostics</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 1.5rem; background: #f7f7f7; color: #222; }
+    h1 { margin-bottom: 0.25rem; }
+    code { background: #eee; padding: 0.15rem 0.35rem; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.4rem; font-size: 0.9rem; }
+    th { background: #f0f0f0; text-align: left; }
+    .pass { color: green; font-weight: bold; }
+    .fail { color: #b00020; font-weight: bold; }
+    .pill { display: inline-block; padding: 0.15rem 0.4rem; border-radius: 6px; background: #ddd; font-size: 0.8rem; }
+    .small { font-size: 0.85rem; color: #555; }
+    .btn { background: #1f73b7; color: #fff; border: none; padding: 0.5rem 0.9rem; border-radius: 4px; cursor: pointer; }
+    .btn:disabled { background: #999; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <h1>Menu Diagnostics</h1>
+  <p class="small">This page probes the menu API with site filtering to verify the new behavior. Use query params to override values: <code>?site_id=1&mode=remote</code></p>
+
+  <div id="config"></div>
+  <button id="run" class="btn">Run checks</button>
+  <div id="results"></div>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const siteId = params.get('site_id') || '1';
+      const mode = params.get('mode') || (window.API_MODE || window.OWP_API_MODE || 'auto');
+      const baseParam = params.getAll('base'); // allow multiple ?base=...
+      const envLocal = window.API_LOCAL || window.OWP_API_LOCAL || 'http://localhost:3000/api/websites';
+      const envRemote = window.API_REMOTE || window.OWP_API_REMOTE || 'https://dev.onewaypath.com/api/websites';
+      const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
+      const defaultBase = origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null;
+
+      const modeBase =
+        mode === 'local'
+          ? envLocal
+          : mode === 'remote'
+            ? envRemote
+            : null;
+
+      const candidates = [
+        ...baseParam,
+        modeBase,
+        envLocal,
+        envRemote,
+        defaultBase,
+        origin && origin.includes('localhost') ? 'http://localhost:3000/api/websites' : null,
+      ]
+        .filter(Boolean)
+        .filter((v, idx, arr) => arr.indexOf(v) === idx);
+
+      const configEl = document.getElementById('config');
+      configEl.innerHTML = `
+        <p><strong>JS loaded.</strong> <strong>Mode:</strong> <code>${mode}</code> &nbsp; <strong>Site ID:</strong> <code>${siteId}</code></p>
+        <p class="small">Candidate bases (in order): ${candidates.map((b) => `<code>${b}</code>`).join(' , ')}</p>
+      `;
+
+      const resultsEl = document.getElementById('results');
+      const rawEl = document.createElement('div');
+      rawEl.className = 'small';
+      resultsEl.after(rawEl);
+      const runBtn = document.getElementById('run');
+
+      function summarize(body) {
+        const menu = Array.isArray(body?.menu) ? body.menu : [];
+        const bodySiteId = body?.siteId ?? null;
+        const sample = menu.slice(0, 3).map((m) => ({ label: m.label, siteId: m.siteId ?? null }));
+        return {
+          menuLength: menu.length,
+          bodySiteId,
+          sampleIds: menu.slice(0, 5).map((m) => m.siteId ?? null),
+          sample,
+        };
+      }
+
+      async function probe(base) {
+        const url = `${base.replace(/\/+$/, '')}/menu?site_id=${encodeURIComponent(siteId)}`;
+        const started = Date.now();
+        try {
+          const res = await fetch(url, { headers: { Accept: 'application/json' } });
+          const text = await res.text();
+          let json;
+          try { json = JSON.parse(text); } catch (_) { json = text; }
+          const ok = res.ok && json && typeof json === 'object';
+          const summary = ok ? summarize(json) : null;
+
+          let reason = '';
+          let mismatch = false;
+          if (!res.ok) {
+            reason = `HTTP ${res.status}`;
+          } else if (!summary || summary.menuLength === 0) {
+            reason = 'Empty menu or invalid body';
+          } else {
+            const expected = String(siteId);
+            const bodyMatches = summary.bodySiteId !== null && String(summary.bodySiteId) === expected;
+            const itemsMatch =
+              summary.sampleIds.length > 0 &&
+              summary.sampleIds.every((sid) => sid !== null && String(sid) === expected);
+            if (!bodyMatches && !itemsMatch) {
+              mismatch = true;
+              reason = `siteId mismatch (expected ${expected}, body=${summary.bodySiteId}, items=${summary.sampleIds.join(',')})`;
+            }
+          }
+          return {
+            base,
+            url,
+            status: res.status,
+            durationMs: Date.now() - started,
+            ok,
+            mismatch: Boolean(mismatch),
+            reason,
+            summary,
+            raw: json,
+          };
+        } catch (err) {
+          return {
+            base,
+            url,
+            status: 0,
+            durationMs: Date.now() - started,
+            ok: false,
+            error: err.message,
+          };
+        }
+      }
+
+      async function run() {
+        runBtn.disabled = true;
+        resultsEl.innerHTML = '<p>Running...</p>';
+        rawEl.innerHTML = '';
+        const results = [];
+        for (const base of candidates) {
+          results.push(await probe(base));
+        }
+        render(results);
+        runBtn.disabled = false;
+      }
+
+      function render(results) {
+        if (!results.length) {
+          resultsEl.innerHTML = '<p>No bases to test.</p>';
+          return;
+        }
+        const rows = results
+          .map((r) => {
+            const statusLabel =
+              r.ok && !r.mismatch ? '<span class="pass">PASS</span>' : '<span class="fail">FAIL</span>';
+            const details = r.summary
+              ? `menu=${r.summary.menuLength}, bodySiteId=${r.summary.bodySiteId}, sample=${r.summary.sample
+                  .map((s) => `{${s.label}:${s.siteId}}`)
+                  .join(' ')}`
+              : r.error
+                ? r.error
+                : 'no summary';
+            const reason = r.reason || (r.mismatch ? 'siteId mismatch' : '');
+            return `
+              <tr>
+                <td>${statusLabel}</td>
+                <td><code>${r.base}</code></td>
+                <td>${r.status}</td>
+                <td>${r.durationMs} ms</td>
+                <td>${reason || details}</td>
+              </tr>
+            `;
+          })
+          .join('');
+        resultsEl.innerHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Result</th><th>Base</th><th>Status</th><th>Time</th><th>Details</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+          <p class="small">PASS requires: HTTP 2xx, non-empty menu, response siteId matches <code>${siteId}</code>, and all menu items have matching siteId.</p>
+        `;
+
+        rawEl.innerHTML = '<p><strong>Raw responses:</strong></p>' + results
+          .map((r) => `<details><summary>${r.base} (${r.status}${r.mismatch ? ', mismatch' : ''})</summary><pre>${escapeHtml(JSON.stringify(r.raw ?? r.error ?? {}, null, 2))}</pre></details>`)
+          .join('');
+      }
+
+      function escapeHtml(str) {
+        return (str || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      }
+
+      runBtn.addEventListener('click', run);
+      run();
+    })();
+  </script>
+</body>
+</html>
