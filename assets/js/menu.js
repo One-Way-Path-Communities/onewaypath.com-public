@@ -16,8 +16,8 @@
         { label: 'Millen Road', url: '#projects-millen-road', status: 'in-progress', displayOrder: 2 },
       ],
     },
-    { label: 'Designers', url: 'designers.html', status: 'in-progress', displayOrder: 3 },
-    { label: 'Experience', url: '#experience', status: 'in-progress', displayOrder: 4 },
+    { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 3 },
+    { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 4 },
     { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 5 },
     {
       label: 'Community',
@@ -140,7 +140,7 @@
     const dropdown = document.createElement('div');
     dropdown.id = dropdownId;
     dropdown.className =
-      'z-20 hidden absolute left-0 mt-2 min-w-[10rem] rounded-lg border border-olive-200 bg-[#f2ede1] text-sm text-slate-800 shadow';
+      'z-20 hidden absolute left-0 mt-2 min-w-[10rem] rounded-lg border border-slate-500 bg-olive-50 text-sm text-slate-950 shadow';
     const list = document.createElement('ul');
     list.className = 'py-2';
 

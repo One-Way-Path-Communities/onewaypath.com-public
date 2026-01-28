@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>One Way Path</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['DM Sans', 'Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
           },
           colors: {
             gold: {
@@ -22,7 +28,7 @@
               200: '#dec592',
               300: '#cda86a',
               400: '#be9453',
-              500: '#b6914d',
+              500: '#B6914D',
               600: '#9c7741',
               700: '#7e5d34',
               800: '#644828',
@@ -31,17 +37,17 @@
             red: {
               50: '#f4e8e6',
               100: '#e9d4cf',
-              200: '#d4a9a3',
-              300: '#b97878',
+              200: '#E9D1CC',
+              300: '#d5aea8',
               400: '#8f4a46',
-              500: '#471d19',
+              500: '#471D19',
               600: '#3c1614',
               700: '#31100f',
               800: '#250b0a',
               900: '#190706',
             },
             olive: {
-              50: '#f3f4e9',
+              50: '#F7F7F1',
               100: '#e3e5c8',
               200: '#ccd0a0',
               300: '#aab37c',
@@ -53,16 +59,17 @@
               900: '#2d2b1b',
             },
             slate: {
-              50: '#f1eded',
+              50: '#F9FAFB',
               100: '#e1d9d9',
               200: '#c3b5b6',
-              300: '#a18f91',
-              400: '#7d6c6d',
-              500: '#3b3132',
+              300: '#D1D5DC',
+              400: '#99a1af',
+              500: '#6A7282',
               600: '#322829',
               700: '#292021',
               800: '#21191a',
               900: '#181112',
+              950: '#030712',
             },
           },
         },
@@ -74,41 +81,46 @@
     :root {
       --fitwel-gold: #b6914d;
     }
+
     .fitwel-heading {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 22px;
+      font-size: 24px;
       line-height: 32px;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
+
     .fitwel-body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 20px;
       font-weight: 400;
-      line-height: 1.65;
+      line-height: 28px;
     }
+
     .fitwel-heading-sm {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 18px;
-      line-height: 26px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
+      line-height: 22px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
+
     .fitwel-hero-title {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 40px;
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: 4px;
+      line-height: 44px;
+      font-weight: 600;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: #b6914d;
     }
   </style>
 </head>
-<body class="bg-[#f2ede1] text-slate-900 font-sans antialiased">
-  <header class="z-50 bg-[#f2ede1]/95">
+
+<body class="bg-olive-50 text-slate-950 font-sans antialiased">
+ <header class="z-50 bg-olive-50/95 border-b border-slate-500">
     <nav class="bg-transparent">
       <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
         <a href="index.html" class="flex items-center gap-3">
@@ -116,52 +128,77 @@
         </a>
         <div class="hidden items-center gap-4 ml-auto lg:flex relative">
           <div id="desktop-menu" class="flex flex-wrap items-center gap-5"></div>
-          <span id="editor-badge" class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
-          <button id="user-button" type="button" class="flex h-10 w-10 items-center justify-center rounded-full border border-olive-200 text-olive-500 hover:bg-olive-50" aria-label="User account">
+          <span id="editor-badge"
+            class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
+          <button id="user-button" type="button"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-500 text-slate-950 hover:bg-olive-50"
+            aria-label="User account">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
             </svg>
           </button>
-          <div id="auth-panel" class="absolute right-0 top-14 z-40 hidden w-72 rounded-lg border border-olive-200 bg-[#f2ede1] p-4 shadow-md">
-            <div class="space-y-3">
+          <div id="auth-panel"
+            class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
+            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
               <div>
-                <p class="fitwel-heading-sm text-olive-500">Partner Login</p>
+                <p
+                  class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
+                  Partner Login</p>
               </div>
-              <div class="space-y-1">
-                <label for="auth-email" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
-                <input id="auth-email" type="email" class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200" placeholder="you@example.com">
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-email"
+                  class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
+                <input id="auth-email" type="email"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
+                  placeholder="Your@example.com">
               </div>
-              <div class="space-y-1">
-                <label for="auth-password" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Password</label>
-                <input id="auth-password" type="password" class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200" placeholder="••••••••">
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-password"
+                  class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
+                <input id="auth-password" type="password"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
+                  placeholder="..................">
               </div>
-              <p id="auth-error" class="hidden text-sm text-red-600">Invalid credentials.</p>
-              <div class="flex items-center justify-end gap-2">
-                <button type="button" id="auth-submit" class="rounded-md bg-olive-500 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Login</button>
+              <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+              <div class="flex items-center self-end justify-end gap-2">
+                <button type="button" id="auth-submit"
+                  class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false" class="ml-auto inline-flex items-center justify-center rounded-lg border border-olive-200 px-3 py-1.5 text-base font-semibold uppercase text-olive-500 hover:bg-olive-50 lg:hidden">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
+          class="ml-auto inline-flex items-center justify-center rounded-lg border border-slate-500 px-3 py-1.5 text-base font-semibold uppercase text-slate-950 hover:bg-olive-50 lg:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
-      <div id="mobile-menu" class="hidden w-full border-t border-slate-200 bg-[#f2ede1] lg:hidden">
-        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-800 space-y-4"></div>
+      <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
+        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-950 space-y-4">
+        </div>
       </div>
-      <div id="nav-panel" class="hidden w-full border-t border-slate-200 bg-[#f2ede1]">
-        <div class="mx-auto grid max-w-6xl gap-6 px-6 pb-6 pt-8 text-sm text-slate-800 sm:grid-cols-2">
-          <div class="space-y-2 max-w-sm">
-            <h1 class="fitwel-heading text-gold-400">About</h1>
-            <p class="fitwel-body text-black">One Way Path Communities builds multi-residential housing in liveable communities in and around the Greater Toronto Hamilton Area.</p>
+      <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
+        <div class="w-full mx-auto max-w-6xl px-5 md:px-6 py-16 grid md:grid-cols-2 gap-12 items-start lg:px-12">
+          <div class="flex flex-col gap-3">
+            <h1 class="fitwel-heading text-gold-500">About</h1>
+            <p class="fitwel-body text-slate-950 leading-7 xl:max-w-none lg:max-w-[426px]">
+              One Way Path Communities builds multi-residential housing in liveable communities in and around the
+              Greater Toronto Hamilton Area.
+            </p>
           </div>
-          <div class="space-y-2 max-w-sm sm:justify-self-start sm:text-left">
-            <h1 class="fitwel-heading text-gold-400">Contact</h1>
-            <p class="fitwel-body text-black">One Way Path Communities<br>77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
-            <p class="fitwel-body text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
-            <a class="fitwel-body text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+          <div class="flex flex-col gap-3 max-w-sm space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+            <h1 class="fitwel-heading text-gold-500">Contact</h1>
+            <p class="fitwel-body leading-7 text-slate-950">One Way Path Communities<br>77 Bloor Street West, Suite
+              600<br>Toronto, Ontario | Canada M5S 1M2</p>
+            <p class="fitwel-body leading-7 text-slate-950 text-lg md:text-xl">
+              Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162
+            </p>
+            <a class="fitwel-body leading-7 text-red-500 hover:text-red-700 text-lg md:text-xl"
+              href="mailto:info@onewaypath.com">info@onewaypath.com</a>
           </div>
         </div>
       </div>
@@ -169,49 +206,70 @@
   </header>
 
   <main>
-    <section id="about" class="relative overflow-hidden bg-red-500 text-white">
-      <div class="absolute inset-0 bg-[url('assets/images/hero-banner.svg')] bg-no-repeat bg-right bg-contain opacity-80"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-red-600/90 via-red-600/70 to-red-500/40"></div>
-      <div class="relative mx-auto max-w-6xl px-8 py-14 lg:py-16 min-h-[340px] flex items-center">
-        <div class="max-w-3xl space-y-6">
-          <h1 class="fitwel-hero-title">
-            About Us
-          </h1>
-          <p class="fitwel-body text-gold-50">
-            One Way Path Communities is a real estate company based in the Greater Toronto Hamilton Area dedicated to designing and building healthy communities.
-          </p>
+    <section id="about" class="relative overflow-hidden bg-olive-50">
+      <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
+      <div
+        class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
+        <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
+          <div class="flex items-start">
+            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
+              ABOUT US
+            </h1>
+          </div>
+          <div class="flex items-end h-auto md:h-[184px]">
+            <p class="fitwel-body text-slate-300">
+              One Way Path Communities is a real estate company based in the Greater Toronto Hamilton Area dedicated to
+              designing and building healthy communities.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="vision" class="bg-[#f2ede1]">
-      <div class="mx-auto max-w-6xl px-8 py-14 space-y-8">
-        <div class="grid gap-1 border-b border-slate-100 pb-12 lg:grid-cols-[170px_1fr] items-baseline">
-          <h1 class="fitwel-heading text-gold-400">Vision</h1>
-          <div class="space-y-2 text-slate-800">
-            <p class="fitwel-body text-black">Our vision is to build the world’s most liveable communities. A liveable community is a community in which people can lead lives they consider to be worthwhile and enjoyable.</p>
+    <section id="vision" class="bg-olive-50">
+      <div class="mx-auto max-w-6xl sm:px-8 px-4 xl:pl-6 xl:pr-1 lg:pr-12 py-20 space-y-8">
+        <div class="grid pb-1 md:pb-12 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
+          <h1 class="fitwel-heading text-gold-500">Vision</h1>
+          <div class="space-y-2 text-slate-950">
+            <p class="fitwel-body text-slate-950">Our vision is to build the world’s most liveable communities. A
+              liveable community is a community in which people can lead lives they consider to be worthwhile and
+              enjoyable.</p>
           </div>
         </div>
 
-        <div class="grid gap-1 border-b border-slate-100 pb-12 lg:grid-cols-[170px_1fr] items-baseline">
-          <h1 class="fitwel-heading text-gold-400">Mission</h1>
-          <div class="space-y-2 text-slate-800">
-            <p class="fitwel-body text-black">Our mission is to build living spaces and provide services that promote mental and physical health.</p>
+        <div class="grid pb-8 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
+          <h1 class="fitwel-heading text-gold-500">Mission</h1>
+          <div class="space-y-2 text-slate-950">
+            <p class="fitwel-body text-slate-950">Our mission is to build living spaces and provide services that
+              promote mental and physical health.</p>
           </div>
         </div>
 
-        <div class="grid gap-1 border-b border-slate-100 pb-12 lg:grid-cols-[170px_1fr] items-baseline">
-          <h1 class="fitwel-heading text-gold-400">Values</h1>
-          <div class="text-slate-800 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-[170px_1fr] sm:gap-x-5 sm:gap-y-6 sm:items-start sm:relative sm:mt-3 md:mt-4">
-            <div class="hidden sm:block absolute inset-y-0 left-[170px] w-px bg-slate-200"></div>
-            <div class="fitwel-heading-sm text-olive-500">Well-being</div>
-            <div class="fitwel-body text-black">We strive to promote community mental and physical health through building design and the services offered in our communities.</div>
-            <div class="fitwel-heading-sm text-olive-500">Quality</div>
-            <div class="fitwel-body text-black">We maintain high standards of service, construction, design, and maintenance to deliver exceptional experiences.</div>
-            <div class="fitwel-heading-sm text-olive-500">Innovation</div>
-            <div class="fitwel-body text-black">We embrace innovative approaches and technologies to continuously improve the quality and functionality of our communities.</div>
-            <div class="fitwel-heading-sm text-olive-500">Continuous Improvement</div>
-            <div class="fitwel-body text-black">We are dedicated to ongoing learning and improvement, seeking feedback and adapting our practices.</div>
+        <div class="grid gap-1 pb-14 md:grid-cols-[170px_1fr] items-baseline  lg:gap-6">
+          <h1 class="fitwel-heading text-gold-500">Values</h1>
+          <div
+            class="text-slate-950 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-[170px_1fr] lg:gap-8 sm:gap-x-5 sm:gap-y-6 sm:items-start sm:relative sm:mt-3 md:mt-4">
+            <div
+              class="hidden sm:block absolute inset-y-0 left-[180px] lg:left-[180px] md:left-[170px] w-px bg-slate-500">
+            </div>
+            <div class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500">Well-being</div>
+            <div class="fitwel-body text-slate-950">
+              We strive to promote community mental and physical health
+              through building design and the services offered in our communities.</div>
+            <div class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500">Quality</div>
+            <div class="fitwel-body text-slate-950">
+              We maintain high standards of service, construction,
+              design, and maintenance to deliver exceptional experiences.</div>
+            <div class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500">Innovation</div>
+            <div class="fitwel-body text-slate-950">
+              We embrace innovative approaches and technologies to continuously
+              improve the quality and functionality of our communities.
+            </div>
+            <div class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500">Continuous Improvement</div>
+            <div class="fitwel-body text-slate-950">
+              We are dedicated to ongoing learning and improvement, seeking
+              feedback and adapting our practices.
+            </div>
           </div>
         </div>
 
@@ -219,24 +277,75 @@
     </section>
   </main>
 
-  <section id="contact" class="bg-[#f2ede1] lg:hidden">
-    <div class="mx-auto max-w-6xl px-8 py-10">
-      <h2 class="fitwel-heading text-gold-400">Contact</h2>
-      <p class="fitwel-body mt-3 text-slate-800">One Way Path Communities</p>
-      <p class="fitwel-body text-black">77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
-      <p class="fitwel-body mt-2 text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
-      <a class="fitwel-body mt-2 inline-block text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
-    </div>
-  </section>
+  <footer class="bg-olive-50 border-t border-slate-500">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-2 lg:gap-12">
+        <!-- Logo Section -->
+        <div class="flex justify-center lg:justify-start">
+          <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto sm:h-16">
+        </div>
 
-  <footer class="bg-red-500">
-    <div class="mx-auto flex max-w-6xl items-center justify-start px-8 py-6">
-      <p class="text-sm text-white"><span class="font-semibold text-gold-400">© 2025</span> One Way Path Group Limited. All rights reserved.</p>
+        <!-- Navigation Links -->
+        <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
+          <!-- COMPANY Column -->
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMPANY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="index.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT
+                  US</a></li>
+              <li><a href="designers.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE
+                  COVENANTS</a></li>
+              <li><a href="builders.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- PROJECTS Column -->
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">PROJECTS</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT ROAD</a>
+              </li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN ROAD</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- COMMUNITY Column -->
+          <div class="col-span-2 sm:col-span-1">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMMUNITY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="wellness.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">HOMES</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">JOBS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section -->
+      <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Group Limited. All
+          rights reserved.</p>
+        <div
+          class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">PRIVACY POLICY</a>
+          <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">TERMS AND CONDITIONS</a>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script>
-    (function() {
+    (function () {
       const AUTH_KEY = 'owp-editor';
       const USERS = [
         { id: 'ayoung@onewaypath.com', pass: 'StonePine-4826' },
@@ -257,7 +366,13 @@
         document.querySelectorAll('.auth-only').forEach(el => el.classList.toggle('hidden', !on));
       }
       function openPanel() { if (authPanel) authPanel.classList.remove('hidden'); }
-      function closePanel() { if (authPanel) authPanel.classList.add('hidden'); if (modalError) modalError.classList.add('hidden'); }
+      function closePanel() {
+        if (authPanel) authPanel.classList.add('hidden');
+        if (modalError) {
+          modalError.classList.add('hidden');
+          modalError.textContent = 'Invalid credentials.';
+        }
+      }
 
       function handleLogin() {
         const email = (modalEmail.value || '').trim().toLowerCase();
@@ -303,4 +418,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   <script src="assets/js/menu.js"></script>
 </body>
+
 </html>

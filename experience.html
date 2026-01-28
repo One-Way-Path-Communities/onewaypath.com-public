@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Way Path | Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            gold: {
+              50: '#f7f0e4',
+              100: '#eddfc4',
+              200: '#dec592',
+              300: '#cda86a',
+              400: '#be9453',
+              500: '#B6914D',
+              600: '#9c7741',
+              700: '#7e5d34',
+              800: '#644828',
+              900: '#4e3620',
+            },
+            red: {
+              50: '#f4e8e6',
+              100: '#e9d4cf',
+              200: '#E9D1CC',
+              300: '#d5aea8',
+              400: '#8f4a46',
+              500: '#471D19',
+              600: '#3c1614',
+              700: '#31100f',
+              800: '#250b0a',
+              900: '#190706',
+            },
+            olive: {
+              50: '#F7F7F1',
+              100: '#e3e5c8',
+              200: '#ccd0a0',
+              300: '#aab37c',
+              400: '#929b5f',
+              500: '#818452',
+              600: '#696a42',
+              700: '#525233',
+              800: '#3f3e27',
+              900: '#2d2b1b',
+            },
+            slate: {
+              50: '#F9FAFB',
+              100: '#e1d9d9',
+              200: '#c3b5b6',
+              300: '#D1D5DC',
+              400: '#99a1af',
+              500: '#6A7282',
+              600: '#322829',
+              700: '#292021',
+              800: '#21191a',
+              900: '#181112',
+              950: '#030712',
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --fitwel-gold: #b6914d;
+    }
+
+    .fitwel-heading {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 22px;
+      line-height: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .fitwel-heading-sm {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-hero-title {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 40px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #b6914d;
+    }
+
+    .accordion {
+      font-family: 'DM Sans', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
+  <header class="z-50 bg-olive-50/95 border-b border-slate-500">
+    <nav class="bg-transparent">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto">
+        </a>
+        <div class="hidden items-center gap-4 ml-auto lg:flex relative">
+          <div id="desktop-menu" class="flex flex-wrap items-center gap-5"></div>
+          <span id="editor-badge"
+            class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
+          <button id="user-button" type="button"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-500 text-slate-950 hover:bg-olive-50"
+            aria-label="User account">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
+            </svg>
+          </button>
+          <div id="auth-panel"
+            class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
+            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+              <div>
+                <p
+                  class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
+                  Partner Login</p>
+              </div>
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-email"
+                  class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
+                <input id="auth-email" type="email"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
+                  placeholder="Your@example.com">
+              </div>
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-password"
+                  class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
+                <input id="auth-password" type="password"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
+                  placeholder="..................">
+              </div>
+              <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+              <div class="flex items-center self-end justify-end gap-2">
+                <button type="button" id="auth-submit"
+                  class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
+          class="ml-auto inline-flex items-center justify-center rounded-lg border border-slate-500 px-3 py-1.5 text-base font-semibold uppercase text-slate-950 hover:bg-olive-50 lg:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
+        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-950 space-y-4">
+        </div>
+      </div>
+      <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
+        <div class="mx-auto grid max-w-6xl gap-6 px-6 pb-6 pt-8 text-sm text-slate-950 sm:grid-cols-2">
+          <div class="space-y-2 max-w-sm">
+            <h1 class="fitwel-heading text-slate-500">About</h1>
+            <p class="fitwel-body text-slate-950">One Way Path Communities
+              builds multi-residential housing in liveable
+              communities in and around the Greater Toronto Hamilton Area.</p>
+          </div>
+          <div class="space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+            <h1 class="fitwel-heading text-slate-500">Contact</h1>
+            <p class="fitwel-body text-slate-950">One Way Path
+              Communities<br>77 Bloor Street West, Suite
+              600<br>Toronto, Ontario | Canada M5S 1M2</p>
+            <p class="fitwel-body text-slate-950">Tel: +1 (416)
+              848-1746<br>Fax: +1 (416) 848-1162</p>
+            <a class="fitwel-body text-slate-950 hover:text-slate-700"
+              href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-olive-50">
+      <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
+      <div
+        class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
+        <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
+          <div class="flex items-start">
+            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
+              EXPERIENCE COVENANTS
+            </h1>
+          </div>
+          <div class="flex items-end h-auto md:h-[184px]">
+            <p class="fitwel-body text-slate-300">
+              An experience covenant is an agreement that qualified
+              professionals will oversee key stages of a project. Our
+              collective construction experience spans design, planning,
+              engineering, procurement, and execution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class=" pt-[100px] pb-[70px]">
+      <div
+        class="grid sm:grid-cols-3 max-w-[1120px] md:gap-[15px] gap-[50px] w-full mx-auto sm:divide-x sm:divide-[#6A7282]">
+        <div>
+          <h3 class=" text-[#030712] text-[40px] font-[600] text-center ">20+</h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] uppercase tracking-[2px] text-center ">Completed
+            Projects</p>
+        </div>
+        <div class="  ">
+          <h3 class=" text-[#030712] text-[40px] font-[600] text-center ">2M+</h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] text-center uppercase tracking-[2px] ">sq
+            ft Gross Floor Area (GFA)</p>
+        </div>
+        <div class=" ">
+          <h3 class=" text-[#030712] text-[40px] font-[600] text-center">2K+</h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] uppercase tracking-[2px] text-center">Residential
+            Suites
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="md:px-[50px] px-[20px] ">
+      <div class="grid sm:grid-cols-2 gap-[20px]  max-w-[1120px] w-full mx-auto sm:divide-[#6A7282] pb-4">
+        <div class="box border-b pb-[10px] mb-[15px] border-[#6A7282]">
+          <img src="./assets/images/Img1.png" class="md:max-w-[548px] w-full h-[400px] " alt="Project image 1">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px] ">North
+              Toronto Collegiate Institute</h1>
+            <div class="flex flex-wrap gap-[10px]">
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Alex
+                  Young</span> - CS&P Architects
+              </p>
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Architecture</span>
+              </p>
+
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]   ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Client:</span>
+                - Toronto District School Board
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-[10px]">
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">10
+                stories</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                156,000 sq. ft.</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                150 suites</label>
+            </div>
+          </div>
+        </div>
+        <div class="box border-b pb-[10px] mb-[15px] border-[#6A7282]">
+          <img src="./assets/images/Img2.png" class="md:max-w-[548px] w-full h-[400px] " alt="Project image 2">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px] ">North
+              Toronto Collegiate Institute</h1>
+            <div class="flex flex-wrap gap-[10px]">
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Alex
+                  Young</span> - CS&P Architects
+              </p>
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Architecture</span>
+              </p>
+
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]   ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Client:</span>
+                - Toronto District School Board
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-[10px]">
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">10
+                stories</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                156,000 sq. ft.</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                150 suites</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="box border-b pb-[10px] mb-[15px] border-[#6A7282]">
+          <img src="./assets/images/Img3.png" class="md:max-w-[548px] w-full h-[400px] " alt="Project image 3">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px] ">North
+              Toronto Collegiate Institute</h1>
+            <div class="flex flex-wrap gap-[10px]">
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Alex
+                  Young</span> - CS&P Architects
+              </p>
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Architecture</span>
+              </p>
+
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]   ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Client:</span>
+                - Toronto District School Board
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-[10px]">
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">10
+                stories</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                156,000 sq. ft.</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                150 suites</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="box border-b pb-[10px] mb-[15px] border-[#6A7282]">
+          <img src="./assets/images/Img4.png" class="md:max-w-[548px] w-full h-[400px] " alt="Project image 4">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px] ">North
+              Toronto Collegiate Institute</h1>
+            <div class="flex flex-wrap gap-[10px]">
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Alex
+                  Young</span> - CS&P Architects
+              </p>
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Architecture</span>
+              </p>
+
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]   ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Client:</span>
+                - Toronto District School Board
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-[10px]">
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">10
+                stories</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                156,000 sq. ft.</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                150 suites</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="box border-b pb-[10px] mb-[15px] border-[#6A7282]">
+          <img src="./assets/images/Img5.png" class="md:max-w-[548px] w-full h-[400px] " alt="Project image 5">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px] ">North
+              Toronto Collegiate Institute</h1>
+            <div class="flex flex-wrap gap-[10px]">
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Alex
+                  Young</span> - CS&P Architects
+              </p>
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Architecture</span>
+              </p>
+
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]   ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Client:</span>
+                - Toronto District School Board
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-[10px]">
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">10
+                stories</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                156,000 sq. ft.</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                150 suites</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="box border-b pb-[10px] mb-[15px] border-[#6A7282]">
+          <img src="./assets/images/Img6.png" class="md:max-w-[548px] w-full h-[400px] " alt="Project image 6">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px] ">North
+              Toronto Collegiate Institute</h1>
+            <div class="flex flex-wrap gap-[10px]">
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Alex
+                  Young</span> - CS&P Architects
+              </p>
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]  ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Architecture</span>
+              </p>
+
+              <p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]   ">
+                <span class="text-[#333E4F] text-[14px] font-[500] ">Client:</span>
+                - Toronto District School Board
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-[10px]">
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">10
+                stories</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                156,000 sq. ft.</label>
+              <label
+                class="text-[#333E4F] text-[14px] font-[600]  tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE] ">
+                150 suites</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="flex flex-wrap px-[15px] items-center max-w-[1120px] pb-[100px] w-full mx-auto justify-between md:gap-8 gap-4 py-10 font-sans">
+      <!-- Prev -->
+      <button id="prev" aria-label="Previous page"
+        class="disabled:opacity-30 disabled:cursor-default md:w-[48px] md:h-[48px] w-[20px] h-[20px] flex justify-center items-center ">
+        <img src="./assets/images/rightArrow.svg" class="rotate-[180deg] " alt="" aria-hidden="true">
+      </button>
+
+      <!-- Pages -->
+      <div id="pages" class="flex w-fit mx-auto items-center gap-3 text-[16px] text-[#030712] "></div>
+
+      <!-- Next -->
+      <button id="next" aria-label="Next page"
+        class="disabled:opacity-30 disabled:cursor-default md:w-[48px] md:h-[48px] w-[20px] h-[20px] flex justify-center items-center">
+        <img src="./assets/images/rightArrow.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+  </main>
+
+  <footer class="bg-olive-50 border-t border-slate-500">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-2 lg:gap-12">
+        <div class="flex justify-center lg:justify-start">
+          <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto sm:h-16">
+        </div>
+        <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMPANY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="index.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT
+                  US</a></li>
+              <li><a href="designers.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE
+                  COVENANTS</a></li>
+              <li><a href="builders.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">PROJECTS</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT
+                  ROAD</a>
+              </li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN
+                  ROAD</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMMUNITY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="wellness.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">HOMES</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">JOBS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">©
+          2026 One Way Path Group Limited. All
+          rights reserved.</p>
+        <div
+          class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">PRIVACY
+            POLICY</a>
+          <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">TERMS AND
+            CONDITIONS</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const AUTH_KEY = 'owp-editor';
+      const USERS = [
+        { id: 'ayoung@onewaypath.com', pass: 'StonePine-4826' },
+        { id: 'uxrs', pass: 'OA5G9F*BwpVZ!s!h' },
+      ];
+
+      const userBtn = document.getElementById('user-button');
+      const authPanel = document.getElementById('auth-panel');
+      const modalSubmit = document.getElementById('auth-submit');
+      const modalEmail = document.getElementById('auth-email');
+      const modalPass = document.getElementById('auth-password');
+      const modalError = document.getElementById('auth-error');
+      const editorBadge = document.getElementById('editor-badge');
+
+      function isAuthed() { return localStorage.getItem(AUTH_KEY) === 'true'; }
+      function setAuthUI(on) {
+        document.querySelectorAll('.requires-auth').forEach(el => el.classList.toggle('hidden', !on));
+        document.querySelectorAll('.auth-only').forEach(el => el.classList.toggle('hidden', !on));
+      }
+      function openPanel() { if (authPanel) authPanel.classList.remove('hidden'); }
+      function closePanel() {
+        if (authPanel) authPanel.classList.add('hidden');
+        if (modalError) {
+          modalError.classList.add('hidden');
+          modalError.textContent = 'Invalid credentials.';
+        }
+      }
+
+      function handleLogin() {
+        const email = (modalEmail.value || '').trim().toLowerCase();
+        const pass = modalPass.value || '';
+        const ok = USERS.some((u) => u.id.toLowerCase() === email && u.pass === pass);
+        if (ok) {
+          localStorage.setItem(AUTH_KEY, 'true');
+          setAuthUI(true);
+          if (editorBadge) editorBadge.classList.remove('hidden');
+          closePanel();
+        } else if (modalError) {
+          modalError.classList.remove('hidden');
+        }
+      }
+      function handleLogout() {
+        localStorage.removeItem(AUTH_KEY);
+        setAuthUI(false);
+        if (editorBadge) editorBadge.classList.add('hidden');
+      }
+
+      if (userBtn) {
+        userBtn.addEventListener('click', () => {
+          if (isAuthed()) {
+            handleLogout();
+          } else {
+            openPanel();
+          }
+        });
+      }
+      document.addEventListener('click', (e) => {
+        if (!authPanel || authPanel.classList.contains('hidden')) return;
+        if (!authPanel.contains(e.target) && !userBtn.contains(e.target)) {
+          closePanel();
+        }
+      });
+      if (modalSubmit) modalSubmit.addEventListener('click', handleLogin);
+
+      const authed = isAuthed();
+      setAuthUI(authed);
+      if (editorBadge && authed) editorBadge.classList.remove('hidden');
+    })();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <script src="assets/js/menu.js"></script>
+
+  <script>
+    const totalPages = 100;
+    let currentPage = 1;
+
+    const pagesEl = document.getElementById("pages");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+
+    function renderPagination() {
+      pagesEl.innerHTML = "";
+
+      const pages = [];
+
+      pages.push(1);
+      if (currentPage > 3) pages.push("dots");
+
+      const isSmallScreen = window.innerWidth <= 768;
+
+      const mediaQuery = window.matchMedia('(max-width: 757px)');
+      const range = mediaQuery.matches ? 1 : 2;
+
+      for (let i = currentPage - range; i <= currentPage + range; i++) {
+        if (i > 1 && i < totalPages) {
+          pages.push(i);
+        }
+      }
+
+
+      if (currentPage < totalPages - 2) pages.push("dots");
+      pages.push(totalPages);
+
+      pages.forEach(p => {
+        if (p === "dots") {
+          const span = document.createElement("span");
+          span.textContent = "…";
+          span.className = "select-none";
+          pagesEl.appendChild(span);
+        } else {
+          const btn = document.createElement("button");
+          btn.textContent = p;
+
+          // base styles
+          btn.className =
+            "flex items-center text-[#030712] md:text-[16px] text-[12px] font-[600] justify-center md:w-[48px] md:h-[48px] w-[35px] h-[35px] text-sm";
+
+          // active page
+          if (p === currentPage) {
+            btn.classList.add(
+              "border-[2px]",
+              "border-[#030712]",
+              "font-medium"
+            );
+          } else {
+            btn.classList.add("hover:underline");
+          }
+
+          btn.onclick = () => {
+            currentPage = p;
+            renderPagination();
+          };
+
+          pagesEl.appendChild(btn);
+        }
+      });
+
+      prevBtn.disabled = currentPage === 1;
+      nextBtn.disabled = currentPage === totalPages;
+    }
+
+    prevBtn.onclick = () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderPagination();
+      }
+    };
+
+    nextBtn.onclick = () => {
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderPagination();
+      }
+    };
+
+    renderPagination();
+  </script>
+
+</body>
+
+</html>

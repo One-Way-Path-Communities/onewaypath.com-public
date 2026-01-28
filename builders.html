@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>One Way Path | Builders</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['DM Sans', 'Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
           },
           colors: {
             gold: {
@@ -22,7 +28,7 @@
               200: '#dec592',
               300: '#cda86a',
               400: '#be9453',
-              500: '#b6914d',
+              500: '#B6914D',
               600: '#9c7741',
               700: '#7e5d34',
               800: '#644828',
@@ -31,17 +37,17 @@
             red: {
               50: '#f4e8e6',
               100: '#e9d4cf',
-              200: '#d4a9a3',
-              300: '#b97878',
+              200: '#E9D1CC',
+              300: '#d5aea8',
               400: '#8f4a46',
-              500: '#471d19',
+              500: '#471D19',
               600: '#3c1614',
               700: '#31100f',
               800: '#250b0a',
               900: '#190706',
             },
             olive: {
-              50: '#f3f4e9',
+              50: '#F7F7F1',
               100: '#e3e5c8',
               200: '#ccd0a0',
               300: '#aab37c',
@@ -53,16 +59,17 @@
               900: '#2d2b1b',
             },
             slate: {
-              50: '#f1eded',
+              50: '#F9FAFB',
               100: '#e1d9d9',
               200: '#c3b5b6',
-              300: '#a18f91',
-              400: '#7d6c6d',
-              500: '#3b3132',
+              300: '#D1D5DC',
+              400: '#99a1af',
+              500: '#6A7282',
               600: '#322829',
               700: '#292021',
               800: '#21191a',
               900: '#181112',
+              950: '#030712',
             },
           },
         },
@@ -74,50 +81,55 @@
     :root {
       --fitwel-gold: #b6914d;
     }
+
     .fitwel-heading {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 22px;
+      font-size: 24px;
       line-height: 32px;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
+
     .fitwel-body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 20px;
       font-weight: 400;
-      line-height: 1.65;
+      line-height: 28px;
     }
+
     .fitwel-heading-sm {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 18px;
-      line-height: 26px;
-      font-weight: 700;
-      letter-spacing: 1.8px;
+      line-height: 22px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
     }
+
     .fitwel-stat-number {
-      font-family: 'Roboto Condensed','Roboto',sans-serif;
-      font-size: 42px;
-      line-height: 1.05;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: #000;
     }
+
     .fitwel-hero-title {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 40px;
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: 4px;
+      line-height: 44px;
+      font-weight: 600;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: #b6914d;
     }
   </style>
 </head>
-<body class="bg-[#f2ede1] text-slate-900 font-sans antialiased min-h-screen flex flex-col">
-  <header class="z-50 bg-[#f2ede1]/95">
+
+<body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
+  <header class="z-50 bg-olive-50/95 border-b border-slate-500">
     <nav class="bg-transparent">
       <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
         <a href="index.html" class="flex items-center gap-3">
@@ -125,52 +137,77 @@
         </a>
         <div class="hidden items-center gap-4 ml-auto lg:flex relative">
           <div id="desktop-menu" class="flex flex-wrap items-center gap-5"></div>
-          <span id="editor-badge" class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
-          <button id="user-button" type="button" class="flex h-10 w-10 items-center justify-center rounded-full border border-olive-200 text-olive-500 hover:bg-olive-50" aria-label="User account">
+          <span id="editor-badge"
+            class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
+          <button id="user-button" type="button"
+            class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-500 text-slate-950 hover:bg-olive-50"
+            aria-label="User account">
             <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
             </svg>
           </button>
-          <div id="auth-panel" class="absolute right-0 top-14 z-40 hidden w-72 rounded-lg border border-olive-200 bg-[#f2ede1] p-4 shadow-md">
-            <div class="space-y-3">
+          <div id="auth-panel"
+            class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
+            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
               <div>
-                <p class="fitwel-heading-sm text-olive-500">Partner Login</p>
+                <p
+                  class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
+                  Partner Login</p>
               </div>
-              <div class="space-y-1">
-                <label for="auth-email" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
-                <input id="auth-email" type="email" class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200" placeholder="you@example.com">
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-email"
+                  class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
+                <input id="auth-email" type="email"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
+                  placeholder="Your@example.com">
               </div>
-              <div class="space-y-1">
-                <label for="auth-password" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Password</label>
-                <input id="auth-password" type="password" class="w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200" placeholder="••••••••">
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-password"
+                  class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
+                <input id="auth-password" type="password"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
+                  placeholder="..................">
               </div>
-              <p id="auth-error" class="hidden text-sm text-red-600">Invalid credentials.</p>
-              <div class="flex items-center justify-end gap-2">
-                <button type="button" id="auth-submit" class="rounded-md bg-olive-500 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Login</button>
+              <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+              <div class="flex items-center self-end justify-end gap-2">
+                <button type="button" id="auth-submit"
+                  class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false" class="ml-auto inline-flex items-center justify-center rounded-lg border border-olive-200 px-3 py-1.5 text-base font-semibold uppercase text-olive-500 hover:bg-olive-50 lg:hidden">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+        <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
+          class="ml-auto inline-flex items-center justify-center rounded-lg border border-slate-500 px-3 py-1.5 text-base font-semibold uppercase text-slate-950 hover:bg-olive-50 lg:hidden">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+            aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
-      <div id="mobile-menu" class="hidden w-full border-t border-slate-200 bg-[#f2ede1] lg:hidden">
-        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-800 space-y-4"></div>
+      <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
+        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-950 space-y-4">
+        </div>
       </div>
-      <div id="nav-panel" class="hidden w-full border-t border-slate-200 bg-[#f2ede1]">
-        <div class="mx-auto grid max-w-6xl gap-6 px-6 pb-6 pt-8 text-sm text-slate-800 sm:grid-cols-2">
-          <div class="space-y-2 max-w-sm">
-            <h1 class="fitwel-heading text-gold-400">About</h1>
-            <p class="fitwel-body text-black">One Way Path Communities builds multi-residential housing in liveable communities in and around the Greater Toronto Hamilton Area.</p>
+      <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
+        <div class="w-full mx-auto max-w-6xl px-5 md:px-6 py-16 grid md:grid-cols-2 gap-12 items-start lg:px-12">
+          <div class="flex flex-col gap-3">
+            <h1 class="fitwel-heading text-gold-500">About</h1>
+            <p class="fitwel-body text-slate-950 leading-7 xl:max-w-none lg:max-w-[426px]">
+              One Way Path Communities builds multi-residential housing in liveable communities in and around the
+              Greater Toronto Hamilton Area.
+            </p>
           </div>
-          <div class="space-y-2 max-w-sm sm:justify-self-start sm:text-left">
-            <h1 class="fitwel-heading text-gold-400">Contact</h1>
-            <p class="fitwel-body text-black">One Way Path Communities<br>77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
-            <p class="fitwel-body text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
-            <a class="fitwel-body text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+          <div class="flex flex-col gap-3 max-w-sm space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+            <h1 class="fitwel-heading text-gold-500">Contact</h1>
+            <p class="fitwel-body leading-7 text-slate-950">One Way Path Communities<br>77 Bloor Street West, Suite
+              600<br>Toronto, Ontario | Canada M5S 1M2</p>
+            <p class="fitwel-body leading-7 text-slate-950 text-lg md:text-xl">
+              Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162
+            </p>
+            <a class="fitwel-body leading-7 text-red-500 hover:text-red-700 text-lg md:text-xl"
+              href="mailto:info@onewaypath.com">info@onewaypath.com</a>
           </div>
         </div>
       </div>
@@ -178,193 +215,291 @@
   </header>
 
   <main class="flex-1">
-    <section class="relative overflow-hidden bg-red-500 text-white">
-      <div class="absolute inset-0 bg-[url('assets/images/hero-banner.svg')] bg-no-repeat bg-right bg-contain opacity-80"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-red-600/90 via-red-600/70 to-red-500/40"></div>
-      <div class="relative mx-auto max-w-6xl px-8 py-14 lg:py-16 min-h-[340px] flex items-center">
-        <div class="max-w-3xl space-y-6">
-          <h1 class="fitwel-hero-title">
-            Builders
-          </h1>
-          <p class="fitwel-body text-gold-50">
-            Long-term partnerships that give trades predictable work, collaborative growth, and cash flow support so you can focus on quality over chasing bids.
-          </p>
+    <section class="relative overflow-hidden bg-olive-50">
+      <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
+      <div
+        class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
+        <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
+          <div class="flex items-start">
+            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
+              BUILDERS
+            </h1>
+          </div>
+          <div class="flex items-end h-auto md:h-[184px]">
+            <p class="fitwel-body text-slate-300">
+              Long-term partnerships that give trades predictable work, collaborative growth, and cash flow support so
+              you can focus on quality over chasing bids.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="bg-[#f2ede1]">
-      <div class="mx-auto max-w-6xl px-8 py-20 space-y-10">
-        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
-          <h2 class="fitwel-heading text-gold-400">Direct Contracts</h2>
-          <div class="space-y-6 text-slate-800">
-            <p class="fitwel-body text-black">Skip the tender grind. We work directly with trade partners on defined scopes, clear timelines, and transparent expectations—reducing time lost on bids that stall and letting you keep your best people productive.</p>
-            <div class="space-y-4">
-              <h3 class="fitwel-heading-sm text-olive-500 uppercase tracking-[0.08em] mt-12 mb-8 block">Average Meaningful Benefits</h3>
-              <div class="grid gap-12 sm:grid-cols-3 sm:divide-x sm:divide-slate-200 pb-4">
-                <div class="sm:pr-8">
-                  <h3 class="fitwel-stat-number whitespace-nowrap">12 Month</h3>
-                  <p class="fitwel-body text-black whitespace-nowrap">Pipeline Visibility</p>
-                </div>
-                <div class="sm:px-8">
-                  <h3 class="fitwel-stat-number whitespace-nowrap">50%</h3>
-                  <p class="fitwel-body text-black whitespace-nowrap">Less Upfront Capital</p>
-                </div>
-                <div class="sm:pl-8">
-                  <h3 class="fitwel-stat-number whitespace-nowrap">20%</h3>
-                  <p class="fitwel-body text-black whitespace-nowrap">Higher Profits</p>
-                </div>
+    <section class="bg-olive-50">
+      <div class="mx-auto max-w-6xl px-5 xl:pl-6 xl:pr-2 lg:pr-12 md:px-8 py-20">
+        <div class="border-b border-slate-500 pb-12 flex flex-col gap-12">
+          <div
+            class="flex flex-col gap-6 lg:gap-0 md:grid lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] items-baseline">
+            <h2 class="fitwel-heading text-gold-500">Direct Contracts</h2>
+            <div class="flex flex-col gap-12 text-slate-950">
+              <p class="fitwel-body text-slate-950 md:text-xl lg:text-lg xl:text-xl">
+                Skip the tender grind. We work directly with trade partners on defined scopes, clear timelines, and
+                transparent expectations—reducing time lost on bids that stall and letting you keep your best people
+                productive.
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 lg:pl-48">
+            <h3
+              class="fitwel-heading-sm text-olive-500 text-lg tracking-normal md:leading-5 md:tracking-[2px] md:text-base">
+              Average Meaningful Benefits
+            </h3>
+            <div class="grid gap-12 sm:grid-cols-3 sm:divide-x sm:divide-slate-500 pb-4">
+              <div class="sm:pr-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap lg:text-[40px] md:text-3xl lg:leading-[60px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  12 Month
+                </h3>
+                <p class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-normal">Pipeline Visibility
+                </p>
+              </div>
+              <div class="sm:px-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap lg:text-[40px] md:text-3xl lg:leading-[60px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  50%</h3>
+                <p class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-normal">Less Upfront Capital
+                </p>
+              </div>
+              <div class="sm:pl-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap lg:text-[40px] md:text-3xl lg:leading-[60px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  20%</h3>
+                <p class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-normal">Higher Profits</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
-          <h2 class="fitwel-heading text-gold-400">Active<br>Growth</h2>
-          <div class="space-y-6 text-slate-800">
-            <p class="fitwel-body text-black">Grow with us by design, not by chance. We co-plan pipelines with our partners so you can choose the pace, scope, and geography that fits your crew and specialties instead of waiting on referrals or seasonal swings.</p>
+        <div
+          class="grid border-b border-slate-500 py-12 lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] items-baseline">
+          <h2 class="fitwel-heading text-gold-500">Active Growth</h2>
+          <div class="space-y-6 text-slate-950">
+            <p class="fitwel-body text-slate-950 md:text-xl lg:text-lg xl:text-xl">
+              Grow with us by design, not by chance. We co-plan pipelines with our partners so you can choose the pace,
+              scope, and geography that fits your crew and specialties instead of waiting on referrals or seasonal
+              swings.</p>
           </div>
         </div>
 
-        <div class="grid gap-3 border-b border-slate-100 pb-12 lg:grid-cols-[200px_1fr] items-baseline">
-          <h2 class="fitwel-heading text-gold-400">Higher<br>Liquidity</h2>
-          <div class="space-y-6 text-slate-800">
-            <p class="fitwel-body text-black">We purchase core materials directly and streamline approvals, which lowers your upfront outlay and shortens the time between work completed and cash collected. More liquidity means steadier operations, less strain on credit, and more room to invest in your team.</p>
+        <div
+          class="grid border-b border-slate-500 py-12 lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] items-baseline">
+          <h2 class="fitwel-heading text-gold-500">Higher Liquidity</h2>
+          <div class="space-y-6 text-slate-950">
+            <p class="fitwel-body text-slate-950 md:text-xl lg:text-lg xl:text-xl">
+              We purchase core materials directly and streamline approvals, which
+              lowers your upfront outlay and shortens the time between work completed and cash collected. More liquidity
+              means steadier operations, less strain on credit, and more room to invest in your team.</p>
           </div>
         </div>
 
-        <div class="grid gap-3 pb-0 lg:grid-cols-[200px_1fr] items-baseline">
-          <h2 class="fitwel-heading text-gold-400">Scope Categories</h2>
-          <div class="space-y-10 text-slate-800">
-            <p class="fitwel-body text-black mb-16 xl:mb-0">We are actively building long-term partnerships across all scopes and trades to deliver our projects faster, safer, and with higher quality. If you specialize in any of the categories below, we want to collaborate.</p>
-            <div class="text-slate-800 space-y-12 xl:space-y-0 xl:grid xl:grid-cols-[200px_1fr] xl:gap-x-8 xl:gap-y-14 xl:items-start xl:relative">
-              <div class="hidden xl:block absolute inset-y-0 left-[200px] w-px bg-slate-200"></div>
-              <div class="fitwel-heading-sm text-olive-500 xl:pr-4">Structural</div>
-              <div class="fitwel-body text-black xl:mt-2 xl:pl-6">Excavation and shoring, foundations, structural concrete, reinforcing, metals, and masonry to deliver stable bases and superstructures ready for fast interior progress.</div>
-              <div class="fitwel-heading-sm text-olive-500 xl:pr-4">Mechanical</div>
-              <div class="fitwel-body text-black xl:mt-2 xl:pl-6">Plumbing and drainage, electrical distribution/lighting/controls, HVAC (including VRF and ventilation), and fire protection—fully coordinated with structural and envelope requirements.</div>
-              <div class="fitwel-heading-sm text-olive-500 xl:pr-4">Doors & Windows</div>
-              <div class="fitwel-body text-black xl:mt-2 xl:pl-6">Supply and install of doors, frames, hardware, glazing, and window systems with air/water/thermal performance requirements and coordinated shop drawings.</div>
-              <div class="fitwel-heading-sm text-olive-500 xl:pr-4">General & Finishing</div>
-              <div class="fitwel-body text-black mb-4 xl:mb-0 xl:mt-2 xl:pl-6">Site prep, temp services, safety, carpentry and millwork, interior/exterior finishes, landscaping, and full thermal/moisture protection to deliver tight, durable envelopes.</div>
+        <div class="grid pt-12 lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] items-baseline">
+          <h2 class="fitwel-heading text-gold-500">Scope Categories</h2>
+          <div class="text-slate-950">
+            <p class="fitwel-body text-slate-950 mb-12 lg:mb-0 md:text-xl lg:text-lg xl:text-xl">
+              We are actively building long-term partnerships across all scopes and trades to deliver our projects
+              faster, safer, and with higher quality. If you specialize in any of the categories below, we want to
+              collaborate.</p>
+            <div
+              class="text-slate-950 space-y-6 md:space-y-0 lg:mt-12 md:grid xl:grid-cols-[200px_1fr] md:grid-cols-[155px_1fr] md:gap-y-8 lg:gap-x-6 xl:gap-8 lg:items-start md:relative">
+              <div
+                class="hidden md:block absolute inset-y-0 left-[200px] xl:left-[200px] lg:left-[150px] md:left-[130px] w-px bg-slate-500">
+              </div>
+              <div
+                class="fitwel-heading-sm text-olive-500 lg:pr-12 md:leading-5 md:tracking-[2px] md:text-base lg:text-lg">
+                Structural
+              </div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Excavation and shoring, foundations, structural concrete, reinforcing, metals, and masonry to deliver
+                stable bases and superstructures ready for fast interior progress.
+              </div>
+              <div
+                class="fitwel-heading-sm text-olive-500 lg:pr-12 md:leading-5 md:tracking-[2px] md:text-base lg:text-lg ">
+                Mechanical</div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Plumbing and drainage, electrical distribution/lighting/controls, HVAC (including VRF and ventilation),
+                and fire protection—fully coordinated with structural and envelope requirements.</div>
+              <div
+                class="fitwel-heading-sm text-olive-500 lg:pr-12 md:leading-5 md:tracking-[2px] md:text-base lg:text-lg">
+                Doors & Windows</div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Supply and install of doors, frames, hardware, glazing, and window systems with air/water/thermal
+                performance requirements and coordinated shop drawings.</div>
+              <div
+                class="fitwel-heading-sm text-olive-500 lg:pr-12 md:leading-5 md:tracking-[2px] md:text-base lg:text-lg">
+                General & Finishing</div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Site prep, temp services, safety, carpentry and millwork, interior/exterior finishes, landscaping, and
+                full thermal/moisture protection to deliver tight, durable envelopes.</div>
             </div>
           </div>
         </div>
 
-        <div class="grid gap-3 border-t border-slate-100 pt-12 pb-12 lg:grid-cols-[200px_1fr] items-start requires-auth hidden">
-          <h2 class="fitwel-heading text-gold-400">Partner<br>With Us</h2>
+        <div
+          class="grid border-t border-slate-500 pt-12 pb-12 md:grid-cols-[190px_1fr] items-start requires-auth hidden">
+          <h2 class="fitwel-heading text-gold-500">Partner<br>With Us</h2>
           <div class="space-y-6">
-            <form id="partner-form" class="space-y-10 text-slate-800" action="https://formsubmit.co/info@onewaypath.com" method="POST" accept-charset="UTF-8" autocomplete="on" data-lpignore="false">
+            <form id="partner-form" class="space-y-10 text-slate-950" action="https://formsubmit.co/info@onewaypath.com"
+              method="POST" accept-charset="UTF-8" autocomplete="on" data-lpignore="false">
               <input type="hidden" name="_subject" value="Partner Inquiry">
               <input type="hidden" name="_captcha" value="false">
               <!-- LastPass hint fields -->
-              <input type="text" name="lp-username" autocomplete="username email" tabindex="-1" aria-hidden="true" class="hidden">
+              <input type="text" name="lp-username" autocomplete="username email" tabindex="-1" aria-hidden="true"
+                class="hidden">
               <input type="text" name="lp-name" autocomplete="name" tabindex="-1" aria-hidden="true" class="hidden">
-              <input type="text" name="lp-first-name" autocomplete="given-name" tabindex="-1" aria-hidden="true" class="hidden">
-              <input type="text" name="lp-last-name" autocomplete="family-name" tabindex="-1" aria-hidden="true" class="hidden">
-              <input type="password" name="lp-password" autocomplete="new-password" tabindex="-1" aria-hidden="true" class="hidden">
-            <div class="grid gap-6 md:grid-cols-2">
-              <div class="space-y-2">
-                <label for="partner-name" class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Name</label>
-                <input id="partner-name" name="name" autocomplete="name" type="text" required title="Please enter your name." data-lpignore="false" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+              <input type="text" name="lp-first-name" autocomplete="given-name" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <input type="text" name="lp-last-name" autocomplete="family-name" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <input type="password" name="lp-password" autocomplete="new-password" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <div class="grid gap-6 md:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="partner-name"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Name</label>
+                  <input id="partner-name" name="name" autocomplete="name" type="text" required
+                    title="Please enter your name." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
+                <div class="space-y-2">
+                  <label for="partner-company"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Company</label>
+                  <input id="partner-company" name="company" autocomplete="organization" type="text" required
+                    title="Please enter your company." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
               </div>
-              <div class="space-y-2">
-                <label for="partner-company" class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Company</label>
-                <input id="partner-company" name="company" autocomplete="organization" type="text" required title="Please enter your company." data-lpignore="false" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
-              </div>
-            </div>
-            <div class="grid gap-6 md:grid-cols-2">
-              <div class="space-y-2">
-                <label for="partner-position" class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Position</label>
-                <input id="partner-position" name="position" autocomplete="organization-title" type="text" required title="Please enter your position." data-lpignore="false" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
-              </div>
-              <div class="space-y-2">
-                <div class="flex gap-3">
-                  <div class="flex-1 space-y-1">
-                    <label for="partner-phone" class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Phone</label>
-                    <input id="partner-phone" name="phone" autocomplete="tel" type="tel" required title="Please enter a phone number in the format +1 (###) ###-####." data-lpignore="false" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
-                    <p class="text-sm text-slate-600 pl-2">Format: +1 (###) ###-####</p>
-                  </div>
-                  <div class="w-28 space-y-1">
-                    <label for="partner-ext" class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Extension</label>
-                    <input id="partner-ext" name="extension" autocomplete="tel-extension" type="text" inputmode="numeric" pattern="^[0-9]{0,6}$" maxlength="6" title="Extension (numbers only, up to 6 digits)" data-lpignore="false" class="w-full rounded-md border border-slate-300 bg-white px-3 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
-                    <p class="text-sm text-slate-600 pl-2">Optional</p>
+              <div class="grid gap-6 md:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="partner-position"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Position</label>
+                  <input id="partner-position" name="position" autocomplete="organization-title" type="text" required
+                    title="Please enter your position." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
+                <div class="space-y-2">
+                  <div class="flex gap-3">
+                    <div class="flex-1 space-y-1">
+                      <label for="partner-phone"
+                        class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Phone</label>
+                      <input id="partner-phone" name="phone" autocomplete="tel" type="tel" required
+                        title="Please enter a phone number in the format +1 (###) ###-####." data-lpignore="false"
+                        class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                      <p class="text-sm text-slate-500 pl-2">Format: +1 (###) ###-####</p>
+                    </div>
+                    <div class="w-28 space-y-1">
+                      <label for="partner-ext"
+                        class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Extension</label>
+                      <input id="partner-ext" name="extension" autocomplete="tel-extension" type="text"
+                        inputmode="numeric" pattern="^[0-9]{0,6}$" maxlength="6"
+                        title="Extension (numbers only, up to 6 digits)" data-lpignore="false"
+                        class="w-full rounded-md border border-slate-500 bg-white px-3 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                      <p class="text-sm text-slate-500 pl-2">Optional</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
               <div class="grid gap-6 md:grid-cols-[1fr_170px] md:items-stretch">
                 <div class="space-y-2">
-                  <label for="partner-email" class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
-                  <input id="partner-email" name="email" autocomplete="email" type="email" required title="Please enter a valid email address." data-lpignore="false" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                  <label for="partner-email"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
+                  <input id="partner-email" name="email" autocomplete="email" type="email" required
+                    title="Please enter a valid email address." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
                 </div>
                 <div class="flex items-end">
-                  <button type="submit" class="w-full inline-flex items-center justify-center rounded-md bg-olive-500 px-5 py-3 text-base font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Submit</button>
+                  <button type="submit"
+                    class="w-full inline-flex items-center justify-center rounded-md bg-olive-500 px-5 py-3 text-base font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Submit</button>
                 </div>
               </div>
               <div class="space-y-4">
                 <div class="flex flex-col gap-1">
-                  <span class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Scope(s) of Work — check all that apply</span>
+                  <span class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Scope(s) of Work —
+                    check all that apply</span>
                 </div>
                 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-start">
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="General Requirements" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="General Requirements"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>General Requirements</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Thermal and Moisture Protection" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Thermal and Moisture Protection"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Thermal and Moisture Protection</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Doors and Windows" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Doors and Windows"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Doors and Windows</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Finishes" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Finishes"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Finishes</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Plumbing" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Plumbing"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Plumbing</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Fire" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Fire"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Fire</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Electrical" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Electrical"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Electrical</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Landscaping" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Landscaping"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Landscaping</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="HVAC" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="HVAC"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>HVAC</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Elevators" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Elevators"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Elevators</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Excavation and Shoring" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Excavation and Shoring"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Excavation and Shoring</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Carpentry and Millwork" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Carpentry and Millwork"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Carpentry and Millwork</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Metals" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Metals"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Metals</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Concrete" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Concrete"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Concrete</span>
                   </label>
-                  <label class="flex items-start gap-3 text-base text-slate-900">
-                    <input type="checkbox" name="scopes" value="Masonry" class="mt-1 h-4 w-4 rounded border-slate-300 text-olive-500 focus:ring-olive-400">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Masonry"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
                     <span>Masonry</span>
                   </label>
                 </div>
@@ -376,24 +511,65 @@
     </section>
   </main>
 
-  <section id="contact" class="bg-[#f2ede1] lg:hidden">
-    <div class="mx-auto max-w-6xl px-8 py-10">
-      <h2 class="fitwel-heading text-gold-400">Contact</h2>
-      <p class="fitwel-body mt-3 text-black">One Way Path Communities</p>
-      <p class="fitwel-body text-black">77 Bloor Street West, Suite 600<br>Toronto, Ontario | Canada M5S 1M2</p>
-      <p class="fitwel-body mt-2 text-black">Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162</p>
-      <a class="fitwel-body mt-2 inline-block text-red-600 hover:text-red-700" href="mailto:info@onewaypath.com">info@onewaypath.com</a>
-    </div>
-  </section>
-
-  <footer class="bg-red-500">
-    <div class="mx-auto flex max-w-6xl items-center justify-start px-8 py-6">
-      <p class="text-sm text-white"><span class="font-semibold text-gold-400">© 2025</span> One Way Path Group Limited. All rights reserved.</p>
+  <footer class="bg-olive-50 border-t border-slate-500">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-2 lg:gap-12">
+        <div class="flex justify-center lg:justify-start">
+          <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto sm:h-16">
+        </div>
+        <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMPANY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="index.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT
+                  US</a></li>
+              <li><a href="designers.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE
+                  COVENANTS</a></li>
+              <li><a href="builders.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">PROJECTS</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT ROAD</a>
+              </li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN ROAD</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMMUNITY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="wellness.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">HOMES</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">JOBS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Group Limited. All
+          rights reserved.</p>
+        <div
+          class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">PRIVACY POLICY</a>
+          <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">TERMS AND CONDITIONS</a>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script>
-    (function() {
+    (function () {
       const AUTH_KEY = 'owp-editor';
       const USERS = [
         { id: 'ayoung@onewaypath.com', pass: 'StonePine-4826' },
@@ -425,7 +601,13 @@
       }
 
       function openPanel() { if (authPanel) authPanel.classList.remove('hidden'); }
-      function closePanel() { if (authPanel) authPanel.classList.add('hidden'); if (modalError) modalError.classList.add('hidden'); }
+      function closePanel() {
+        if (authPanel) authPanel.classList.add('hidden');
+        if (modalError) {
+          modalError.classList.add('hidden');
+          modalError.textContent = 'Invalid credentials.';
+        }
+      }
 
       function validateScopes() {
         if (!firstScope) return true;
@@ -444,7 +626,7 @@
         input.addEventListener('input', () => input.setCustomValidity(''));
       }
 
-      ['partner-name','partner-company','partner-position','partner-email'].forEach((id) => {
+      ['partner-name', 'partner-company', 'partner-position', 'partner-email'].forEach((id) => {
         const el = document.getElementById(id);
         if (el) attachMessage(el, el.title || 'Please fill out this field.');
       });
@@ -509,7 +691,9 @@
           if (editorBadge) editorBadge.classList.remove('hidden');
           closePanel();
         } else {
-          if (modalError) modalError.classList.remove('hidden');
+          if (modalError) {
+            modalError.classList.remove('hidden');
+          }
         }
       }
 
@@ -546,21 +730,28 @@
     <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg space-y-6">
       <div class="flex items-center justify-between">
         <h3 class="fitwel-heading text-olive-500">Editor Login</h3>
-        <button type="button" id="auth-close" class="text-slate-500 hover:text-slate-700">&times;</button>
+        <button type="button" id="auth-close" class="text-slate-500 hover:text-slate-950">&times;</button>
       </div>
       <div class="space-y-4">
         <div class="space-y-1">
           <label for="auth-email" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
-          <input id="auth-email" type="email" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200" placeholder="you@example.com">
+          <input id="auth-email" type="email"
+            class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200"
+            placeholder="Your@example.com">
         </div>
         <div class="space-y-1">
-          <label for="auth-password" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Password</label>
-          <input id="auth-password" type="password" class="w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200" placeholder="••••••••">
+          <label for="auth-password"
+            class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Password</label>
+          <input id="auth-password" type="password"
+            class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200"
+            placeholder="••••••••">
         </div>
-        <p id="auth-error" class="hidden text-sm text-red-600">Invalid credentials.</p>
+        <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
         <div class="flex items-center justify-end gap-3">
-          <button type="button" id="auth-cancel" class="rounded-md border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50">Cancel</button>
-          <button type="button" id="auth-submit" class="rounded-md bg-olive-500 px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Login</button>
+          <button type="button" id="auth-cancel"
+            class="rounded-md border border-slate-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-50">Cancel</button>
+          <button type="button" id="auth-submit"
+            class="rounded-md bg-olive-500 px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Login</button>
         </div>
       </div>
     </div>
@@ -568,4 +759,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   <script src="assets/js/menu.js"></script>
 </body>
+
 </html>
