@@ -452,18 +452,22 @@
         const imgAlt = item.title || 'Project image';
 
         const metaParts = [];
-        if (item.personCompany) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.personCompany)}</span>`);
-        if (item.discipline) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.discipline)}</span>`);
+        if (item.company) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.company)}</span>`);
+        const personName = [item.firstName, item.surname].filter(Boolean).join(' ').trim();
+        if (personName) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(personName)}</span>`);
+        if (item.area) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.area)}</span>`);
         const metaHtml = metaParts.length
           ? metaParts.map((p) => `<p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]">${p}</p>`).join('')
           : '';
         const clientHtml = item.client
-          ? `<p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]"><span class="text-[#333E4F] text-[14px] font-[500]">Client:</span> - ${escapeHtml(item.client)}</p>`
+          ? `<p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]"><span class="text-[#333E4F] text-[14px] font-[500]">Client:</span> ${escapeHtml(item.client)}</p>`
           : '';
 
-        const tags = Array.isArray(item.tags) ? item.tags : [];
-        const tagsHtml = tags.length
-          ? tags.map((t) => `<label class="text-[#333E4F] text-[14px] font-[600] tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE]">${escapeHtml(String(t))}</label>`).join('')
+        const stats = [];
+        if (item.stories != null) stats.push(`${item.stories} stories`);
+        if (item.suites != null) stats.push(`${item.suites.toLocaleString()} suites`);
+        const statsHtml = stats.length
+          ? `<div class="flex flex-wrap gap-[10px]">${stats.map((s) => `<label class="text-[#333E4F] text-[14px] font-[600] tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE]">${escapeHtml(s)}</label>`).join('')}</div>`
           : '';
 
         box.innerHTML = `
@@ -471,7 +475,7 @@
           <div class="content flex flex-col gap-[7px] py-[10px]">
             <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px]">${escapeHtml(item.title || '')}</h1>
             <div class="flex flex-wrap gap-[10px]">${metaHtml}${clientHtml}</div>
-            ${tagsHtml ? `<div class="flex flex-wrap gap-[10px]">${tagsHtml}</div>` : ''}
+            ${statsHtml}
           </div>
         `;
         return box;
