@@ -233,21 +233,26 @@
 
     <section class=" pt-[100px] pb-[70px]">
       <div
-        class="grid sm:grid-cols-3 max-w-[1120px] md:gap-[15px] gap-[50px] w-full mx-auto sm:divide-x sm:divide-[#6A7282]">
-        <div>
-          <h3 class=" text-[#030712] text-[40px] font-[600] text-center ">20+</h3>
-          <p class="text-[#4A5565] font-[600] text-[14px] uppercase tracking-[2px] text-center ">Completed
-            Projects</p>
+        class="font-['Roboto_Condensed'] grid sm:grid-cols-3 max-w-[1120px] md:gap-[15px] gap-[50px] w-full mx-auto sm:divide-x sm:divide-[#6A7282]">
+        <div class="inline-flex flex-col gap-1">
+          <h3 id="stat-projects"
+            class="text-[#030712] text-[40px] font-[600] text-center leading-[48px] tracking-[4px]">—</h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] uppercase leading-4 tracking-widest text-center">
+            Completed Projects
+          </p>
         </div>
-        <div class="  ">
-          <h3 class=" text-[#030712] text-[40px] font-[600] text-center ">2M+</h3>
-          <p class="text-[#4A5565] font-[600] text-[14px] text-center uppercase tracking-[2px] ">sq
-            ft Gross Floor Area (GFA)</p>
+        <div class="inline-flex flex-col gap-1">
+          <h3 id="stat-area" class="text-[#030712] text-[40px] font-[600] text-center leading-[48px] tracking-[4px]">—
+          </h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] text-center uppercase leading-4 tracking-widest">
+            sq ft Gross Floor Area (GFA)
+          </p>
         </div>
-        <div class=" ">
-          <h3 class=" text-[#030712] text-[40px] font-[600] text-center">2K+</h3>
-          <p class="text-[#4A5565] font-[600] text-[14px] uppercase tracking-[2px] text-center">Residential
-            Suites
+        <div class="inline-flex flex-col gap-1">
+          <h3 id="stat-suites" class="text-[#030712] text-[40px] font-[600] text-center leading-[48px] tracking-[4px]">—
+          </h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] uppercase leading-4 tracking-widest text-center">
+            Residential Suites
           </p>
         </div>
       </div>
@@ -426,9 +431,9 @@
       const baseCandidates = [
         window.WEBSITES_API_BASE,
         window.WEBSITES_API_BASE_URL,
+        origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null,
         origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null,
         'https://dev.onewaypath.com/api/websites',
-        origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null,
       ].filter(Boolean);
 
       let apiBase = null;
@@ -452,29 +457,34 @@
         const imgAlt = item.title || 'Project image';
 
         const metaParts = [];
-        if (item.company) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.company)}</span>`);
         const personName = [item.firstName, item.surname].filter(Boolean).join(' ').trim();
-        if (personName) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(personName)}</span>`);
-        if (item.area) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.area)}</span>`);
+        if (personName || item.company) {
+          const nameAndCompany = personName ? (personName + (item.company ? ` - ${item.company}` : '')) : item.company;
+          metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(nameAndCompany)}</span>`);
+        }
+        if (item.expertise) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(item.expertise)}</span>`);
+        if (item.client) metaParts.push(`<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Client:</span> ${escapeHtml(item.client)}</span>`);
         const metaHtml = metaParts.length
-          ? metaParts.map((p) => `<p class="text-[#6A7282] text-[14px] font-[500] pr-[10px] border-r border-[#6A7282]">${p}</p>`).join('')
-          : '';
-        const clientHtml = item.client
-          ? `<p class="text-[#6A7282] text-[14px] font-[500] pr-[10px]"><span class="text-[#333E4F] text-[14px] font-[500]">Client:</span> ${escapeHtml(item.client)}</p>`
+          ? metaParts.map((p, i) => {
+            const isLast = i === metaParts.length - 1;
+            return `<p class="text-[#6A7282] text-[14px] font-[500]${isLast ? '' : ' pr-[10px] border-r border-[#6A7282]'}">${p}</p>`;
+          }).join('')
           : '';
 
         const stats = [];
         if (item.stories != null) stats.push(`${item.stories} stories`);
-        if (item.suites != null) stats.push(`${item.suites.toLocaleString()} suites`);
+        const areaFormatted = formatNumberWithCommas(item.area);
+        if (item.area != null && item.area !== '' && areaFormatted && areaFormatted !== '0') stats.push(`${areaFormatted} sq. ft.`);
+        if (item.suites != null) stats.push(`${formatNumberWithCommas(item.suites)} suites`);
         const statsHtml = stats.length
-          ? `<div class="flex flex-wrap gap-[10px]">${stats.map((s) => `<label class="text-[#333E4F] text-[14px] font-[600] tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE]">${escapeHtml(s)}</label>`).join('')}</div>`
+          ? `<div class="flex flex-wrap gap-[10px]">${stats.map((s) => `<label class="font-['Roboto_Condensed'] leading-4 text-[#333E4F] text-[14px] font-[600] tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE]">${escapeHtml(s)}</label>`).join('')}</div>`
           : '';
 
         box.innerHTML = `
           <img src="${escapeHtml(imgSrc)}" class="md:max-w-[548px] w-full h-[400px] object-cover" alt="${escapeHtml(imgAlt)}" onerror="this.src='./assets/images/Img1.png'">
           <div class="content flex flex-col gap-[7px] py-[10px]">
-            <h1 class="text-[#030712] text-[24px] font-[600] uppercase tracking-[2px]">${escapeHtml(item.title || '')}</h1>
-            <div class="flex flex-wrap gap-[10px]">${metaHtml}${clientHtml}</div>
+            <h1 class="font-['Roboto_Condensed'] text-[#030712] text-[24px] font-[600] uppercase tracking-[4px] leading-8">${escapeHtml(item.title || '')}</h1>
+            <div class="flex flex-wrap gap-[10px]">${metaHtml}</div>
             ${statsHtml}
           </div>
         `;
@@ -486,6 +496,30 @@
         const div = document.createElement('div');
         div.textContent = str;
         return div.innerHTML;
+      }
+
+      /** Format number or numeric string with thousand separators (e.g. 156000 -> "156,000"). */
+      function formatNumberWithCommas(val) {
+        if (val == null) return '';
+        const num = typeof val === 'number' ? val : parseInt(String(val).replace(/[^0-9]/g, ''), 10);
+        return Number.isNaN(num) ? String(val || '') : num.toLocaleString();
+      }
+
+      function updateSummaryStats(summary) {
+        if (!summary) return;
+        const projectsEl = document.getElementById('stat-projects');
+        const areaEl = document.getElementById('stat-area');
+        const suitesEl = document.getElementById('stat-suites');
+        const fmt = (n, suffix) => {
+          let s;
+          if (n >= 1e6) s = (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+          else if (n >= 1e3) s = (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+          else s = String(Math.round(n));
+          return s + (suffix && n > 0 ? '+' : '');
+        };
+        if (projectsEl) projectsEl.textContent = (summary.completedProjects || 0) + '+';
+        if (areaEl) areaEl.textContent = fmt(summary.totalAreaSqFt || 0, true);
+        if (suitesEl) suitesEl.textContent = fmt(summary.totalSuites || 0, true);
       }
 
       function renderGrid() {
@@ -557,6 +591,7 @@
               experienceData = body.experience;
               totalCount = body.totalCount ?? 0;
               currentPage = body.page ?? 1;
+              updateSummaryStats(body.summary);
               loadingEl.classList.add('hidden');
               const paginationEl = document.getElementById('experience-pagination');
               if (totalCount === 0) {
