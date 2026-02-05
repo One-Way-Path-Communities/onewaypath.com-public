@@ -1,4 +1,17 @@
 (() => {
+  const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
+  const defaultBase = origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null;
+  const localhostBase = origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null;
+  const candidates = [
+    window.WEBSITES_API_BASE,
+    window.WEBSITES_API_BASE_URL,
+    defaultBase,
+    'https://api.onewaypath.com/api/websites',
+    localhostBase,
+  ].filter(Boolean);
+  window.OWP_WEBSITES_API_BASE_CANDIDATES = [...new Set(candidates)];
+  window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
+
   const desktopMenu = document.getElementById('desktop-menu');
   const mobileMenuList = document.getElementById('mobile-menu-list');
   if (!desktopMenu || !mobileMenuList) return;
@@ -34,22 +47,8 @@
     { label: 'Contact', url: '#contact', status: 'active', displayOrder: 7 },
   ];
 
-  const unique = (list) => [...new Set(list.filter(Boolean))];
-  const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-  const defaultBase =
-    origin && origin.startsWith('http')
-      ? `${origin.replace(/\/$/, '')}/api/websites`
-      : null;
-
-  const baseCandidates = unique([
-    window.WEBSITES_API_BASE,
-    window.WEBSITES_API_BASE_URL,
-    defaultBase,
-    'https://dev.onewaypath.com/api/websites',
-    origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null,
-  ]);
-
-  const sanitizeBase = (base) => (base || '').replace(/\/+$/, '');
+  const baseCandidates = window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
+  const sanitizeBase = window.OWP_sanitizeApiBase;
 
   async function fetchMenu() {
     const errors = [];

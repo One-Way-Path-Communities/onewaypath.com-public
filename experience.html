@@ -427,14 +427,7 @@
   <script>
     (function () {
       const ITEMS_PER_PAGE = 6;
-      const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-      const baseCandidates = [
-        window.WEBSITES_API_BASE,
-        window.WEBSITES_API_BASE_URL,
-        origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null,
-        origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null,
-        'https://dev.onewaypath.com/api/websites',
-      ].filter(Boolean);
+      const baseCandidates = window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
 
       let apiBase = null;
       let experienceData = [];
