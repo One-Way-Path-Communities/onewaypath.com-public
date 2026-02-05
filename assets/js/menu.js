@@ -63,6 +63,8 @@
         }
         const body = await res.json();
         if (Array.isArray(body?.menu) && body.menu.length) return body.menu;
+        // Same-origin success with empty menu - use fallback, avoid trying cross-origin (CORS)
+        if (origin && safeBase.startsWith(origin)) return fallbackMenu;
       } catch (err) {
         errors.push(`${safeBase} → ${err.message}`);
       }
