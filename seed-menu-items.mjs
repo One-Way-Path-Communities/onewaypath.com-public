@@ -2,17 +2,26 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import dotenv from "dotenv";
-import { getPgClient } from "../../serverJS/database-config/pgClient.mjs";
-import { getSchemaPrefix } from "../../serverJS/database-config/schemaConfig.mjs";
+import { getPgClient } from "../serverJS/database-config/pgClient.mjs";
+import { getSchemaPrefix } from "../serverJS/database-config/schemaConfig.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const localEnvPath = path.resolve(__dirname, ".env");
-const serverEnvPath = path.resolve(__dirname, "../../serverJS/.env");
 
-// Load env vars, preferring the local .env here, then falling back to serverJS/.env.
-const envPath = [localEnvPath, serverEnvPath].find((p) => fs.existsSync(p));
-dotenv.config(envPath ? { path: envPath } : undefined);
+function loadEnvFile(p) {
+  if (!fs.existsSync(p)) return;
+  for (const line of fs.readFileSync(p, "utf8").split("\n")) {
+    const m = line.match(/^([^#=]+)=(.*)$/);
+    if (m) {
+      const k = m[1].trim();
+      const v = m[2].trim().replace(/^["']|["']$/g, "");
+      if (!process.env[k]) process.env[k] = v;
+    }
+  }
+}
+const localEnv = path.resolve(__dirname, ".env");
+const serverEnv = path.resolve(__dirname, "../serverJS/.env");
+const dbEnv = path.resolve(__dirname, "../serverJS/database-config/.env");
+for (const p of [localEnv, serverEnv, dbEnv]) loadEnvFile(p);
 
 const envPrefix = process.env.MENU_ENV_PREFIX || "WEBSITES";
 const databaseOverride = process.env.MENU_DATABASE || "websites";
@@ -25,45 +34,33 @@ const tableName = `${schemaPrefix}menu_items`;
 
 // Source-of-truth menu tree. Adjust this array to change the menu structure.
 const menuData = [
+  { label: "About Us", url: "index.html#about", status: "active", displayOrder: 1 },
   {
-    label: "About Us",
-    url: "index.html",
+    label: "Company",
+    url: "#",
     status: "active",
-    displayOrder: 1,
+    displayOrder: 2,
+    children: [
+      { label: "Designers", url: "designers.html", status: "active", displayOrder: 1 },
+      { label: "Builders", url: "builders.html", status: "active", displayOrder: 2 },
+      { label: "Experience", url: "experience.html", status: "active", displayOrder: 3 },
+    ],
   },
   {
     label: "Projects",
     url: "#projects",
     status: "in-progress",
-    displayOrder: 2,
+    displayOrder: 3,
     children: [
       { label: "Dewitt Road", url: "#projects-dewitt-road", status: "in-progress", displayOrder: 1 },
       { label: "Millen Road", url: "#projects-millen-road", status: "in-progress", displayOrder: 2 },
     ],
   },
   {
-    label: "Designers",
-    url: "designers.html",
-    status: "in-progress",
-    displayOrder: 3,
-  },
-  {
-    label: "Experience",
-    url: "#experience",
-    status: "in-progress",
-    displayOrder: 4,
-  },
-  {
-    label: "Builders",
-    url: "builders.html",
-    status: "active",
-    displayOrder: 5,
-  },
-  {
     label: "Community",
     url: "#",
     status: "active",
-    displayOrder: 6,
+    displayOrder: 4,
     children: [
       { label: "Wellness", url: "wellness.html", status: "active", displayOrder: 1 },
       { label: "Homes", url: "community.html#homes", status: "active", displayOrder: 2 },
@@ -75,7 +72,7 @@ const menuData = [
     label: "Contact",
     url: "#contact",
     status: "active",
-    displayOrder: 7,
+    displayOrder: 5,
   },
 ];
 
@@ -86,11 +83,11 @@ async function upsertMenuItem(client, item, parentId = null) {
       SELECT menu_item_id
       FROM ${tableName}
       WHERE parent_id IS NOT DISTINCT FROM $1
-        AND (label = $2 OR url = $3)
+        AND label = $2
       ORDER BY menu_item_id
       LIMIT 1;
     `,
-    [parentId, item.label, item.url]
+    [parentId, item.label]
   );
 
   let menuItemId;

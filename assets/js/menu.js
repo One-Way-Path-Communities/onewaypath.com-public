@@ -18,25 +18,33 @@
 
   const AUTH_KEY = 'owp-editor';
   const fallbackMenu = [
-    { label: 'About Us', url: 'index.html', status: 'active', displayOrder: 1 },
+    { label: 'About Us', url: 'index.html#about', status: 'active', displayOrder: 1 },
+    {
+      label: 'Company',
+      url: '#',
+      status: 'active',
+      displayOrder: 2,
+      children: [
+        { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 1 },
+        { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 2 },
+        { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 3 },
+      ],
+    },
     {
       label: 'Projects',
       url: '#projects',
       status: 'in-progress',
-      displayOrder: 2,
+      displayOrder: 3,
       children: [
         { label: 'Dewitt Road', url: '#projects-dewitt-road', status: 'in-progress', displayOrder: 1 },
         { label: 'Millen Road', url: '#projects-millen-road', status: 'in-progress', displayOrder: 2 },
       ],
     },
-    { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 3 },
-    { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 4 },
-    { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 5 },
     {
       label: 'Community',
       url: '#',
       status: 'active',
-      displayOrder: 6,
+      displayOrder: 4,
       children: [
         { label: 'Wellness', url: 'wellness.html', status: 'active', displayOrder: 1 },
         { label: 'Homes', url: 'community.html#homes', status: 'active', displayOrder: 2 },
@@ -44,7 +52,7 @@
         { label: 'Environment', url: 'community.html#environment', status: 'active', displayOrder: 4 },
       ],
     },
-    { label: 'Contact', url: '#contact', status: 'active', displayOrder: 7 },
+    { label: 'Contact', url: '#contact', status: 'active', displayOrder: 5 },
   ];
 
   const baseCandidates = window.OWP_WEBSITES_API_BASE_CANDIDATES || [];

@@ -410,10 +410,15 @@
       function createAccordionItem(item) {
         const name = [item.firstName, item.lastName].filter(Boolean).join(' ').trim() || 'Designer';
         const title = item.title || '';
+        const company = item.company || '';
         const bio = item.bio || '';
         const photo = item.photo || '';
         const logo = item.logo || '';
         const credentials = item.credentials || '';
+
+        const isOWP = /one\s*way\s*path\s*(group\s*)?communities/i.test(company);
+        const showCompanyInHeader = company && !isOWP;
+        const showLogo = logo && !isOWP;
 
         const bioParagraphs = bio.split(/\n\n+/).filter(Boolean);
         const bioHtml = bioParagraphs.length
@@ -421,11 +426,11 @@
           : '';
 
         const photoHtml = photo
-          ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(name)}" class="float-left md:float-none md:mr-0 mr-6 lg:w-[358px] md:w-[704px] w-full lg:h-[358px] md:h-[704px] h-full object-cover mb-4" onerror="this.style.display='none'">`
+          ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(name)}" class="float-left mr-6 mb-4 w-full md:w-[358px] md:h-[358px] object-cover" onerror="this.style.display='none'">`
           : '';
 
-        const logoHtml = logo
-          ? `<img src="${escapeHtml(logo)}" class="object-contain h-full" alt="${escapeHtml(item.company || '')} logo">`
+        const logoHtml = showLogo
+          ? `<img src="${escapeHtml(logo)}" class="object-contain h-full" alt="${escapeHtml(company)} logo">`
           : '';
 
         const credentialsHtml = credentials
@@ -434,12 +439,17 @@
           : '';
 
         const footerHtml = (logoHtml || credentialsHtml)
-          ? `<div class="pt-4 lg:flex lg:justify-between items-center gap-4 text-[13px] text-gray-500 clear-both"><div class="w-[168px] h-[64px] mb-2 lg:mb-0">${logoHtml}</div><div class="flex flex-col gap-1">${credentialsHtml}</div></div>`
+          ? `<div class="pt-4 lg:flex lg:justify-between items-center gap-4 text-[13px] text-gray-500 clear-both">${logoHtml ? `<div class="w-[168px] h-[64px] mb-2 lg:mb-0">${logoHtml}</div>` : ''}<div class="flex flex-col gap-1">${credentialsHtml}</div></div>`
           : '';
 
         const contentInner = photo
-          ? `<div class="block"><div>${photoHtml}</div><div>${bioHtml}${footerHtml}</div></div>`
+          ? `<div>${photoHtml}${bioHtml}${footerHtml}</div>`
           : `<div>${bioHtml}${footerHtml}</div>`;
+
+        const headerNamePart = showCompanyInHeader
+          ? `${escapeHtml(name)} – ${escapeHtml(company)}`
+          : escapeHtml(name);
+        const headerTitlePart = title ? escapeHtml(title) : '';
 
         const div = document.createElement('div');
         div.className = 'border-b border-gray-300';
@@ -449,9 +459,9 @@
               <span class="w-[48px] h-[48px] md:relative absolute left-0 md:top-0 top-1/2 md:translate-y-0 -translate-y-1/2 hover:bg-[#471d1924] flex justify-center items-center">
                 <img src="./assets/images/plus.svg" class="transition-transform group-[.open]:rotate-45" alt="" aria-hidden="true">
               </span>
-              <span class="uppercase text-[#030712] tracking-widest md:text-[24px] text-[20px] font-[600]">${escapeHtml(name)}</span>
+              <span class="uppercase text-[#030712] tracking-widest md:text-[24px] text-[20px] font-[600]">${headerNamePart}</span>
             </div>
-            <span class="font-['Roboto Condensed'] tracking-[4px] uppercase font-[600] md:text-[18px] text-[16px] text-[#6A7282]">${escapeHtml(title)}</span>
+            <span class="font-['Roboto Condensed'] tracking-[4px] uppercase font-[600] md:text-[18px] text-[16px] text-[#6A7282]">${headerTitlePart}</span>
           </button>
           <div class="accordion-content hidden border-t border-gray-300 py-6">
             ${contentInner}
