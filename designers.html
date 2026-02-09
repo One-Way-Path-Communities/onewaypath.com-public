@@ -259,8 +259,7 @@
                   US</a></li>
               <li><a href="designers.html"
                   class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
-              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE
-                  COVENANTS</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a></li>
               <li><a href="builders.html"
                   class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
               <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a>
@@ -433,13 +432,14 @@
           ? `<img src="${escapeHtml(logo)}" class="object-contain h-full" alt="${escapeHtml(company)} logo">`
           : '';
 
+        const credentialsLgAlignClass = logoHtml ? 'lg:text-right' : 'lg:text-left';
         const credentialsHtml = credentials
-          ? `<p class="lg:text-right text-left tracking-widest leading-5 font-[600] text-[16px] uppercase text-[#6A7282]">Credentials:</p>
-            <p class="lg:text-right text-left font-[400] text-[18px] text-[#333E4F]">${escapeHtml(credentials)}</p>`
+          ? `<p class="${credentialsLgAlignClass} text-left tracking-widest leading-5 font-[600] text-[16px] uppercase text-[#6A7282]">CREDENTIALS</p>
+            <p class="${credentialsLgAlignClass} text-left font-[400] text-[18px] text-[#333E4F]">${escapeHtml(credentials)}</p>`
           : '';
 
         const footerHtml = (logoHtml || credentialsHtml)
-          ? `<div class="pt-4 lg:flex lg:justify-between items-center gap-4 text-[13px] text-gray-500 clear-both">${logoHtml ? `<div class="w-[168px] h-[64px] mb-2 lg:mb-0">${logoHtml}</div>` : ''}<div class="flex flex-col gap-1">${credentialsHtml}</div></div>`
+          ? `<div class="pt-4 flex flex-col lg:flex-row lg:justify-between items-start lg:items-center gap-4 text-[13px] text-gray-500 clear-both"><div class="flex flex-col gap-1 lg:order-2">${credentialsHtml}</div>${logoHtml ? `<div class="w-[168px] h-[64px] mb-2 lg:mb-0 lg:order-1">${logoHtml}</div>` : ''}</div>`
           : '';
 
         const contentInner = photo
@@ -447,8 +447,8 @@
           : `<div>${bioHtml}${footerHtml}</div>`;
 
         const headerNamePart = showCompanyInHeader
-          ? `${escapeHtml(name)} – ${escapeHtml(company)}`
-          : escapeHtml(name);
+          ? `<span class="block">${escapeHtml(name)}</span><span class="block mt-1">${escapeHtml(company)}</span>`
+          : `<span class="block">${escapeHtml(name)}</span>`;
         const headerTitlePart = title ? escapeHtml(title) : '';
 
         const div = document.createElement('div');
@@ -459,11 +459,11 @@
               <span class="w-[48px] h-[48px] md:relative absolute left-0 md:top-0 top-1/2 md:translate-y-0 -translate-y-1/2 hover:bg-[#471d1924] flex justify-center items-center">
                 <img src="./assets/images/plus.svg" class="transition-transform group-[.open]:rotate-45" alt="" aria-hidden="true">
               </span>
-              <span class="uppercase text-[#030712] tracking-widest md:text-[24px] text-[20px] font-[600]">${headerNamePart}</span>
+              <span class="uppercase text-[#030712] tracking-widest md:text-[24px] text-[20px] font-[600] leading-tight">${headerNamePart}</span>
             </div>
             <span class="font-['Roboto Condensed'] tracking-[4px] uppercase font-[600] md:text-[18px] text-[16px] text-[#6A7282]">${headerTitlePart}</span>
           </button>
-          <div class="accordion-content hidden border-t border-gray-300 py-6">
+          <div class="accordion-content hidden border-t border-gray-300 py-6 md:pl-[64px]">
             ${contentInner}
             <div class="clear-both"></div>
           </div>
