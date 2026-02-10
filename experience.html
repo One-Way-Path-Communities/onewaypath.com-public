@@ -259,18 +259,19 @@
 
     <section class="md:px-[50px] px-[20px] ">
       <div class="max-w-[1120px] w-full mx-auto pb-6">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <div class="font-['Roboto_Condensed'] text-[#030712] text-[14px] font-[600] uppercase tracking-[2px]">
-            Filter by company
+        <div id="experience-company-filter" class="hidden">
+          <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
+            aria-label="Company filter">
+            <div id="company-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
           </div>
-          <select id="company-filter"
-            class="w-full sm:w-[320px] rounded-md border border-[#6A7282] bg-white px-3 py-2 text-[14px] text-[#030712]">
-            <option value="">All companies</option>
-            <option value="csp-architects">CS&amp;P Architects</option>
-            <option value="walterfedy">WalterFedy</option>
-            <option value="gladki-planning-associates">Gladki Planning</option>
-            <option value="jp-samuel-associates-inc">J.P. Samuel and Associates</option>
-          </select>
+          <div class="md:hidden">
+            <div class="relative w-full">
+              <select id="company-filter"
+                class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
+                <!-- Options filled by JS from COMPANY_FILTER_OPTIONS -->
+              </select>
+            </div>
+          </div>
         </div>
       </div>
       <div id="experience-loading" class="max-w-[1120px] w-full mx-auto py-12 text-center text-slate-500">
@@ -400,6 +401,7 @@
         const ok = USERS.some((u) => u.id.toLowerCase() === email && u.pass === pass);
         if (ok) {
           localStorage.setItem(AUTH_KEY, 'true');
+          window.OWP_isEditorAuthed = true;
           setAuthUI(true);
           if (editorBadge) editorBadge.classList.remove('hidden');
           closePanel();
@@ -409,6 +411,7 @@
       }
       function handleLogout() {
         localStorage.removeItem(AUTH_KEY);
+        window.OWP_isEditorAuthed = false;
         setAuthUI(false);
         if (editorBadge) editorBadge.classList.add('hidden');
       }
@@ -433,6 +436,7 @@
       const authed = isAuthed();
       setAuthUI(authed);
       if (editorBadge && authed) editorBadge.classList.remove('hidden');
+      window.OWP_isEditorAuthed = authed;
     })();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
@@ -440,7 +444,7 @@
   <script>
     (function () {
       const ITEMS_PER_PAGE = 6;
-      const baseCandidates = window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
+      const baseCandidates = (typeof window.OWP_getWebsitesApiBaseCandidates === 'function' ? window.OWP_getWebsitesApiBaseCandidates() : null) || window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
 
       let apiBase = null;
       let experienceData = [];
@@ -455,19 +459,109 @@
       const prevBtn = document.getElementById('prev');
       const nextBtn = document.getElementById('next');
       const companyFilterEl = document.getElementById('company-filter');
+      const companyFilterWrapEl = document.getElementById('experience-company-filter');
+      const companyFilterTabsEl = document.getElementById('company-filter-tabs');
 
       const VALID_COMPANY_SLUGS = new Set([
-        '',
         'csp-architects',
         'walterfedy',
         'gladki-planning-associates',
         'jp-samuel-associates-inc',
       ]);
 
+      const COMPANY_SLUG_ORDER = new Map([
+        ['csp-architects', 1],
+        ['walterfedy', 2],
+        ['gladki-planning-associates', 3],
+        ['jp-samuel-associates-inc', 4],
+      ]);
+
+      /** Single source of truth for filter options (mobile select + desktop tabs subset). */
+      const COMPANY_FILTER_OPTIONS = [
+        { slug: '', label: 'All' },
+        { slug: 'csp-architects', label: 'CS&P Architects' },
+        { slug: 'walterfedy', label: 'WalterFedy' },
+        { slug: 'gladki-planning-associates', label: 'Gladki Planning' },
+        { slug: 'walterfedy,gladki-planning-associates', label: 'Walterfedy, Gladki Planning' },
+        { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
+      ];
+      /** Desktop tab subset (fewer, with alternate labels). */
+      const COMPANY_TABS = [
+        { slug: '', label: 'All' },
+        { slug: 'csp-architects', label: 'CS&P Architects' },
+        { slug: 'walterfedy,gladki-planning-associates', label: 'WALTERFEDY, GLADKI PLANNING' },
+        { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
+      ];
+
+      function populateCompanySelect() {
+        if (!companyFilterEl) return;
+        companyFilterEl.innerHTML = '';
+        COMPANY_FILTER_OPTIONS.forEach((opt) => {
+          const o = document.createElement('option');
+          o.value = opt.slug;
+          o.textContent = opt.label;
+          companyFilterEl.appendChild(o);
+        });
+      }
+
+      function canonicalizeCompanyValue(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+        const slugs = raw
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean);
+        if (!slugs.length) return '';
+
+        const cleaned = [];
+        for (const s of slugs) {
+          if (!VALID_COMPANY_SLUGS.has(s)) return '';
+          if (!cleaned.includes(s)) cleaned.push(s);
+        }
+        cleaned.sort((a, b) => (COMPANY_SLUG_ORDER.get(a) || 999) - (COMPANY_SLUG_ORDER.get(b) || 999));
+        return cleaned.join(',');
+      }
+
+      function shouldShowCompanyFilter() {
+        const features = window.OWP_FEATURES || {};
+        const flag = (typeof features.experienceCompanyFilter === 'undefined') ? true : features.experienceCompanyFilter;
+        if (flag === 'auth') return !!window.OWP_isEditorAuthed;
+        return !!flag;
+      }
+
+      function renderCompanyTabs(selectedSlug) {
+        if (!companyFilterTabsEl) return;
+        companyFilterTabsEl.innerHTML = '';
+        COMPANY_TABS.forEach((tab) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+
+          btn.className = 'border-2 border-slate-300 text-[#4A5565] font-["Roboto_Condensed"] leading-5 tracking-widest uppercase font-semibold text-base h-12 px-6 py-3 transition-colors aria-selected:bg-red-200 aria-selected:text-red-500 aria-selected:border-none';
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('data-company', tab.slug);
+          btn.setAttribute('aria-selected', tab.slug === selectedSlug ? 'true' : 'false');
+          btn.textContent = tab.label;
+          btn.addEventListener('click', () => {
+            if (!companyFilterEl) return;
+            companyFilterEl.value = tab.slug;
+            companyFilterEl.dispatchEvent(new Event('change', { bubbles: true }));
+          });
+          companyFilterTabsEl.appendChild(btn);
+        });
+      }
+
+      function updateSelectedTab(selectedSlug) {
+        if (!companyFilterTabsEl) return;
+        companyFilterTabsEl.querySelectorAll('[data-company]').forEach((btn) => {
+          const slug = btn.getAttribute('data-company') || '';
+          btn.setAttribute('aria-selected', slug === selectedSlug ? 'true' : 'false');
+        });
+      }
+
       function getSelectedCompanySlug() {
         const params = new URLSearchParams(window.location.search);
-        const slug = (params.get('company') || '').trim();
-        return VALID_COMPANY_SLUGS.has(slug) ? slug : '';
+        const raw = (params.get('company') || '').trim();
+        return canonicalizeCompanyValue(raw);
       }
 
       function setCompanySlugInUrl(slug) {
@@ -487,10 +581,12 @@
       }
 
       function createCard(item) {
+        const imgSrc = item.coverImageUrl && String(item.coverImageUrl).trim();
+        if (!imgSrc) return null;
+
         const box = document.createElement('div');
         box.className = 'box border-b pb-[10px] mb-[15px] border-[#6A7282]';
 
-        const imgSrc = item.coverImageUrl || './assets/images/Img1.png';
         const imgAlt = item.title || 'Project image';
 
         const metaParts = [];
@@ -541,7 +637,7 @@
           : '';
 
         box.innerHTML = `
-          <img src="${escapeHtml(imgSrc)}" class="md:max-w-[548px] w-full h-[400px] object-cover" alt="${escapeHtml(imgAlt)}" onerror="this.src='./assets/images/Img1.png'">
+          <img src="${escapeHtml(imgSrc)}" class="md:max-w-[548px] w-full h-[400px] object-cover" alt="${escapeHtml(imgAlt)}">
           <div class="content flex flex-col gap-[7px] py-[10px]">
             <h1 class="font-['Roboto_Condensed'] text-[#030712] text-[24px] font-[600] uppercase tracking-[4px] leading-8">${escapeHtml(item.title || '')}</h1>
             <div class="experience-meta flex flex-wrap gap-x-2.5 gap-y-1">${metaHtml}</div>
@@ -599,7 +695,6 @@
 
       function scheduleSeparatorRecalc() {
         requestAnimationFrame(() => updateMetaSeparators(gridEl));
-        setTimeout(() => updateMetaSeparators(gridEl), 0);
         setTimeout(() => updateMetaSeparators(gridEl), 250);
         if (document.fonts && typeof document.fonts.ready?.then === 'function') {
           document.fonts.ready.then(() => updateMetaSeparators(gridEl));
@@ -639,7 +734,10 @@
         const totalPages = Math.max(1, Math.ceil(totalCount / ITEMS_PER_PAGE));
 
         gridEl.innerHTML = '';
-        experienceData.forEach((item) => gridEl.appendChild(createCard(item)));
+        experienceData.forEach((item) => {
+          const card = createCard(item);
+          if (card) gridEl.appendChild(card);
+        });
 
         scheduleSeparatorRecalc();
 
@@ -746,15 +844,24 @@
 
       const initialCompany = getSelectedCompanySlug();
       const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
-      if (rawParam && !VALID_COMPANY_SLUGS.has(rawParam)) {
-        setCompanySlugInUrl('');
+      if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
+        setCompanySlugInUrl(initialCompany);
       }
+
+      if (companyFilterWrapEl) {
+        const show = shouldShowCompanyFilter();
+        companyFilterWrapEl.classList.toggle('hidden', !show);
+      }
+
+      populateCompanySelect();
+      renderCompanyTabs(initialCompany);
       if (companyFilterEl) {
         companyFilterEl.value = initialCompany;
         companyFilterEl.addEventListener('change', (e) => {
-          const slug = String(e.target.value || '');
+          const slug = canonicalizeCompanyValue(String(e.target.value || ''));
           setCompanySlugInUrl(slug);
           currentPage = 1;
+          updateSelectedTab(slug);
           fetchExperience(1);
         });
       }

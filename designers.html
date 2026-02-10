@@ -222,9 +222,9 @@
           </div>
           <div class="flex items-end h-auto md:h-[184px]">
             <p class="fitwel-body text-slate-300">
-              One Way Path Communities is a real estate company based in the
-              Greater Toronto Hamilton Area dedicated to designing and
-              building healthy communities.
+              Our team — spanning architecture, engineering, planning, and project leadership — transforms ideas into
+              coordinated, buildable designs, advancing projects from concept through municipal approval and
+              construction.
             </p>
           </div>
         </div>
@@ -259,7 +259,8 @@
                   US</a></li>
               <li><a href="designers.html"
                   class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
-              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a></li>
+              <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a>
+              </li>
               <li><a href="builders.html"
                   class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
               <li><a href="#" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a>
@@ -391,7 +392,7 @@
   </script>
   <script>
     (function () {
-      const baseCandidates = window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
+      const candidates = (typeof window.OWP_getWebsitesApiBaseCandidates === 'function' ? window.OWP_getWebsitesApiBaseCandidates() : null) || window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
       const sanitizeBase = window.OWP_sanitizeApiBase || ((b) => (b || '').replace(/\/+$/, ''));
 
       const listEl = document.getElementById('designers-list');
@@ -472,11 +473,6 @@
       }
 
       async function fetchDesigners() {
-        const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-        const defaultBase = origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null;
-        const localhostBase = origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null;
-        const candidates = [...new Set([...baseCandidates, defaultBase, 'https://api.onewaypath.com/api/websites', localhostBase].filter(Boolean))];
-
         for (const base of candidates) {
           const safeBase = sanitizeBase(base);
           if (!safeBase) continue;

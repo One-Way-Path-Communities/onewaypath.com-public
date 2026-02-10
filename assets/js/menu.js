@@ -1,15 +1,20 @@
 (() => {
-  const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
-  const defaultBase = origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null;
-  const localhostBase = origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null;
-  const candidates = [
-    window.WEBSITES_API_BASE,
-    window.WEBSITES_API_BASE_URL,
-    defaultBase,
-    'https://api.onewaypath.com/api/websites',
-    localhostBase,
-  ].filter(Boolean);
-  window.OWP_WEBSITES_API_BASE_CANDIDATES = [...new Set(candidates)];
+  /** Single source of truth for websites API base URL candidates (same-origin, localhost, production). */
+  function getWebsitesApiBaseCandidates() {
+    const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
+    const defaultBase = origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null;
+    const localhostBase = origin?.includes('localhost') ? 'http://localhost:3000/api/websites' : null;
+    const candidates = [
+      window.WEBSITES_API_BASE,
+      window.WEBSITES_API_BASE_URL,
+      defaultBase,
+      'https://api.onewaypath.com/api/websites',
+      localhostBase,
+    ].filter(Boolean);
+    return [...new Set(candidates)];
+  }
+  window.OWP_getWebsitesApiBaseCandidates = getWebsitesApiBaseCandidates;
+  window.OWP_WEBSITES_API_BASE_CANDIDATES = getWebsitesApiBaseCandidates();
   window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
 
   const desktopMenu = document.getElementById('desktop-menu');
