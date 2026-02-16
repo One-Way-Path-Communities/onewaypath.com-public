@@ -473,11 +473,15 @@
       }
 
       async function fetchDesigners() {
+        // Pass through view query param (e.g., ?view=live) to API
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+        const viewQuery = viewParam ? `?view=${encodeURIComponent(viewParam)}` : '';
         for (const base of candidates) {
           const safeBase = sanitizeBase(base);
           if (!safeBase) continue;
           try {
-            const res = await fetch(`${safeBase}/individuals`, { headers: { Accept: 'application/json' } });
+            const res = await fetch(`${safeBase}/individuals${viewQuery}`, { headers: { Accept: 'application/json' } });
             if (!res.ok) continue;
             const body = await res.json();
             if (body?.ok && Array.isArray(body.individuals)) {

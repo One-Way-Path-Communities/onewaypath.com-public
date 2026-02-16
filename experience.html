@@ -798,6 +798,9 @@
         }
         const basesToTry = apiBase ? [apiBase] : baseCandidates;
         const companySlug = getSelectedCompanySlug();
+        // Pass through view query param (e.g., ?view=live) to API
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
         for (const base of basesToTry) {
           const safeBase = (base || '').replace(/\/+$/, '');
           if (!safeBase) continue;
@@ -807,6 +810,7 @@
               limit: String(ITEMS_PER_PAGE),
             });
             if (companySlug) qs.set('company', companySlug);
+            if (viewParam) qs.set('view', viewParam);
             const url = `${safeBase}/experience?${qs.toString()}`;
             const res = await fetch(url, { headers: { Accept: 'application/json' } });
             if (!res.ok) continue;
