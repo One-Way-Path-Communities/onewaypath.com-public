@@ -523,6 +523,10 @@
       }
 
       function shouldShowCompanyFilter() {
+        // Only show company filter on dev site; hide on live site
+        const hostname = window.location.hostname || '';
+        const isDev = hostname.includes('dev.');
+        if (!isDev) return false;
         const features = window.OWP_FEATURES || {};
         const flag = (typeof features.experienceCompanyFilter === 'undefined') ? true : features.experienceCompanyFilter;
         if (flag === 'auth') return !!window.OWP_isEditorAuthed;
