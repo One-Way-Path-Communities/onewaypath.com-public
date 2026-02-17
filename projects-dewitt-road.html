@@ -352,7 +352,8 @@
                 </div>
             </section>
 
-            <section class="self-stretch inline-flex flex-col justify-start items-start gap-6 md:px-0 px-[20px]">
+            <!-- Suites section: hidden on live site (onewaypath.com / www.onewaypath.com) only -->
+            <section id="suites-section" class="self-stretch inline-flex flex-col justify-start items-start gap-6 md:px-0 px-[20px]">
                 <div
                     class="self-stretch justify-center text-gold-500 text-2xl md:text-3xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 md:leading-10 tracking-[4px]">
                     Suites
@@ -1208,6 +1209,15 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="assets/js/menu.js"></script>
+    <script>
+        // Hide Suites section on live site only
+        (function () {
+            if (window.location.hostname === 'onewaypath.com' || window.location.hostname === 'www.onewaypath.com') {
+                var el = document.getElementById('suites-section');
+                if (el) el.classList.add('hidden');
+            }
+        })();
+    </script>
 
 </body>
 
