@@ -129,22 +129,22 @@
 </head>
 
 <body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-    <header class="z-50 bg-olive-50/95 border-b border-slate-500">
+    <header class="z-50 bg-[#FBF9F3] border-b border-slate-500">
         <nav class="bg-transparent">
             <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
                 <a href="index.html" class="flex items-center gap-3">
                     <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto">
                 </a>
-                <div class="hidden items-center gap-4 ml-auto lg:flex relative">
+                <div class="hidden items-center gap-6 ml-auto lg:flex relative">
                     <div id="desktop-menu" class="flex flex-wrap items-center gap-5"></div>
                     <span id="editor-badge"
                         class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
                     <button id="user-button" type="button"
-                        class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-500 text-slate-950 hover:bg-olive-50"
+                        class="flex w-12 h-12 items-center justify-center rounded-full text-red-500 hover:bg-red-50"
                         aria-label="User account">
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
+                        <svg class="h-5 w-5" width="20" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20" fill="none">
+                            <path d="M16.6666 17.5V15.8333C16.6666 14.9493 16.3154 14.1014 15.6903 13.4763C15.0652 12.8512 14.2173 12.5 13.3333 12.5H6.66659C5.78253 12.5 4.93468 12.8512 4.30956 13.4763C3.68444 14.1014 3.33325 14.9493 3.33325 15.8333V17.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10.0001 9.16667C11.841 9.16667 13.3334 7.67428 13.3334 5.83333C13.3334 3.99238 11.841 2.5 10.0001 2.5C8.15913 2.5 6.66675 3.99238 6.66675 5.83333C6.66675 7.67428 8.15913 9.16667 10.0001 9.16667Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>
                     <div id="auth-panel"

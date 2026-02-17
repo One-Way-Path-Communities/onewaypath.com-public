@@ -39,33 +39,34 @@
 
   const AUTH_KEY = 'owp-editor';
   const fallbackMenu = [
-    { label: 'About Us', url: 'index.html#about', status: 'active', displayOrder: 1 },
     {
       label: 'Company',
       url: '#',
       status: 'active',
-      displayOrder: 2,
+      displayOrder: 1,
       children: [
-        { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 1 },
-        { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 2 },
+        { label: 'About Us', url: 'index.html#about', status: 'active', displayOrder: 1 },
+        { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 2 },
         { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 3 },
+        { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 4 },
+        { label: 'Contact', url: 'index.html#contact', status: 'active', displayOrder: 5 },
       ],
     },
     {
       label: 'Projects',
-      url: '#projects',
+      url: '#',
       status: 'in-progress',
-      displayOrder: 3,
+      displayOrder: 2,
       children: [
-        { label: 'Dewitt Road', url: 'projects-dewitt-road.html', status: 'in-progress', displayOrder: 1 },
-        { label: 'Millen Road', url: 'projects-millen-road.html', status: 'in-progress', displayOrder: 2 },
+        { label: 'Dewitt Road LP', url: 'projects-dewitt-road.html', status: 'in-progress', displayOrder: 1 },
+        { label: 'Millen Road LP', url: 'projects-millen-road.html', status: 'in-progress', displayOrder: 2 },
       ],
     },
     {
       label: 'Community',
       url: '#',
       status: 'active',
-      displayOrder: 4,
+      displayOrder: 3,
       children: [
         { label: 'Wellness', url: 'wellness.html', status: 'active', displayOrder: 1 },
         { label: 'Homes', url: 'community.html#homes', status: 'active', displayOrder: 2 },
@@ -73,7 +74,6 @@
         { label: 'Environment', url: 'community.html#environment', status: 'active', displayOrder: 4 },
       ],
     },
-    { label: 'Contact', url: '#contact', status: 'active', displayOrder: 5 },
   ];
 
   const baseCandidates = window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
@@ -118,10 +118,10 @@
 
   function createChevron() {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.classList.add('h-4', 'w-4');
+    svg.classList.add('h-5', 'w-5');
     svg.setAttribute('fill', 'none');
     svg.setAttribute('stroke', 'currentColor');
-    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-width', '2.5');
     svg.setAttribute('viewBox', '0 0 24 24');
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('stroke-linecap', 'round');
@@ -163,21 +163,27 @@
     button.setAttribute('aria-controls', dropdownId);
     button.setAttribute('aria-expanded', 'false');
     button.className =
-      'fitwel-heading-sm text-olive-500 inline-flex items-center gap-1 hover:text-olive-800 focus:outline-none font-bold';
-    button.textContent = item.label;
-    button.appendChild(createChevron());
+      "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] inline-flex items-center justify-center gap-2 hover:opacity-90 focus:outline-none";
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = item.label;
+    labelSpan.className = 'inline-flex items-center pt-0.5';
+    button.appendChild(labelSpan);
+    const chevron = createChevron();
+    chevron.classList.add('flex-shrink-0');
+    button.appendChild(chevron);
 
     const dropdown = document.createElement('div');
     dropdown.id = dropdownId;
     dropdown.className =
-      'z-20 hidden absolute left-0 mt-2 min-w-[10rem] rounded-lg border border-slate-500 bg-olive-50 text-sm text-slate-950 shadow';
+      'z-20 hidden absolute left-0 mt-2 min-w-[10rem] rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
+    dropdown.style.backgroundColor = '#FBF9F3';
     const list = document.createElement('ul');
     list.className = 'py-2';
 
     for (const child of item.children || []) {
       if (isInactive(child)) continue;
       const li = document.createElement('li');
-      const childLink = createLink(child, 'block px-4 py-2 font-semibold uppercase hover:bg-olive-50', {
+      const childLink = createLink(child, "block px-4 py-2 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:bg-olive-100", {
         allowCollapseToggle: true,
       });
       applyStatus(li, child.status);
@@ -203,7 +209,7 @@
         if (dropdown) desktopMenu.appendChild(dropdown);
         return;
       }
-      const link = createLink(item, 'fitwel-heading-sm text-olive-500 hover:text-olive-800 font-bold', {
+      const link = createLink(item, "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90", {
         allowCollapseToggle: true,
       });
       desktopMenu.appendChild(link);
@@ -220,7 +226,7 @@
       if (!hasChildren) {
         const link = createLink(
           item,
-          `block uppercase text-olive-500 hover:text-olive-800 font-bold ${status}`.trim()
+          `block text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90 ${status}`.trim()
         );
         mobileMenuList.appendChild(link);
         return;
@@ -231,7 +237,7 @@
       applyStatus(group, item.status);
 
       const heading = document.createElement('p');
-      heading.className = 'uppercase text-olive-500 text-sm';
+      heading.className = "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed']";
       heading.textContent = item.label;
       group.appendChild(heading);
 
@@ -240,7 +246,7 @@
 
       for (const child of item.children || []) {
         if (isInactive(child)) continue;
-        const childLink = createLink(child, 'hover:text-olive-800');
+        const childLink = createLink(child, "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90");
         applyStatus(childLink, child.status);
         childrenWrap.appendChild(childLink);
       }

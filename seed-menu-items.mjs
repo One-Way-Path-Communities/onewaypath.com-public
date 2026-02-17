@@ -32,47 +32,42 @@ const schemaPrefix = schemaPrefixRaw ? `${schemaPrefixRaw.toLowerCase()}_` : "";
 const statusTypeName = `${schemaPrefix}menu_item_status`;
 const tableName = `${schemaPrefix}menu_items`;
 
-// Source-of-truth menu tree. Adjust this array to change the menu structure.
+// Source-of-truth menu tree. Matches Figma: three top-level items (Company, Projects, Community).
 const menuData = [
-  { label: "About Us", url: "index.html#about", status: "active", displayOrder: 1 },
   {
     label: "Company",
     url: "#",
     status: "active",
-    displayOrder: 2,
+    displayOrder: 1,
     children: [
-      { label: "Designers", url: "designers.html", status: "active", displayOrder: 1 },
-      { label: "Builders", url: "builders.html", status: "active", displayOrder: 2 },
+      { label: "About Us", url: "index.html#about", status: "active", displayOrder: 1 },
+      { label: "Designers", url: "designers.html", status: "active", displayOrder: 2 },
       { label: "Experience", url: "experience.html", status: "active", displayOrder: 3 },
+      { label: "Builders", url: "builders.html", status: "active", displayOrder: 4 },
+      { label: "Contact", url: "index.html#contact", status: "active", displayOrder: 5 },
     ],
   },
   {
     label: "Projects",
-    url: "#projects",
+    url: "#",
     status: "in-progress",
-    displayOrder: 3,
+    displayOrder: 2,
     children: [
-      { label: "Dewitt Road", url: "projects-dewitt-road.html", status: "in-progress", displayOrder: 1 },
-      { label: "Millen Road", url: "projects-millen-road.html", status: "in-progress", displayOrder: 2 },
+      { label: "Dewitt Road LP", url: "projects-dewitt-road.html", status: "in-progress", displayOrder: 1 },
+      { label: "Millen Road LP", url: "projects-millen-road.html", status: "in-progress", displayOrder: 2 },
     ],
   },
   {
     label: "Community",
     url: "#",
     status: "active",
-    displayOrder: 4,
+    displayOrder: 3,
     children: [
       { label: "Wellness", url: "wellness.html", status: "active", displayOrder: 1 },
       { label: "Homes", url: "community.html#homes", status: "active", displayOrder: 2 },
       { label: "Jobs", url: "community.html#jobs", status: "active", displayOrder: 3 },
       { label: "Environment", url: "community.html#environment", status: "active", displayOrder: 4 },
     ],
-  },
-  {
-    label: "Contact",
-    url: "#contact",
-    status: "active",
-    displayOrder: 5,
   },
 ];
 
