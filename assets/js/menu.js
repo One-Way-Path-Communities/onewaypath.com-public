@@ -41,8 +41,8 @@
       status: 'in-progress',
       displayOrder: 3,
       children: [
-        { label: 'Dewitt Road', url: '#projects-dewitt-road', status: 'in-progress', displayOrder: 1 },
-        { label: 'Millen Road', url: '#projects-millen-road', status: 'in-progress', displayOrder: 2 },
+        { label: 'Dewitt Road', url: 'projects-dewitt-road.html', status: 'in-progress', displayOrder: 1 },
+        { label: 'Millen Road', url: 'projects-millen-road.html', status: 'in-progress', displayOrder: 2 },
       ],
     },
     {
