@@ -780,7 +780,11 @@
             const btn = document.createElement('button');
             btn.textContent = p;
             btn.className = 'flex items-center text-[#030712] md:text-[16px] text-[12px] font-[600] justify-center md:w-[48px] md:h-[48px] w-[35px] h-[35px] text-sm ' + (p === currentPage ? 'border-[2px] border-[#030712] font-medium' : 'hover:underline');
-            btn.onclick = () => { currentPage = p; fetchExperience(p); };
+            btn.onclick = () => {
+              currentPage = p;
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              fetchExperience(p);
+            };
             pagesEl.appendChild(btn);
           }
         });
@@ -789,10 +793,20 @@
         if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
       }
 
-      if (prevBtn) prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; fetchExperience(currentPage); } };
+      if (prevBtn) prevBtn.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          fetchExperience(currentPage);
+        }
+      };
       if (nextBtn) nextBtn.onclick = () => {
         const totalPages = Math.max(1, Math.ceil(totalCount / ITEMS_PER_PAGE));
-        if (currentPage < totalPages) { currentPage++; fetchExperience(currentPage); }
+        if (currentPage < totalPages) {
+          currentPage++;
+          window.scrollTo({ top: 0, behaviour: 'smooth' });
+          fetchExperience(currentPage);
+        }
       };
 
       async function fetchExperience(page) {
