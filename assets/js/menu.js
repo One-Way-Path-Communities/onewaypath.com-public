@@ -17,6 +17,22 @@
   window.OWP_WEBSITES_API_BASE_CANDIDATES = getWebsitesApiBaseCandidates();
   window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
 
+  /** Disable Privacy Policy and Terms and Conditions links (runs regardless of menu). */
+  function disableFooterLegalLinks() {
+    const legalTexts = ['PRIVACY POLICY', 'TERMS AND CONDITIONS'];
+    document.querySelectorAll('footer a[href]').forEach((a) => {
+      const text = (a.textContent || '').replace(/\s+/g, ' ').trim().toUpperCase();
+      if (legalTexts.some((t) => text.includes(t))) {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        a.setAttribute('aria-disabled', 'true');
+      }
+    });
+  }
+  disableFooterLegalLinks();
+
   const desktopMenu = document.getElementById('desktop-menu');
   const mobileMenuList = document.getElementById('mobile-menu-list');
   if (!desktopMenu || !mobileMenuList) return;
