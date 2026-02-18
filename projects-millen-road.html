@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>One Way Path | Millen Road LP</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -125,90 +127,97 @@
 </head>
 
 <body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-    <header class="z-50 bg-olive-50/95 border-b border-slate-500">
+    <header class="z-50 bg-[#FBF9F3] border-b border-slate-500">
         <nav class="bg-transparent">
-            <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between px-8 py-4">
-                <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/Logo.png" alt="One Way Path logo" class="h-14 w-auto">
-                </a>
-                <div class="hidden items-center gap-4 ml-auto lg:flex relative">
-                    <div id="desktop-menu" class="flex flex-wrap items-center gap-5"></div>
-                    <span id="editor-badge"
-                        class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
-                    <button id="user-button" type="button"
-                        class="flex h-10 w-10 items-center justify-center rounded-full border border-slate-500 text-slate-950 hover:bg-olive-50"
-                        aria-label="User account">
-                        <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zM6 20c0-2.21 2.69-4 6-4s6 1.79 6 4" />
-                        </svg>
+          <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between py-5 xl:py-6 px-5 md:px-8">
+            <a href="index.html" class="flex items-center gap-3">
+              <img src="assets/images/Logo.png" alt="One Way Path logo" class="lg:h-14 lg:w-auto w-44 h-10">
+            </a>
+            <div class="items-center ml-auto flex relative gap-4 lg:gap-6">
+              <div id="desktop-menu" class="hidden lg:inline-flex flex flex-wrap items-center gap-5"></div>
+              <span id="editor-badge"
+                class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
+              <button id="user-button" type="button"
+                class="flex w-12 h-12 items-center justify-center rounded-full text-red-500 hover:bg-red-50"
+                aria-label="User account">
+                <svg class="h-5 w-5" width="20" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"
+                  fill="none">
+                  <path
+                    d="M16.6666 17.5V15.8333C16.6666 14.9493 16.3154 14.1014 15.6903 13.4763C15.0652 12.8512 14.2173 12.5 13.3333 12.5H6.66659C5.78253 12.5 4.93468 12.8512 4.30956 13.4763C3.68444 14.1014 3.33325 14.9493 3.33325 15.8333V17.5"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path
+                    d="M10.0001 9.16667C11.841 9.16667 13.3334 7.67428 13.3334 5.83333C13.3334 3.99238 11.841 2.5 10.0001 2.5C8.15913 2.5 6.66675 3.99238 6.66675 5.83333C6.66675 7.67428 8.15913 9.16667 10.0001 9.16667Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div id="auth-panel"
+                class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
+                <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                  <div>
+                    <p
+                      class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
+                      Partner Login</p>
+                  </div>
+                  <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                    <label for="auth-email"
+                      class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
+                    <input id="auth-email" type="email"
+                      class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
+                      placeholder="Your@example.com">
+                  </div>
+                  <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                    <label for="auth-password"
+                      class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
+                    <input id="auth-password" type="password"
+                      class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
+                      placeholder="..................">
+                  </div>
+                  <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+                  <div class="flex items-center self-end justify-end gap-2">
+                    <button type="button" id="auth-submit"
+                      class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
                     </button>
-                    <div id="auth-panel"
-                        class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
-                        <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
-                            <div>
-                                <p
-                                    class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
-                                    Partner Login</p>
-                            </div>
-                            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
-                                <label for="auth-email"
-                                    class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
-                                <input id="auth-email" type="email"
-                                    class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
-                                    placeholder="Your@example.com">
-                            </div>
-                            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
-                                <label for="auth-password"
-                                    class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
-                                <input id="auth-password" type="password"
-                                    class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
-                                    placeholder="..................">
-                            </div>
-                            <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
-                            <div class="flex items-center self-end justify-end gap-2">
-                                <button type="button" id="auth-submit"
-                                    class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-                <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
-                    class="ml-auto inline-flex items-center justify-center rounded-lg border border-slate-500 px-3 py-1.5 text-base font-semibold uppercase text-slate-950 hover:bg-olive-50 lg:hidden">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+              </div>
+              <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
+                class="ml-auto inline-flex items-center justify-center rounded-full w-12 h-12 text-base font-semibold uppercase text-red-500 hover:bg-red-50 lg:hidden">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"  viewBox="0 0 24 24" fill="none">
+                  <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
             </div>
-            <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
-                <div id="mobile-menu-list"
-                    class="mx-auto max-w-6xl px-4 py-4 text-base font-medium text-slate-950 space-y-4">
-                </div>
+            
+          </div>
+          <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
+            <div id="mobile-menu-list" class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
             </div>
-            <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
-                <div class="mx-auto grid max-w-6xl gap-6 px-6 pb-6 pt-8 text-sm text-slate-950 sm:grid-cols-2">
-                    <div class="space-y-2 max-w-sm">
-                        <h1 class="fitwel-heading text-slate-500">About</h1>
-                        <p class="fitwel-body text-slate-950">One Way Path Communities
-                            builds multi-residential housing in liveable
-                            communities in and around the Greater Toronto Hamilton Area.</p>
-                    </div>
-                    <div id="contact" class="space-y-2 max-w-sm sm:justify-self-start sm:text-left">
-                        <h1 class="fitwel-heading text-slate-500">Contact</h1>
-                        <p class="fitwel-body text-slate-950">One Way Path
-                            Communities<br>77 Bloor Street West, Suite
-                            600<br>Toronto, Ontario | Canada M5S 1M2</p>
-                        <p class="fitwel-body text-slate-950">Tel: +1 (416)
-                            848-1746<br>Fax: +1 (416) 848-1162</p>
-                        <a class="fitwel-body text-slate-950 hover:text-slate-700"
-                            href="mailto:info@onewaypath.com">info@onewaypath.com</a>
-                    </div>
-                </div>
+          </div>
+          <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
+            <div class="w-full mx-auto max-w-6xl px-5 md:px-6 py-16 grid md:grid-cols-2 gap-12 items-start lg:px-12">
+              <div class="flex flex-col gap-3">
+                <h1 class="fitwel-heading text-gold-500">About</h1>
+                <p class="fitwel-body text-slate-950 leading-7 xl:max-w-none lg:max-w-[426px]">
+                  One Way Path Communities builds multi-residential housing in liveable communities in and around the
+                  Greater Toronto Hamilton Area.
+                </p>
+              </div>
+              <div id="contact" class="flex flex-col gap-3 max-w-sm space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+                <h1 class="fitwel-heading text-gold-500">Contact</h1>
+                <p class="fitwel-body leading-7 text-slate-950">One Way Path Communities<br>77 Bloor Street West, Suite
+                  600<br>Toronto, Ontario | Canada M5S 1M2</p>
+                <p class="fitwel-body leading-7 text-slate-950 text-lg md:text-xl">
+                  Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162
+                </p>
+                <a class="fitwel-body leading-7 text-red-500 hover:text-red-700 text-lg md:text-xl"
+                  href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+              </div>
             </div>
+          </div>
         </nav>
-    </header>
+      </header>
 
     <main class="flex-1 ">
         <div
