@@ -33,6 +33,21 @@
   }
   disableFooterLegalLinks();
 
+  /** Footer Contact: open nav-panel only and scroll to contact section. */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('footer a[href="#contact"]');
+    if (!link) return;
+    const panel = document.getElementById('nav-panel');
+    const contactSection = document.getElementById('contact');
+    if (!panel) return;
+    e.preventDefault();
+    e.stopPropagation();
+    panel.classList.remove('hidden');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
   const desktopMenu = document.getElementById('desktop-menu');
   const mobileMenuList = document.getElementById('mobile-menu-list');
   if (!desktopMenu || !mobileMenuList) return;
