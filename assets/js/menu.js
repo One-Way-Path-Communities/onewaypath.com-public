@@ -190,7 +190,7 @@
     const dropdown = document.createElement('div');
     dropdown.id = dropdownId;
     dropdown.className =
-      'z-20 hidden absolute left-0 mt-2 min-w-[10rem] rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
+      'z-20 hidden absolute left-0 mt-2 min-w-max pr-3 rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
     dropdown.style.backgroundColor = '#FBF9F3';
     const list = document.createElement('ul');
     list.className = 'py-2';
