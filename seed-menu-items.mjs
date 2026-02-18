@@ -44,7 +44,7 @@ const menuData = [
       { label: "Designers", url: "designers.html", status: "active", displayOrder: 2 },
       { label: "Experience", url: "experience.html", status: "active", displayOrder: 3 },
       { label: "Builders", url: "builders.html", status: "active", displayOrder: 4 },
-      { label: "Contact", url: "index.html#contact", status: "active", displayOrder: 5 },
+      { label: "Contact", url: "#contact", status: "active", displayOrder: 5 },
     ],
   },
   {

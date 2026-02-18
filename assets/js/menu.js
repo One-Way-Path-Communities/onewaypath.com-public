@@ -33,6 +33,21 @@
   }
   disableFooterLegalLinks();
 
+  /** Footer Contact: open nav-panel only and scroll to contact section. */
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('footer a[href="#contact"]');
+    if (!link) return;
+    const panel = document.getElementById('nav-panel');
+    const contactSection = document.getElementById('contact');
+    if (!panel) return;
+    e.preventDefault();
+    e.stopPropagation();
+    panel.classList.remove('hidden');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
   const desktopMenu = document.getElementById('desktop-menu');
   const mobileMenuList = document.getElementById('mobile-menu-list');
   if (!desktopMenu || !mobileMenuList) return;
@@ -49,7 +64,7 @@
         { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 2 },
         { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 3 },
         { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 4 },
-        { label: 'Contact', url: 'index.html#contact', status: 'active', displayOrder: 5 },
+        { label: 'Contact', url: '#contact', status: 'active', displayOrder: 5 },
       ],
     },
     {
