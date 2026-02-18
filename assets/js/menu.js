@@ -49,7 +49,7 @@
         { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 2 },
         { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 3 },
         { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 4 },
-        { label: 'Contact', url: 'index.html#contact', status: 'active', displayOrder: 5 },
+        { label: 'Contact', url: '#contact', status: 'active', displayOrder: 5 },
       ],
     },
     {
@@ -233,7 +233,7 @@
       }
 
       const group = document.createElement('div');
-      group.className = `space-y-1 ${status}`.trim();
+      group.className = `flex flex-col gap-4 ${status}`.trim();
       applyStatus(group, item.status);
 
       const heading = document.createElement('p');
@@ -242,11 +242,11 @@
       group.appendChild(heading);
 
       const childrenWrap = document.createElement('div');
-      childrenWrap.className = 'flex flex-col gap-1 pl-2';
+      childrenWrap.className = 'flex flex-col';
 
       for (const child of item.children || []) {
         if (isInactive(child)) continue;
-        const childLink = createLink(child, "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90");
+        const childLink = createLink(child, "h-11 px-7 text-sm inline-flex justify-start items-center text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90");
         applyStatus(childLink, child.status);
         childrenWrap.appendChild(childLink);
       }
