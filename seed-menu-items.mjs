@@ -50,11 +50,11 @@ const menuData = [
   {
     label: "Projects",
     url: "#",
-    status: "in-progress",
+    status: "active",
     displayOrder: 2,
     children: [
-      { label: "Dewitt Road LP", url: "projects-dewitt-road.html", status: "in-progress", displayOrder: 1 },
-      { label: "Millen Road LP", url: "projects-millen-road.html", status: "in-progress", displayOrder: 2 },
+      { label: "Dewitt Road LP", url: "projects-dewitt-road.html", status: "active", displayOrder: 1 },
+      { label: "Millen Road LP", url: "projects-millen-road.html", status: "active", displayOrder: 2 },
     ],
   },
   {
