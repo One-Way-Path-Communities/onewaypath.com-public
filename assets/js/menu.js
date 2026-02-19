@@ -17,9 +17,9 @@
   window.OWP_WEBSITES_API_BASE_CANDIDATES = getWebsitesApiBaseCandidates();
   window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
 
-  /** Disable Privacy Policy and Terms and Conditions links (runs regardless of menu). */
+  /** Disable Privacy Policy link only when href is "#" or empty */
   function disableFooterLegalLinks() {
-    const legalTexts = ['PRIVACY POLICY', 'TERMS AND CONDITIONS'];
+    const legalTexts = ['PRIVACY POLICY'];
     document.querySelectorAll('footer a[href]').forEach((a) => {
       const text = (a.textContent || '').replace(/\s+/g, ' ').trim().toUpperCase();
       if (legalTexts.some((t) => text.includes(t))) {
