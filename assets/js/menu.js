@@ -17,22 +17,6 @@
   window.OWP_WEBSITES_API_BASE_CANDIDATES = getWebsitesApiBaseCandidates();
   window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
 
-  /** Disable Privacy Policy link only when href is "#" or empty */
-  function disableFooterLegalLinks() {
-    const legalTexts = ['PRIVACY POLICY'];
-    document.querySelectorAll('footer a[href]').forEach((a) => {
-      const text = (a.textContent || '').replace(/\s+/g, ' ').trim().toUpperCase();
-      if (legalTexts.some((t) => text.includes(t))) {
-        a.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-        });
-        a.setAttribute('aria-disabled', 'true');
-      }
-    });
-  }
-  disableFooterLegalLinks();
-
   /** Footer Contact: open nav-panel only and scroll to contact section. */
   document.addEventListener('click', (e) => {
     const link = e.target.closest('footer a[href="#contact"]');
