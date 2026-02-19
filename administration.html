@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, follow" />
-  <title>One Way Path Communities | Designers</title>
+  <title>One Way Path Communities | Administration</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/leaf-logo.svg">
   <link rel="apple-touch-icon" href="assets/images/leaf-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -227,14 +227,13 @@
         <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
           <div class="flex items-start">
             <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
-              Designers
+              Administration
             </h1>
           </div>
           <div class="flex items-end h-auto md:h-[184px]">
             <p class="fitwel-body text-slate-300">
-              Our team — spanning architecture, engineering, planning, and project leadership — transforms ideas into
-              coordinated, buildable designs, advancing projects from concept through municipal approval and
-              construction.
+              Our administration team supports operations, governance, and project delivery so we can deliver
+              liveable communities from concept through construction and beyond.
             </p>
           </div>
         </div>
@@ -243,14 +242,14 @@
 
     <section class="accordion relative px-5 xl:px-[15px] lg:px-12 md:px-8 py-14 lg:py-8 md:py-6 min-h-[600px] xl:py-24">
       <div class="max-w-[1120px] w-full mx-auto relative z-[99]">
-        <div id="designers-loading" class="py-12 text-center text-slate-500">
-          Loading designers…
+        <div id="administration-loading" class="py-12 text-center text-slate-500">
+          Loading administration team…
         </div>
-        <div id="designers-list" class="hidden"></div>
-        <div id="designers-empty" class="py-12 text-center text-slate-500 hidden">
-          No designers to display.
+        <div id="administration-list" class="hidden"></div>
+        <div id="administration-empty" class="py-12 text-center text-slate-500 hidden">
+          No team members to display.
         </div>
-        <div id="designers-error" class="py-12 text-center text-red-500 hidden"></div>
+        <div id="administration-error" class="py-12 text-center text-red-500 hidden"></div>
       </div>
     </section>
   </main>
@@ -269,6 +268,8 @@
                   US</a></li>
               <li><a href="designers.html"
                   class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="administration.html"
+                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ADMINISTRATION</a></li>
               <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a>
               </li>
               <li><a href="builders.html"
@@ -405,10 +406,10 @@
       const candidates = (typeof window.OWP_getWebsitesApiBaseCandidates === 'function' ? window.OWP_getWebsitesApiBaseCandidates() : null) || window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
       const sanitizeBase = window.OWP_sanitizeApiBase || ((b) => (b || '').replace(/\/+$/, ''));
 
-      const listEl = document.getElementById('designers-list');
-      const loadingEl = document.getElementById('designers-loading');
-      const emptyEl = document.getElementById('designers-empty');
-      const errorEl = document.getElementById('designers-error');
+      const listEl = document.getElementById('administration-list');
+      const loadingEl = document.getElementById('administration-loading');
+      const emptyEl = document.getElementById('administration-empty');
+      const errorEl = document.getElementById('administration-error');
 
       function escapeHtml(str) {
         if (!str) return '';
@@ -418,7 +419,7 @@
       }
 
       function createAccordionItem(item) {
-        const name = [item.firstName, item.lastName].filter(Boolean).join(' ').trim() || 'Designer';
+        const name = [item.firstName, item.lastName].filter(Boolean).join(' ').trim() || 'Team member';
         const title = item.title || '';
         const company = item.company || '';
         const bio = item.bio || '';
@@ -482,11 +483,11 @@
         return div;
       }
 
-      async function fetchDesigners() {
-        // Unified individuals API: filter by category=Designers; pass through view (e.g. ?view=live)
+      async function fetchAdministration() {
+        // Unified individuals API: filter by category=Administration; pass through view (e.g. ?view=live)
         const urlParams = new URLSearchParams(window.location.search);
         const viewParam = urlParams.get('view');
-        const apiParams = new URLSearchParams({ category: 'Designers' });
+        const apiParams = new URLSearchParams({ category: 'Administration' });
         if (viewParam) apiParams.set('view', viewParam);
         const query = `?${apiParams.toString()}`;
         for (const base of candidates) {
@@ -511,15 +512,15 @@
               return;
             }
           } catch (err) {
-            console.warn('Designers fetch failed from', safeBase, err);
+            console.warn('Administration fetch failed from', safeBase, err);
           }
         }
         loadingEl.classList.add('hidden');
-        errorEl.textContent = 'Unable to load designers. Please try again later.';
+        errorEl.textContent = 'Unable to load administration team. Please try again later.';
         errorEl.classList.remove('hidden');
       }
 
-      fetchDesigners();
+      fetchAdministration();
     })();
   </script>
 
