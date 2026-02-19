@@ -1,4 +1,4 @@
-# One Way Path — Design Tokens & Patterns (CDN Setup)
+# One Way Path Communities — Design Tokens & Patterns (CDN Setup)
 
 Use this as the single source for typography, colors, and repeatable components. Tailwind is loaded via CDN; tokens are defined in `index.html` inside `tailwind.config`.
 

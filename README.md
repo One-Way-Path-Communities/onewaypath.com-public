@@ -1,4 +1,4 @@
-# One Way Path — Static Site
+# One Way Path Communities — Static Site
 
 This repo is a single static HTML page served via nginx. It uses no build tools or bundlers.
 
