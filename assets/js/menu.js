@@ -174,7 +174,7 @@
     const dropdown = document.createElement('div');
     dropdown.id = dropdownId;
     dropdown.className =
-      'z-20 hidden absolute left-0 mt-2 min-w-max pr-3 rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
+      'z-20 hidden absolute left-0 mt-2 min-w-max rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
     dropdown.style.backgroundColor = '#FBF9F3';
     const list = document.createElement('ul');
     list.className = 'py-2';
@@ -182,7 +182,7 @@
     for (const child of item.children || []) {
       if (isInactive(child)) continue;
       const li = document.createElement('li');
-      const childLink = createLink(child, "block px-4 py-2 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:bg-olive-100", {
+      const childLink = createLink(child, "block pl-4 pr-6 py-2 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:bg-olive-100", {
         allowCollapseToggle: true,
       });
       applyStatus(li, child.status);
