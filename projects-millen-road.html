@@ -811,31 +811,6 @@
         })();
     </script>
     <script>
-        const floorTab = document.getElementById('tab-floorplans');
-        const floorTabSection = document.getElementById('tab-floorplans-section');
-        const listTab = document.getElementById('tab-listview');
-        const listTabSection = document.getElementById('tab-listview-section');
-
-        floorTab.addEventListener('click', () => {
-            floorTab.classList.add('text-olive-500', 'border-olive-500');
-            floorTabSection.classList.remove('hidden');
-            floorTab.classList.remove('text-slate-600', 'border-transparent');
-
-            listTab.classList.add('text-slate-600', 'border-transparent');
-            listTabSection.classList.add('hidden');
-            listTab.classList.remove('text-olive-500', 'border-olive-500');
-        });
-
-        listTab.addEventListener('click', () => {
-            listTab.classList.add('text-olive-500', 'border-olive-500');
-            listTabSection.classList.remove('hidden');
-            listTab.classList.remove('text-slate-600', 'border-transparent');
-
-            floorTab.classList.add('text-slate-600', 'border-transparent');
-            floorTabSection.classList.add('hidden');
-            floorTab.classList.remove('text-olive-500', 'border-olive-500');
-        });
-
         function selectImage(el) {
             const mainImage = document.getElementById('mainImage');
             const thumbnails = document.querySelectorAll('.thumbnail');
