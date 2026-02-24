@@ -224,10 +224,18 @@
       </header>
 
     <main class="flex-1 pt-12 pb-20">
+        <!-- Shown until API returns; hidden by project-page.js on response -->
+        <div id="project-page-loading" class="max-w-6xl w-full mx-auto py-16 text-center text-slate-500">
+            <div class="inline-block w-8 h-8 border-2 border-olive-500 border-t-transparent rounded-full animate-spin" aria-hidden="true"></div>
+        </div>
+        <!-- Shown only on API error; hidden by default -->
+        <div id="project-page-error" class="max-w-6xl w-full mx-auto py-16 text-center text-red-500 hidden">Unable to load project.</div>
+        <!-- Hidden until API success; then shown and populated by project-page.js (no default data shown) -->
+        <div id="project-page-content" class="hidden">
         <section class="block md:hidden flex flex-col gap-10 pb-10">
             <div data-project-field="project-name"
                 class="px-5 self-stretch justify-start text-red-950 text-3xl md:text-5xl font-semibold font-['Roboto_Condensed'] uppercase leading-9 md:leading-[56px] tracking-[4px] md:tracking-[6px]">
-                Dewitt Road LP
+                N/A
             </div>
 
         </section>
@@ -239,22 +247,22 @@
                     <div id="project-images-section"
                         class=" xl:w-[calc(50%-4px)] lg:w-[calc(47%)] w-full inline-flex flex-col justify-start items-start gap-3">
                         <img id="mainImage" class="self-stretch aspect-video object-cover"
-                            src="assets/images/dewitt-road-img-1.png" alt="" />
+                            src="assets/images/dewitt-road-img-1.png" alt="N/A" />
 
                         <div id="project-thumbnails" class="md:w-96  md:px-0 px-5  w-auto inline-flex justify-start items-center gap-2.5">
                             <img onclick="selectImage(this)"
                                 class="thumbnail flex-1 sm:h-32 sm:w-auto w-28 h-20 object-cover cursor-pointer border-2 border-olive-500"
-                                src="assets/images/dewitt-road-img-1.png" alt="" />
+                                src="assets/images/dewitt-road-img-1.png" alt="N/A" />
                             <img onclick="selectImage(this)"
                                 class="thumbnail flex-1 sm:h-32 sm:w-auto w-28 h-20 object-cover cursor-pointer border-2 border-transparent"
-                                src="assets/images/dewitt-road-img-2.png" alt="" />
+                                src="assets/images/dewitt-road-img-2.png" alt="N/A" />
                         </div>
                     </div>
                     <div
                         class=" md:px-0 px-5  xl:w-[calc(43%-2px)] lg:w-[calc(47%)] w-full inline-flex flex-col justify-start items-end gap-7">
                         <div data-project-field="project-name"
                             class="hidden md:block self-stretch justify-start text-red-950 text-3xl md:text-5xl font-semibold font-['Roboto_Condensed'] uppercase leading-9 md:leading-[56px] tracking-[4px] md:tracking-[6px]">
-                            Dewitt Road LP
+                            N/A
                         </div>
                         <div class="self-stretch flex flex-col justify-start items-start gap-5">
                             <div
@@ -268,7 +276,7 @@
                                         class="xl:w-64 lg:w-52 md:flex-1 inline-flex flex-col justify-center items-start md:gap-2 gap-0">
                                         <div data-project-field="project-type"
                                             class="self-stretch justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            Purpose Built Rental</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Type</div>
@@ -278,7 +286,7 @@
                                         class="xl:w-64 block md:hidden lg:w-52 flex flex-col md:flex-1 justify-start items-start md:gap-2 gap-0">
                                         <div data-project-field="project-height"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            11 stories</div>
+                                            N/A</div>
                                         <div
                                             class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Height</div>
@@ -288,7 +296,7 @@
                                         class="xl:w-64 block md:hidden lg:w-52 md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div data-project-field="project-area"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            127,000 sq. ft.</div>
+                                            N/A</div>
                                         <div
                                             class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Gross Floor Area</div>
@@ -298,7 +306,7 @@
                                         class="md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            161</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Residential Units</div>
@@ -310,7 +318,7 @@
                                         class="xl:w-64 hidden md:block lg:w-52 md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div data-project-field="project-area"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            127,000 sq. ft.</div>
+                                            N/A</div>
                                         <div
                                             class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Gross Floor Area</div>
@@ -319,7 +327,7 @@
                                         class="md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div data-project-field="project-commercial"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            5,700 sq. ft.</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Commercial Area</div>
@@ -331,7 +339,7 @@
                                         class="xl:w-64 lg:w-52 md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div data-project-field="project-construction"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            2027 | Q1</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Planned Construction</div>
@@ -340,7 +348,7 @@
                                         class="md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div data-project-field="project-completion"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            2028 | Q4</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Planned Completion</div>
@@ -350,7 +358,7 @@
                                     class="xl:w-64 hidden md:block lg:w-52 flex flex-col md:flex-1 justify-start items-start md:gap-2 gap-0">
                                     <div data-project-field="project-height"
                                         class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                        11 stories</div>
+                                        N/A</div>
                                     <div
                                         class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                         Height</div>
@@ -373,49 +381,49 @@
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-center gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Ground floor retail space
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Gymnasium
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Semi-automated parking
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Rooftop garden
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Multi-purpose room
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Indoor and outdoor bicycle parking
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            High efficiency HVAC
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Refrigerated delivery boxes
+                            N/A
                         </div>
                     </div>
                 </div>
@@ -591,13 +599,12 @@
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
                                     class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
-                                    Close to nature & waterfront
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Minutes from Devil’s Punchbowl Conservation Area and Fifty Point Conservation Area for
-                                trails, waterfalls, beaches, and marina access.
+                                N/A
                             </div>
                         </div>
                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 md:gap-6">
@@ -605,13 +612,12 @@
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
                                     class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
-                                    Excellent commuter access
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Directly on Highway 8 with quick connections to Downtown Hamilton and westbound travel
-                                on the QEW toward the Greater Toronto Area.
+                                N/A
                             </div>
                         </div>
                     </div>
@@ -622,13 +628,12 @@
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
                                     class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
-                                    Family-friendly location
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Surrounded by neighbourhood parks and well-served by local schools, ideal for families
-                                and long-term renters.
+                                N/A
                             </div>
                         </div>
                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 md:gap-6">
@@ -636,17 +641,18 @@
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
                                     class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
-                                    Everyday conveniences nearby
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Restaurants, cafés, grocery stores and personal services.
+                                N/A
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     </main>
 

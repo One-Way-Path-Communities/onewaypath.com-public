@@ -1,9 +1,36 @@
 /**
  * Dynamic project page: fetches project data from /api/websites/project/:slug
- * and populates the page. Uses data-project-slug on body and data-project-field on value elements.
+ * and populates the page. Shows a loader until the API responds; then shows content with API data
+ * or an error message. Uses data-project-slug on body and data-project-field on value elements.
  * Omit suites section; show/hide image block based on hasExteriorRenders.
  */
 (function () {
+  // Refs for loader, content, and error (must match ids in project page HTML).
+  function getLoadingEl() { return document.getElementById('project-page-loading'); }
+  function getContentEl() { return document.getElementById('project-page-content'); }
+  function getErrorEl() { return document.getElementById('project-page-error'); }
+
+  function hideLoader() {
+    var el = getLoadingEl();
+    if (el) el.classList.add('hidden');
+  }
+  function showContent() {
+    var el = getContentEl();
+    if (el) el.classList.remove('hidden');
+  }
+  function hideContent() {
+    var el = getContentEl();
+    if (el) el.classList.add('hidden');
+  }
+  function showError() {
+    var el = getErrorEl();
+    if (el) el.classList.remove('hidden');
+  }
+  function hideError() {
+    var el = getErrorEl();
+    if (el) el.classList.add('hidden');
+  }
+
   function getSlug() {
     const slug = document.body.getAttribute('data-project-slug');
     if (slug) return slug.trim().toLowerCase();
@@ -134,13 +161,22 @@
   var base = getApiBase();
   var url = base + '/project/' + encodeURIComponent(slug);
 
+  // Initial state: loader visible, content and error hidden (already set in HTML; no JS needed here).
+
   fetch(url)
     .then(function (res) {
       if (!res.ok) throw new Error('Project not found');
       return res.json();
     })
     .then(function (data) {
-      if (!data.ok || !data.project) return;
+      hideLoader();
+      if (!data.ok || !data.project) {
+        hideContent();
+        showError();
+        return;
+      }
+      hideError();
+      showContent();
       var project = data.project;
       document.title = 'One Way Path Communities | ' + (project.name || 'Project');
       setFieldValues(project);
@@ -150,6 +186,9 @@
       removeSuitesSection();
     })
     .catch(function () {
+      hideLoader();
+      hideContent();
+      showError();
       removeSuitesSection();
     });
 })();
