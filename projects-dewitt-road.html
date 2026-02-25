@@ -130,7 +130,7 @@
     </style>
 </head>
 
-<body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
+<body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col" data-project-slug="dewitt-road">
     <header class="z-50 bg-[#FBF9F3] border-b border-slate-500">
         <nav class="bg-transparent">
           <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between py-5 xl:py-6 px-5 md:px-8">
@@ -224,10 +224,18 @@
       </header>
 
     <main class="flex-1 pt-12 pb-20">
+        <!-- Shown until API returns; hidden by project-page.js on response -->
+        <div id="project-page-loading" class="max-w-6xl w-full mx-auto py-16 text-center text-slate-500">
+            <div class="inline-block w-8 h-8 border-2 border-olive-500 border-t-transparent rounded-full animate-spin" aria-hidden="true"></div>
+        </div>
+        <!-- Shown only on API error; hidden by default -->
+        <div id="project-page-error" class="max-w-6xl w-full mx-auto py-16 text-center text-red-500 hidden">Unable to load project.</div>
+        <!-- Hidden until API success; then shown and populated by project-page.js (no default data shown) -->
+        <div id="project-page-content" class="hidden">
         <section class="block md:hidden flex flex-col gap-10 pb-10">
-            <div
+            <div data-project-field="project-name"
                 class="px-5 self-stretch justify-start text-red-950 text-3xl md:text-5xl font-semibold font-['Roboto_Condensed'] uppercase leading-9 md:leading-[56px] tracking-[4px] md:tracking-[6px]">
-                Dewitt Road LP
+                N/A
             </div>
 
         </section>
@@ -236,25 +244,25 @@
                 <div
                     class="self-stretch inline-flex flex-col lg:flex-row gap-12 md:gap-14 lg:gap-0 justify-between items-start">
 
-                    <div
+                    <div id="project-images-section"
                         class=" xl:w-[calc(50%-4px)] lg:w-[calc(47%)] w-full inline-flex flex-col justify-start items-start gap-3">
                         <img id="mainImage" class="self-stretch aspect-video object-cover"
-                            src="assets/images/dewitt-road-img-1.png" />
+                            src="assets/images/dewitt-road-img-1.png" alt="N/A" />
 
-                        <div class="md:w-96  md:px-0 px-5  w-auto inline-flex justify-start items-center gap-2.5">
+                        <div id="project-thumbnails" class="md:w-96  md:px-0 px-5  w-auto inline-flex justify-start items-center gap-2.5">
                             <img onclick="selectImage(this)"
                                 class="thumbnail flex-1 sm:h-32 sm:w-auto w-28 h-20 object-cover cursor-pointer border-2 border-olive-500"
-                                src="assets/images/dewitt-road-img-1.png" />
+                                src="assets/images/dewitt-road-img-1.png" alt="N/A" />
                             <img onclick="selectImage(this)"
                                 class="thumbnail flex-1 sm:h-32 sm:w-auto w-28 h-20 object-cover cursor-pointer border-2 border-transparent"
-                                src="assets/images/dewitt-road-img-2.png" />
+                                src="assets/images/dewitt-road-img-2.png" alt="N/A" />
                         </div>
                     </div>
                     <div
                         class=" md:px-0 px-5  xl:w-[calc(43%-2px)] lg:w-[calc(47%)] w-full inline-flex flex-col justify-start items-end gap-7">
-                        <div
+                        <div data-project-field="project-name"
                             class="hidden md:block self-stretch justify-start text-red-950 text-3xl md:text-5xl font-semibold font-['Roboto_Condensed'] uppercase leading-9 md:leading-[56px] tracking-[4px] md:tracking-[6px]">
-                            Dewitt Road LP
+                            N/A
                         </div>
                         <div class="self-stretch flex flex-col justify-start items-start gap-5">
                             <div
@@ -266,9 +274,9 @@
                                     class="self-stretch inline-flex items-center md:flex-row flex-col justify-start items-baseline gap-5 md:gap-6">
                                     <div
                                         class="xl:w-64 lg:w-52 md:flex-1 inline-flex flex-col justify-center items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-type"
                                             class="self-stretch justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            Purpose Built Rental</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Type</div>
@@ -276,9 +284,9 @@
 
                                     <div
                                         class="xl:w-64 block md:hidden lg:w-52 flex flex-col md:flex-1 justify-start items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-height"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            11 stories</div>
+                                            N/A</div>
                                         <div
                                             class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Height</div>
@@ -286,9 +294,9 @@
 
                                     <div
                                         class="xl:w-64 block md:hidden lg:w-52 md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-area"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            127,000 sq. ft.</div>
+                                            N/A</div>
                                         <div
                                             class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Gross Floor Area</div>
@@ -298,7 +306,7 @@
                                         class="md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
                                         <div
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            161</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Residential Units</div>
@@ -308,18 +316,18 @@
                                     class="self-stretch inline-flex items-center md:flex-row flex-col justify-start items-baseline gap-5 md:gap-6">
                                     <div
                                         class="xl:w-64 hidden md:block lg:w-52 md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-area"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            127,000 sq. ft.</div>
+                                            N/A</div>
                                         <div
                                             class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Gross Floor Area</div>
                                     </div>
                                     <div
                                         class="md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-commercial"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            5,700 sq. ft.</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Commercial Area</div>
@@ -329,18 +337,18 @@
                                     class="self-stretch inline-flex items-center md:flex-row flex-col justify-start items-baseline gap-5 md:gap-6">
                                     <div
                                         class="xl:w-64 lg:w-52 md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-construction"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            2027 | Q1</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Planned Construction</div>
                                     </div>
                                     <div
                                         class="md:flex-1 inline-flex flex-col justify-start items-start md:gap-2 gap-0">
-                                        <div
+                                        <div data-project-field="project-completion"
                                             class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                            2028 | Q4</div>
+                                            N/A</div>
                                         <div
                                             class="text-center justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                             Planned Completion</div>
@@ -348,9 +356,9 @@
                                 </div>
                                 <div
                                     class="xl:w-64 hidden md:block lg:w-52 flex flex-col md:flex-1 justify-start items-start md:gap-2 gap-0">
-                                    <div
+                                    <div data-project-field="project-height"
                                         class="justify-center text-red-950 text-xl md:text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:leading-8 tracking-[4px]">
-                                        11 stories</div>
+                                        N/A</div>
                                     <div
                                         class="text-start justify-start text-slate-600 text-sm md:text-lg font-semibold md:font-normal font-['DM_Sans'] leading-5 md:leading-6">
                                         Height</div>
@@ -361,586 +369,61 @@
                 </div>
             </section>
 
-            <!-- Suites section: hidden on live site (onewaypath.com / www.onewaypath.com) only -->
-            <section id="suites-section" class="self-stretch inline-flex flex-col justify-start items-start gap-6 md:px-0 px-[20px]">
-                <div
-                    class="self-stretch justify-center text-gold-500 text-2xl md:text-3xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 md:leading-10 tracking-[4px]">
-                    Suites
-                </div>
-                <div class="self-stretch inline-flex justify-between items-center">
-                    <div class="flex items-center md:gap-11 gap-6">
-                        <button id="tab-floorplans"
-                            class="relative text-olive-500 md:text-xl text-[16px] font-semibold font-['Roboto_Condensed'] uppercase md:tracking-[4px] tracking-[2px] border-b-2 border-olive-500">
-                            Floor Plans
-                        </button>
+            <!-- Suites section omitted (dynamic project page) -->
+            <section id="suites-section" class="hidden" aria-hidden="true"></section>
 
-                        <button id="tab-listview"
-                            class="relative text-slate-600 md:text-xl text-[16px] font-semibold font-['Roboto_Condensed'] uppercase md:tracking-[4px] tracking-[2px] border-b-2 border-transparent hover:text-olive-500">
-                            List View
-                        </button>
-                    </div>
-
-                    <div class="flex justify-start items-center gap-2.5">
-                        <div
-                            class="justify-center text-olive-500 md:text-xl text-[16px] font-semibold font-['Roboto_Condensed'] uppercase leading-7 md:tracking-[4px] tracking-[2px]">
-                            BEDs
-                        </div>
-                        <div class="relative w-full flex items-center">
-                            <select
-                                class="cursor-pointer w-full border-[0.5px] border-red-300 bg-white p-2 text-[#1E2939] text-sm font-semibold font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start !bg-none !pr-5">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                            </select>
-                            <button type="button"
-                                class="absolute right-0 w-6 h-6 flex items-center justify-center pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path d="M6 9L12 15L18 9" stroke="#030712" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab-floorplans-section" class="w-full inline-flex justify-between items-center">
-                    <div class="flex-1 flex justify-start items-start gap-6 flex-col lg:flex-row">
-                        <div class="flex-1 inline-flex flex-col justify-start items-start w-full lg:w-auto">
-                            <div class="self-stretch h-96 relative bg-slate-50 overflow-hidden">
-                                <img class="w-[281px] h-[359px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                    src="assets/images/floor-plan-1.png" />
-                            </div>
-
-                            <div class="self-stretch py-4 flex flex-col justify-start items-start gap-2">
-                                <div
-                                    class="self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            Suite A
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            1BD
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            577 sq. ft.
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            1 BA
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-1 inline-flex flex-col justify-start items-start w-full lg:w-auto">
-                            <div class="self-stretch h-96 relative bg-slate-50 overflow-hidden">
-                                <img class="w-[293px] h-[350px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                    src="assets/images/floor-plan-2.png" />
-                            </div>
-
-                            <div class="self-stretch py-4 flex flex-col justify-start items-start gap-2">
-                                <div
-                                    class="self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            Suite D
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            1BD
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            616 sq. ft.
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            1 BA
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-1 inline-flex flex-col justify-start items-start w-full lg:w-auto">
-                            <div class="self-stretch h-96 relative bg-slate-50 overflow-hidden">
-                                <img class="w-[321px] h-[257px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                    src="assets/images/floor-plan-3.png" />
-                            </div>
-
-                            <div class="self-stretch py-4 flex flex-col justify-start items-start gap-2">
-                                <div
-                                    class="self-stretch inline-flex justify-start items-start gap-2 flex-wrap content-start">
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            Suite H
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            1BD
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            480 sq. ft.
-                                        </div>
-                                    </div>
-                                    <div class="p-1 bg-olive-200 flex justify-start items-start gap-1">
-                                        <div
-                                            class="justify-center  text-slate-700 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                            1BA
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="tab-listview-section"
-                    class="hidden w-full h-[516px] bg-slate-50 rounded inline-flex flex-col justify-start items-start overflow-hidden">
-                    <div
-                        class="self-stretch bg-slate-50 border-b border-slate-500 inline-flex justify-between items-center overflow-hidden">
-                        <div class="w-16 h-12 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-500 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                        TYPE
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-12 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-500 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                        BEDS
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-12 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-500 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                        SIZE
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-12 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-500 text-sm font-semibold font-['Roboto_Condensed'] uppercase leading-5 tracking-widest">
-                                        BATHS
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        A1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        577 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        A2
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        517 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        A3
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        537 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        A4
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        555 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        D1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        616 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        H1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        480 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="self-stretch h-16 inline-flex justify-between items-start overflow-hidden">
-                        <div class="w-16 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        H2
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-28 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        478 sq. ft.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-20 h-16 flex justify-start items-start">
-                            <div
-                                class="flex-1 self-stretch px-3 flex justify-center items-center gap-2 overflow-hidden">
-                                <div class="flex-1 inline-flex flex-col justify-start items-start">
-                                    <div
-                                        class="self-stretch justify-center text-slate-950 text-sm font-medium font-['DM_Sans'] leading-4">
-                                        1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="self-stretch inline-flex flex-col justify-start items-start gap-6 md:px-0 px-[20px] md:gap-8">
+                        <section class="self-stretch inline-flex flex-col justify-start items-start gap-6 md:px-0 px-[20px] md:gap-8">
                 <div
                     class="self-stretch justify-center text-gold-500 text-2xl md:text-3xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 md:leading-10 tracking-[4px]">
                     amenities
                 </div>
-                <div class="self-stretch inline-flex justify-start items-start gap-3 md:gap-4 flex-wrap content-start">
+                <div id="project-amenities-list" class="self-stretch inline-flex justify-start items-start gap-3 md:gap-4 flex-wrap content-start">
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-center gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Ground floor retail space
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Gymnasium
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Semi-automated parking
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Rooftop garden
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Multi-purpose room
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Indoor and outdoor bicycle parking
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            High efficiency HVAC
+                            N/A
                         </div>
                     </div>
                     <div class="p-1 md:p-2 bg-olive-200 flex justify-start items-start gap-1">
                         <div
                             class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-['DM_Sans'] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">
-                            Refrigerated delivery boxes
+                            N/A
                         </div>
                     </div>
                 </div>
@@ -1108,35 +591,33 @@
                     class="self-stretch justify-center text-gold-500 text-2xl md:text-3xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 md:leading-10 tracking-[4px]">
                     Community Highlights
                 </div>
-                <div class="w-full flex flex-col justify-start items-start gap-5 md:gap-10">
+                <div id="project-community-highlights" class="w-full flex flex-col justify-start items-start gap-5 md:gap-10">
                     <div
-                        class="self-stretch inline-flex justify-start items-start gap-5 md:gap-12 flex-col md:flex-row">
+                        class="self-stretch inline-flex justify-start items-start gap-5 md:gap-8 lg:gap-x-14 lg:gap-y-10 flex-col md:flex-row">
                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 md:gap-6">
                             <div class="inline-flex justify-start items-center gap-2">
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
-                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest md:tracking-[4px] ">
-                                    Close to nature & waterfront
+                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Minutes from Devil’s Punchbowl Conservation Area and Fifty Point Conservation Area for
-                                trails, waterfalls, beaches, and marina access.
+                                N/A
                             </div>
                         </div>
                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 md:gap-6">
                             <div class="inline-flex justify-start items-center gap-2">
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
-                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest md:tracking-[4px] ">
-                                    Excellent commuter access
+                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Directly on Highway 8 with quick connections to Downtown Hamilton and westbound travel
-                                on the QEW toward the Greater Toronto Area.
+                                N/A
                             </div>
                         </div>
                     </div>
@@ -1146,32 +627,32 @@
                             <div class="inline-flex justify-start items-center gap-2">
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
-                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest md:tracking-[4px] ">
-                                    Family-friendly location
+                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Surrounded by neighbourhood parks and well-served by local schools, ideal for families
-                                and long-term renters.
+                                N/A
                             </div>
                         </div>
                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 md:gap-6">
                             <div class="inline-flex justify-start items-center gap-2">
                                 <img class="w-3.5 h-5" src="assets/images/leaf-logo.svg" />
                                 <div
-                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest md:tracking-[4px] ">
-                                    Everyday conveniences nearby
+                                    class="justify-center text-olive-500 text-lg md:text-2xl font-semibold  font-['DM_Sans'] md:font-['Roboto_Condensed'] md:uppercase leading-4 md:leading-8 md:tracking-widest lg:tracking-[4px]">
+                                    N/A
                                 </div>
                             </div>
                             <div
                                 class="self-stretch justify-center text-slate-950 text-xl font-normal font-['DM_Sans'] leading-7">
-                                Restaurants, cafés, grocery stores and personal services.
+                                N/A
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     </main>
 
@@ -1332,31 +813,6 @@
         })();
     </script>
     <script>
-        const floorTab = document.getElementById('tab-floorplans');
-        const floorTabSection = document.getElementById('tab-floorplans-section');
-        const listTab = document.getElementById('tab-listview');
-        const listTabSection = document.getElementById('tab-listview-section');
-
-        floorTab.addEventListener('click', () => {
-            floorTab.classList.add('text-olive-500', 'border-olive-500');
-            floorTabSection.classList.remove('hidden');
-            floorTab.classList.remove('text-slate-600', 'border-transparent');
-
-            listTab.classList.add('text-slate-600', 'border-transparent');
-            listTabSection.classList.add('hidden');
-            listTab.classList.remove('text-olive-500', 'border-olive-500');
-        });
-
-        listTab.addEventListener('click', () => {
-            listTab.classList.add('text-olive-500', 'border-olive-500');
-            listTabSection.classList.remove('hidden');
-            listTab.classList.remove('text-slate-600', 'border-transparent');
-
-            floorTab.classList.add('text-slate-600', 'border-transparent');
-            floorTabSection.classList.add('hidden');
-            floorTab.classList.remove('text-olive-500', 'border-olive-500');
-        });
-
         function selectImage(el) {
             const mainImage = document.getElementById('mainImage');
             const thumbnails = document.querySelectorAll('.thumbnail');
@@ -1376,15 +832,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="assets/js/menu.js"></script>
-    <script>
-        // Hide Suites section on live site only
-        (function () {
-            if (window.location.hostname === 'onewaypath.com' || window.location.hostname === 'www.onewaypath.com') {
-                var el = document.getElementById('suites-section');
-                if (el) el.classList.add('hidden');
-            }
-        })();
-    </script>
+    <script src="assets/js/project-page.js"></script>
 
 </body>
 
