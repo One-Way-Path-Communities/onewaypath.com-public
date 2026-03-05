@@ -181,7 +181,10 @@
       document.title = 'One Way Path Communities | ' + (project.name || 'Project');
       setFieldValues(project);
       renderAmenities(document.getElementById('project-amenities-list'), data.amenities || []);
-      renderCommunityHighlights(document.getElementById('project-community-highlights'), data.communityHighlights || []);
+      var communityHighlightsEl = document.getElementById('project-community-highlights');
+      if (communityHighlightsEl) {
+        renderCommunityHighlights(communityHighlightsEl, data.communityHighlights || []);
+      }
       setupImages(data.exteriorRenders || []);
       removeSuitesSection();
     })
