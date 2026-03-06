@@ -73,7 +73,7 @@
   }
 
   function renderAmenities(container, amenities) {
-    if (!container || !Array.isArray(amenities)) return;
+    if (!container || !Array.isArray(amenities) || amenities.length === 0) return;
     container.innerHTML = amenities
       .map(function (a) {
         const name = (a.name || '').trim();
@@ -88,8 +88,24 @@
       .join('');
   }
 
+  function renderOptionalResidentServices(container, items) {
+    if (!container || !Array.isArray(items) || items.length === 0) return;
+    container.innerHTML = items
+      .map(function (s) {
+        const name = (s.name || '').trim();
+        if (!name) return '';
+        return (
+          '<div class="p-1 md:p-2 bg-olive-200 flex justify-start items-center gap-1">' +
+          '<div class="justify-center text-slate-700 text-sm md:text-lg font-semibold md:font-medium font-[&#39;DM_Sans&#39;] md:leading-6 leading-5 tracking-widest md:tracking-normal uppercase md:normal-case">' +
+          escapeHtml(name) +
+          '</div></div>'
+        );
+      })
+      .join('');
+  }
+
   function renderCommunityHighlights(container, items) {
-    if (!container || !Array.isArray(items)) return;
+    if (!container || !Array.isArray(items) || items.length === 0) return;
     var cards = items
       .filter(function (item) {
         return (item.title || '').trim() || (item.description || '').trim();
@@ -185,6 +201,10 @@
       if (communityHighlightsEl) {
         renderCommunityHighlights(communityHighlightsEl, data.communityHighlights || []);
       }
+      renderOptionalResidentServices(
+        document.getElementById('project-optional-resident-services-list'),
+        data.optionalResidentServices || []
+      );
       setupImages(data.exteriorRenders || []);
       removeSuitesSection();
     })
