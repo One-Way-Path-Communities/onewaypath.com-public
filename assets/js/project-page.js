@@ -49,7 +49,7 @@
     }
     const origin = window.location.origin || '';
     if (origin) return origin + '/api/websites';
-    return 'https://api.onewaypath.com/api/websites';
+    return 'http://localhost:3000/api/websites';
   }
 
   function setFieldValues(project) {

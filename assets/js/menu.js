@@ -1,5 +1,4 @@
 (() => {
-  /** Single source of truth for websites API base URL candidates (same-origin, localhost, production). */
   function getWebsitesApiBaseCandidates() {
     const origin = typeof window !== 'undefined' && window.location?.origin ? window.location.origin : '';
     const defaultBase = origin && origin.startsWith('http') ? `${origin.replace(/\/$/, '')}/api/websites` : null;
@@ -8,7 +7,7 @@
       window.WEBSITES_API_BASE,
       window.WEBSITES_API_BASE_URL,
       defaultBase,
-      'https://api.onewaypath.com/api/websites',
+      'http://localhost:3000/api/websites',
       localhostBase,
     ].filter(Boolean);
     return [...new Set(candidates)];
@@ -17,7 +16,6 @@
   window.OWP_WEBSITES_API_BASE_CANDIDATES = getWebsitesApiBaseCandidates();
   window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
 
-  /** Footer Contact: open nav-panel only and scroll to contact section. */
   document.addEventListener('click', (e) => {
     const link = e.target.closest('footer a[href="#contact"]');
     if (!link) return;
@@ -27,9 +25,7 @@
     e.preventDefault();
     e.stopPropagation();
     panel.classList.remove('hidden');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (contactSection) contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
   const desktopMenu = document.getElementById('desktop-menu');
@@ -37,7 +33,17 @@
   if (!desktopMenu || !mobileMenuList) return;
 
   const AUTH_KEY = 'owp-editor';
-  const fallbackMenu = [
+
+  /** Same labels + URLs on desktop (Projects dropdown) and mobile (Experience section). */
+  const EXPERIENCE_DROPDOWN_LINKS = [
+    { label: 'Residential', url: 'experience.html?category=residential' },
+    { label: 'Commercial', url: 'experience.html?category=commercial' },
+    { label: 'Industrial', url: 'experience.html?category=industrial' },
+    { label: 'Institutional', url: 'experience.html?category=institutional' },
+    { label: 'All Categories', url: 'experience.html' },
+  ];
+
+  const CANONICAL_MENU = [
     {
       label: 'Company',
       url: '#',
@@ -47,9 +53,8 @@
         { label: 'About Us', url: 'index.html#about', status: 'active', displayOrder: 1 },
         { label: 'Designers', url: 'designers.html', status: 'active', displayOrder: 2 },
         { label: 'Administration', url: 'administration.html', status: 'active', displayOrder: 3 },
-        { label: 'Experience', url: 'experience.html', status: 'active', displayOrder: 4 },
-        { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 5 },
-        { label: 'Contact', url: '#contact', status: 'active', displayOrder: 6 },
+        { label: 'Builders', url: 'builders.html', status: 'active', displayOrder: 4 },
+        { label: 'Contact', url: '#contact', status: 'active', displayOrder: 5 },
       ],
     },
     {
@@ -57,9 +62,28 @@
       url: '#',
       status: 'active',
       displayOrder: 2,
+      owpProjectsLayout: true,
       children: [
-        { label: 'Dewitt Road LP', url: 'projects-dewitt-road.html', status: 'active', displayOrder: 1 },
-        { label: 'Millen Road LP', url: 'projects-millen-road.html', status: 'active', displayOrder: 2 },
+        ...EXPERIENCE_DROPDOWN_LINKS.map((link, i) => ({
+          label: link.label,
+          url: link.url,
+          status: 'active',
+          displayOrder: i + 1,
+        })),
+        {
+          label: 'Dewitt Road LP',
+          url: 'projects-dewitt-road.html',
+          status: 'active',
+          displayOrder: 6,
+          owpProjectChild: true,
+        },
+        {
+          label: 'Millen Road LP',
+          url: 'projects-millen-road.html',
+          status: 'active',
+          displayOrder: 7,
+          owpProjectChild: true,
+        },
       ],
     },
     {
@@ -69,9 +93,9 @@
       displayOrder: 3,
       children: [
         { label: 'Wellness', url: 'wellness.html', status: 'active', displayOrder: 1 },
-        { label: 'Homes', url: 'community.html#homes', status: 'active', displayOrder: 2 },
-        { label: 'Jobs', url: 'community.html#jobs', status: 'active', displayOrder: 3 },
-        { label: 'Environment', url: 'community.html#environment', status: 'active', displayOrder: 4 },
+        { label: 'Environment', url: 'community.html#environment', status: 'active', displayOrder: 2 },
+        { label: 'Homes', url: 'community.html#homes', status: 'active', displayOrder: 3 },
+        { label: 'Jobs', url: 'community.html#jobs', status: 'active', displayOrder: 4 },
       ],
     },
   ];
@@ -91,17 +115,70 @@
           continue;
         }
         const body = await res.json();
-        if (Array.isArray(body?.menu) && body.menu.length) return body.menu;
-        // Same-origin success with empty menu - use fallback, avoid trying cross-origin (CORS)
-        if (origin && safeBase.startsWith(origin)) return fallbackMenu;
+        if (Array.isArray(body?.menu) && body.menu.length > 0) return body.menu;
       } catch (err) {
         errors.push(`${safeBase} → ${err.message}`);
       }
     }
-    if (errors.length) {
-      console.warn('Menu fetch failed; using fallback.', errors);
+    if (errors.length) console.warn('Menu fetch failed; using canonical menu.', errors);
+    return null;
+  }
+
+  function mergeStatusFromApi(canonical, apiRoots) {
+    const entries = [];
+    function walk(nodes) {
+      for (const n of nodes || []) {
+        entries.push({
+          url: (n.url || '').trim(),
+          label: (n.label || '').trim(),
+          status: n.status,
+          isExternal: n.isExternal,
+        });
+        walk(n.children);
+      }
     }
-    return fallbackMenu;
+    walk(apiRoots);
+
+    function apply(nodes) {
+      for (const node of nodes || []) {
+        const label = (node.label || '').trim();
+        const url = (node.url || '').trim();
+        let match = entries.find((e) => e.url === url && e.label.toLowerCase() === label.toLowerCase());
+        if (!match && url) match = entries.find((e) => e.url === url);
+        if (match) {
+          if (match.status) node.status = match.status;
+          if (match.isExternal != null) node.isExternal = match.isExternal;
+        }
+        if (node.children) apply(node.children);
+      }
+    }
+    const copy = JSON.parse(JSON.stringify(canonical));
+    apply(copy);
+    return copy;
+  }
+
+  /** One merged menu tree drives desktop + mobile (same labels, URLs, status after API merge). */
+  function menuRootByLabel(menu, label) {
+    const L = (label || '').toLowerCase();
+    return (menu || []).find((n) => (n.label || '').toLowerCase() === L);
+  }
+
+  function visibleChildren(root) {
+    if (!root?.children?.length) return [];
+    return root.children.filter((c) => !isInactive(c));
+  }
+
+  function splitProjectsNode(menu) {
+    const p = (menu || []).find((n) => n.owpProjectsLayout);
+    if (!p?.children?.length) return { experience: [], currentProjects: [] };
+    const experience = [];
+    const currentProjects = [];
+    for (const c of p.children) {
+      if (isInactive(c)) continue;
+      if (c.owpProjectChild) currentProjects.push(c);
+      else experience.push(c);
+    }
+    return { experience, currentProjects };
   }
 
   const statusClasses = (status) => (status && status !== 'active' ? ['requires-auth', 'hidden'] : []);
@@ -131,26 +208,36 @@
     return svg;
   }
 
+  const linkClassDesktop =
+    "block pl-4 pr-6 py-2.5 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:bg-olive-100";
+  const linkClassDesktopNested =
+    "block pl-3 pr-6 py-2 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:bg-olive-100";
+
   function createLink(item, className, options = {}) {
     const { allowCollapseToggle = false } = options;
-    const link = document.createElement('a');
-    link.textContent = item.label;
-    link.href = item.url || '#';
-    link.className = className;
+    const a = document.createElement('a');
+    a.textContent = item.label;
+    a.href = item.url || '#';
+    a.className = className;
     if (item.isExternal) {
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
     }
-    applyStatus(link, item.status);
+    applyStatus(a, item.status);
     if (allowCollapseToggle && isContact(item)) {
-      link.dataset.collapseToggle = 'nav-panel';
-      link.setAttribute('aria-controls', 'nav-panel');
-      link.setAttribute('aria-expanded', 'false');
+      a.dataset.collapseToggle = 'nav-panel';
+      a.setAttribute('aria-controls', 'nav-panel');
+      a.setAttribute('aria-expanded', 'false');
     }
-    return link;
+    return a;
   }
 
-  function buildDropdown(item, idx) {
+  function buildProjectsDropdown(item, idx) {
+    const children = item.children || [];
+    const categoryRows = children.filter((c) => !c.owpProjectChild && !isInactive(c));
+    const projectRows = children.filter((c) => c.owpProjectChild && !isInactive(c));
+    if (!categoryRows.length && !projectRows.length) return null;
+
     const dropdownId = `menu-dropdown-${idx}-${Math.random().toString(36).slice(2, 8)}`;
     const wrapper = document.createElement('div');
     wrapper.className = 'relative';
@@ -158,7 +245,6 @@
 
     const button = document.createElement('button');
     button.type = 'button';
-    button.id = `${dropdownId}-btn`;
     button.dataset.owpDropdown = dropdownId;
     button.setAttribute('aria-controls', dropdownId);
     button.setAttribute('aria-expanded', 'false');
@@ -175,6 +261,80 @@
     const dropdown = document.createElement('div');
     dropdown.id = dropdownId;
     dropdown.className =
+      'z-20 hidden absolute left-0 mt-2 min-w-[240px] max-w-[320px] rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
+    dropdown.style.backgroundColor = '#FBF9F3';
+
+    const wrap = document.createElement('div');
+    wrap.className = 'py-2';
+
+    if (categoryRows.length) {
+      const ul = document.createElement('ul');
+      for (const child of categoryRows) {
+        const li = document.createElement('li');
+        li.appendChild(createLink(child, linkClassDesktop, { allowCollapseToggle: true }));
+        applyStatus(li, child.status);
+        ul.appendChild(li);
+      }
+      wrap.appendChild(ul);
+    }
+
+    if (categoryRows.length && projectRows.length) {
+      const hr = document.createElement('div');
+      hr.className = 'my-2 border-t border-slate-300';
+      hr.setAttribute('role', 'separator');
+      wrap.appendChild(hr);
+    }
+
+    if (projectRows.length) {
+      const heading = document.createElement('p');
+      heading.className =
+        "px-4 pt-1 pb-2 text-slate-500 font-semibold text-xs tracking-[0.2em] uppercase font-['Roboto_Condensed']";
+      heading.textContent = 'Current Projects';
+      wrap.appendChild(heading);
+      const nest = document.createElement('div');
+      nest.className = 'ml-4 mr-2 mb-2 border-l border-slate-300 pl-3';
+      const ul = document.createElement('ul');
+      ul.className = 'flex flex-col gap-0.5';
+      for (const child of projectRows) {
+        const li = document.createElement('li');
+        li.appendChild(createLink(child, linkClassDesktopNested, { allowCollapseToggle: true }));
+        applyStatus(li, child.status);
+        ul.appendChild(li);
+      }
+      nest.appendChild(ul);
+      wrap.appendChild(nest);
+    }
+
+    dropdown.appendChild(wrap);
+    wrapper.appendChild(button);
+    wrapper.appendChild(dropdown);
+    return wrapper;
+  }
+
+  function buildDropdown(item, idx) {
+    if (item.owpProjectsLayout) return buildProjectsDropdown(item, idx);
+
+    const dropdownId = `menu-dropdown-${idx}-${Math.random().toString(36).slice(2, 8)}`;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'relative';
+    applyStatus(wrapper, item.status);
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.dataset.owpDropdown = dropdownId;
+    button.setAttribute('aria-controls', dropdownId);
+    button.setAttribute('aria-expanded', 'false');
+    button.className =
+      "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] inline-flex items-center justify-center gap-2 hover:opacity-90 focus:outline-none";
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = item.label;
+    labelSpan.className = 'inline-flex items-center pt-0.5';
+    button.appendChild(labelSpan);
+    button.appendChild(createChevron());
+
+    const dropdown = document.createElement('div');
+    dropdown.id = dropdownId;
+    dropdown.className =
       'z-20 hidden absolute left-0 mt-2 min-w-max rounded-lg border border-slate-500 text-sm text-slate-950 shadow';
     dropdown.style.backgroundColor = '#FBF9F3';
     const list = document.createElement('ul');
@@ -183,11 +343,8 @@
     for (const child of item.children || []) {
       if (isInactive(child)) continue;
       const li = document.createElement('li');
-      const childLink = createLink(child, "block pl-4 pr-6 py-2 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:bg-olive-100", {
-        allowCollapseToggle: true,
-      });
+      li.appendChild(createLink(child, linkClassDesktop, { allowCollapseToggle: true }));
       applyStatus(li, child.status);
-      li.appendChild(childLink);
       list.appendChild(li);
     }
 
@@ -203,59 +360,92 @@
     desktopMenu.innerHTML = '';
     menu.forEach((item, idx) => {
       if (isInactive(item)) return;
-      const hasChildren = hasVisibleChildren(item);
-      if (hasChildren) {
-        const dropdown = buildDropdown(item, idx);
-        if (dropdown) desktopMenu.appendChild(dropdown);
+      if (!hasVisibleChildren(item)) {
+        desktopMenu.appendChild(
+          createLink(item, "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90", {
+            allowCollapseToggle: true,
+          })
+        );
         return;
       }
-      const link = createLink(item, "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90", {
-        allowCollapseToggle: true,
-      });
-      desktopMenu.appendChild(link);
+      const dropdown = buildDropdown(item, idx);
+      if (dropdown) desktopMenu.appendChild(dropdown);
     });
   }
 
-  function renderMobile(menu = []) {
+  const mobileSectionTitle =
+    "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] mb-3";
+  const mobileNestedLink =
+    "block py-2.5 pl-3 text-slate-950 font-semibold leading-5 tracking-widest uppercase text-sm font-['Roboto_Condensed'] hover:opacity-90";
+
+  function renderMobile(menu) {
     mobileMenuList.innerHTML = '';
-    menu.forEach((item) => {
-      if (isInactive(item)) return;
-      const status = statusClasses(item.status).join(' ');
-      const hasChildren = hasVisibleChildren(item);
+    mobileMenuList.className =
+      'mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-0';
 
-      if (!hasChildren) {
-        const link = createLink(
-          item,
-          `block text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90 ${status}`.trim()
-        );
-        mobileMenuList.appendChild(link);
-        return;
-      }
+    const company = visibleChildren(menuRootByLabel(menu, 'Company'));
+    const { experience, currentProjects } = splitProjectsNode(menu);
+    const community = visibleChildren(menuRootByLabel(menu, 'Community'));
 
-      const group = document.createElement('div');
-      group.className = `flex flex-col gap-4 ${status}`.trim();
-      applyStatus(group, item.status);
+    const sec1 = document.createElement('div');
+    sec1.className = 'pb-4 mb-4 border-b border-slate-300';
+    const hCompany = document.createElement('p');
+    hCompany.className = mobileSectionTitle;
+    hCompany.textContent = 'Company';
+    sec1.appendChild(hCompany);
+    const nestCompany = document.createElement('div');
+    nestCompany.className = 'ml-1 border-l border-slate-300 pl-4 flex flex-col';
+    for (const item of company) {
+      if (isInactive(item)) continue;
+      const isContactLink = (item.label || '').toLowerCase() === 'contact';
+      nestCompany.appendChild(createLink(item, mobileNestedLink, { allowCollapseToggle: isContactLink }));
+    }
+    sec1.appendChild(nestCompany);
+    mobileMenuList.appendChild(sec1);
 
-      const heading = document.createElement('p');
-      heading.className = "text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed']";
-      heading.textContent = item.label;
-      group.appendChild(heading);
+    const sec2 = document.createElement('div');
+    sec2.className = 'pb-4 mb-4 border-b border-slate-300';
+    const h2 = document.createElement('p');
+    h2.className = mobileSectionTitle;
+    h2.textContent = 'Experience';
+    sec2.appendChild(h2);
+    const nest2 = document.createElement('div');
+    nest2.className = 'ml-1 border-l border-slate-300 pl-4 flex flex-col';
+    for (const item of experience) {
+      nest2.appendChild(createLink(item, mobileNestedLink));
+    }
+    sec2.appendChild(nest2);
+    mobileMenuList.appendChild(sec2);
 
-      const childrenWrap = document.createElement('div');
-      childrenWrap.className = 'flex flex-col';
+    const sec3 = document.createElement('div');
+    sec3.className = 'pb-4 mb-4 border-b border-slate-300';
+    const h3 = document.createElement('p');
+    h3.className = mobileSectionTitle;
+    h3.textContent = 'Current Projects';
+    sec3.appendChild(h3);
+    const nest3 = document.createElement('div');
+    nest3.className = 'ml-1 border-l border-slate-300 pl-4 flex flex-col';
+    for (const item of currentProjects) {
+      nest3.appendChild(createLink(item, mobileNestedLink));
+    }
+    sec3.appendChild(nest3);
+    mobileMenuList.appendChild(sec3);
 
-      for (const child of item.children || []) {
-        if (isInactive(child)) continue;
-        const childLink = createLink(child, "h-11 px-7 text-sm inline-flex justify-start items-center text-slate-950 font-semibold leading-5 tracking-widest uppercase text-base font-['Roboto_Condensed'] hover:opacity-90");
-        applyStatus(childLink, child.status);
-        childrenWrap.appendChild(childLink);
-      }
-
-      if (childrenWrap.childElementCount) {
-        group.appendChild(childrenWrap);
-        mobileMenuList.appendChild(group);
-      }
-    });
+    const sec4 = document.createElement('div');
+    const h4 = document.createElement('p');
+    h4.className = mobileSectionTitle;
+    h4.textContent = 'Community';
+    sec4.appendChild(h4);
+    const nest4 = document.createElement('div');
+    nest4.className = 'ml-1 border-l border-slate-300 pl-4 flex flex-col';
+    for (const item of community) {
+      if (isInactive(item)) continue;
+      nest4.appendChild(createLink(item, mobileNestedLink));
+    }
+    sec4.appendChild(nest4);
+    if (nest4.childElementCount > 0) {
+      mobileMenuList.appendChild(sec4);
+    }
   }
 
   function applyAuthVisibility() {
@@ -266,9 +456,7 @@
 
   let flowbiteLoadHookAttached = false;
   function initFlowbiteIfReady() {
-    if (typeof window.initFlowbite === 'function') {
-      window.initFlowbite();
-    }
+    if (typeof window.initFlowbite === 'function') window.initFlowbite();
     if (!flowbiteLoadHookAttached) {
       flowbiteLoadHookAttached = true;
       window.addEventListener('load', () => {
@@ -291,26 +479,22 @@
     if (dropdownDelegationBound) return;
     dropdownDelegationBound = true;
 
-    const getButtons = () => Array.from(document.querySelectorAll('[data-owp-dropdown]'));
-
     const closeAll = (exceptId) => {
-      for (const btn of getButtons()) {
+      document.querySelectorAll('[data-owp-dropdown]').forEach((btn) => {
         const targetId = btn.dataset.owpDropdown;
-        if (!targetId || targetId === exceptId) continue;
+        if (!targetId || targetId === exceptId) return;
         const target = document.getElementById(targetId);
         if (target) target.classList.add('hidden');
         btn.setAttribute('aria-expanded', 'false');
-      }
+      });
     };
 
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-owp-dropdown]');
       if (!btn) {
-        // Clicked outside any dropdown trigger
         closeAll();
         return;
       }
-
       const targetId = btn.dataset.owpDropdown;
       const target = targetId ? document.getElementById(targetId) : null;
       if (!target) return;
@@ -327,9 +511,16 @@
     });
   }
 
-  renderMenu(fallbackMenu);
-  fetchMenu().then(renderMenu).catch((err) => {
-    console.error('Menu fetch crashed; using fallback.', err);
-    renderMenu(fallbackMenu);
-  });
+  const canonical = () => JSON.parse(JSON.stringify(CANONICAL_MENU));
+
+  renderMenu(canonical());
+  fetchMenu()
+    .then((apiMenu) => {
+      const menu = apiMenu && apiMenu.length ? mergeStatusFromApi(CANONICAL_MENU, apiMenu) : canonical();
+      renderMenu(menu);
+    })
+    .catch((err) => {
+      console.error('Menu fetch crashed; using canonical menu.', err);
+      renderMenu(canonical());
+    });
 })();
