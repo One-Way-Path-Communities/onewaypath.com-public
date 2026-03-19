@@ -110,6 +110,17 @@
     if (!projects?.children) return;
 
     const projectRows = projects.children.filter((c) => c.owpProjectChild);
+
+    // Live production: header PROJECTS = current LP links only (no category links); matches experience.html + footer.
+    if (owpIsLiveProductionSite()) {
+      let order = 1;
+      projectRows.forEach((row) => {
+        row.displayOrder = order++;
+      });
+      projects.children = [...projectRows];
+      return;
+    }
+
     const dynamicItems = buildExperienceCategoryMenuItems(categories);
     const experienceItems = dynamicItems
       ? dynamicItems
@@ -531,7 +542,9 @@
       nest2.appendChild(createLink(item, mobileNestedLink));
     }
     sec2.appendChild(nest2);
-    mobileMenuList.appendChild(sec2);
+    if (nest2.childElementCount > 0) {
+      mobileMenuList.appendChild(sec2);
+    }
 
     const sec3 = document.createElement('div');
     sec3.className = 'pb-4 mb-4 border-b border-slate-300';
@@ -629,19 +642,28 @@
 
   const canonical = () => JSON.parse(JSON.stringify(CANONICAL_MENU));
 
-  renderMenu(canonical());
+  function menuPreparedForHost(categoriesFromApi) {
+    const menu = canonical();
+    applyExperienceCategoriesToProjects(menu, categoriesFromApi && categoriesFromApi.length ? categoriesFromApi : null);
+    return menu;
+  }
 
-  Promise.all([fetchMenu(), fetchExperienceNavOptions()])
+  renderMenu(menuPreparedForHost(null));
+
+  const navOptsPromise = owpIsLiveProductionSite()
+    ? Promise.resolve(null)
+    : fetchExperienceNavOptions();
+
+  Promise.all([fetchMenu(), navOptsPromise])
     .then(([apiMenu, navOpts]) => {
-      const menu = canonical();
       const cats = navOpts?.categories;
-      applyExperienceCategoriesToProjects(menu, cats && cats.length ? cats : null);
+      const menu = menuPreparedForHost(cats && cats.length ? cats : null);
       const merged =
         apiMenu && apiMenu.length ? mergeStatusFromApi(menu, apiMenu) : menu;
       renderMenu(merged);
     })
     .catch((err) => {
       console.error('Menu fetch crashed; using canonical menu.', err);
-      renderMenu(canonical());
+      renderMenu(menuPreparedForHost(null));
     });
 })();
