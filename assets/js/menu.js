@@ -16,6 +16,22 @@
   window.OWP_WEBSITES_API_BASE_CANDIDATES = getWebsitesApiBaseCandidates();
   window.OWP_sanitizeApiBase = (base) => (base || '').replace(/\/+$/, '');
 
+  /** True on production apex / www only — dev, staging, localhost stay false. */
+  function owpIsLiveProductionSite() {
+    const h = (typeof window !== 'undefined' && window.location?.hostname ? window.location.hostname : '')
+      .toLowerCase();
+    return h === 'onewaypath.com' || h === 'www.onewaypath.com';
+  }
+  window.OWP_isLiveProductionSite = owpIsLiveProductionSite;
+
+  function applyFooterExperienceColumnVisibility() {
+    const live = owpIsLiveProductionSite();
+    document.querySelectorAll('.owp-footer-experience-col').forEach((el) => {
+      el.classList.toggle('hidden', live);
+    });
+  }
+  applyFooterExperienceColumnVisibility();
+
   document.addEventListener('click', (e) => {
     const link = e.target.closest('footer a[href="#contact"]');
     if (!link) return;

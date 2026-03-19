@@ -285,7 +285,7 @@
           </div>
         </div>
       </div>
-      <div class="max-w-[1120px] w-full mx-auto pb-6">
+      <div id="experience-category-filter-wrap" class="hidden max-w-[1120px] w-full mx-auto pb-6">
         <h2 class="sr-only" id="experience-category-heading">Filter by category</h2>
         <div id="experience-category-filter" class="w-full" aria-labelledby="experience-category-heading">
           <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
@@ -345,12 +345,11 @@
               <li><a href="index.html#about" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT US</a></li>
               <li><a href="designers.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
               <li><a href="administration.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ADMINISTRATION</a></li>
-              <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a></li>
               <li><a href="builders.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
               <li><a href="#contact" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a></li>
             </ul>
           </div>
-          <div>
+          <div class="owp-footer-experience-col">
             <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">EXPERIENCE</h3>
             <ul class="space-y-1.5 sm:space-y-2">
               <li><a href="experience.html?category=residential" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">RESIDENTIAL</a></li>
@@ -490,6 +489,7 @@
       const companyFilterEl = document.getElementById('company-filter');
       const companyFilterWrapEl = document.getElementById('experience-company-filter');
       const companyFilterTabsEl = document.getElementById('company-filter-tabs');
+      const categoryFilterWrapEl = document.getElementById('experience-category-filter-wrap');
       const categoryFilterEl = document.getElementById('category-filter');
       const categoryFilterTabsEl = document.getElementById('category-filter-tabs');
       const normalizeCategory =
@@ -563,13 +563,26 @@
         return cleaned.join(',');
       }
 
-      function shouldShowCompanyFilter() {
+      function isLiveProductionSite() {
+        if (typeof window.OWP_isLiveProductionSite === 'function') return window.OWP_isLiveProductionSite();
         const hostname = (window.location.hostname || '').toLowerCase();
-        const isLiveSite = hostname === 'onewaypath.com' || hostname === 'www.onewaypath.com';
-        if (isLiveSite) return false;
+        return hostname === 'onewaypath.com' || hostname === 'www.onewaypath.com';
+      }
+
+      function shouldShowCompanyFilter() {
+        if (isLiveProductionSite()) return false;
         const features = window.OWP_FEATURES || {};
         const flag =
           typeof features.experienceCompanyFilter === 'undefined' ? true : features.experienceCompanyFilter;
+        if (flag === 'auth') return !!window.OWP_isEditorAuthed;
+        return !!flag;
+      }
+
+      function shouldShowCategoryFilter() {
+        if (isLiveProductionSite()) return false;
+        const features = window.OWP_FEATURES || {};
+        const flag =
+          typeof features.experienceCategoryFilter === 'undefined' ? true : features.experienceCategoryFilter;
         if (flag === 'auth') return !!window.OWP_isEditorAuthed;
         return !!flag;
       }
@@ -905,9 +918,12 @@
         const urlParams = new URLSearchParams(window.location.search);
         const viewParam = urlParams.get('view');
         // Prefer URL ?category= when present so API stays in sync with the address bar (and with a restarted API).
-        let categorySlug = selectedCategorySlug;
-        if (urlParams.has('category')) {
-          categorySlug = canonicalizeCategory((urlParams.get('category') || '').trim());
+        let categorySlug = '';
+        if (shouldShowCategoryFilter()) {
+          categorySlug = selectedCategorySlug;
+          if (urlParams.has('category')) {
+            categorySlug = canonicalizeCategory((urlParams.get('category') || '').trim());
+          }
         }
         for (const base of basesToTry) {
           const safeBase = (base || '').replace(/\/+$/, '');
@@ -956,6 +972,7 @@
       }
 
       async function loadFilterOptions() {
+        if (!shouldShowCategoryFilter()) return;
         const basesToTry = apiBase ? [apiBase] : baseCandidates;
         const urlParams = new URLSearchParams(window.location.search);
         const viewParam = urlParams.get('view');
@@ -999,38 +1016,52 @@
           setCompanySlugInUrl(initialCompany);
         }
 
-        syncCategoryUrlIfNeeded();
+        if (!shouldShowCategoryFilter()) {
+          const p = new URLSearchParams(window.location.search);
+          if (p.has('category')) {
+            p.delete('category');
+            const next = `${window.location.pathname}${p.toString() ? `?${p.toString()}` : ''}`;
+            window.history.replaceState({}, '', next);
+          }
+          selectedCategorySlug = '';
+        } else {
+          syncCategoryUrlIfNeeded();
 
-        const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
-        const initialCategory = canonicalizeCategory(rawCategoryParam);
-        if (rawCategoryParam && initialCategory !== rawCategoryParam) {
-          setCategorySlugInUrl(initialCategory);
-          selectedCategorySlug = initialCategory;
+          const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
+          const initialCategory = canonicalizeCategory(rawCategoryParam);
+          if (rawCategoryParam && initialCategory !== rawCategoryParam) {
+            setCategorySlugInUrl(initialCategory);
+            selectedCategorySlug = initialCategory;
+          }
+
+          if (
+            (categoryFilterEl || categoryFilterTabsEl) &&
+            typeof window.OWP_setupExperienceCategoryFilter === 'function'
+          ) {
+            window.OWP_setupExperienceCategoryFilter({
+              tabsEl: categoryFilterTabsEl,
+              selectEl: categoryFilterEl,
+              selectedSlug: selectedCategorySlug,
+              onSelect(slug) {
+                const next = canonicalizeCategory(slug || '');
+                selectedCategorySlug = next;
+                setCategorySlugInUrl(next);
+                if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
+                  window.OWP_updateExperienceCategorySelection(
+                    categoryFilterTabsEl,
+                    categoryFilterEl,
+                    selectedCategorySlug
+                  );
+                }
+                currentPage = 1;
+                fetchExperience(1);
+              },
+            });
+          }
         }
 
-        if (
-          (categoryFilterEl || categoryFilterTabsEl) &&
-          typeof window.OWP_setupExperienceCategoryFilter === 'function'
-        ) {
-          window.OWP_setupExperienceCategoryFilter({
-            tabsEl: categoryFilterTabsEl,
-            selectEl: categoryFilterEl,
-            selectedSlug: selectedCategorySlug,
-            onSelect(slug) {
-              const next = canonicalizeCategory(slug || '');
-              selectedCategorySlug = next;
-              setCategorySlugInUrl(next);
-              if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
-                window.OWP_updateExperienceCategorySelection(
-                  categoryFilterTabsEl,
-                  categoryFilterEl,
-                  selectedCategorySlug
-                );
-              }
-              currentPage = 1;
-              fetchExperience(1);
-            },
-          });
+        if (categoryFilterWrapEl) {
+          categoryFilterWrapEl.classList.toggle('hidden', !shouldShowCategoryFilter());
         }
 
         if (companyFilterWrapEl) {
