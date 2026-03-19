@@ -269,17 +269,34 @@
     </section>
 
     <section class="md:px-[50px] px-[20px] ">
+      <div id="experience-company-filter" class="hidden max-w-[1120px] w-full mx-auto pb-4"
+        aria-labelledby="experience-company-heading">
+        <h2 class="sr-only" id="experience-company-heading">Filter by company</h2>
+        <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
+          aria-label="Company">
+          <div id="company-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
+        </div>
+        <div class="md:hidden">
+          <div class="relative w-full">
+            <select id="company-filter"
+              class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
+              <!-- Options filled by JS (API /experience/filter-options) -->
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="max-w-[1120px] w-full mx-auto pb-6">
-        <div id="experience-company-filter" class="hidden">
+        <h2 class="sr-only" id="experience-category-heading">Filter by category</h2>
+        <div id="experience-category-filter" class="w-full" aria-labelledby="experience-category-heading">
           <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
-            aria-label="Company filter">
-            <div id="company-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
+            aria-label="Project category">
+            <div id="category-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
           </div>
           <div class="md:hidden">
             <div class="relative w-full">
-              <select id="company-filter"
+              <select id="category-filter"
                 class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
-                <!-- Options filled by JS from COMPANY_FILTER_OPTIONS -->
+                <!-- Options filled by JS (API /experience/filter-options) -->
               </select>
             </div>
           </div>
@@ -317,48 +334,46 @@
 
   <footer class="bg-olive-50 border-t border-slate-500">
     <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
-      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-2 lg:gap-12">
+      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
         <div class="flex justify-center lg:justify-start">
           <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="h-14 w-auto sm:h-16">
         </div>
-        <div class="grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8">
+        <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           <div>
-            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMPANY</h3>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">COMPANY</h3>
             <ul class="space-y-1.5 sm:space-y-2">
-              <li><a href="index.html#about" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT
-                  US</a></li>
-              <li><a href="designers.html"
-                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
-              <li><a href="administration.html"
-                    class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ADMINISTRATION</a></li>
-              <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a>
-              </li>
-              <li><a href="builders.html"
-                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
-              <li><a href="#contact" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a>
-              </li>
+              <li><a href="index.html#about" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT US</a></li>
+              <li><a href="designers.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="administration.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ADMINISTRATION</a></li>
+              <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">EXPERIENCE</a></li>
+              <li><a href="builders.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
+              <li><a href="#contact" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">PROJECTS</h3>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">EXPERIENCE</h3>
             <ul class="space-y-1.5 sm:space-y-2">
-              <li><a href="projects-dewitt-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT
-                  ROAD</a>
-              </li>
-              <li><a href="projects-millen-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN
-                  ROAD</a>
-              </li>
+              <li><a href="experience.html?category=residential" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">RESIDENTIAL</a></li>
+              <li><a href="experience.html?category=commercial" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">COMMERCIAL</a></li>
+              <li><a href="experience.html?category=industrial" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">INDUSTRIAL</a></li>
+              <li><a href="experience.html?category=institutional" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">INSTITUTIONAL</a></li>
+              <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ALL CATEGORIES</a></li>
             </ul>
           </div>
-          <div class="col-span-2 sm:col-span-1">
-            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-wider mb-3 sm:mb-4">COMMUNITY</h3>
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">CURRENT PROJECTS</h3>
             <ul class="space-y-1.5 sm:space-y-2">
-              <li><a href="wellness.html"
-                  class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="projects-dewitt-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT ROAD LP</a></li>
+              <li><a href="projects-millen-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN ROAD LP</a></li>
+            </ul>
+          </div>
+          <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">COMMUNITY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="wellness.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="community.html#environment" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a></li>
               <li><a href="community.html#homes" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">HOMES</a></li>
               <li><a href="community.html#jobs" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">JOBS</a></li>
-              <li><a href="community.html#environment" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a>
-              </li>
             </ul>
           </div>
         </div>
@@ -454,6 +469,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   <script src="assets/js/menu.js"></script>
+  <script src="assets/js/experience-category-filter.js"></script>
   <script>
     (function () {
       const ITEMS_PER_PAGE = 6;
@@ -474,7 +490,27 @@
       const companyFilterEl = document.getElementById('company-filter');
       const companyFilterWrapEl = document.getElementById('experience-company-filter');
       const companyFilterTabsEl = document.getElementById('company-filter-tabs');
+      const categoryFilterEl = document.getElementById('category-filter');
+      const categoryFilterTabsEl = document.getElementById('category-filter-tabs');
+      const normalizeCategory =
+        typeof window.OWP_normalizeExperienceCategoryParam === 'function'
+          ? window.OWP_normalizeExperienceCategoryParam
+          : function (raw) {
+            const s = String(raw || '')
+              .trim()
+              .toLowerCase();
+            if (!s || s === 'all') return '';
+            return ['residential', 'commercial', 'industrial', 'institutional'].includes(s) ? s : '';
+          };
 
+      const canonicalizeCategory =
+        typeof window.OWP_canonicalizeExperienceCategoryValue === 'function'
+          ? window.OWP_canonicalizeExperienceCategoryValue
+          : function (raw) {
+            return normalizeCategory(raw);
+          };
+
+      /** Static company filter only (API company list not used). Slugs match server legacy ?company= handling. */
       const VALID_COMPANY_SLUGS = new Set([
         'csp-architects',
         'walterfedy',
@@ -489,7 +525,6 @@
         ['jp-samuel-associates-inc', 4],
       ]);
 
-      /** Single source of truth for filter options (mobile select + desktop tabs subset). */
       const COMPANY_FILTER_OPTIONS = [
         { slug: '', label: 'All' },
         { slug: 'csp-architects', label: 'CS&P Architects' },
@@ -497,14 +532,7 @@
         { slug: 'gladki-planning-associates', label: 'Gladki Planning' },
         { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
       ];
-      /** Desktop tabs: one button per company. */
-      const COMPANY_TABS = [
-        { slug: '', label: 'All' },
-        { slug: 'csp-architects', label: 'CS&P Architects' },
-        { slug: 'walterfedy', label: 'WalterFedy' },
-        { slug: 'gladki-planning-associates', label: 'Gladki Planning' },
-        { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
-      ];
+      const COMPANY_TABS = COMPANY_FILTER_OPTIONS;
 
       function populateCompanySelect() {
         if (!companyFilterEl) return;
@@ -522,7 +550,7 @@
         if (!raw) return '';
         const slugs = raw
           .split(',')
-          .map((s) => s.trim())
+          .map((s) => s.trim().toLowerCase())
           .filter(Boolean);
         if (!slugs.length) return '';
 
@@ -536,12 +564,12 @@
       }
 
       function shouldShowCompanyFilter() {
-        // Only show company filter on dev site; never on live site
         const hostname = (window.location.hostname || '').toLowerCase();
         const isLiveSite = hostname === 'onewaypath.com' || hostname === 'www.onewaypath.com';
         if (isLiveSite) return false;
         const features = window.OWP_FEATURES || {};
-        const flag = (typeof features.experienceCompanyFilter === 'undefined') ? true : features.experienceCompanyFilter;
+        const flag =
+          typeof features.experienceCompanyFilter === 'undefined' ? true : features.experienceCompanyFilter;
         if (flag === 'auth') return !!window.OWP_isEditorAuthed;
         return !!flag;
       }
@@ -549,11 +577,12 @@
       function renderCompanyTabs(selectedSlug) {
         if (!companyFilterTabsEl) return;
         companyFilterTabsEl.innerHTML = '';
+        const TAB_BTN_CLASS =
+          'border-2 border-slate-300 text-[#4A5565] font-["Roboto_Condensed"] leading-5 tracking-widest uppercase font-semibold text-base h-12 px-6 py-3 transition-colors aria-selected:bg-red-200 aria-selected:text-red-500 aria-selected:border-none';
         COMPANY_TABS.forEach((tab) => {
           const btn = document.createElement('button');
           btn.type = 'button';
-
-          btn.className = 'border-2 border-slate-300 text-[#4A5565] font-["Roboto_Condensed"] leading-5 tracking-widest uppercase font-semibold text-base h-12 px-6 py-3 transition-colors aria-selected:bg-red-200 aria-selected:text-red-500 aria-selected:border-none';
+          btn.className = TAB_BTN_CLASS;
           btn.setAttribute('role', 'tab');
           btn.setAttribute('data-company', tab.slug);
           btn.setAttribute('aria-selected', tab.slug === selectedSlug ? 'true' : 'false');
@@ -587,6 +616,43 @@
         else params.delete('company');
         const nextUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
         window.history.replaceState({}, '', nextUrl);
+      }
+
+      function getCategorySlugFromUrl() {
+        const raw = new URLSearchParams(window.location.search).get('category');
+        return normalizeCategory(raw);
+      }
+
+      function setCategorySlugInUrl(slug) {
+        const params = new URLSearchParams(window.location.search);
+        if (slug) params.set('category', slug);
+        else params.delete('category');
+        const nextUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+        window.history.replaceState({}, '', nextUrl);
+      }
+
+      /** Current category filter slug (empty = all). Kept in sync with URL. */
+      let selectedCategorySlug = '';
+
+      function syncCategoryUrlIfNeeded() {
+        const params = new URLSearchParams(window.location.search);
+        const raw = (params.get('category') || '').trim();
+        if (!raw) {
+          selectedCategorySlug = '';
+          return;
+        }
+        if (raw.toLowerCase() === 'all') {
+          selectedCategorySlug = '';
+          setCategorySlugInUrl('');
+          return;
+        }
+        const canonical = canonicalizeCategory(raw);
+        selectedCategorySlug = canonical;
+        if (canonical === '' && raw) {
+          setCategorySlugInUrl('');
+        } else if (canonical && raw.toLowerCase().replace(/[\s_]+/g, '-') !== canonical) {
+          setCategorySlugInUrl(canonical);
+        }
       }
 
       function stripTrailingPipes(value) {
@@ -635,6 +701,12 @@
           metaParts.push({
             html: `<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Client:</span> ${escapeHtml(stripTrailingPipes(item.client))}</span>`,
             isClient: true,
+          });
+        }
+        if (item.category && String(item.category).trim()) {
+          metaParts.push({
+            html: `<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Category:</span> ${escapeHtml(stripTrailingPipes(item.category))}</span>`,
+            isClient: false,
           });
         }
         const metaHtml = metaParts.length
@@ -832,6 +904,11 @@
         // Pass through view query param (e.g., ?view=live) to API
         const urlParams = new URLSearchParams(window.location.search);
         const viewParam = urlParams.get('view');
+        // Prefer URL ?category= when present so API stays in sync with the address bar (and with a restarted API).
+        let categorySlug = selectedCategorySlug;
+        if (urlParams.has('category')) {
+          categorySlug = canonicalizeCategory((urlParams.get('category') || '').trim());
+        }
         for (const base of basesToTry) {
           const safeBase = (base || '').replace(/\/+$/, '');
           if (!safeBase) continue;
@@ -842,6 +919,7 @@
             });
             if (companySlug) qs.set('company', companySlug);
             if (viewParam) qs.set('view', viewParam);
+            if (categorySlug) qs.set('category', categorySlug);
             const url = `${safeBase}/experience?${qs.toString()}`;
             const res = await fetch(url, { headers: { Accept: 'application/json' } });
             if (!res.ok) continue;
@@ -877,28 +955,31 @@
         errorEl.classList.remove('hidden');
       }
 
-      const initialCompany = getSelectedCompanySlug();
-      const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
-      if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
-        setCompanySlugInUrl(initialCompany);
-      }
-
-      if (companyFilterWrapEl) {
-        const show = shouldShowCompanyFilter();
-        companyFilterWrapEl.classList.toggle('hidden', !show);
-      }
-
-      populateCompanySelect();
-      renderCompanyTabs(initialCompany);
-      if (companyFilterEl) {
-        companyFilterEl.value = initialCompany;
-        companyFilterEl.addEventListener('change', (e) => {
-          const slug = canonicalizeCompanyValue(String(e.target.value || ''));
-          setCompanySlugInUrl(slug);
-          currentPage = 1;
-          updateSelectedTab(slug);
-          fetchExperience(1);
-        });
+      async function loadFilterOptions() {
+        const basesToTry = apiBase ? [apiBase] : baseCandidates;
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+        for (const base of basesToTry) {
+          const safeBase = (base || '').replace(/\/+$/, '');
+          if (!safeBase) continue;
+          try {
+            const qs = new URLSearchParams();
+            if (viewParam) qs.set('view', viewParam);
+            const url = `${safeBase}/experience/filter-options?${qs.toString()}`;
+            const res = await fetch(url, { headers: { Accept: 'application/json' } });
+            if (!res.ok) continue;
+            const body = await res.json();
+            if (body?.ok) {
+              if (!apiBase) apiBase = safeBase;
+              if (typeof window.OWP_setExperienceCategoryOptionsFromApi === 'function') {
+                window.OWP_setExperienceCategoryOptionsFromApi(body.categories || []);
+              }
+              return;
+            }
+          } catch (err) {
+            console.warn('Experience filter-options failed from', safeBase, err);
+          }
+        }
       }
 
       let resizeT;
@@ -909,7 +990,69 @@
 
       window.addEventListener('load', () => updateMetaSeparators(gridEl));
 
-      fetchExperience(1);
+      (async function boot() {
+        await loadFilterOptions();
+
+        const initialCompany = getSelectedCompanySlug();
+        const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
+        if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
+          setCompanySlugInUrl(initialCompany);
+        }
+
+        syncCategoryUrlIfNeeded();
+
+        const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
+        const initialCategory = canonicalizeCategory(rawCategoryParam);
+        if (rawCategoryParam && initialCategory !== rawCategoryParam) {
+          setCategorySlugInUrl(initialCategory);
+          selectedCategorySlug = initialCategory;
+        }
+
+        if (
+          (categoryFilterEl || categoryFilterTabsEl) &&
+          typeof window.OWP_setupExperienceCategoryFilter === 'function'
+        ) {
+          window.OWP_setupExperienceCategoryFilter({
+            tabsEl: categoryFilterTabsEl,
+            selectEl: categoryFilterEl,
+            selectedSlug: selectedCategorySlug,
+            onSelect(slug) {
+              const next = canonicalizeCategory(slug || '');
+              selectedCategorySlug = next;
+              setCategorySlugInUrl(next);
+              if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
+                window.OWP_updateExperienceCategorySelection(
+                  categoryFilterTabsEl,
+                  categoryFilterEl,
+                  selectedCategorySlug
+                );
+              }
+              currentPage = 1;
+              fetchExperience(1);
+            },
+          });
+        }
+
+        if (companyFilterWrapEl) {
+          const show = shouldShowCompanyFilter();
+          companyFilterWrapEl.classList.toggle('hidden', !show);
+        }
+
+        populateCompanySelect();
+        renderCompanyTabs(initialCompany);
+        if (companyFilterEl) {
+          companyFilterEl.value = initialCompany;
+          companyFilterEl.addEventListener('change', (e) => {
+            const slug = canonicalizeCompanyValue(String(e.target.value || ''));
+            setCompanySlugInUrl(slug);
+            currentPage = 1;
+            updateSelectedTab(slug);
+            fetchExperience(1);
+          });
+        }
+
+        await fetchExperience(1);
+      })();
     })();
   </script>
 
