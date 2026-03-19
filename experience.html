@@ -127,10 +127,6 @@
 </head>
 
 <body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
-  <!--
-    Client SOW deliverables: desktop top menu, mobile top menu, footer (see task scope).
-    Overview line "after category filters are added" = internal sequencing only; not a deliverable to add category filter UI on this page.
-  -->
   <header class="z-50 bg-[#FBF9F3] border-b border-slate-500">
     <nav class="bg-transparent">
       <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between py-5 xl:py-6 px-5 md:px-8">
@@ -273,17 +269,34 @@
     </section>
 
     <section class="md:px-[50px] px-[20px] ">
+      <div id="experience-company-filter" class="hidden max-w-[1120px] w-full mx-auto pb-4"
+        aria-labelledby="experience-company-heading">
+        <h2 class="sr-only" id="experience-company-heading">Filter by company</h2>
+        <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
+          aria-label="Company">
+          <div id="company-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
+        </div>
+        <div class="md:hidden">
+          <div class="relative w-full">
+            <select id="company-filter"
+              class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
+              <!-- Options filled by JS from COMPANY_FILTER_OPTIONS -->
+            </select>
+          </div>
+        </div>
+      </div>
       <div class="max-w-[1120px] w-full mx-auto pb-6">
-        <div id="experience-company-filter" class="hidden">
+        <h2 class="sr-only" id="experience-category-heading">Filter by category</h2>
+        <div id="experience-category-filter" class="w-full" aria-labelledby="experience-category-heading">
           <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
-            aria-label="Company">
-            <div id="company-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
+            aria-label="Project category">
+            <div id="category-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
           </div>
           <div class="md:hidden">
             <div class="relative w-full">
-              <select id="company-filter"
+              <select id="category-filter"
                 class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
-                <!-- Options filled by JS from COMPANY_FILTER_OPTIONS -->
+                <!-- Options filled by JS from OWP_EXPERIENCE_CATEGORY_OPTIONS -->
               </select>
             </div>
           </div>
@@ -456,6 +469,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   <script src="assets/js/menu.js"></script>
+  <script src="assets/js/experience-category-filter.js"></script>
   <script>
     (function () {
       const ITEMS_PER_PAGE = 6;
@@ -476,6 +490,25 @@
       const companyFilterEl = document.getElementById('company-filter');
       const companyFilterWrapEl = document.getElementById('experience-company-filter');
       const companyFilterTabsEl = document.getElementById('company-filter-tabs');
+      const categoryFilterEl = document.getElementById('category-filter');
+      const categoryFilterTabsEl = document.getElementById('category-filter-tabs');
+      const normalizeCategory =
+        typeof window.OWP_normalizeExperienceCategoryParam === 'function'
+          ? window.OWP_normalizeExperienceCategoryParam
+          : function (raw) {
+            const s = String(raw || '')
+              .trim()
+              .toLowerCase();
+            if (!s || s === 'all') return '';
+            return ['residential', 'commercial', 'industrial', 'institutional'].includes(s) ? s : '';
+          };
+
+      const canonicalizeCategory =
+        typeof window.OWP_canonicalizeExperienceCategoryValue === 'function'
+          ? window.OWP_canonicalizeExperienceCategoryValue
+          : function (raw) {
+            return normalizeCategory(raw);
+          };
 
       const VALID_COMPANY_SLUGS = new Set([
         'csp-architects',
@@ -591,6 +624,43 @@
         window.history.replaceState({}, '', nextUrl);
       }
 
+      function getCategorySlugFromUrl() {
+        const raw = new URLSearchParams(window.location.search).get('category');
+        return normalizeCategory(raw);
+      }
+
+      function setCategorySlugInUrl(slug) {
+        const params = new URLSearchParams(window.location.search);
+        if (slug) params.set('category', slug);
+        else params.delete('category');
+        const nextUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+        window.history.replaceState({}, '', nextUrl);
+      }
+
+      /** Current category filter slug (empty = all). Kept in sync with URL. */
+      let selectedCategorySlug = '';
+
+      function syncCategoryUrlIfNeeded() {
+        const params = new URLSearchParams(window.location.search);
+        const raw = (params.get('category') || '').trim();
+        if (!raw) {
+          selectedCategorySlug = '';
+          return;
+        }
+        if (raw.toLowerCase() === 'all') {
+          selectedCategorySlug = '';
+          setCategorySlugInUrl('');
+          return;
+        }
+        const canonical = canonicalizeCategory(raw);
+        selectedCategorySlug = canonical;
+        if (canonical === '' && raw) {
+          setCategorySlugInUrl('');
+        } else if (canonical && raw.toLowerCase().replace(/[\s_]+/g, '-') !== canonical) {
+          setCategorySlugInUrl(canonical);
+        }
+      }
+
       function stripTrailingPipes(value) {
         return String(value || '')
           .replace(/\s*\|\s*/g, ' ')
@@ -637,6 +707,12 @@
           metaParts.push({
             html: `<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Client:</span> ${escapeHtml(stripTrailingPipes(item.client))}</span>`,
             isClient: true,
+          });
+        }
+        if (item.category && String(item.category).trim()) {
+          metaParts.push({
+            html: `<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Category:</span> ${escapeHtml(stripTrailingPipes(item.category))}</span>`,
+            isClient: false,
           });
         }
         const metaHtml = metaParts.length
@@ -834,6 +910,11 @@
         // Pass through view query param (e.g., ?view=live) to API
         const urlParams = new URLSearchParams(window.location.search);
         const viewParam = urlParams.get('view');
+        // Prefer URL ?category= when present so API stays in sync with the address bar (and with a restarted API).
+        let categorySlug = selectedCategorySlug;
+        if (urlParams.has('category')) {
+          categorySlug = canonicalizeCategory((urlParams.get('category') || '').trim());
+        }
         for (const base of basesToTry) {
           const safeBase = (base || '').replace(/\/+$/, '');
           if (!safeBase) continue;
@@ -844,6 +925,7 @@
             });
             if (companySlug) qs.set('company', companySlug);
             if (viewParam) qs.set('view', viewParam);
+            if (categorySlug) qs.set('category', categorySlug);
             const url = `${safeBase}/experience?${qs.toString()}`;
             const res = await fetch(url, { headers: { Accept: 'application/json' } });
             if (!res.ok) continue;
@@ -883,6 +965,40 @@
       const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
       if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
         setCompanySlugInUrl(initialCompany);
+      }
+
+      syncCategoryUrlIfNeeded();
+
+      const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
+      const initialCategory = canonicalizeCategory(rawCategoryParam);
+      if (rawCategoryParam && initialCategory !== rawCategoryParam) {
+        setCategorySlugInUrl(initialCategory);
+        selectedCategorySlug = initialCategory;
+      }
+
+      if (
+        (categoryFilterEl || categoryFilterTabsEl) &&
+        typeof window.OWP_setupExperienceCategoryFilter === 'function'
+      ) {
+        window.OWP_setupExperienceCategoryFilter({
+          tabsEl: categoryFilterTabsEl,
+          selectEl: categoryFilterEl,
+          selectedSlug: selectedCategorySlug,
+          onSelect(slug) {
+            const next = canonicalizeCategory(slug || '');
+            selectedCategorySlug = next;
+            setCategorySlugInUrl(next);
+            if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
+              window.OWP_updateExperienceCategorySelection(
+                categoryFilterTabsEl,
+                categoryFilterEl,
+                selectedCategorySlug
+              );
+            }
+            currentPage = 1;
+            fetchExperience(1);
+          },
+        });
       }
 
       if (companyFilterWrapEl) {
