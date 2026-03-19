@@ -25,7 +25,8 @@
   window.OWP_isLiveProductionSite = owpIsLiveProductionSite;
 
   function applyFooterExperienceColumnVisibility() {
-    const live = owpIsLiveProductionSite();
+    // Keep Experience links visible on all environments.
+    const live = false;
     document.querySelectorAll('.owp-footer-experience-col').forEach((el) => {
       el.classList.toggle('hidden', live);
     });
@@ -110,16 +111,6 @@
     if (!projects?.children) return;
 
     const projectRows = projects.children.filter((c) => c.owpProjectChild);
-
-    // Live production: header PROJECTS = current LP links only (no category links); matches experience.html + footer.
-    if (owpIsLiveProductionSite()) {
-      let order = 1;
-      projectRows.forEach((row) => {
-        row.displayOrder = order++;
-      });
-      projects.children = [...projectRows];
-      return;
-    }
 
     const dynamicItems = buildExperienceCategoryMenuItems(categories);
     const experienceItems = dynamicItems
