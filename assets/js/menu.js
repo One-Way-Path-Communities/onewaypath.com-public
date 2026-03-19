@@ -34,7 +34,7 @@
 
   const AUTH_KEY = 'owp-editor';
 
-  /** Same labels + URLs on desktop (Projects dropdown) and mobile (Experience section). */
+  /** Fallback when GET /experience/filter-options fails or returns no categories (desktop + mobile Experience). */
   const EXPERIENCE_DROPDOWN_LINKS = [
     { label: 'Residential', url: 'experience.html?category=residential' },
     { label: 'Commercial', url: 'experience.html?category=commercial' },
@@ -42,6 +42,78 @@
     { label: 'Institutional', url: 'experience.html?category=institutional' },
     { label: 'All Categories', url: 'experience.html' },
   ];
+
+  function slugFromExperienceLabel(label) {
+    return String(label || '')
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/gi, '-')
+      .replace(/^-+|-+$/g, '');
+  }
+
+  /**
+   * @param {{ slug?: string, label?: string }[]} categories from /experience/filter-options
+   * @returns {{ label: string, url: string, status: string, displayOrder: number }[]|null}
+   */
+  function buildExperienceCategoryMenuItems(categories) {
+    if (!Array.isArray(categories) || categories.length === 0) return null;
+    const items = [];
+    let order = 1;
+    const seen = new Set();
+    for (const c of categories) {
+      const label = c && c.label != null ? String(c.label).trim() : '';
+      let slug = c && c.slug != null ? String(c.slug).trim().toLowerCase() : '';
+      if (!label) continue;
+      if (!slug) slug = slugFromExperienceLabel(label);
+      if (!slug || seen.has(slug)) continue;
+      seen.add(slug);
+      items.push({
+        label,
+        url: `experience.html?category=${encodeURIComponent(slug)}`,
+        status: 'active',
+        displayOrder: order++,
+      });
+    }
+    if (!items.length) return null;
+    items.push({
+      label: 'All Categories',
+      url: 'experience.html',
+      status: 'active',
+      displayOrder: order++,
+    });
+    return items;
+  }
+
+  /**
+   * Replace Projects → experience links (non–current-project) with API categories; keep owpProjectChild rows (static + status from /menu).
+   * @param {object[]} menu
+   * @param {{ slug?: string, label?: string }[]|null} categories
+   */
+  function applyExperienceCategoriesToProjects(menu, categories) {
+    const projects = (menu || []).find((n) => n.owpProjectsLayout);
+    if (!projects?.children) return;
+
+    const projectRows = projects.children.filter((c) => c.owpProjectChild);
+    const dynamicItems = buildExperienceCategoryMenuItems(categories);
+    const experienceItems = dynamicItems
+      ? dynamicItems
+      : EXPERIENCE_DROPDOWN_LINKS.map((link, i) => ({
+          label: link.label,
+          url: link.url,
+          status: 'active',
+          displayOrder: i + 1,
+        }));
+
+    let order = 1;
+    experienceItems.forEach((row) => {
+      row.displayOrder = order++;
+    });
+    projectRows.forEach((row) => {
+      row.displayOrder = order++;
+    });
+
+    projects.children = [...experienceItems, ...projectRows];
+  }
 
   const CANONICAL_MENU = [
     {
@@ -121,6 +193,34 @@
       }
     }
     if (errors.length) console.warn('Menu fetch failed; using canonical menu.', errors);
+    return null;
+  }
+
+  /** Same source as Experience page filters: distinct categories (live + cover_image rules on server). */
+  async function fetchExperienceNavOptions() {
+    const errors = [];
+    for (const base of baseCandidates) {
+      const safeBase = sanitizeBase(base);
+      if (!safeBase) continue;
+      try {
+        const res = await fetch(`${safeBase}/experience/filter-options`, {
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) {
+          errors.push(`${safeBase}/experience/filter-options → ${res.status}`);
+          continue;
+        }
+        const body = await res.json();
+        if (body?.ok) {
+          return {
+            categories: Array.isArray(body.categories) ? body.categories : [],
+          };
+        }
+      } catch (err) {
+        errors.push(`${safeBase}/experience/filter-options → ${err.message}`);
+      }
+    }
+    if (errors.length) console.warn('Experience nav filter-options failed; using static category links.', errors);
     return null;
   }
 
@@ -514,10 +614,15 @@
   const canonical = () => JSON.parse(JSON.stringify(CANONICAL_MENU));
 
   renderMenu(canonical());
-  fetchMenu()
-    .then((apiMenu) => {
-      const menu = apiMenu && apiMenu.length ? mergeStatusFromApi(CANONICAL_MENU, apiMenu) : canonical();
-      renderMenu(menu);
+
+  Promise.all([fetchMenu(), fetchExperienceNavOptions()])
+    .then(([apiMenu, navOpts]) => {
+      const menu = canonical();
+      const cats = navOpts?.categories;
+      applyExperienceCategoriesToProjects(menu, cats && cats.length ? cats : null);
+      const merged =
+        apiMenu && apiMenu.length ? mergeStatusFromApi(menu, apiMenu) : menu;
+      renderMenu(merged);
     })
     .catch((err) => {
       console.error('Menu fetch crashed; using canonical menu.', err);

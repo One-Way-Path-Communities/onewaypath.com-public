@@ -280,7 +280,7 @@
           <div class="relative w-full">
             <select id="company-filter"
               class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
-              <!-- Options filled by JS from COMPANY_FILTER_OPTIONS -->
+              <!-- Options filled by JS (API /experience/filter-options) -->
             </select>
           </div>
         </div>
@@ -296,7 +296,7 @@
             <div class="relative w-full">
               <select id="category-filter"
                 class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
-                <!-- Options filled by JS from OWP_EXPERIENCE_CATEGORY_OPTIONS -->
+                <!-- Options filled by JS (API /experience/filter-options) -->
               </select>
             </div>
           </div>
@@ -510,6 +510,7 @@
             return normalizeCategory(raw);
           };
 
+      /** Static company filter only (API company list not used). Slugs match server legacy ?company= handling. */
       const VALID_COMPANY_SLUGS = new Set([
         'csp-architects',
         'walterfedy',
@@ -524,7 +525,6 @@
         ['jp-samuel-associates-inc', 4],
       ]);
 
-      /** Company options (mobile select + desktop tabs); dev-only UI per shouldShowCompanyFilter. */
       const COMPANY_FILTER_OPTIONS = [
         { slug: '', label: 'All' },
         { slug: 'csp-architects', label: 'CS&P Architects' },
@@ -532,14 +532,7 @@
         { slug: 'gladki-planning-associates', label: 'Gladki Planning' },
         { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
       ];
-      /** Desktop tabs: one button per company. */
-      const COMPANY_TABS = [
-        { slug: '', label: 'All' },
-        { slug: 'csp-architects', label: 'CS&P Architects' },
-        { slug: 'walterfedy', label: 'WalterFedy' },
-        { slug: 'gladki-planning-associates', label: 'Gladki Planning' },
-        { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
-      ];
+      const COMPANY_TABS = COMPANY_FILTER_OPTIONS;
 
       function populateCompanySelect() {
         if (!companyFilterEl) return;
@@ -557,7 +550,7 @@
         if (!raw) return '';
         const slugs = raw
           .split(',')
-          .map((s) => s.trim())
+          .map((s) => s.trim().toLowerCase())
           .filter(Boolean);
         if (!slugs.length) return '';
 
@@ -571,12 +564,12 @@
       }
 
       function shouldShowCompanyFilter() {
-        // Dev-only company selector; hidden on production
         const hostname = (window.location.hostname || '').toLowerCase();
         const isLiveSite = hostname === 'onewaypath.com' || hostname === 'www.onewaypath.com';
         if (isLiveSite) return false;
         const features = window.OWP_FEATURES || {};
-        const flag = (typeof features.experienceCompanyFilter === 'undefined') ? true : features.experienceCompanyFilter;
+        const flag =
+          typeof features.experienceCompanyFilter === 'undefined' ? true : features.experienceCompanyFilter;
         if (flag === 'auth') return !!window.OWP_isEditorAuthed;
         return !!flag;
       }
@@ -584,11 +577,12 @@
       function renderCompanyTabs(selectedSlug) {
         if (!companyFilterTabsEl) return;
         companyFilterTabsEl.innerHTML = '';
+        const TAB_BTN_CLASS =
+          'border-2 border-slate-300 text-[#4A5565] font-["Roboto_Condensed"] leading-5 tracking-widest uppercase font-semibold text-base h-12 px-6 py-3 transition-colors aria-selected:bg-red-200 aria-selected:text-red-500 aria-selected:border-none';
         COMPANY_TABS.forEach((tab) => {
           const btn = document.createElement('button');
           btn.type = 'button';
-
-          btn.className = 'border-2 border-slate-300 text-[#4A5565] font-["Roboto_Condensed"] leading-5 tracking-widest uppercase font-semibold text-base h-12 px-6 py-3 transition-colors aria-selected:bg-red-200 aria-selected:text-red-500 aria-selected:border-none';
+          btn.className = TAB_BTN_CLASS;
           btn.setAttribute('role', 'tab');
           btn.setAttribute('data-company', tab.slug);
           btn.setAttribute('aria-selected', tab.slug === selectedSlug ? 'true' : 'false');
@@ -961,62 +955,31 @@
         errorEl.classList.remove('hidden');
       }
 
-      const initialCompany = getSelectedCompanySlug();
-      const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
-      if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
-        setCompanySlugInUrl(initialCompany);
-      }
-
-      syncCategoryUrlIfNeeded();
-
-      const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
-      const initialCategory = canonicalizeCategory(rawCategoryParam);
-      if (rawCategoryParam && initialCategory !== rawCategoryParam) {
-        setCategorySlugInUrl(initialCategory);
-        selectedCategorySlug = initialCategory;
-      }
-
-      if (
-        (categoryFilterEl || categoryFilterTabsEl) &&
-        typeof window.OWP_setupExperienceCategoryFilter === 'function'
-      ) {
-        window.OWP_setupExperienceCategoryFilter({
-          tabsEl: categoryFilterTabsEl,
-          selectEl: categoryFilterEl,
-          selectedSlug: selectedCategorySlug,
-          onSelect(slug) {
-            const next = canonicalizeCategory(slug || '');
-            selectedCategorySlug = next;
-            setCategorySlugInUrl(next);
-            if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
-              window.OWP_updateExperienceCategorySelection(
-                categoryFilterTabsEl,
-                categoryFilterEl,
-                selectedCategorySlug
-              );
+      async function loadFilterOptions() {
+        const basesToTry = apiBase ? [apiBase] : baseCandidates;
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+        for (const base of basesToTry) {
+          const safeBase = (base || '').replace(/\/+$/, '');
+          if (!safeBase) continue;
+          try {
+            const qs = new URLSearchParams();
+            if (viewParam) qs.set('view', viewParam);
+            const url = `${safeBase}/experience/filter-options?${qs.toString()}`;
+            const res = await fetch(url, { headers: { Accept: 'application/json' } });
+            if (!res.ok) continue;
+            const body = await res.json();
+            if (body?.ok) {
+              if (!apiBase) apiBase = safeBase;
+              if (typeof window.OWP_setExperienceCategoryOptionsFromApi === 'function') {
+                window.OWP_setExperienceCategoryOptionsFromApi(body.categories || []);
+              }
+              return;
             }
-            currentPage = 1;
-            fetchExperience(1);
-          },
-        });
-      }
-
-      if (companyFilterWrapEl) {
-        const show = shouldShowCompanyFilter();
-        companyFilterWrapEl.classList.toggle('hidden', !show);
-      }
-
-      populateCompanySelect();
-      renderCompanyTabs(initialCompany);
-      if (companyFilterEl) {
-        companyFilterEl.value = initialCompany;
-        companyFilterEl.addEventListener('change', (e) => {
-          const slug = canonicalizeCompanyValue(String(e.target.value || ''));
-          setCompanySlugInUrl(slug);
-          currentPage = 1;
-          updateSelectedTab(slug);
-          fetchExperience(1);
-        });
+          } catch (err) {
+            console.warn('Experience filter-options failed from', safeBase, err);
+          }
+        }
       }
 
       let resizeT;
@@ -1027,7 +990,69 @@
 
       window.addEventListener('load', () => updateMetaSeparators(gridEl));
 
-      fetchExperience(1);
+      (async function boot() {
+        await loadFilterOptions();
+
+        const initialCompany = getSelectedCompanySlug();
+        const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
+        if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
+          setCompanySlugInUrl(initialCompany);
+        }
+
+        syncCategoryUrlIfNeeded();
+
+        const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
+        const initialCategory = canonicalizeCategory(rawCategoryParam);
+        if (rawCategoryParam && initialCategory !== rawCategoryParam) {
+          setCategorySlugInUrl(initialCategory);
+          selectedCategorySlug = initialCategory;
+        }
+
+        if (
+          (categoryFilterEl || categoryFilterTabsEl) &&
+          typeof window.OWP_setupExperienceCategoryFilter === 'function'
+        ) {
+          window.OWP_setupExperienceCategoryFilter({
+            tabsEl: categoryFilterTabsEl,
+            selectEl: categoryFilterEl,
+            selectedSlug: selectedCategorySlug,
+            onSelect(slug) {
+              const next = canonicalizeCategory(slug || '');
+              selectedCategorySlug = next;
+              setCategorySlugInUrl(next);
+              if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
+                window.OWP_updateExperienceCategorySelection(
+                  categoryFilterTabsEl,
+                  categoryFilterEl,
+                  selectedCategorySlug
+                );
+              }
+              currentPage = 1;
+              fetchExperience(1);
+            },
+          });
+        }
+
+        if (companyFilterWrapEl) {
+          const show = shouldShowCompanyFilter();
+          companyFilterWrapEl.classList.toggle('hidden', !show);
+        }
+
+        populateCompanySelect();
+        renderCompanyTabs(initialCompany);
+        if (companyFilterEl) {
+          companyFilterEl.value = initialCompany;
+          companyFilterEl.addEventListener('change', (e) => {
+            const slug = canonicalizeCompanyValue(String(e.target.value || ''));
+            setCompanySlugInUrl(slug);
+            currentPage = 1;
+            updateSelectedTab(slug);
+            fetchExperience(1);
+          });
+        }
+
+        await fetchExperience(1);
+      })();
     })();
   </script>
 
