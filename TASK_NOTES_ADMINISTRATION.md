@@ -28,3 +28,14 @@
 | Same table                 | Same sync                         | Same          | GET `/api/websites/administration` → category includes Administration |
 
 Sync endpoint: POST `/api/websites/individuals/sync` (no separate administration sync).
+
+## Team headshots (`photo` / `photo_new`) and layout
+
+- **While testing new assets:** Add attachments to Airtable field **`photo_new`**. The sync (`mapAirtableIndividualToRow` in `serverJS`) prefers **`photo_new`**, then falls back to **`photo`**, so the live site can keep syncing old **`photo`** until you are ready.
+- **Public UI:** Designers and Administration pages use a **fixed width** and **natural height** (no square crop) so non-square photos display fully.
+- **After QA in Airtable:** Rename **`photo`** → **`photo_old`** (archive) and **`photo_new`** → **`photo`**. The server continues to resolve the headshot from **`photo`**; no code change is required for that rename. Optional later cleanup: simplify the server helper to only read `photo` if you want to drop `photo_new` from the codebase.
+
+### Verify locally
+
+1. Run individuals sync: `POST /api/websites/individuals/sync`
+2. Open `designers.html` and `administration.html` against your API base; confirm images and aspect ratios.

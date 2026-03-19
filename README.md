@@ -1,6 +1,16 @@
-# One Way Path Communities — Static Site
+# One Way Path Communities — Public site
 
-This repo is a single static HTML page served via nginx. It uses no build tools or bundlers.
+Static HTML pages and assets served via nginx (or similar). No app bundler; optional CDNs for Tailwind and Flowbite.
+
+## Feature branch (Designers / Administration photos)
+
+Use branch `feature/designers-admin-photos-aspect-airtable` in **onewaypath.com-public** and **serverJS** (create from your current branch; do not commit directly to `main`). Follow internal coding policy in `methodology/owpc-coding-policy-v*.md` when present.
+
+## Designers & Administration — team photos
+
+- **Public pages:** [designers.html](designers.html) and [administration.html](administration.html) render headshots at a **fixed width** (`md:w-[358px]`) with **`h-auto`** so the **full image** shows (no forced 1:1 `object-cover` crop).
+- **API:** `GET /api/websites/individuals` (and administration variant) returns a `photo` URL from the server; images may be cached under `/api/websites/uploads/individuals/`.
+- **Airtable:** See [TASK_NOTES_ADMINISTRATION.md](TASK_NOTES_ADMINISTRATION.md) for `photo_new` vs `photo` during migration and when to rename fields after QA.
 
 ## Stack
 - Tailwind CSS via CDN, with in-page `tailwind.config` defining the gold/red/olive/slate palette and Roboto font.

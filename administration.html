@@ -448,8 +448,9 @@
           ? bioParagraphs.map((p) => `<p class="text-[#333E4F] text-[20px] leading-[1.6] mb-5">${escapeHtml(p)}</p>`).join('')
           : '';
 
+        // Fixed width; height follows image aspect ratio (no square crop).
         const photoHtml = photo
-          ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(name)}" class="float-left mr-6 mb-4 w-full md:w-[358px] md:h-[358px] object-cover" onerror="this.style.display='none'">`
+          ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(name)}" class="float-left mr-6 mb-4 h-auto w-full max-w-full md:max-w-[358px] md:w-[358px] object-contain" onerror="this.style.display='none'">`
           : '';
 
         const logoHtml = showLogo
