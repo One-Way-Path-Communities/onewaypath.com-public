@@ -579,7 +579,6 @@
       }
 
       function shouldShowCategoryFilter() {
-        if (isLiveProductionSite()) return false;
         const features = window.OWP_FEATURES || {};
         const flag =
           typeof features.experienceCategoryFilter === 'undefined' ? true : features.experienceCategoryFilter;
