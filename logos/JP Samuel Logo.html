@@ -1,0 +1,1392 @@
+<!doctype html >
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+      class="">
+<head>
+    <meta charset="utf-8">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    window._currentDevice = 'desktop';
+    window.Parameters = window.Parameters || {
+        HomeUrl: 'http://www.jpsamuel.com/',
+        AccountUUID: 'ec67f6f7a96244188e27982dd3aee63d',
+        SystemID: '1AND1_EU_PROD',
+        SiteAlias: 'df77087a28a34290a3702e626d58ed4b',
+        SiteType: atob('RFVEQU9ORQ=='),
+        PublicationDate: 'Mon Mar 17 17:15:19 UTC 2025',
+        ExternalUid: '33cd9a6d-e0ac-44f8-ba3f-bba26ef8360f',
+        IsSiteMultilingual: false,
+        InitialPostAlias: '',
+        InitialPostPageUuid: '',
+        InitialDynamicItem: '',
+        DynamicPageInfo: {
+            isDynamicPage: false,
+            base64JsonRowData: 'null',
+        },
+        InitialPageAlias: 'home',
+        InitialPageUuid: '6b621a27a31e46469e56e8463ec9be4c',
+        InitialPageId: '702744443',
+        InitialEncodedPageAlias: 'aG9tZQ==',
+        InitialHeaderUuid: 'd9527939249e48d181c946c97454e794',
+        CurrentPageUrl: '',
+        IsCurrentHomePage: true,
+        AllowAjax: false,
+        AfterAjaxCommand: null,
+        HomeLinkText: 'Back To Home',
+        UseGalleryModule: false,
+        CurrentThemeName: 'Layout Theme',
+        ThemeVersion: '52960',
+        DefaultPageAlias: '',
+        RemoveDID: true,
+        WidgetStyleID: null,
+        IsHeaderFixed: false,
+        IsHeaderSkinny: false,
+        IsBfs: true,
+        StorePageAlias: 'null',
+        StorePagesUrls: 'e30=',
+        IsNewStore: 'false',
+        StorePath: '',
+        StoreId: 'null',
+        StoreVersion: 0,
+        StoreBaseUrl: '',
+        StoreCleanUrl: true,
+        StoreDisableScrolling: true,
+        IsStoreSuspended: false,
+        HasCustomDomain: true,
+        SimpleSite: false,
+        showCookieNotification: true,
+        cookiesNotificationMarkup: ' <div>In order to provide you with the best online experience this website uses cookies. By using our website, you agree to our use of cookies. <a href=\"\/privacy\" target=\"_blank\">More Info<\/a>.<\/div> \n',
+        translatedPageUrl: '',
+        isFastMigrationSite: false,
+        sidebarPosition: 'LEFT',
+        currentLanguage: 'en',
+        currentLocale: 'en',
+        NavItems: '{}',
+        errors: {
+            general: 'There was an error connecting to the page.<br/> Make sure you are not offline.',
+            password: 'Incorrect name/password combination',
+            tryAgain: 'Try again'
+        },
+        NavigationAreaParams: {
+            ShowBackToHomeOnInnerPages: true,
+            NavbarSize: 4,
+            NavbarLiveHomePage: 'http://www.jpsamuel.com/',
+            BlockContainerSelector: '.dmBody',
+            NavbarSelector: '#dmNav:has(a)',
+            SubNavbarSelector: '#subnav_main'
+        },
+        hasCustomCode: true,
+        planID: '2102',
+        customTemplateId: 'null',
+        siteTemplateId: 'null',
+        productId: 'DM_DIRECT',
+        disableTracking: false,
+        pageType: 'FROM_SCRATCH',
+        isRuntimeServer: true,
+        isInEditor: false,
+        hasNativeStore: false,
+        defaultLang: 'en',
+        hamburgerMigration: null,
+        isFlexSite: false
+    };
+
+    window.Parameters.LayoutID = {};
+    window.Parameters.LayoutID[window._currentDevice] = 6;
+    window.Parameters.LayoutVariationID = {};
+    window.Parameters.LayoutVariationID[window._currentDevice] = 5;
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Injecting site-wide to the head -->
+
+
+
+
+<!-- End Injecting site-wide to the head -->
+
+<!-- Inject secured cdn script -->
+
+
+<!-- ========= Meta Tags ========= -->
+<!-- PWA settings -->
+<script>
+    function toHash(str) {
+        var hash = 5381, i = str.length;
+        while (i) {
+            hash = hash * 33 ^ str.charCodeAt(--i)
+        }
+        return hash >>> 0
+    }
+</script>
+<script>
+    (function (global) {
+    //const cacheKey = global.cacheKey;
+    const isOffline = 'onLine' in navigator && navigator.onLine === false;
+    const hasServiceWorkerSupport = 'serviceWorker' in navigator;
+    if (isOffline) {
+        console.log('offline mode');
+    }
+    if (!hasServiceWorkerSupport) {
+        console.log('service worker is not supported');
+    }
+    if (hasServiceWorkerSupport && !isOffline) {
+        window.addEventListener('load', function () {
+            const serviceWorkerPath = '/runtime-service-worker.js?v=3';
+            navigator.serviceWorker
+                .register(serviceWorkerPath, { scope: './' })
+                .then(
+                    function (registration) {
+                        // Registration was successful
+                        console.log(
+                            'ServiceWorker registration successful with scope: ',
+                            registration.scope
+                        );
+                    },
+                    function (err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    }
+                )
+                .catch(function (err) {
+                    console.log(err);
+                });
+        });
+
+        // helper function to refresh the page
+        var refreshPage = (function () {
+            var refreshing;
+            return function () {
+                if (refreshing) return;
+                // prevent multiple refreshes
+                var refreshkey = 'refreshed' + location.href;
+                var prevRefresh = localStorage.getItem(refreshkey);
+                if (prevRefresh) {
+                    localStorage.removeItem(refreshkey);
+                    if (Date.now() - prevRefresh < 30000) {
+                        return; // dont go into a refresh loop
+                    }
+                }
+                refreshing = true;
+                localStorage.setItem(refreshkey, Date.now());
+                console.log('refereshing page');
+                window.location.reload();
+            };
+        })();
+
+        function messageServiceWorker(data) {
+            return new Promise(function (resolve, reject) {
+                if (navigator.serviceWorker.controller) {
+                    var worker = navigator.serviceWorker.controller;
+                    var messageChannel = new MessageChannel();
+                    messageChannel.port1.onmessage = replyHandler;
+                    worker.postMessage(data, [messageChannel.port2]);
+                    function replyHandler(event) {
+                        resolve(event.data);
+                    }
+                } else {
+                    resolve();
+                }
+            });
+        }
+    }
+})(window);
+</script>
+<!-- Add manifest -->
+<!-- End PWA settings -->
+
+
+
+<link rel="canonical" href="https://www.jpsamuel.com/">
+
+<meta id="view" name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!--Add favorites icons-->
+
+<link rel="apple-touch-icon"
+      href="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/Black+logo+-+no+background.png?Expires=1766877998&Signature=n0bVZONJb7zFEU6S9Zpg0xLWUCh9l9NBgJy6FoO7xkKICAH0FslvXw1JnRYsPhXsnM6XxRScoMTG8lbwCtXRgc0JQq7NqTKj8rEPCZXZNyl~isSCxlbON0-hziGAOgN5u-ue0vG69d~PUvaKnToExiOfd0yuYxMmSr35q7YNMP4OWEeLpQTAqkdJug4Rsf4rMOW1xavb15ok0tz4VDUAbGKseU72yntSdaoEgg~pPm5nC7liWGxkxK~wZwx-b9ykeug8TUrEl7PybcWKyTOvVNK434VhkWtTgKs~hDcqX1oZ5MHstl8nVARQIru5NZt3DhbBfpBvzNKS5K6GtPWUZA__&Key-Pair-Id=K2NXBXLF010TJW"/>
+
+<link rel="icon" type="image/x-icon" href="https://cdn.website-editor.net/df77087a28a34290a3702e626d58ed4b/site_favicon_16_1649007450821.ico"/>
+
+<!-- End favorite icons -->
+<link rel="preconnect" href="https://le-cdn.website-editor.net/"/>
+
+
+
+<!-- render the required CSS and JS in the head section -->
+<script id='d-js-dmapi'>
+    window.SystemID = '1AND1_EU_PROD';
+
+    if (!window.dmAPI) {
+        window.dmAPI = {
+            registerExternalRuntimeComponent: function () {
+            },
+            getCurrentDeviceType: function () {
+                return window._currentDevice;
+            },
+            runOnReady: (ns, fn) => {
+                const safeFn = dmAPI.toSafeFn(fn);
+                ns = ns || 'global_' + Math.random().toString(36).slice(2, 11);
+                const eventName = 'afterAjax.' + ns;
+
+                if (document.readyState === 'complete') {
+                    $.DM.events.off(eventName).on(eventName, safeFn);
+                    setTimeout(function () {
+                        safeFn({
+                            isAjax: false,
+                        });
+                    }, 0);
+                } else {
+                    window?.waitForDeferred?.('dmAjax', () => {
+                        $.DM.events.off(eventName).on(eventName, safeFn);
+                        safeFn({
+                            isAjax: false,
+                        });
+                    });
+                }
+            },
+            toSafeFn: (fn) => {
+                if (fn?.safe) {
+                    return fn;
+                }
+                const safeFn = function (...args) {
+                    try {
+                        return fn?.apply(null, args);
+                    } catch (e) {
+                        console.log('function failed ' + e.message);
+                    }
+                };
+                safeFn.safe = true;
+                return safeFn;
+            }
+        };
+    }
+
+    if (!window.requestIdleCallback) {
+        window.requestIdleCallback = function (fn) {
+            setTimeout(fn, 0);
+        }
+    }
+</script>
+
+<!-- loadCSS function header.jsp-->
+
+
+
+
+
+
+<script id="d-js-load-css">
+/**
+ * There are a few <link> tags with CSS resource in them that are preloaded in the page
+ * in each of those there is a "onload" handler which invokes the loadCSS callback
+ * defined here.
+ * We are monitoring 3 main CSS files - the runtime, the global and the page.
+ * When each load we check to see if we can append them all in a batch. If threre
+ * is no page css (which may happen on inner pages) then we do not wait for it
+ */
+(function () {
+  let cssLinks = {};
+  function loadCssLink(link) {
+    link.onload = null;
+    link.rel = "stylesheet";
+    link.type = "text/css";
+  }
+  
+    function checkCss() {
+      const pageCssLink = document.querySelector("[id*='CssLink']");
+      const widgetCssLink = document.querySelector("[id*='widgetCSS']");
+
+        if (cssLinks && cssLinks.runtime && cssLinks.global && (!pageCssLink || cssLinks.page) && (!widgetCssLink || cssLinks.widget)) {
+            const storedRuntimeCssLink = cssLinks.runtime;
+            const storedPageCssLink = cssLinks.page;
+            const storedGlobalCssLink = cssLinks.global;
+            const storedWidgetCssLink = cssLinks.widget;
+
+            storedGlobalCssLink.disabled = true;
+            loadCssLink(storedGlobalCssLink);
+
+            if (storedPageCssLink) {
+                storedPageCssLink.disabled = true;
+                loadCssLink(storedPageCssLink);
+            }
+
+            if(storedWidgetCssLink) {
+                storedWidgetCssLink.disabled = true;
+                loadCssLink(storedWidgetCssLink);
+            }
+
+            storedRuntimeCssLink.disabled = true;
+            loadCssLink(storedRuntimeCssLink);
+
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    storedRuntimeCssLink.disabled = false;
+                    storedGlobalCssLink.disabled = false;
+                    if (storedPageCssLink) {
+                      storedPageCssLink.disabled = false;
+                    }
+                    if (storedWidgetCssLink) {
+                      storedWidgetCssLink.disabled = false;
+                    }
+                    // (SUP-4179) Clear the accumulated cssLinks only when we're
+                    // sure that the document has finished loading and the document 
+                    // has been parsed.
+                    if(document.readyState === 'interactive') {
+                      cssLinks = null;
+                    }
+                }, 0);
+            });
+        }
+    }
+  
+
+  function loadCSS(link) {
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var noCSS = !!urlParams.get("nocss");
+      var cssTimeout = urlParams.get("cssTimeout") || 0;
+
+      if (noCSS) {
+        return;
+      }
+      if (link.href && link.href.includes("d-css-runtime")) {
+        cssLinks.runtime = link;
+        checkCss();
+      } else if (link.id === "siteGlobalCss") {
+        cssLinks.global = link;
+        checkCss();
+      } 
+      
+      else if (link.id && link.id.includes("CssLink")) {
+        cssLinks.page = link;
+        checkCss();
+      } else if (link.id && link.id.includes("widgetCSS")) {
+        cssLinks.widget = link;
+        checkCss();
+      }
+      
+      else {
+        requestIdleCallback(function () {
+          window.setTimeout(function () {
+            loadCssLink(link);
+          }, parseInt(cssTimeout, 10));
+        });
+      }
+    } catch (e) {
+      throw e
+    }
+  }
+  window.loadCSS = window.loadCSS || loadCSS;
+})();
+</script>
+
+
+
+<script data-role="deferred-init" type="text/javascript">
+    /* usage: window.getDeferred(<deferred name>).resolve() or window.getDeferred(<deferred name>).promise.then(...)*/
+    function Def() {
+        this.promise = new Promise((function (a, b) {
+            this.resolve = a, this.reject = b
+        }).bind(this))
+    }
+
+    const defs = {};
+    window.getDeferred = function (a) {
+        return null == defs[a] && (defs[a] = new Def), defs[a]
+    }
+    window.waitForDeferred = function (b, a, c) {
+        let d = window?.getDeferred?.(b);
+        d
+            ? d.promise.then(a)
+            : c && ["complete", "interactive"].includes(document.readyState)
+                ? setTimeout(a, 1)
+                : c
+                    ? document.addEventListener("DOMContentLoaded", a)
+                    : console.error(`Deferred  does not exist`);
+    };
+</script>
+<style id="forceCssIncludes">
+    /* This file is auto-generated from a `scss` file with the same name */
+
+.videobgwrapper{overflow:hidden;position:absolute;z-index:0;width:100%;height:100%;top:0;left:0;pointer-events:none;border-radius:inherit}.videobgframe{position:absolute;width:101%;height:100%;top:50%;left:50%;transform:translateY(-50%) translateX(-50%);object-fit:fill}#dm video.videobgframe{margin:0}@media (max-width:767px){.dmRoot .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:80vh}}@media (min-width:1025px){.dmRoot .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:45vh}}@media (min-width:768px) and (max-width:1024px){.responsiveTablet .dmPhotoGallery.newPhotoGallery:not(.photo-gallery-done){min-height:45vh}}#dm [data-show-on-page-only]{display:none!important}#dmRoot div.stickyHeaderFix div.site_content{margin-top:0!important}#dmRoot div.stickyHeaderFix div.hamburger-header-container{position:relative}
+    
+
+</style>
+<style id="cssVariables" type="text/css">
+    
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Google Fonts Include -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- loadCSS function fonts.jsp-->
+
+
+
+<link type="text/css" rel="stylesheet" href="https://cdn.website-editor.net/fonts/css2?family=Cabin:wght@400..700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&amp;subset=latin-ext&amp;display=swap"  />
+
+
+
+
+
+<!-- RT CSS Include d-css-runtime-desktop-one-package-structured-global-->
+<link rel="stylesheet" type="text/css" href="https://static-cdn.website-editor.net/mnlt/production/5968/_dm/s/rt/dist/css/d-css-runtime-desktop-one-package-structured-global.min.css" />
+
+<!-- End of RT CSS Include -->
+
+<link type="text/css" rel="stylesheet" href="https://cdn.website-editor.net/WIDGET_CSS/770564cb9b3be53b4d59c8b1ad889814.css" id="widgetCSS" />
+
+<!-- Support `img` size attributes -->
+<style>img[width][height] {
+  height: auto;
+}</style>
+
+<!-- Support showing sticky element on page only -->
+<style>
+  body[data-page-alias="home"] #dm [data-show-on-page-only="home"] {
+    display: block !important;
+  }
+</style>
+
+<!-- This is populated in Ajax navigation -->
+<style id="pageAdditionalWidgetsCss" type="text/css">
+</style>
+
+
+
+
+<!-- Site CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/files/df77087a28a34290a3702e626d58ed4b_withFlex_1.min.css?v=213&Expires=1766877998&Signature=DF-rSMVTYcTtaBhH0S5Uskjee0PifvHj09QbQ2SxjXmTVmALRqHMPlu-8oYvuJJeP6U3JUiZHVQTvkytqUhd2oAYziY7F-2dAQBdeqaC5LyWZ31mTRof0V8ngDcTAAp6hiSm2RcRPhZ7D9FXSnaszQT2C1We9LR7~UZ1~KQWH0NVtV8FGbDeGUxIRei5Go7m3UkVmxLPaSABQaynDCqM9Dpbq0vucfXy2ibFhrY78JEgYOlDjmVwxY-MqzvtkxHUqhVLUxVBLqUhvHI7HcLL2JVaJsgnQuy9M5X5CprO5uu58g3RqW5e7POo8OiIMCMTsmPqNy7h3J31oepHuXnmWw__&Key-Pair-Id=K2NXBXLF010TJW" id="siteGlobalCss" />
+
+
+<!-- additional css file per platform -->
+<link
+        type="text/css" rel="stylesheet"
+        href="/_dm/s/rt/css/oneUndOne/1and1-runtime.css?version=2025-11-27T12_19_14"
+/>
+
+
+<style id="customWidgetStyle" type="text/css">
+    
+</style>
+<style id="innerPagesStyle" type="text/css">
+    
+</style>
+
+
+<style
+        id="additionalGlobalCss" type="text/css"
+>
+</style>
+
+<!-- Page CSS -->
+<link type="text/css" rel="stylesheet" href="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/files/df77087a28a34290a3702e626d58ed4b_home_withFlex_1.min.css?v=213&Expires=1766877998&Signature=c3pl8YeYbUsz-42e33Lpb2mjHcCn8xvYljz0Sx~-s1uSVm2V7fqm7WzciI8uTJyFsKiiHw9hfIwCXdT6FtFpUsoz4hebDEH3wH0lzvMmhgI4-a1Mvpn3bE~a7cMxhU-of9RELjSmu2TRcwetd8Kz2VVOs2bCGMhbmeihU3Iyj0jzsLSW~NFzeGBecjuneNcVyfK9GbwdM6CzLY4jJ2zPWfrTmqqSfKuEYDPPPsRZXBU1WyebKPfCqApikWAVRu0ad5w3A8rbJgrGf8jN~ekf4t65G8B9IfXqJ3xGyIMSnvN7N7zj29AGmTPpbxU2Rp9tGZCp~fAysRcj0YJ0eCTEHQ__&Key-Pair-Id=K2NXBXLF010TJW" id="homeCssLink" />
+
+<style id="pagestyle" type="text/css">
+    
+</style>
+
+<style id="pagestyleDevice" type="text/css">
+    
+</style>
+
+<!-- Flex Sections CSS -->
+
+
+
+
+
+<style id="globalFontSizeStyle" type="text/css">
+    .font-size-36, .size-36, .size-36 > font { font-size: 36px !important; }.font-size-24, .size-24, .size-24 > font { font-size: 24px !important; }.font-size-30, .size-30, .size-30 > font { font-size: 30px !important; }
+</style>
+<style id="pageFontSizeStyle" type="text/css">
+</style>
+
+
+
+
+<style id="hideAnimFix">
+  .dmDesktopBody:not(.editGrid) [data-anim-desktop]:not([data-anim-desktop='none']), .dmDesktopBody:not(.editGrid) [data-anim-extended] {
+    visibility: hidden;
+  }
+
+  .dmDesktopBody:not(.editGrid) .dmNewParagraph[data-anim-desktop]:not([data-anim-desktop='none']), .dmDesktopBody:not(.editGrid) .dmNewParagraph[data-anim-extended] {
+    visibility: hidden !important;
+  }
+
+
+  #dmRoot:not(.editGrid) .flex-element [data-anim-extended] {
+    visibility: hidden;
+  }
+
+</style>
+
+
+
+
+<style id="fontFallbacks">
+    @font-face {
+  font-family: "Cabin Fallback";
+  src: local('Arial');
+  ascent-override: 101.7818%;
+  descent-override: 26.3684%;
+  size-adjust: 94.8106%;
+  line-gap-override: 0%;
+ }@font-face {
+  font-family: "Helvetica Fallback";
+  src: local('Arial');
+  ascent-override: 77.002%;
+  descent-override: 22.998%;
+  line-gap-override: 0%;
+ }
+</style>
+
+
+<!-- End render the required css and JS in the head section -->
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.jpsamuel.com/">
+<script type="application/ld+json">
+    {
+        "@context" : "https://schema.org",
+        "@type" : "WebSite",
+        "name" : "J.P. Samuel & Associates Inc.",
+        "url" : "https://www.jpsamuel.com/"
+    }
+</script>
+  <title>
+    J.P. Samuel &amp; Associates Structural Engineers
+  </title>
+
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="J.P. Samuel &amp; Associates Structural Engineers"/>
+  <meta name="twitter:image" content="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/Black+logo+-+no+background-1920w.png?Expires=1766877998&amp;Signature=J5wmm2SSZDZraYhdCDN4tJGeaA1e6~U7SWffsCYyttWG8NKiH5l9~DOgLnm-5D4zyR7GCFrCkfAqkvipQH7F3NReZJFd99s77yBBeV2Kdql-eS3ws9LUL1ZWKGfMS8g2QZ3jcyzHiZSjFPkV2zgy41YgABPs1-2RjAMYo~tu9y-x5nl5LbDio93vINz6OAbggAeZn2Jh4OG-CegBkOIMJQubDENI~xNWKhBCnxAIyyhdS7DDkyx7dNtFXkaCxm9m9-5kr4TkR7SQjdSAU8GIcpDi-iWoRBPTLRQ-L34duenIkQzEnLe4PX7yhrNBcTsjiWlfg5uLf1Pi5nOs1aRKAA__&amp;Key-Pair-Id=K2NXBXLF010TJW"/>
+  <meta property="og:title" content="J.P. Samuel &amp; Associates Structural Engineers"/>
+  <meta property="og:image" content="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/Black+logo+-+no+background-1920w.png?Expires=1766877998&amp;Signature=J5wmm2SSZDZraYhdCDN4tJGeaA1e6~U7SWffsCYyttWG8NKiH5l9~DOgLnm-5D4zyR7GCFrCkfAqkvipQH7F3NReZJFd99s77yBBeV2Kdql-eS3ws9LUL1ZWKGfMS8g2QZ3jcyzHiZSjFPkV2zgy41YgABPs1-2RjAMYo~tu9y-x5nl5LbDio93vINz6OAbggAeZn2Jh4OG-CegBkOIMJQubDENI~xNWKhBCnxAIyyhdS7DDkyx7dNtFXkaCxm9m9-5kr4TkR7SQjdSAU8GIcpDi-iWoRBPTLRQ-L34duenIkQzEnLe4PX7yhrNBcTsjiWlfg5uLf1Pi5nOs1aRKAA__&amp;Key-Pair-Id=K2NXBXLF010TJW"/>
+
+
+
+
+<!-- SYS- MUFORDFfRVVfUFJPRA== -->
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body id="dmRoot" data-page-alias="home"  class="dmRoot dmDesktopBody fix-mobile-scrolling addCanvasBorder dmResellerSite dmLargeBody responsiveTablet "
+      style="padding:0;margin:0;"
+      
+    >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= Site Content ========= -->
+<div id="dm" class='dmwr'>
+    
+    <div class="dm_wrapper standard-var5 widgetStyle-3 standard">
+         <div dmwrapped="true" id="1901957768" class="dm-home-page" themewaschanged="true"> <div dmtemplateid="StandardLayoutMultiD" class="standardHeaderLayout dm-bfs dm-layout-home hasAnimations rows-1200 inMiniHeaderMode hasStickyHeader header-over-content dmPageBody d-page-1716942098 inputs-css-clean dmFreeHeader" id="dm-outer-wrapper" data-page-class="1716942098" data-soch="true" data-background-parallax-selector=".dmHomeSection1, .dmSectionParallex"> <div id="dmStyle_outerContainer" class="dmOuter"> <div id="dmStyle_innerContainer" class="dmInner"> <div class="dmLayoutWrapper standard-var dmStandardDesktop"> <div> <div id="iscrollBody"> <div id="site_content"> <div class="dmHeaderContainer fHeader d-header-wrapper"> <div id="hcontainer" class="u_hcontainer dmHeader p_hfcontainer" freeheader="true" layout="f014fc9487554eb885e18628ee6309e9===header" mini-header-show-only-navigation-row="true" secondary-image="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/White+logo+-+no+background-1920w.png?Expires=1766877998&Signature=GcbFauHG7OgHYkwDdmupMUMo9iyCYHfTnYo1urkPkPTwwIM9hHhZYy5dviu3p8O6d8cxWginqPFaN1msO~U98lNWZ75XiCcFjKJGWgAjq5e29GujM3ZFH1wfiWYvyyinY5PDgMWjVX88AHI2V1Xmw2hBc~f5z02HKUucjxak4rwAcK~HdXQVAWoSQP5cKx6jPxFAZCLr93BvCKrSIfnkHn8AcLhKbWxnaFLzfNqAqEUNHRCq1J-Y5QoVns94Mh75I~yAtab~lk9fEkEpQulmU5lY8Faot52JT8PpISphRKrZwElopg7GQIkbeZc9Z7rUBqfZLv5HAnbeZyNMI4OUjg__&Key-Pair-Id=K2NXBXLF010TJW" has-secondary-image="true" data-scrollable-target="body" data-scrollable-target-threshold="1" data-scroll-responder-id="1" logo-size-target="100%"> <div dm:templateorder="85" class="dmHeaderResp dmHeaderStack noSwitch" id="1709005236"> <div class="u_1538158816 dmRespRow dmDefaultListContentRow fullBleedChanged fullBleedMode" style="text-align:center" id="1538158816"> <div class="dmRespColsWrapper" id="1214755956"> <div class="u_1877378612 small-12 dmRespCol large-6 medium-6" id="1877378612"> <div class="u_1735414691 imageWidget align-center" data-widget-type="image" id="1735414691" data-element-type="image"> <a href="/" id="1614083927"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/Black+logo+-+no+background-1920w.png?Expires=1766877998&Signature=J5wmm2SSZDZraYhdCDN4tJGeaA1e6~U7SWffsCYyttWG8NKiH5l9~DOgLnm-5D4zyR7GCFrCkfAqkvipQH7F3NReZJFd99s77yBBeV2Kdql-eS3ws9LUL1ZWKGfMS8g2QZ3jcyzHiZSjFPkV2zgy41YgABPs1-2RjAMYo~tu9y-x5nl5LbDio93vINz6OAbggAeZn2Jh4OG-CegBkOIMJQubDENI~xNWKhBCnxAIyyhdS7DDkyx7dNtFXkaCxm9m9-5kr4TkR7SQjdSAU8GIcpDi-iWoRBPTLRQ-L34duenIkQzEnLe4PX7yhrNBcTsjiWlfg5uLf1Pi5nOs1aRKAA__&Key-Pair-Id=K2NXBXLF010TJW" id="1200799889" class="" data-dm-image-path="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/Black+logo+-+no+background.png" width="1920" height="387" data-hover-effect="none" onerror="handleImageLoadError(this)"/></a> 
+</div> 
+</div> 
+ <div class="u_1274469021 dmRespCol small-12 large-6 medium-6" id="1274469021"> <nav class="u_1311317796 effect-top-bottom main-navigation unifiednav dmLinksMenu" role="navigation" layout-main="horizontal_nav_layout_3" layout-sub="submenu_horizontal_1" data-show-vertical-sub-items="HOVER" data-divider="SLASH" id="1311317796" dmle_extension="onelinksmenu" data-element-type="onelinksmenu" data-logo-src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/Black+logo+-+no+background-1920w.png" data-nav-structure="HORIZONTAL" wr="true" icon="true" surround="true" adwords="" navigation-id="unifiedNav"> <ul role="menubar" class="unifiednav__container  " data-auto="navigation-pages"> <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/" class="unifiednav__item  dmNavItemSelected    " target="" data-target-page-alias="home" aria-current="page" data-auto="selected-page"> <span class="nav-item-text " data-link-text="
+         Profile
+        " data-auto="page-text-style">Profile<span class="icon icon-angle-down" data-hidden-on-mobile="" data-hidden-on-desktop="" data-hidden-on-tablet=""></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/portfolio" class="unifiednav__item    " target="" data-target-page-alias="portfolio"> <span class="nav-item-text " data-link-text="
+         Portfolio
+        " data-auto="page-text-style">Portfolio<span class="icon icon-angle-down" data-hidden-on-mobile="" data-hidden-on-desktop="" data-hidden-on-tablet=""></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/contact" class="unifiednav__item    " target="" data-target-page-alias="contact"> <span class="nav-item-text " data-link-text="
+         Contact Us
+        " data-auto="page-text-style">Contact Us<span class="icon icon-angle-down" data-hidden-on-mobile="" data-hidden-on-desktop="" data-hidden-on-tablet=""></span> 
+</span> 
+</a> 
+</li> 
+ <li role="menuitem" class=" unifiednav__item-wrap " data-auto="more-pages" data-depth="0"> <a href="/team" class="unifiednav__item    " target="" data-target-page-alias="team"> <span class="nav-item-text " data-link-text="
+         Our Team
+        " data-auto="page-text-style">Our Team<span class="icon icon-angle-down" data-hidden-on-mobile="" data-hidden-on-desktop="" data-hidden-on-tablet=""></span> 
+</span> 
+</a> 
+</li> 
+</ul> 
+</nav> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="stickyHeaderSpacer" id="stickyHeaderSpacer" data-new="true"></div> 
+ <div class="dmRespRow dmRespRowStable dmRespRowNoPadding dmPageTitleRow "> <div class="dmRespColsWrapper"> <div class="large-12 dmRespCol"> <div id="innerBar" class="innerBar lineInnerBar dmDisplay_None"> <div class="titleLine display_None"><hr/></div> 
+<!-- Page title is hidden in css for new responsive sites. It is left here only so we don't break old sites. Don't copy it to new layouts --> <div id="pageTitleText"></div> 
+ <div class="titleLine display_None"><hr/></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div dmwrapped="true" id="dmFirstContainer" class="dmBody u_dmStyle_template_home dm-home-page" themewaschanged="true"> <div id="allWrapper" class="allWrapper"><!-- navigation placeholders --> <div id="dm_content" class="dmContent" role="main"> <div dm:templateorder="170" class="dmHomeRespTmpl mainBorder dmRespRowsWrapper dmFullRowRespTmpl" id="1716942098"> <div class="u_1941417359 dmRespRow dmSectionParallaxNew hasBackgroundOverlay" style="text-align: center;" id="1941417359"> <div class="dmRespColsWrapper" id="1215094190"> <div class="u_1683190946 dmRespCol small-12 medium-12 large-12" id="1683190946" data-anim-desktop="none"> <span id="1464799156"></span> 
+ <div class="u_1100811375 dmNewParagraph" id="1100811375" data-element-type="paragraph" data-version="5" background-image":""}"="" style="transition: none 0s ease 0s; text-align: left;"><p class="m-size-29 text-align-center size-36"><span class="m-font-size-29 font-size-36" style="color:rgb(0, 0, 0);font-weight:normal;display:initial;font-family:'Source Sans Pro';">Engineering Design Compatible with Your Vision.</span><span style="display: initial;"><br/></span></p></div></div> 
+</div> 
+</div> 
+ <div class="u_1205479901 dmRespRow" style="text-align: center;" id="1205479901"> <div class="dmRespColsWrapper" id="1156036926"> <div class="dmRespCol small-12 u_1448521072 medium-4 large-4" id="1448521072"> <span id="1816816911"></span> 
+ <div class="u_1074727078 graphicWidget" data-widget-type="graphic" id="1074727078" data-element-type="graphic" data-layout="graphic-style-1"> <a href="/#technicalcapabilities" id="1351898476" file="false"> <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 64 64" id="1258600286" class="svg u_1258600286" data-icon-custom="true" data-icon-name="design.svg"> <g id="_02-Blueprint" data-name="02-Blueprint"> <path d="M56,27V55a1,1,0,0,1-1,1H21a1,1,0,0,1-1-1V25a1,1,0,0,1,1-1H31a1,1,0,0,1,0,2H22V38.00049h8V31a1,1,0,0,1,2,0v7.00049h2A.99921.99921,0,0,1,34.99951,39v8a.99951.99951,0,0,1-1.999,0V39.99951h-1.998L31,40l-.00244-.00049H22V54H39V45a1,1,0,0,1,2,0v9H54V40H40a1,1,0,0,1-1-1V33a1,1,0,0,1,2,0v5H54V28H49a1,1,0,0,1,0-2h6A1,1,0,0,1,56,27Zm6-8V59.00732a2.98659,2.98659,0,0,1-2.9873,3h-.01905L9,62a7.00849,7.00849,0,0,1-7-7V17a6.9957,6.9957,0,0,1,13.92017-1H41.57965L54.23779,3.32324l.001-.001a4.53543,4.53543,0,1,1,6.41309,6.415L54.39838,16H59A3.00328,3.00328,0,0,1,62,19ZM54.48865,5.90271,39.91315,20.49908,41,21.58594,55.58594,7ZM38.2168,25.78369l3.55938-.59344-2.96649-2.9665ZM58.07434,9.4884,57,8.41406,42.41406,23l1.085,1.085ZM55.92719,4.51312,59.4635,8.04944a2.50475,2.50475,0,0,0-.22522-3.31262A2.53287,2.53287,0,0,0,55.92719,4.51312ZM4,50.10547a6.98965,6.98965,0,0,1,10,0V17A5,5,0,0,0,4,17ZM60,19a1.0013,1.0013,0,0,0-1-1H52.40131l-8.69379,8.70654a1.00071,1.00071,0,0,1-.543.27979l-6,1A.9886.9886,0,0,1,37,28a1.00015,1.00015,0,0,1-.98633-1.16455l1-6a1.00144,1.00144,0,0,1,.27881-.542L39.58258,18H16V55a1,1,0,0,1-2,0,5,5,0,1,0-5,5l50,.00732a.98716.98716,0,0,0,1-1Z"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <div class="u_1284854087 dmNewParagraph" id="1284854087" style="display: block;" data-element-type="paragraph" data-version="5"> <h3 class="text-align-center"><span style="display: initial;">Design</span></h3> 
+</div> <div class="dmNewParagraph u_1957497401" id="1957497401" style="transition: none 0s ease 0s; display: block; text-align: left;" data-version="5"><p class="m-text-align-center text-align-center"><span style="color: rgb(0, 0, 0); display: initial;">Proficient and inspired engineering design solutions.</span></p></div></div> 
+ <div class="dmRespCol small-12 u_1792299358 medium-4 large-4" id="1792299358"> <span id="1750258364"></span> 
+ <div class="u_1482342065 graphicWidget" data-widget-type="graphic" id="1482342065" data-element-type="graphic"> <a href="/#ourservices" id="1965713399" file="false"> <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" id="1543276155" class="svg u_1543276155" data-icon-custom="true" data-icon-name="services1.svg"> <g id="outline"> <path d="M504,88H63A32,32,0,0,0,0,96V408a40,40,0,0,0,40,40H464a8,8,0,0,0,8-8V416h32a8,8,0,0,0,8-8V96A8,8,0,0,0,504,88ZM32,80A16,16,0,0,1,48,96V380.3a31.89,31.89,0,0,0-32,0V96A16,16,0,0,1,32,80ZM456,432H40a24,24,0,0,1-24-24,16,16,0,0,1,32,0,8,8,0,0,0,8,8H456Zm40-32H64V104H496Z"></path> 
+ <path d="M272,208a8,8,0,0,0-8,8v24H176a8,8,0,0,0-8,8V376a8,8,0,0,0,8,8h96a8,8,0,0,0,8-8V336h40v24a8,8,0,0,0,8,8h64a8,8,0,0,0,8-8V336h24a8,8,0,0,0,5.66-2.34l32-32A8,8,0,0,0,464,296V248a8,8,0,0,0-2.34-5.66l-32-32A8,8,0,0,0,424,208Zm176,43.31v41.38L420.69,320H400V288a8,8,0,0,0-8-8h-8v-8a8,8,0,0,0-16,0v16a8,8,0,0,0,8,8h8v56H336V288a8,8,0,0,0-16,0v32H272a8,8,0,0,0-8,8v40H184V312h16a8,8,0,0,0,0-16H184V256h80v40H248a8,8,0,0,0,0,16h24a8,8,0,0,0,8-8V224h40v16a8,8,0,0,0,16,0V224h32v8a8,8,0,0,0,16,0v-8h36.69Z"></path> 
+ <path d="M104,240a24,24,0,0,0,22.62-16H144a8,8,0,0,0,0-16H126.62A24,24,0,1,0,104,240Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,104,208Z"></path> 
+ <path d="M168,166.62V184a8,8,0,0,0,16,0V166.62a24,24,0,1,0-16,0ZM176,136a8,8,0,1,1-8,8A8,8,0,0,1,176,136Z"></path> 
+ <path d="M264,166.62V184a8,8,0,0,0,16,0V166.62a24,24,0,1,0-16,0ZM272,136a8,8,0,1,1-8,8A8,8,0,0,1,272,136Z"></path> 
+ <path d="M328,166.62V184a8,8,0,0,0,16,0V166.62a24,24,0,1,0-16,0ZM336,136a8,8,0,1,1-8,8A8,8,0,0,1,336,136Z"></path> 
+ <path d="M416,166.62V184a8,8,0,0,0,16,0V166.62a24,24,0,1,0-16,0ZM424,136a8,8,0,1,1-8,8A8,8,0,0,1,424,136Z"></path> 
+ <path d="M104,312a24,24,0,0,0,22.62-16H144a8,8,0,0,0,0-16H126.62A24,24,0,1,0,104,312Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,104,280Z"></path> 
+ <path d="M144,352H126.62a24,24,0,1,0,0,16H144a8,8,0,0,0,0-16Zm-40,16a8,8,0,1,1,8-8A8,8,0,0,1,104,368Z"></path> 
+</g> 
+</svg> 
+</a> 
+</div> 
+ <div class="u_1246543167 dmNewParagraph" id="1246543167" style="display: block; transition: none 0s ease 0s; text-align: left;" data-element-type="paragraph" data-version="5"> <h3 class="text-align-center"><span style="display: initial;">Value</span></h3> 
+</div> <div class="dmNewParagraph u_1919258561" id="1919258561" style="transition: none 0s ease 0s; display: block; text-align: left;" data-version="5"><p class="text-align-center m-text-align-center"><span style="display: initial; color: rgb(0, 0, 0);">Providing a comprehensive suite of engineering services.</span></p></div></div> 
+ <div class="dmRespCol small-12 u_1554131406 medium-4 large-4" id="1554131406"> <span id="1559378575"></span> 
+ <div class="u_1594831651 graphicWidget" data-widget-type="graphic" id="1594831651" data-element-type="graphic"> <a href="/#engineeringpurpose" id="1020737284" file="false"> <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewbox="0 0 512 512" id="1164530774" class="svg u_1164530774" data-icon-custom="true" data-icon-name="officebuilding.svg"> <path fill="#C8CACB" d="M267.04 104.384H18.654c-7.953 0-14.4 6.447-14.4 14.4v375.814c0 7.953 6.447 14.4 14.4 14.4H267.04c7.953 0 14.4-6.447 14.4-14.4V118.784c0-7.953-6.447-14.4-14.4-14.4z"></path> 
+ <path fill="#A6AFB2" d="M480.279 36.657H143.331c-5.442 0-9.853 5.681-9.853 12.688V496.31c0 7.008 4.411 12.688 9.853 12.688h336.948c5.442 0 9.853-5.681 9.853-12.688V49.346c0-7.008-4.412-12.689-9.853-12.689z"></path> 
+ <path fill="#597B91" d="M268.756 405h86.097v103.999h-86.097z"></path> 
+ <path fill="#C8CACB" d="M410.15 459.001h-19.176a9.362 9.362 0 1 1 0-18.724h19.176a9.363 9.363 0 0 1 0 18.724z"></path> 
+ <path fill="#597B91" d="M505.081 42.854v-6.549a7.2 7.2 0 0 0-7.2-7.2H125.729a7.2 7.2 0 0 0-7.2 7.2v6.549a7.2 7.2 0 0 0 7.2 7.2H497.88a7.2 7.2 0 0 0 7.201-7.2z"></path> 
+ <path fill="#FF473E" d="M357.901 427.272c6.811 0 11.68-6.405 10.147-13.041c-5.912-25.598-28.849-44.682-56.244-44.682s-50.332 19.083-56.244 44.682c-1.533 6.637 3.336 13.041 10.147 13.041h92.194z"></path> 
+ <path fill="#466677" d="M268.756 427.272h86.097v22.007h-86.097z"></path> 
+ <path fill="#2B3B47" d="M222.443 183.746h-23.976a7.2 7.2 0 0 1-7.2-7.2v-74.027a7.2 7.2 0 0 1 7.2-7.2h23.976a7.2 7.2 0 0 1 7.2 7.2v74.027a7.2 7.2 0 0 1-7.2 7.2zm74.32-7.2v-74.027a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v74.027a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm67.119 0v-74.027a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v74.027a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm67.119 0v-74.027a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v74.027a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm-134.238 89.482v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm67.119 0v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm-67.119 73.627v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm67.119 0v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm-134.239-73.627v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm201.358 0v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm-201.358 73.627v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm201.358 0v-23.764a7.2 7.2 0 0 0-7.2-7.2h-23.976a7.2 7.2 0 0 0-7.2 7.2v23.764a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zM88.354 230.68v-54.386a7.2 7.2 0 0 0-7.2-7.2H57.178a7.2 7.2 0 0 0-7.2 7.2v54.386a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm0 113.025v-54.386a7.2 7.2 0 0 0-7.2-7.2H57.178a7.2 7.2 0 0 0-7.2 7.2v54.386a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2zm0 113.025v-54.386a7.2 7.2 0 0 0-7.2-7.2H57.178a7.2 7.2 0 0 0-7.2 7.2v54.386a7.2 7.2 0 0 0 7.2 7.2h23.976a7.2 7.2 0 0 0 7.2-7.2z"></path> 
+ <path fill="#A6AFB2" d="M88.452 237.88H49.881a5.752 5.752 0 0 1-5.752-5.752v-3.146a5.752 5.752 0 0 1 5.752-5.752h38.571a5.752 5.752 0 0 1 5.752 5.752v3.146a5.752 5.752 0 0 1-5.752 5.752zm5.752 107.272v-3.146a5.752 5.752 0 0 0-5.752-5.752H49.881a5.752 5.752 0 0 0-5.752 5.752v3.146a5.753 5.753 0 0 0 5.752 5.753h38.571a5.753 5.753 0 0 0 5.752-5.753zm0 113.025v-3.146a5.752 5.752 0 0 0-5.752-5.752H49.881a5.752 5.752 0 0 0-5.752 5.752v3.146a5.753 5.753 0 0 0 5.752 5.753h38.571a5.753 5.753 0 0 0 5.752-5.753z"></path> 
+ <path fill="#899396" d="M230.319 183.746h-38.571a5.752 5.752 0 0 1-5.752-5.752v-3.146a5.752 5.752 0 0 1 5.752-5.752h38.571a5.752 5.752 0 0 1 5.752 5.752v3.146a5.752 5.752 0 0 1-5.752 5.752zm72.293-5.752v-3.146a5.752 5.752 0 0 0-5.752-5.752h-38.571a5.752 5.752 0 0 0-5.752 5.752v3.146a5.752 5.752 0 0 0 5.752 5.752h38.571a5.752 5.752 0 0 0 5.752-5.752zm66.541 0v-3.146a5.752 5.752 0 0 0-5.752-5.752H324.83a5.753 5.753 0 0 0-5.753 5.752v3.146a5.752 5.752 0 0 0 5.753 5.752h38.571a5.752 5.752 0 0 0 5.752-5.752zm66.541 0v-3.146a5.752 5.752 0 0 0-5.753-5.752H391.37a5.752 5.752 0 0 0-5.752 5.752v3.146a5.752 5.752 0 0 0 5.752 5.752h38.571a5.752 5.752 0 0 0 5.753-5.752z"></path> 
+</svg> 
+</a> 
+</div> 
+ <div class="u_1464077083 dmNewParagraph" id="1464077083" style="display:block;line-height:initial;" data-element-type="paragraph" data-version="5"> <h3 class="text-align-center"><span style="display: initial;">Purpose</span></h3> 
+</div> <div class="dmNewParagraph u_1841225391" id="1841225391" style="transition: none 0s ease 0s; display: block; text-align: left;" data-version="5"><p class="text-align-center m-text-align-center"><span style="color: rgb(0, 0, 0); display: initial;">Engineering positive outcomes for our clients.</span></p></div></div> 
+</div> 
+</div> 
+ <div class="u_1301017774 dmRespRow" id="1301017774"> <div class="dmRespColsWrapper" id="1586878236"> <div class="u_1773608178 dmRespCol small-12 large-4 medium-4" id="1773608178"> <div class="u_1703307662 imageWidget align-center" data-element-type="image" data-widget-type="image" id="1703307662"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/DALL-E-2023-12-14-16.36.21---A-close-up--minimalistic-image-depicting-a-professional-scene-at-J.P.-Samuel---Associates-Inc.--featuring-a-female-engineer-working-closely-with-a-cli-6d8baf44-f3f5fb9a-1920w.png?Expires=1766877998&Signature=I0jUoZ-saayZ7vjzvDHsUf9Nrua39PJ1w3TCKbvOGQE6FKjm9MsYtVt9cLFLxfd9BL7mu2Wi5oB6fUlYgMhe9kTPiq4jQvF7I4xIapcSWnDx~aA1dXRQssFSirmM5V9ImrGyV7RCs~uPvuqbPpYuM~lNQK0K4MD-JfpBFafcsuIrpj7NqbKf0mkEGcAt~QDqi4o3kmkOHEfezKIvjobB5Vr7bbGPiChUWyLlK8WBsuCRPJbzq9UsYjWv37wryrLUCR-VuicuvjsjK6eBIv9N0ixbO--9fa--tMuv5TcmoQYw5lDWl1rl8zNMlF5MN3E-yFdkNd6eLtFhbS9liTGBTw__&Key-Pair-Id=K2NXBXLF010TJW" alt="" id="1659646662" class="" data-dm-image-path="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/DALL-E-2023-12-14-16.36.21---A-close-up--minimalistic-image-depicting-a-professional-scene-at-J.P.-Samuel---Associates-Inc.--featuring-a-female-engineer-working-closely-with-a-cli-6d8baf44-f3f5fb9a.png" width="851" height="812" onerror="handleImageLoadError(this)"/></div> 
+</div> 
+ <div class="u_1737894265 dmRespCol small-12 large-8 medium-8" id="1737894265"> <div class="u_engineeringpurpose dmNewParagraph" id="engineeringpurpose" style="transition: none 0s ease 0s; text-align: left; display: block;" data-element-type="paragraph" data-version="5" data-anchor="engineering purpose"> <h2 class="text-align-left m-text-align-center m-size-19 size-24"><span class="m-font-size-19 font-size-24" style="color:rgb(0, 0, 0);font-weight:600;display:initial;font-family:'Source Sans Pro';">Engineering Purpose</span></h2> 
+</div> <div class="u_1217108645 dmNewParagraph" id="1217108645" data-version="5" style="transition: none; text-align: left; display: block;"><p class="text-align-left"><span style="color:rgb(43, 57, 74);font-weight:400;display:initial;font-family:'Source Sans Pro';">J.P. Samuel &amp; Associates Inc. brings together an experienced team of professionals who design and deliver innovative and practical solutions to meet any vision. We understand that our customer&rsquo;s needs are diverse and challenging, hence we leverage efficiency through a network of strategic alliances with experts in complimentary fields. We work with an extremely dedicated team of architects, engineers, consultants and contractors to ensure the most adaptive and comprehensive solutions are delivered to you within your time and cost constraints.&nbsp;</span></p><p class="text-align-left"><span style="display: initial;"><br/></span></p><p class="text-align-left"><span class="" style="color:rgb(43, 57, 74);display:initial;" source="" sans="" pro";="" font-weight:="" 400;"=""><span style="color:rgb(43, 57, 74);font-weight:400;display:initial;font-family:'Source Sans Pro';">At J.P. Samuel, we have adopted a team approach on all of our projects. We take an active leadership role in design development and work closely with the project team to ensure that our clients receive full value from our services.</span> 
+</span><span style="display: initial;"><br/></span></p></div> <div class="u_1834038103 imageWidget align-center hide-for-large hide-for-medium" data-element-type="image" data-widget-type="image" id="1834038103"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/structureplans-1920w.jpg?Expires=1766877998&Signature=joNkLmUQEI9~NNNfaVWzxpUSmX0yec14dPxrc6NYRh8OiIHKsuiKu6hCM4JMU-eT3YgMynGsEbJRTJlb56jGQw2nq6CoXtc443e8ujAoyW5CJ~9V-yrCTqC8ux1EHgaDonCWDncncCKMOI0lbHjcMfJISiKLkA6KHDWl8s5J7yWNRlrQ6bhySmPo2QgQ5vFe6GCF~f2OvGwlcK1qD1eLb9qTY2-ScAA4o687~MQeMODPPHA4OYywzqMPkcahCZtZ1SX3Lc4vH23Dx54vAE5-DUeaD~SBFo1sh9ch1La4LR0P15CihECWDTYkzpJfjFikuNXCKmlvNVO0oToGKFpjtg__&Key-Pair-Id=K2NXBXLF010TJW" alt="" id="1764771627" class="" data-dm-image-path="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/structureplans.jpg" width="800" height="600" onerror="handleImageLoadError(this)"/></div> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1109368000 dmRespRow" id="1109368000"> <div class="dmRespColsWrapper" id="1160032812"> <div class="u_1217899324 dmRespCol small-12 large-6 medium-6" id="1217899324"> <div class="u_strongfoundations dmNewParagraph" id="strongfoundations" style="transition: none 0s ease 0s; text-align: left; display: block;" data-element-type="paragraph" data-version="5" data-anchor="strong foundations"> <h2 class="text-align-left m-size-19 m-text-align-center size-24"><span class="font-size-24 m-font-size-19" style="color:rgb(0, 0, 0);font-weight:600;display:initial;font-family:'Source Sans Pro';">Strong Foundations</span></h2> 
+</div> <div class="u_1285078474 dmNewParagraph" id="1285078474" style="transition: none 0s ease 0s; text-align: center;" data-version="5"><p class="text-align-left"><span style="display: initial;">J.P. Samuel and Associates Inc. was founded in 2007 by James Samuel P.Eng. with the objective of providing the structural engineering services to exceed our client's vision and expectations. Even years later, the company still stands behind this claim. We consistently work on improving our service so that we can find the the most effective solution for our customers.<br/></span></p><p class="text-align-left"><span style="display: initial;"><br/></span></p><p class="text-align-left"><span style="display: initial;">Our many years of experience in this industry have provided us with many long-term business relationships which we continuously cultivate. Strong relationships and our desire to continuously improve ourselves have allowed our company to flourish for many years. <br/></span></p></div></div> 
+ <div class="u_1085793603 dmRespCol empty-column small-12 large-6 medium-6 hide-for-small" id="1085793603"></div> 
+</div> 
+</div> 
+ <div class="u_1102762905 dmRespRow dmSectionParallaxNew hasBackgroundOverlay" id="1102762905"> <div class="dmRespColsWrapper" id="1407582347"> <div class="dmRespCol small-12 medium-12 large-12" id="1780875794"> <div class="u_1684043500 dmNewParagraph" id="1684043500" data-version="5" background-image":""}"="" style="text-align: left; transition: none 0s ease 0s; display: block;"><p class="text-align-center m-size-24 size-30"><span class="m-font-size-24 font-size-30" style="color:rgb(255, 255, 255);font-weight:normal;display:initial;font-family:'Source Sans Pro';">Combining Creativity and Efficiency to Embody Usefulness. That is our Purpose.</span></p></div></div> 
+</div> 
+</div> 
+ <div class="u_1228314410 dmRespRow dmSectionParallaxNew" id="1228314410"> <div class="dmRespColsWrapper" id="1136197333"> <div class="dmRespCol large-12 medium-12 small-12 u_1598603171" id="1598603171"> <div class="u_ourservices dmNewParagraph" data-element-type="paragraph" id="ourservices" style="transition: none 0s ease 0s; text-align: center;" data-version="5" data-anchor="our services"> <h3 class="m-size-24 text-align-center size-36"><span class="m-font-size-24 font-size-36" m-font-size-set="true" style="color:rgb(0, 0, 0);font-weight:600;text-decoration:none;display:initial;font-family:'Source Sans Pro';">Our Services</span><span style="display: initial;"><br/></span></h3> 
+</div> <div class="u_1296462960 widget-7b2ba5 dmCustomWidget" data-lazy-load="" data-title="" id="1296462960" dmle_extension="custom_extension" data-element-type="custom_extension" wr="false" icon="false" surround="false" data-widget-id="7b2ba547771b4d4db17e3e2b9f0abd0c" data-widget-version="229" data-widget-config="eyJ0YWJzIjpbeyJpbWFnZSI6Imh0dHBzOi8vY2RuLndlYnNpdGUtZWRpdG9yLm5ldC9zL2RmNzcwODdhMjhhMzQyOTBhMzcwMmU2MjZkNThlZDRiL2RtczNyZXAvbXVsdGkvcGV4ZWxzLWVucmljLWNydXotbC1DMy1CM3Blei02MDM5MTgxLmpwZyIsIml0ZW1MYWJlbCI6IlN0cnVjdHVyYWwgRGVzaWduIiwiaGVhZGluZ1R5cGUiOiJoNCIsIml0ZW1UaXRsZSI6IlN0cnVjdHVyYWwgRGVzaWduIFNlcnZpY2VzIiwiaXRlbURlc2MiOiI8dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT5TdGF0ZS1vZi10aGUtYXJ0IHN0cnVjdHVyYWwgZW5naW5lZXJpbmcgZGVzaWduIHRlY2hub2xvZ3kgaW5jbHVkaW5nIDNEIGxhc2VyIHNjYW5uaW5nLCBwb2ludCBjbG91ZCBhbmQgQklNIG1vZGVsbGluZy48L2xpPjxsaT5TdHJ1Y3R1cmFsIGRlc2lnbiBpbiBzdGVlbCwgcmVpbmZvcmNlZCBjb25jcmV0ZSwgdGltYmVyIGZyYW1pbmcgYW5kIG1hc29ucnkuPC9saT48bGk+U3RydWN0dXJhbCBkZXNpZ24gb2YgYWxsIHR5cGVzIG9mIGJ1aWxkaW5nIGNvbnN0cnVjdGlvbiBpbmNsdWRpbmcgY29tbWVyY2lhbCwgaW5zdGl0dXRpb25hbCwgaGVhdnkgYW5kIGxpZ2h0IEluZHVzdHJpYWwsIG11bHRpc3RvcnksIHJlc2lkZW50aWFsLCBoZWF2eSBlcXVpcG1lbnQgZm91bmRhdGlvbnMuPC9saT48bGk+UHJvZHVjdGlvbiBvZiBwZXJtaXQsIHRlbmRlciwgYW5kIGNvbnN0cnVjdGlvbiBkb2N1bWVudHMuPC9saT48bGk+SW5kdXN0cnkgbGVhZGluZyBzdHJ1Y3R1cmFsIGRlc2lnbiBhbmQgYW5hbHlzaXMgc29mdHdhcmUgaW5jbHVkaW5nIGZpbml0ZSBlbGVtZW50IGFuYWx5c2lzLiBTdWl0ZSBvZiBpbi1ob3VzZSBkZXZlbG9wZWQgc29mdHdhcmUgcHJvZ3JhbXMgZm9yIHRoZSBkZXNpZ24gb2YgY29tcGxleCBzdHJ1Y3R1cmVzLjwvbGk+PC91bD4iLCJzaG93QnRuIjpmYWxzZSwidGV4dE9uTGluayI6IkxlYXJuIG1vcmUiLCJsaW5rIjp7InR5cGUiOiJ1cmwiLCJocmVmIjoiIiwicmF3X3VybCI6IiIsInRhcmdldCI6bnVsbCwicmVsIjpudWxsfX0seyJpbWFnZSI6Imh0dHBzOi8vY2RuLndlYnNpdGUtZWRpdG9yLm5ldC9zL2RmNzcwODdhMjhhMzQyOTBhMzcwMmU2MjZkNThlZDRiL2RtczNyZXAvbXVsdGkvU2NyZWVuc2hvdF80LTMtMjAyNV8xNzEyNThfLmpwZWciLCJpdGVtTGFiZWwiOiIzRCBTY2FubmluZyIsImhlYWRpbmdUeXBlIjoiaDQiLCJpdGVtVGl0bGUiOiIzRCBTY2FubmluZyBzZXJ2aWNlcyIsIml0ZW1EZXNjIjoiPHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+T3VyIHN0YXRlLW9mLXRoZS1hcnQgM0QgbGFzZXIgc2Nhbm5pbmcgdGVjaG5vbG9neSB0cmFuc2Zvcm1zIHRoZSB3YXkgeW91IHZpc3VhbGl6ZSwgZGVzaWduLCBhbmQgZXhlY3V0ZSB5b3VyIHByb2plY3RzLiDCoDwvbGk+PGxpPldlIHByb3ZpZGUgaGlnaC1yZXNvbHV0aW9uIGRhdGEgY2FwdHVyZSB0YWlsb3JlZCB0byBjb21wbGV4IGdlb21ldHJpZXMgYW5kIGNoYWxsZW5naW5nIGVudmlyb25tZW50cy7CoDwvbGk+PGxpPk91ciAzRCBzY2FubmluZyBzZXJ2aWNlcyBjYXRlciB0byBFbmdpbmVlcmluZyBhbmQgY29uc3RydWN0aW9uLCBIZXJpdGFnZSBQcmVzZXJ2YXRpb24sIERhbWFnZSBBc3Nlc3NtZW50LCBJbmZyYXN0cnVjdHVyZSBSZXZpZXdzIGFuZCBTYWZldHkgRW5oYW5jZW1lbnRzLsKgPC9saT48bGk+V2l0aCBvdXIgY29tYmluZWQgZXhwZXJ0aXNlIGluIDNEIHNjYW5uaW5nIGFuZCBCSU0sIEouIFAuIFNhbXVlbCAmYW1wOyBBc3NvY2lhdGVzIEluYy4gZGVsaXZlcnMgc29sdXRpb25zIHRhaWxvcmVkIHRvIHlvdXIgcHJvamVjdOKAmXMgdW5pcXVlIG5lZWRzLsKgPC9saT48L3VsPiIsInNob3dCdG4iOnRydWUsInRleHRPbkxpbmsiOiJNb3JlIGluZm9ybWF0aW9uICIsImxpbmsiOnsidmFsdWUiOiJodHRwczovL2Nkbi53ZWJzaXRlLWVkaXRvci5uZXQvcy9kZjc3MDg3YTI4YTM0MjkwYTM3MDJlNjI2ZDU4ZWQ0Yi9maWxlcy91cGxvYWRlZC8zRF9TY2FubmluZ19icm9jaHVyZS5wZGYiLCJsYWJlbCI6IiIsInR5cGUiOiJmaWxlIiwiaHJlZiI6Imh0dHBzOi8vY2RuLndlYnNpdGUtZWRpdG9yLm5ldC9zL2RmNzcwODdhMjhhMzQyOTBhMzcwMmU2MjZkNThlZDRiL2ZpbGVzL3VwbG9hZGVkLzNEX1NjYW5uaW5nX2Jyb2NodXJlLnBkZiIsInJhd191cmwiOiJodHRwczovL2Nkbi53ZWJzaXRlLWVkaXRvci5uZXQvcy9kZjc3MDg3YTI4YTM0MjkwYTM3MDJlNjI2ZDU4ZWQ0Yi9maWxlcy91cGxvYWRlZC8zRF9TY2FubmluZ19icm9jaHVyZS5wZGYiLCJmaWxlIjp0cnVlfX0seyJpbWFnZSI6Imh0dHBzOi8vY2RuLndlYnNpdGUtZWRpdG9yLm5ldC9zL2RmNzcwODdhMjhhMzQyOTBhMzcwMmU2MjZkNThlZDRiL2RtczNyZXAvbXVsdGkvMTMwMjUzNDQ1Ny1odWdlLmpwZyIsIml0ZW1MYWJlbCI6IlByb2Zlc3Npb25hbCBTZXJ2aWNlcyIsImhlYWRpbmdUeXBlIjoiaDQiLCJpdGVtVGl0bGUiOiJQcm9mZXNzaW9uYWwgU2VydmljZXMiLCJpdGVtRGVzYyI6Ijx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPlByb3ZpZGluZyBvdXIgY2xpZW50cyB3aXRoIHN0cnVjdHVyYWwgZW5naW5lZXJpbmcgZHJhd2luZ3MgaW5jbHVkaW5nOiBzY2hlbWF0aWMsIHBlcm1pdCwgdGVuZGVyIGFuZCBjb25zdHJ1Y3Rpb24gc2VydmljZXMuPC9saT48bGk+QXNzaXN0YW5jZSB3aXRoIGJ1aWxkaW5nIHBlcm1pdHMgY29tcGxpYW5jZSBpbmNsdWRpbmcgb24tc2l0ZSBjb25zdHJ1Y3Rpb24gcmV2aWV3LjwvbGk+PGxpPlByb2Zlc3Npb25hbCBlbmdpbmVlcmluZyBhc3Nlc3NtZW50IHJlcG9ydHMuPC9saT48bGk+U3RydWN0dXJhbCBGZWFzaWJpbGl0eSBzdHVkaWVzLjwvbGk+PGxpPkZvdW5kYXRpb24gZGVzaWduIGZvciBwcmUtZW5naW5lZXJlZCBzdHJ1Y3R1cmVzLjwvbGk+PGxpPlBvaW50IGNsb3VkIGxhc2VyIHNjYW5uaW5nLjwvbGk+PGxpPkJJTSBtb2RlbGxpbmcgYW5kIHJlbmRlcmluZy48L2xpPjxsaT5Qcm9qZWN0IG1hbmFnZW1lbnQgYW5kIGNvbnRyYWN0IGFkbWluaXN0cmF0aW9uLjwvbGk+PGxpPkFyY2hpdGVjdHVyYWwgZGVzaWducyBmb3IgcmVzaWRlbnRpYWwsIGNvbW1lcmNpYWwsIGFuZCBpbnN0dXRpb25hbCBwcm9qZWN0cy48L2xpPjwvdWw+Iiwic2hvd0J0biI6ZmFsc2UsInRleHRPbkxpbmsiOiJMZWFybiBtb3JlIn0seyJpbWFnZSI6Imh0dHBzOi8vY2RuLndlYnNpdGUtZWRpdG9yLm5ldC9zL2RmNzcwODdhMjhhMzQyOTBhMzcwMmU2MjZkNThlZDRiL2RtczNyZXAvbXVsdGkvcGV4ZWxzLWplc2hvb3RzY29tLTgzNDg5Mi5qcGciLCJpdGVtTGFiZWwiOiJSZW5vdmF0aW9ucyIsImhlYWRpbmdUeXBlIjoiaDQiLCJpdGVtVGl0bGUiOiJSZW5vdmF0aW9ucyBhbmQgQWRkaXRpb25zIiwiaXRlbURlc2MiOiI8dWwgY2xhc3M9XCJydGVCbG9jayBkZWZhdWx0TGlzdFwiPjxsaT5TdHJ1Y3R1cmFsIEVuZ2luZWVyaW5nIGFuZCBBcmNoaXRlY3R1cmFsIFNvbHV0aW9ucyBmb3IgcmVub3ZhdGlvbnMgYW5kIGFkZGl0aW9ucyB0byDCoGV4aXN0aW5nIGJ1aWxkaW5ncy48L2xpPjxsaT5XZSBoYXZlIG1hbnkgeWVhcnMgZXhwZXJpZW5jZSBpbiB1bmRlcnN0YW5kaW5nIHRoZSBpbnRyYWNhc2llcyBpbnZvbHZlZCB3aGVuIG1vZGlmeWluZyBleGlzdGluZyBidWlsZGluZ3MuPC9saT48bGk+T3VyIGRlc2lnbnMgc3RhcnQgZnJvbSB0aGUgZ3JvdW5kIHVwIHdpdGggdGhlIGNsaWVudCYjeDI3O3MgZ29hbHMgaW4gbWluZCBhbmQgd2Ugc3RyaXZlIHRvIGFsd2F5cyBtYWludGFpbiBvciBleGNlZWQgdGhlIHJlcXVpcmVkIHRpbWUgYW5kIGNvc3QgY29uc3RyYWludHMuPC9saT48bGk+V2UgdW5kZXJzdGFuZCB0aGF0IGhhdmluZyB5b3VyIHJlc2lkZW50aWFsLCBjb21tZXJjaWFsIG9yIGluZHVzdHJpYWwgc3BhY2Ugb3V0IG9mIGNvbW1pc3Npb24gZHVyaW5nIGNvbnN0cnVjdGlvbiBjYW4gYmUgYSBoZWFkYWNoZSBhbmQgc28gd2UgYWltIHRvIG1ha2UgdGhlIHByb2Nlc3Mgb2YgbW9kaWZ5aW5nIHlvdXIgYnVpbGRpbmcgYXMgc21vb3RoIGFzIHBvc3NpYmxlPC9saT48L3VsPiIsInNob3dCdG4iOmZhbHNlLCJ0ZXh0T25MaW5rIjoiTGVhcm4gbW9yZSJ9LHsiaW1hZ2UiOiJodHRwczovL2Nkbi53ZWJzaXRlLWVkaXRvci5uZXQvcy9kZjc3MDg3YTI4YTM0MjkwYTM3MDJlNjI2ZDU4ZWQ0Yi9kbXMzcmVwL211bHRpL3BleGVscy1qb2huLWxlZS01OTkzMDM3LWZlMGUxYmI3LTgwMDFjMDZmLmpwZyIsIml0ZW1MYWJlbCI6IlN0cnVjdHVyYWwgUmV2aWV3IiwiaGVhZGluZ1R5cGUiOiJoNCIsIml0ZW1UaXRsZSI6IkV2YWx1YXRpb24gb2YgRXhpc3RpbmcgU3RydWN0dXJlcyIsIml0ZW1EZXNjIjoiPHVsIGNsYXNzPVwicnRlQmxvY2sgZGVmYXVsdExpc3RcIj48bGk+V2UgcHJvdmlkZSByZXZpZXdzIG9mIGV4aXN0aW5nIGJ1aWxkaW5nIHN0cnVjdHVyZXMgdG8gYXNzZXNzIHN0cnVjdHVyYWwgYWRlcXVhY3kgYW5kIHN0YWJpbGl0eTwvbGk+PGxpPldlIGFyZSBleHBlcnRzIGluIGV2YWx1YXRpbmcgbWFueSB0eXBlcyBvZiBleGlzdGluZyBzdHJ1Y3R1cmFsIHN5c3RlbXMgaW5jbHVkaW5nIHN0ZWVsLCByZWluZm9yY2VkIGNvbmNyZXRlLCB0aW1iZXIsIGFuZCBtYXNvbnJ5LjwvbGk+PGxpPldlIHByb3ZpZGUgc3RydWN0dXJhbCBhc3Nlc3NtZW50IHJlcG9ydHMgb3IgZmVhc2liaWxpdHkgc3R1ZGllcyB3aGljaCBvdXRsaW5lIGltcHJvdmVtZW50IGFuZCBjb25zZXJ2YXRpb24gb2YgdGhlIGV4aXN0aW5nIGJ1aWxkaW5nIHVuZGVyIHJldmlldy48L2xpPjxsaT5XZSBwcm92aWRlIGVuZ2luZWVyaW5nIGRlc2lnbnMgdG8gbW9kaWZ5IHRoZSBleGlzdGluZyBidWlsZGluZyBzdHJ1Y3R1cmUgdG8gbWVldCBjdXJyZW50IGJ1aWxkaW5nIGNvZGUgcmVndWxhdGlvbnMuPC9saT48L3VsPiIsInNob3dCdG4iOmZhbHNlLCJ0ZXh0T25MaW5rIjoiTGVhcm4gbW9yZSJ9LHsiaW1hZ2UiOiJodHRwczovL2Nkbi53ZWJzaXRlLWVkaXRvci5uZXQvcy9kZjc3MDg3YTI4YTM0MjkwYTM3MDJlNjI2ZDU4ZWQ0Yi9kbXMzcmVwL211bHRpL3BleGVscy1waG90by00MjE4ODguanBlZyIsIml0ZW1MYWJlbCI6IkdyZWVuIEJ1aWxkaW5ncyIsImhlYWRpbmdUeXBlIjoiaDQiLCJpdGVtVGl0bGUiOiJHcmVlbiBCdWlsZGluZ3MiLCJpdGVtRGVzYyI6Ijx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPlN0cnVjdHVyYWwgYXNzZXNzbWVudCByZXBvcnRzIGFuZCBmZWFzaWJpbGl0eSBzdHVkaWVzIGZvciByb29mdG9wIHNvbGFyIHBhbmVsIGluc3RhbGxhdGlvbnMgb24gZXhpc3RpbmcgYnVpbGRpbmdzLjwvbGk+PGxpPlNvbGFyIGNhcnBvcnQgY2Fub3B5IGRlc2lnbi48L2xpPjxsaT5TdHJ1Y3R1cmFsIGV2YWx1YXRpb24gZm9yIHRoZSBjb25zdHJ1Y3Rpb24gb2YgZ3JlZW4gcm9vZnMuPC9saT48bGk+TEVFRCBiYXNlZCBwcm9qZWN0IGNvbnRyaWJ1dGlvbnMuPC9saT48bGk+U3VzdGFpbmFiaWxpdHkgaXMgYnVpbHQgaW50byB0aGUgZGVzaWduIG9mIGFsbCBvdXIgcHJvamVjdHMgZnJvbSB0aGUgZ3JvdW5kIHVwLjwvbGk+PC91bD4iLCJzaG93QnRuIjpmYWxzZSwidGV4dE9uTGluayI6IkxlYXJuIG1vcmUifSx7ImltYWdlIjoiaHR0cHM6Ly9jZG4ud2Vic2l0ZS1lZGl0b3IubmV0L3MvZGY3NzA4N2EyOGEzNDI5MGEzNzAyZTYyNmQ1OGVkNGIvZG1zM3JlcC9tdWx0aS9wZXhlbHMtZmF1eGVscy0zMTg0MzA2LmpwZyIsIml0ZW1MYWJlbCI6IlZhbHVlIEVuZ2luZWVyaW5nIiwiaGVhZGluZ1R5cGUiOiJoNCIsIml0ZW1UaXRsZSI6IkVmZmljaWVuY3kgZnJvbSBTdGFydCB0byBGaW5pc2giLCJpdGVtRGVzYyI6Ijx1bCBjbGFzcz1cInJ0ZUJsb2NrIGRlZmF1bHRMaXN0XCI+PGxpPldlIGFsd2F5cyBjb21wbGV0ZSBhIHZhbHVlIGFuYWx5c2lzIGZvciBlYWNoIHByb2plY3Qgd2hpY2ggZW50YWlscyBhIHN5c3RlbWF0aWMgYXBwcm9hY2ggdG8gZmluZGluZyBjb3N0IGFuZCB0aW1lIHNhdmluZ3MgYnkgdGhpbmtpbmcgY3JlYXRpdmVseSwgb3V0c2lkZS10aGUtYm94IGFuZCBjaGFsbGVuZ2luZyBleGlzdGluZyBwcm9jZWR1cmVzLjwvbGk+PGxpPlByb2plY3RzIHN0YXJ0IHdpdGggYW4gaW4tZGVwdGggcGxhbm5pbmcgc3RhZ2UgdGhhdCBpbnZvbHZlcyBvdXRsaW5pbmcgdGhlIHZpc2lvbiB0aHJvdWdoIG9wZW4gZGlzY3Vzc2lvbiBhbW9uZ3N0IG91ciB0ZWFtIGFuZCB3aXRoIG91ciBjbGllbnRzLjwvbGk+PGxpPlByb3ZpZGluZyBtdWx0aXBsZSBkZXNpZ24gb3B0aW9ucyB3aXRoIGFuIG91dGxpbmUgb2YgdGhlIGJlbmVmaXRzIGFuZCBkcmF3YmFja3Mgb2YgZWFjaDwvbGk+PGxpPsKgV2l0aG91dCBldmVyeSBjb21wcm9taXNpbmcgZGVzaWduIHF1YWxpdHksIHdlIGFsd2F5cyBhaW0gdG8gY2hvb3NlIHRoZSBtb3N0IGNvc3QgZWZmaWNpZW50IGRlc2lnbiB0aGF0IGZpdHMgd2l0aGluIG91ciBjbGllbnQmI3gyNztzIHZpc2lvbiBhbmQgdGltZSBjb25zdHJhaW50cy48L2xpPjwvdWw+Iiwic2hvd0J0biI6ZmFsc2UsInRleHRPbkxpbmsiOiJJdGVtIExpbmsifV0sInNob3dJbWFnZXMiOnRydWUsImxheW91dHMiOiJsYXlvdXQtYiIsIm1vYmlsZUxheW91dFRvZ2dsZSI6ZmFsc2UsImZ1bGxXaWR0aEltZyI6dHJ1ZSwiaW1hZ2VQb3NpdGlvbiI6ZmFsc2UsInJldmVyc2VUYWJzRGlyZWN0aW9uIjpmYWxzZSwicmV2ZXJzZUJ0bkRpciI6ZmFsc2V9"> <div class="wrapper layout-b"> <nav class="nav desktop  swipe-menu "> <div class="tab-label active layout-b "> <h4 class="horizontal-label">Structural Design</h4> 
+</div> 
+ <div class="tab-label  layout-b not-active"> <h4 class="horizontal-label">3D Scanning</h4> 
+</div> 
+ <div class="tab-label  layout-b not-active"> <h4 class="horizontal-label">Professional Services</h4> 
+</div> 
+ <div class="tab-label  layout-b not-active"> <h4 class="horizontal-label">Renovations</h4> 
+</div> 
+ <div class="tab-label  layout-b not-active"> <h4 class="horizontal-label">Structural Review</h4> 
+</div> 
+ <div class="tab-label  layout-b not-active"> <h4 class="horizontal-label">Green Buildings</h4> 
+</div> 
+ <div class="tab-label  layout-b not-active"> <h4 class="horizontal-label">Value Engineering</h4> 
+</div> 
+</nav> 
+ <div class="tab layout-b active 
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-enric-cruz-l-C3-B3pez-6039181-1920w.jpg?Expires=1766877998&Signature=igmGmGDK2r0IRl5iEW5y6MNFl1h0QKPWzHJgflfC-ydzC8~wNfnZwep~yyJ9ZUGom~Emrk3HNLluWXM52qy7CIfaCPbRRWY05wGS7~Sgw8sLgogTXsbYAZqkyxdan2Ryi2vmiodM0FgMGqeyrvzDA6u4EpLYwSaCx9STcx0Kxj4kJv4OBFGqxQElNpSjsaflEf4JE5DxoBUp-g96cEOsg3vqroRcJvO2hAb9lqkKbQ-fdWu0S~JMd1X~wD-7UemkiIh0hpGM8dNW1hnU2Fzwfm9nHLnBuVhSti8IV-XNTCfUKx5APma~QWUo6ffehXqIrxJufg~npCBbB0tPwp8EUg__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-enric-cruz-l-C3-B3pez-6039181-1920w.jpg?Expires=1766877998&Signature=igmGmGDK2r0IRl5iEW5y6MNFl1h0QKPWzHJgflfC-ydzC8~wNfnZwep~yyJ9ZUGom~Emrk3HNLluWXM52qy7CIfaCPbRRWY05wGS7~Sgw8sLgogTXsbYAZqkyxdan2Ryi2vmiodM0FgMGqeyrvzDA6u4EpLYwSaCx9STcx0Kxj4kJv4OBFGqxQElNpSjsaflEf4JE5DxoBUp-g96cEOsg3vqroRcJvO2hAb9lqkKbQ-fdWu0S~JMd1X~wD-7UemkiIh0hpGM8dNW1hnU2Fzwfm9nHLnBuVhSti8IV-XNTCfUKx5APma~QWUo6ffehXqIrxJufg~npCBbB0tPwp8EUg__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">Structural Design Services</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>State-of-the-art structural engineering design technology including 3D laser scanning, point cloud and BIM modelling.</li><li>Structural design in steel, reinforced concrete, timber framing and masonry.</li><li>Structural design of all types of building construction including commercial, institutional, heavy and light Industrial, multistory, residential, heavy equipment foundations.</li><li>Production of permit, tender, and construction documents.</li><li>Industry leading structural design and analysis software including finite element analysis. Suite of in-house developed software programs for the design of complex structures.</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "></div> 
+</div> 
+</div> 
+ <div class="tab layout-b  
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/Screenshot_4-3-2025_171258_-1920w.jpeg?Expires=1766877998&Signature=BozoSBJ9b-sHMy731LC-C4d~AAkD3fOby59HWD5Bwn5e41BnPe~qIEvyftRJTJFiCGPH-ICPcYJnswP~TDuXpuSYKUAVHXwUTGeQrKDDwslSc7ly6e1N0YhZhp1VlW8cYxzGDlWCS5ce99X2TLk0n3aKLvyRVaFNYghgs2SWjfbKWJKy54oOBJm7QD0O2p8xVSz-BRMflYvbDhPTqjDOqYmZQ~sJH1pTR7F3eaxP1MoDOYpdeCN2rZlRHFLQZfldUB73VNLlSVjIAzWeYK02NqNBiliEdD3Lpfq8Quzz~W8QMiJhOVTR8U9ezz5qAN7AZvMqgCLvvNzoednGSdfEnQ__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/Screenshot_4-3-2025_171258_-1920w.jpeg?Expires=1766877998&Signature=BozoSBJ9b-sHMy731LC-C4d~AAkD3fOby59HWD5Bwn5e41BnPe~qIEvyftRJTJFiCGPH-ICPcYJnswP~TDuXpuSYKUAVHXwUTGeQrKDDwslSc7ly6e1N0YhZhp1VlW8cYxzGDlWCS5ce99X2TLk0n3aKLvyRVaFNYghgs2SWjfbKWJKy54oOBJm7QD0O2p8xVSz-BRMflYvbDhPTqjDOqYmZQ~sJH1pTR7F3eaxP1MoDOYpdeCN2rZlRHFLQZfldUB73VNLlSVjIAzWeYK02NqNBiliEdD3Lpfq8Quzz~W8QMiJhOVTR8U9ezz5qAN7AZvMqgCLvvNzoednGSdfEnQ__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">3D Scanning services</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>Our state-of-the-art 3D laser scanning technology transforms the way you visualize, design, and execute your projects. &nbsp;</li><li>We provide high-resolution data capture tailored to complex geometries and challenging environments.&nbsp;</li><li>Our 3D scanning services cater to Engineering and construction, Heritage Preservation, Damage Assessment, Infrastructure Reviews and Safety Enhancements.&nbsp;</li><li>With our combined expertise in 3D scanning and BIM, J. P. Samuel &amp; Associates Inc. delivers solutions tailored to your project&rsquo;s unique needs.&nbsp;</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "> <a class="dmWidget button-class" value="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/files/uploaded/3D_Scanning_brochure.pdf" label="" type="file" href="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/files/uploaded/3D_Scanning_brochure.pdf?Expires=1766877998&Signature=F9z9yb9eUPKeJZSafEtWt~0TheATzrDy6aOu2oQx9vDFX0R1G7DCndJjr7PaUkt2v3~7LLw0QHQdMktMHAPBvDwKNL3A8JD-fDHC5jy0BKPDf6Eq7OIoCoR8ZV4Kox8kQhwwBfK6MjwMxFkTdEqAKWNeW3gEx8XlNo4-Lw09b6VmRCg74feR7-ySybAbGj-5RLx77H2caS1d2peGxlXPu6kD7x2OBbDq20YTBfBbQGaXxned5-9hzQF2tP9t-iW9ZQGQQcrPvHub9EtTbHRcDPh4uE8uCxLVhZ8fw9pFj5f7KlK-olMf-OCHJihnhhnxnFnFDu2O6dY55bfhld0~KQ__&Key-Pair-Id=K2NXBXLF010TJW" raw_url="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/files/uploaded/3D_Scanning_brochure.pdf" file="true"> <span class="text">More information</span> 
+ <span class="iconBg"></span> 
+</a> 
+</div> 
+</div> 
+</div> 
+ <div class="tab layout-b  
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/1302534457-huge-1920w.jpg?Expires=1766877998&Signature=V4eo1N9j8VS1-Dt85NOg-Jk1KQftVE6B1L8HQcVU1uAAssgyT74qr8JS9YqC8grCFEc1yWexneW1Oo~PhQT0GgFm~Rk1DxlYu4fLhbueDq2OvNuKqX0pFA5io8NaEtr~018P6jU9381RnfB1SeYEpYZTD0n~ewOIYL7R6NLGAeD3j~jEke4yW-zEvutA0fRzerMk~zOaj9aigLY4IIisshpg9x~NPZzS~Djm61~0bjjm4fS-5QqT2-53WjuXfaNTJlrQH8XzVotpTi3eaEPw0YrxlVSQdv4JyBPliG-PU9azQv7IubJNDSfLnElDgywsCjiGDvo0-II4525cmHODPg__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/1302534457-huge-1920w.jpg?Expires=1766877998&Signature=V4eo1N9j8VS1-Dt85NOg-Jk1KQftVE6B1L8HQcVU1uAAssgyT74qr8JS9YqC8grCFEc1yWexneW1Oo~PhQT0GgFm~Rk1DxlYu4fLhbueDq2OvNuKqX0pFA5io8NaEtr~018P6jU9381RnfB1SeYEpYZTD0n~ewOIYL7R6NLGAeD3j~jEke4yW-zEvutA0fRzerMk~zOaj9aigLY4IIisshpg9x~NPZzS~Djm61~0bjjm4fS-5QqT2-53WjuXfaNTJlrQH8XzVotpTi3eaEPw0YrxlVSQdv4JyBPliG-PU9azQv7IubJNDSfLnElDgywsCjiGDvo0-II4525cmHODPg__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">Professional Services</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>Providing our clients with structural engineering drawings including: schematic, permit, tender and construction services.</li><li>Assistance with building permits compliance including on-site construction review.</li><li>Professional engineering assessment reports.</li><li>Structural Feasibility studies.</li><li>Foundation design for pre-engineered structures.</li><li>Point cloud laser scanning.</li><li>BIM modelling and rendering.</li><li>Project management and contract administration.</li><li>Architectural designs for residential, commercial, and instutional projects.</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "></div> 
+</div> 
+</div> 
+ <div class="tab layout-b  
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-jeshootscom-834892-1920w.jpg?Expires=1766877998&Signature=gZGhTqn3DXOmK~Bdjg12necTHmIn9qDdxWkxO5KXeW6EKJ-KCsHWh9GXzsi0Dmlcd3kLGjLGV4xdrGen0sTVQXDYFZK9oPsb8H4KiGhpzbFMOwt0prDeGs79VUT8TKC2PlGg6aMDL0IIrfpR9U4XwhzB6ouJEBWByMATyrl-Bi~cNIRtjTyOHaLSBJTXts3-u3yhbHA548Nr87aNgMKvj6k4M2rK-FQrONc4OqKOwF2NXqvHsHXyJvAdf-f5Tn0OOpihCd1mVNQT92s4EFEUqDu9kynYDhrJ9MjkbpeGXdB9kSgYH5xYZS2Ww7IfcTvxPVRGJrJCbtS~Pjmc~6TmqQ__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-jeshootscom-834892-1920w.jpg?Expires=1766877998&Signature=gZGhTqn3DXOmK~Bdjg12necTHmIn9qDdxWkxO5KXeW6EKJ-KCsHWh9GXzsi0Dmlcd3kLGjLGV4xdrGen0sTVQXDYFZK9oPsb8H4KiGhpzbFMOwt0prDeGs79VUT8TKC2PlGg6aMDL0IIrfpR9U4XwhzB6ouJEBWByMATyrl-Bi~cNIRtjTyOHaLSBJTXts3-u3yhbHA548Nr87aNgMKvj6k4M2rK-FQrONc4OqKOwF2NXqvHsHXyJvAdf-f5Tn0OOpihCd1mVNQT92s4EFEUqDu9kynYDhrJ9MjkbpeGXdB9kSgYH5xYZS2Ww7IfcTvxPVRGJrJCbtS~Pjmc~6TmqQ__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">Renovations and Additions</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>Structural Engineering and Architectural Solutions for renovations and additions to &nbsp;existing buildings.</li><li>We have many years experience in understanding the intracasies involved when modifying existing buildings.</li><li>Our designs start from the ground up with the client's goals in mind and we strive to always maintain or exceed the required time and cost constraints.</li><li>We understand that having your residential, commercial or industrial space out of commission during construction can be a headache and so we aim to make the process of modifying your building as smooth as possible</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "></div> 
+</div> 
+</div> 
+ <div class="tab layout-b  
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-john-lee-5993037-fe0e1bb7-8001c06f-1920w.jpg?Expires=1766877998&Signature=k7Yf2XlsO2PT~jCveHoDYBbfu8K84Nkf-GSzQSLNQAJCHy3jaWMsEBXSTC6cQPC0Jk3g5Z8kzNfn~FhGEoMaHAmyBXwQG5PitCn4WOiVU~gMRUXI8Pc59l4i9Han~D1rBStnuh7BC5oLgKVCIqqkx2k3B2ZiMmCsHmDvhV8m45ygXCiPglxlTTBVXFJK-ozDdA16x1imDnYenzCnqVcjC52qqBTDUZCOqugfsJ1hkSHXP75qvJIkK5QRgjVKZX9HyVkoh60kDbRKcxf89Mxr~IC5bdjBrSsG5MoH6HIZZX6KkpR0dC8NbZKbGXJCLZchjWpOocLz6HJ3gd2Z0~M6mA__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-john-lee-5993037-fe0e1bb7-8001c06f-1920w.jpg?Expires=1766877998&Signature=k7Yf2XlsO2PT~jCveHoDYBbfu8K84Nkf-GSzQSLNQAJCHy3jaWMsEBXSTC6cQPC0Jk3g5Z8kzNfn~FhGEoMaHAmyBXwQG5PitCn4WOiVU~gMRUXI8Pc59l4i9Han~D1rBStnuh7BC5oLgKVCIqqkx2k3B2ZiMmCsHmDvhV8m45ygXCiPglxlTTBVXFJK-ozDdA16x1imDnYenzCnqVcjC52qqBTDUZCOqugfsJ1hkSHXP75qvJIkK5QRgjVKZX9HyVkoh60kDbRKcxf89Mxr~IC5bdjBrSsG5MoH6HIZZX6KkpR0dC8NbZKbGXJCLZchjWpOocLz6HJ3gd2Z0~M6mA__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">Evaluation of Existing Structures</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>We provide reviews of existing building structures to assess structural adequacy and stability</li><li>We are experts in evaluating many types of existing structural systems including steel, reinforced concrete, timber, and masonry.</li><li>We provide structural assessment reports or feasibility studies which outline improvement and conservation of the existing building under review.</li><li>We provide engineering designs to modify the existing building structure to meet current building code regulations.</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "></div> 
+</div> 
+</div> 
+ <div class="tab layout-b  
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-photo-421888-1920w.jpeg?Expires=1766877998&Signature=UjFo5or0BpsIQKKx-Kmvomr6MsoDYs4wdkbmyHHvMmYUBESjpQk6vqPiUEP95JitVYiyGz-LPWGG-NxN4CI7CKQIXhJOwm5nXDbPhs4pV62VNl2~TWH8ZnzTbNsugrLkq3UEW2-jpFnzkUCBtjSNjI1h1wKiEJNpWycjRrdCIKHBTadwZWvnNm1Gj--vGXdKMDQcYkJFcdxwNVXZoZN0-QDNNM9FSjiuqKil68O6TI82CcPj7TmBvvjLX8baM4glZd3jCqQBz9L3WGmAcXKRkmIF-BeNG9a1oat-JrLp8vx-SLn2nkMwTxGKKlMvhzL63-bDAIKw9rWUBeuL2cRcQg__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-photo-421888-1920w.jpeg?Expires=1766877998&Signature=UjFo5or0BpsIQKKx-Kmvomr6MsoDYs4wdkbmyHHvMmYUBESjpQk6vqPiUEP95JitVYiyGz-LPWGG-NxN4CI7CKQIXhJOwm5nXDbPhs4pV62VNl2~TWH8ZnzTbNsugrLkq3UEW2-jpFnzkUCBtjSNjI1h1wKiEJNpWycjRrdCIKHBTadwZWvnNm1Gj--vGXdKMDQcYkJFcdxwNVXZoZN0-QDNNM9FSjiuqKil68O6TI82CcPj7TmBvvjLX8baM4glZd3jCqQBz9L3WGmAcXKRkmIF-BeNG9a1oat-JrLp8vx-SLn2nkMwTxGKKlMvhzL63-bDAIKw9rWUBeuL2cRcQg__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">Green Buildings</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>Structural assessment reports and feasibility studies for rooftop solar panel installations on existing buildings.</li><li>Solar carport canopy design.</li><li>Structural evaluation for the construction of green roofs.</li><li>LEED based project contributions.</li><li>Sustainability is built into the design of all our projects from the ground up.</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "></div> 
+</div> 
+</div> 
+ <div class="tab layout-b  
+                "> <div class="image-container layout-b" style="background-image: url('https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-fauxels-3184306-1920w.jpg?Expires=1766877998&Signature=niHlsbjGEKTndB7BiHqnzTCwFfonlWNKDyjhKPnQRw1XObNMEyhq2QOr7xxGvpCXcRyqUArsbgOhwVPGlu0NJbbZ3FU1~rgoBLQV3M8sJmSZk2sDvzNuv0wwSIF29qPjmHCuotAuc4XvaMWDBpxOqFCIfqhfJiw6kgV2r6jcF04ruNktSugIS-KoUX68Qj-co7vFaabNu5yMViK0bQh6XbRU39K-30SUPOTUM5vVBIT8i7pZhclzTwx50SdcizhgZr9D8I~HOJwcqfpSgTJK~lLqAcJeeiHAeimUDl6zZmO9wqSqEYYPYrAObEtpz5PdhdDspXau6hSYY9m8DlorWQ__&Key-Pair-Id=K2NXBXLF010TJW');"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/pexels-fauxels-3184306-1920w.jpg?Expires=1766877998&Signature=niHlsbjGEKTndB7BiHqnzTCwFfonlWNKDyjhKPnQRw1XObNMEyhq2QOr7xxGvpCXcRyqUArsbgOhwVPGlu0NJbbZ3FU1~rgoBLQV3M8sJmSZk2sDvzNuv0wwSIF29qPjmHCuotAuc4XvaMWDBpxOqFCIfqhfJiw6kgV2r6jcF04ruNktSugIS-KoUX68Qj-co7vFaabNu5yMViK0bQh6XbRU39K-30SUPOTUM5vVBIT8i7pZhclzTwx50SdcizhgZr9D8I~HOJwcqfpSgTJK~lLqAcJeeiHAeimUDl6zZmO9wqSqEYYPYrAObEtpz5PdhdDspXau6hSYY9m8DlorWQ__&Key-Pair-Id=K2NXBXLF010TJW" alt="" class="image" onerror="handleImageLoadError(this)"/></div> 
+ <div class="tab-space"></div> 
+ <div class="tab-text-container"> <div class="tab-description"> <div class="desc-title"> <p class="">Efficiency from Start to Finish</p> 
+</div> 
+ <p></p> 
+ <ul class="rteBlock defaultList"><li>We always complete a value analysis for each project which entails a systematic approach to finding cost and time savings by thinking creatively, outside-the-box and challenging existing procedures.</li><li>Projects start with an in-depth planning stage that involves outlining the vision through open discussion amongst our team and with our clients.</li><li>Providing multiple design options with an outline of the benefits and drawbacks of each</li><li>&nbsp;Without every compromising design quality, we always aim to choose the most cost efficient design that fits within our client's vision and time constraints.</li></ul> 
+ <p></p> 
+</div> 
+ <div class="btn-container "></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1464979948 dmRespRow" style="text-align: center;" id="1464979948"> <div class="dmRespColsWrapper" id="1395943937"> <div class="u_1550985426 dmRespCol small-12 large-6 medium-6" id="1550985426"> <span id="1864461153"></span> 
+ <div class="u_1213046136 imageWidget align-center hide-for-medium hide-for-large" data-element-type="image" data-widget-type="image" id="1213046136"><img src="https://le-cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/opt/lampos-aritonang-E3IQoyfChoE-unsplash-1920w.jpg?Expires=1766877998&Signature=XSee3LxKcwKkxmLMhX5tDaNruSybKubU9vhMmTPmtp2KDtsZXJLE46IYYlCazvxeruP6VpjDYbQ2MYQqQ49izpqAZQy-6jE4HqJvcFP24GId-KTst79xv7rZXveW5d4Jy20ktIUXxTKL-r2JEf8N3GzjCFRVUycf-eZG0B-E32YXlkTt3qVYOLB05U2aD8WBaVpi7BKRS95u5gLPBRLbZBZimxeEiBFdHMiYXy4FWZOYyTcjQYYREL68JOv8O4Rm0ZyYCMUbdYGOhFc683E5HjLSSLzsotXpUzR0D6md5~Fd7wfA4Rj8OipQIkRIncMXeq2g6DW9bgUDLYYLNlkiGA__&Key-Pair-Id=K2NXBXLF010TJW" alt="" id="1891494536" class="" data-dm-image-path="https://cdn.website-editor.net/s/df77087a28a34290a3702e626d58ed4b/dms3rep/multi/lampos-aritonang-E3IQoyfChoE-unsplash.jpg" width="1920" height="1280" onerror="handleImageLoadError(this)"/></div> 
+ <div class="u_technicalcapabilities dmNewParagraph" id="technicalcapabilities" style="transition: none 0s ease 0s; display: block; text-align: left;" data-element-type="paragraph" data-version="5" data-anchor="technical capabilities"> <h2 class="m-text-align-center m-size-19 size-24"><span class="font-size-24 m-font-size-19" style="color:rgb(0, 0, 0);font-weight:600;display:initial;font-family:'Source Sans Pro';">Technical Capabilities</span></h2> 
+</div> <div class="u_1644094960 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1644094960"> <ul class="defaultList bullet"><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display:initial;font-family:'Source Sans Pro';">J.P. Samuel &amp; Associate&rsquo;s staff are highly skilled in the design of reinforced concrete, steel, masonry and timber structures.</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display:initial;font-family:'Source Sans Pro';">We regularly use a variety of structural analysis software including finite element analysis for complex structural systems.</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display:initial;font-family:'Source Sans Pro';">We perform detailed calculations via processes that have been developed over the variety of structures that have been designed and analyzed by our staff.</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display:initial;font-family:'Source Sans Pro';">State of the art drafting, BIM software and 3D laser scanning allows us to create expertly detailed structural drawings</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display:initial;font-family:'Source Sans Pro';">3D point cloud modelling when it is suitable to the enhancement of the project deliverables.</span></li><li class="m-size-16"><span class="m-font-size-16" m-font-size-set="true" style="display:initial;font-family:'Source Sans Pro';">Our staff have many years of experience required to perform detailed site reviews during construction.&nbsp;</span><span style="display: initial;"><br/></span></li></ul> 
+</div> 
+ <div class="u_1119976327 dmNewParagraph" id="1119976327" style="transition:opacity 1s ease-in-out;display:block;line-height:initial;" data-element-type="paragraph" data-version="5"> <h2 class="m-text-align-center m-size-19 size-24"><span class="m-font-size-19 font-size-24" style="color:rgb(0, 0, 0);font-weight:600;display:initial;font-family:'Source Sans Pro';">Licensed to Practice Engineering Across Canada</span></h2> 
+</div> <div class="u_1311194499 dmNewParagraph" data-element-type="paragraph" data-version="5" id="1311194499"> <ul class="defaultList"><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Professional Engineers of Ontario (PEO)</span></li><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Engineers &amp; Geoscientists British Columbia (EGBC)</span></li><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Association of Professional Engineers &amp; Geoscientists of Alberta (APEGA)</span></li><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Association of Professional Engineers and Geoscientists of Saskatchewan (APEGS)</span></li><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Association of Professional Engineers and Geoscientists of New Brunswick (APENB)</span></li><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Engineers Nova Scotia&nbsp;</span></li><li><span style="display:unset;font-family:'Source Sans Pro';">Member of Association of Professional Engineers of the Province of PEI</span><span style="display: initial;"><br/></span></li></ul> 
+</div> 
+</div> 
+ <div class="u_1531484121 dmRespCol empty-column small-12 hide-for-small large-6 medium-6" id="1531484121"></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+ <div class="sticky-widgets-container-global" id="1606001469"></div> 
+ <div class="dmFooterContainer"> <div id="fcontainer" class="f_hcontainer dmFooter p_hfcontainer"> <div dm:templateorder="250" class="dmFooterResp generalFooter" id="1943048428"> <div class="u_1825852752 dmRespRow" style="text-align: center;" id="1825852752"> <div class="dmRespColsWrapper" id="1061817170"> <div class="dmRespCol small-12 large-6 medium-6" id="1676361322"> <div class="u_1203124676 dmNewParagraph" id="1203124676" style="transition: none 0s ease 0s; text-align: left;" data-version="5"><p class="text-align-center"><span class="" style="display: initial; color: rgb(255, 255, 255);"><span style="display: initial; color: rgb(255, 255, 255);">1040 Garner Road West</span> 
+</span></p><p class="text-align-center"><span class="" style="display: initial; color: rgb(255, 255, 255);"><span style="display: initial; color: rgb(255, 255, 255);">Suite C203</span> 
+</span></p><p class="text-align-center"><span style="display: initial; color: rgb(255, 255, 255);">Ancaster, ON</span></p><p class="text-align-center"><span style="color: rgb(255, 255, 255); display: initial;">Canada L9G 0J2</span></p></div></div> 
+ <div class="dmRespCol large-6 medium-6 small-12 u_1931313881" id="1931313881"> <div class="u_1627408146 dmNewParagraph" id="1627408146" style="transition: opacity 1s ease-in-out;" data-version="5"><p class="text-align-center"><span style="display: initial; color: rgb(255, 255, 255);">info@jpsamuel.com</span></p><p class="text-align-center"><span style="display: initial; color: rgb(255, 255, 255);">(647) 671-8530</span><span style="display: initial;"><br/></span></p></div> <a data-inject="home-At1subscriptionButtonAnchor" data-display-type="block" class="u_1565635399 align-center dmButtonLink dmWidget dmWwr default dmOnlyButton dmDefaultGradient button_2" file="false" href="/contact" id="1565635399" data-element-type="dButtonLinkId"> <span class="iconBg" id="1800107850"> <span class="icon hasFontIcon icon-star" id="1125059666"></span> 
+</span> 
+ <span data-inject="home-At1subscriptionButton" class="text" id="1179763845">Contact Us</span> 
+</a> 
+</div> 
+</div> 
+</div> 
+ <div class="u_1629893749 dmRespRow" style="text-align: center;" id="1629893749"> <div class="dmRespColsWrapper" id="1150845423"> <div class="u_1148861725 dmRespCol small-12 medium-12 large-12" id="1148861725"> <span id="1775211162"></span> 
+ <div class="u_1144576694 dmNewParagraph" id="1144576694" style="transition: opacity 1s ease-in-out 0s; text-align: center;" data-version="5"><p class="text-align-center"><span class="" style="display: initial; color: rgb(255, 255, 255);"><span style="display: initial; color: rgb(255, 255, 255);">&copy; J.P. Samuel &amp; Associates Inc.</span> 
+</span></p></div></div> 
+</div> 
+</div> 
+</div> 
+ <div id="1236746004" dmle_extension="powered_by" data-element-type="powered_by" icon="true" surround="false"></div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+</div> 
+
+    </div>
+</div>
+<!--  Add full CSS and Javascript before the close tag of the body if needed -->
+<!-- ========= JS Section ========= -->
+<script>
+    var isWLR = true;
+
+    window.customWidgetsFunctions = {};
+    window.customWidgetsStrings = {};
+    window.collections = {};
+    window.currentLanguage = "ENGLISH"
+    window.isSitePreview = false;
+</script>
+<script>
+    window.customWidgetsFunctions["7b2ba547771b4d4db17e3e2b9f0abd0c~229"] = function (element, data, api) {
+        var $element = $(element);
+var $tabs = $element.find('.tab');// not relevant for mobile
+var $tabLables = $element.find('.tab-label');
+
+if ($tabs.length > 0) { 
+    if (data.device==="mobile" && data.config.mobileLayoutToggle) {// on mobile and dropdown mode
+    	addMobileClickListener($element);
+    } 
+    else { // on desktop or accordion mobile layout
+       addDesktopClickListener($element);
+    }
+    addHoverHandler($tabLables);
+}
+
+function addMobileClickListener($element)  {
+    // tab label mobile click handler;
+    $element.off('click.tabs.mobile').on('click.tabs.mobile', '.tab-label', function() {
+    	    var $clicked_tab_item = $(this).closest('.tab-item');
+            var $siblings = $clicked_tab_item.siblings();
+            domChangeOnMobileClick($clicked_tab_item, $siblings);
+        });
+        
+}
+
+function addDesktopClickListener($element) {
+        $tabLables.off('click.tabs.desktop').on('click.tabs.desktop', function(event) {
+            var $curr = $(this);
+            // layout-e-aux-tab-label is an auxilary class represents the
+            // remaining space on layout 3's labels, it shouldn't be selectable
+            if ( $curr.hasClass('active') || $curr.hasClass('layout-e-aux-tab-label')){ 
+                return;
+            }
+            domChangeOnDesktopClick($curr);
+        });
+        
+        
+}
+
+
+function addHoverHandler($tabLables) {
+  //background hover issue hack - pseusu class support in widget builder is limited
+    $tabLables.off('mouseover.tabs').on('mouseenter.tabs', function(event) {
+        var $this = $(this);
+        // aux label on layout e should'nt be selected
+        if ($this.hasClass('layout-e-aux-tab-label')) return;
+        $this.addClass('hover');
+        $this.removeClass('not-active');
+    });
+    $tabLables.off('mouseout.tabs').on('mouseleave.tabs', function(event){
+        var $this = $(this);
+        // aux label on layout e should'nt be selected
+        if ($this.hasClass('layout-e-aux-tab-label')) return;
+        if (! $this.hasClass('active') ) {
+            $this.removeClass('hover');
+            $this.addClass('not-active');
+        }
+    });
+}
+
+function domChangeOnMobileClick($clicked_tab_item, $siblings) {
+    $siblings.removeClass('expanded');
+    $siblings.find('.tab-label').removeClass('active').addClass('not-active');
+    $clicked_tab_item.toggleClass('expanded');
+    $clicked_tab_item.find('.tab-label').toggleClass('active');
+}
+
+function domChangeOnDesktopClick($curr) {
+    $curr.addClass('active').removeClass('not-active').removeClass('hover');
+    $siblings = $curr.siblings();
+    $siblings.removeClass('active').addClass('not-active').removeClass('hover');
+    //If no argument is passed to the .index() method, the return value is an integer indicating the position of the 
+    //first element within the jQuery object relative to its sibling elements.
+    var index = $curr.index();
+    $tabs.removeClass('active');
+    $tabs.eq(index).addClass('active');
+}
+    };
+</script>
+<script type="text/javascript">
+
+    var d_version = "production_5968";
+    var build = "2025-11-27T12_19_14";
+    window['v' + 'ersion'] = d_version;
+
+    function buildEditorParent() {
+        window.isMultiScreen = true;
+        window.editorParent = {};
+        window.previewParent = {};
+        window.assetsCacheQueryParam = "?version=2025-11-27T12_19_14";
+        try {
+            var _p = window.parent;
+            if (_p && _p.document && _p.$ && _p.$.dmfw) {
+                window.editorParent = _p;
+            } else if (_p.isSitePreview) {
+                window.previewParent = _p;
+            }
+        } catch (e) {
+
+        }
+    }
+
+    buildEditorParent();
+</script>
+
+<!-- Load jQuery -->
+<script type="text/javascript" id='d-js-jquery'
+        src="https://static-cdn.website-editor.net/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- End Load jQuery -->
+<!-- Injecting site-wide before scripts -->
+<!-- End Injecting site-wide to the head -->
+
+
+<script>
+    var _jquery = window.$;
+
+    var jqueryAliases = ['$', 'jquery', 'jQuery'];
+
+    jqueryAliases.forEach((alias) => {
+        Object.defineProperty(window, alias, {
+            get() {
+                return _jquery;
+            },
+            set() {
+                console.warn("Trying to over-write the global jquery object!");
+            }
+        });
+    });
+    window.jQuery.migrateMute = true;
+</script>
+<script>
+    window.cookiesNotificationMarkupPreview = ' <div>In order to provide you with the best online experience this website uses cookies. By using our website, you agree to our use of cookies. <a href=\"\/privacy\" target=\"_blank\">More Info<\/a>.<\/div> \n';
+</script>
+
+<!-- HEAD RT JS Include -->
+<script id='d-js-params'>
+    window.INSITE = window.INSITE || {};
+    window.INSITE.device = "desktop";
+
+    window.rtCommonProps = {};
+    rtCommonProps["rt.ajax.ajaxScriptsFix"] =true;
+    rtCommonProps["rt.pushnotifs.sslframe.encoded"] = 'aHR0cHM6Ly97c3ViZG9tYWlufS5wdXNoLW5vdGlmcy5jb20=';
+    rtCommonProps["runtimecollector.url"] = 'https://rtc.website-editor.net';
+    rtCommonProps["performance.tabletPreview.removeScroll"] = 'false';
+    rtCommonProps["inlineEditGrid.snap"] =true;
+    rtCommonProps["popup.insite.cookie.ttl"] = '0.5';
+    rtCommonProps["rt.pushnotifs.force.button"] =true;
+    rtCommonProps["common.mapbox.token"] = 'pk.eyJ1IjoiZGFubnliMTIzIiwiYSI6ImNqMGljZ256dzAwMDAycXBkdWxwbDgzeXYifQ.Ck5P-0NKPVKAZ6SH98gxxw';
+    rtCommonProps["common.mapbox.js.override"] =false;
+    rtCommonProps["common.here.appId"] = 'iYvDjIQ2quyEu0rg0hLo';
+    rtCommonProps["common.here.appCode"] = '1hcIxLJcbybmtBYTD9Z1UA';
+    rtCommonProps["isCoverage.test"] =false;
+    rtCommonProps["ecommerce.ecwid.script"] = 'https://app.multiscreenstore.com/script.js';
+    rtCommonProps["feature.flag.mappy.kml"] =false;
+    rtCommonProps["common.resources.dist.cdn"] =true;
+    rtCommonProps["common.build.dist.folder"] = 'production/5968';
+    rtCommonProps["common.resources.cdn.host"] = 'https://static-cdn.website-editor.net';
+    rtCommonProps["common.resources.folder"] = 'https://static-cdn.website-editor.net/mnlt/production/5968';
+    rtCommonProps["feature.flag.runtime.backgroundSlider.preload.slowly"] =true;
+    rtCommonProps["feature.flag.runtime.newAnimation.enabled"] =true;
+    rtCommonProps["feature.flag.runtime.newAnimation.jitAnimation.enabled"] =true;
+    rtCommonProps["feature.flag.sites.google.analytics.gtag"] =true;
+    rtCommonProps["feature.flag.runOnReadyNewTask"] =true;
+    rtCommonProps["isAutomation.test"] =false;
+    rtCommonProps["booking.cal.api.domain"] = 'api.cal.com';
+
+    
+    rtCommonProps['common.mapsProvider'] = 'mapbox';
+    
+    rtCommonProps['common.mapsProvider.version'] = '0.52.0';
+    rtCommonProps['common.geocodeProvider'] = 'mapbox';
+    rtCommonProps['common.map.defaults.radiusSize'] = '1500';
+    rtCommonProps['common.map.defaults.radiusBg'] = 'rgba(255, 255, 255, 0.4)';
+    rtCommonProps['common.map.defaults.strokeColor'] = 'rgba(255, 255, 255, 1)';
+    rtCommonProps['common.map.defaults.strokeSize'] = '2';
+    rtCommonProps['server.for.resources'] = '';
+    rtCommonProps['feature.flag.lazy.widgets'] = true;
+    rtCommonProps['feature.flag.single.wow'] = false;
+    rtCommonProps['feature.flag.disallowPopupsInEditor'] = true;
+    rtCommonProps['feature.flag.mark.anchors'] = true;
+    rtCommonProps['captcha.public.key'] = '6LffcBsUAAAAAMU-MYacU-6QHY4iDtUEYv_Ppwlz';
+    rtCommonProps['captcha.invisible.public.key'] = '6LeiWB8UAAAAAHYnVJM7_-7ap6bXCUNGiv7bBPME';
+    rtCommonProps["images.sizes.small"] =160;
+    rtCommonProps["images.sizes.mobile"] =640;
+    rtCommonProps["images.sizes.tablet"] =1280;
+    rtCommonProps["images.sizes.desktop"] =1920;
+    rtCommonProps["modules.resources.cdn"] =true;
+    rtCommonProps["import.images.storage.imageCDN"] = 'https://le-cdn.website-editor.net/';
+    rtCommonProps["feature.flag.runtime.inp.threshold"] =150;
+    rtCommonProps["feature.flag.performance.logs"] =true;
+    rtCommonProps["site.widget.form.captcha.type"] = 'g_recaptcha';
+    rtCommonProps["friendly.captcha.site.key"] = 'FCMGSQG9GVNMFS8K';
+    rtCommonProps["cookiebot.mapbox.consent.category"] = 'marketing';
+    // feature flags that's used out of runtime module (in  legacy files)
+    rtCommonProps["platform.monolith.personalization.dateTimeCondition.popupMsgAction.moveToclient.enabled"] =true;
+    rtCommonProps["streamline.personalization.decodeTimeZone.enabled"] =true;
+
+    window.rtFlags = {};
+    rtFlags["unsuspendEcwidStoreOnRuntime.enabled"] =false;
+    rtFlags["scripts.widgetCount.enabled"] =true;
+    rtFlags["fnb.animations.tracking.enabled"] =true;
+    rtFlags["ecom.ecwidNewUrlStructure.enabled"] = false;
+    rtFlags["ecom.ecwid.accountPage.emptyBaseUrl.enabled"] = true;
+    rtFlags["ecom.ecwid.pages.links.disable.listeners"] = true;
+    rtFlags["ecom.ecwid.storefrontV3.enabled"] = false;
+    rtFlags["ecom.ecwid.old.store.fix.facebook.share"] = true;
+    rtFlags["feature.flag.photo.gallery.exact.size"] =true;
+    rtFlags["geocode.search.localize"] =false;
+    rtFlags["feature.flag.runtime.newAnimation.asyncInit.setTimeout.enabled"] =false;
+    rtFlags["twitter.heightLimit.enabled"] = true;
+    rtFlags["runtime.lottieOverflow"] =false;
+    rtFlags["runtime.monitoring.sentry.ignoreErrors"] = "";
+    rtFlags["contact.form.browserValidation.enabled"] =true;
+    rtFlags["streamline.monolith.personalization.supportMultipleConditions.enabled"] =false;
+    rtFlags["flex.animation.design.panel.layout"] =false;
+    rtFlags["runtime.cwv.report.cls.enabled"] =false;
+    rtFlags["runtime.cwv.report.lcp.enabled"] =false;
+    rtFlags["flex.runtime.popup.with.show"] =true;
+    rtFlags["contact.form.useActiveForm"] =true;
+    rtFlags["runtime.ssr.productStore.internal.observer"] =true;
+    rtFlags["runtime.ssr.productCustomizations"] =true;
+</script>
+<script src="https://static-cdn.website-editor.net/mnlt/production/5968/_dm/s/rt/dist/scripts/d-js-one-runtime-unified-desktop.min.js"  id="d-js-core"></script>
+<!-- End of HEAD RT JS Include -->
+<script>
+    
+    $(window).bind("orientationchange", function (e) {
+        $.layoutManager.initLayout();
+        
+    });
+    $(document).resize(function () {
+        
+    });
+</script>
+<script type="text/javascript" id="d_track_campaign">
+(function() {
+    if (!window.location.search) {
+        return;
+    }
+	const cleanParams = window.location.search.substring(1); // Strip ?
+	const queryParams = cleanParams.split('&');
+
+	const expires = 'expires=' + new Date().getTime() + 24 * 60 * 60 * 1000;
+	const domain = 'domain=' + window.location.hostname;
+	const path = "path=/";
+
+	queryParams.forEach((param) => {
+		const [key, value = ''] = param.split('=');
+		if (key.startsWith('utm_')) {
+			const cookieName = "_dm_rt_" + key.substring(4);
+			const cookie = cookieName + "=" + value;
+			const joined = [cookie, expires, domain, path].join(";");
+			document.cookie = joined;
+		}
+	});
+}());
+</script>
+<script type="text/javascript" >
+  var _dm_gaq = {};
+  var _gaq = _gaq || [];
+  var _dm_insite = [];
+</script>
+
+<script type="text/javascript" id="d_track_sp">
+;(function(p,l,o,w,i,n,g){if(!p[i]){p.GlobalSnowplowNamespace=p.GlobalSnowplowNamespace||[];
+p.GlobalSnowplowNamespace.push(i);p[i]=function(){(p[i].q=p[i].q||[]).push(arguments)
+};p[i].q=p[i].q||[];n=l.createElement(o);g=l.getElementsByTagName(o)[0];n.async=1;
+n.src=w;g.parentNode.insertBefore(n,g)}}(window,document,"script","//d1dxoqu0t5mb7j.cloudfront.net/sp-2.0.0-dm-0.1.min.js","snowplow"));
+window.dmsnowplow  = window.snowplow;
+
+dmsnowplow('newTracker', 'cf', 'd1dxoqu0t5mb7j.cloudfront.net', { // Initialise a tracker
+  appId: 'df77087a28a34290a3702e626d58ed4b'
+});
+
+// snowplow queries element styles so we wait until CSS calculations are done.
+requestAnimationFrame(() => {
+	dmsnowplow('trackPageView');
+	_dm_insite.forEach((rule) => {
+		// Specifically in popup only the client knows if it is shown or not so we don't always want to track its impression here
+		// the tracking is in popup.js
+		if (rule.actionName !== "popup") {
+			dmsnowplow('trackStructEvent', 'insite', 'impression', rule.ruleType, rule.ruleId);
+		}
+		window?.waitForDeferred?.('dmAjax', () => {
+			$.DM.events.trigger('event-ruleTriggered', {value: rule});
+		});
+	});
+});
+</script>
+   <div style="display:none;" id="P6iryBW0Wu"></div>
+
+<!-- photoswipe markup -->
+
+
+
+
+
+
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div id="fb-root"
+        data-locale="en"></div>
+<!-- Alias: df77087a28a34290a3702e626d58ed4b -->
+<div class="dmPopupMask" id="dmPopupMask"></div>
+<div id="dmPopup" class="dmPopup">
+	<div class="dmPopupCloseWrapper"> <div class="dmPopupClose dm-common-icons-close oneIcon" onclick="dmHidePopup(event);"></div> </div>
+ 	<div class="dmPopupTitle"> <span></span> Share by:</div> 
+	<div class="data"></div>
+</div><script id="d_track_personalization">
+	window?.waitForDeferred?.('dmAjax', () => {
+		// Collects client data and updates cookies used by smart sites
+		window.expireDays = 365;
+		window.visitLength = 30 * 60000;
+		$.setCookie("dm_timezone_offset", (new Date()).getTimezoneOffset(), window.expireDays);
+			setSmartSiteCookiesInternal("dm_this_page_view","dm_last_page_view","dm_total_visits","dm_last_visit");
+	});
+</script>
+<script type="text/javascript">
+    
+    Parameters.NavigationAreaParams.MoreButtonText = '......';
+    
+    Parameters.NavigationAreaParams.LessButtonText = '......';
+    Parameters.HomeLinkText = 'Home';
+    </script>
+<!--  End Script tags -->
+<!--  Site Wide Html Markup -->
+<!--  Site Wide Html Markup -->
+<!--  Begin Product Custom HTML Markup -->
+<script>
+function call1and1Tracking() {
+	var externalId = dmAPI.getSiteExternalId();
+	var siteName = dmAPI.getSiteName();
+	var src = 'https://integration.mywebsite-editor.com/dakota-snippet-service/snippet/integration/snippet.js?sitename='+siteName+'&external_uid='+externalId+'&mode=visit'
+	var tracking = document.createElement('script');
+     tracking.setAttribute('src',src);
+   	document.head.appendChild(tracking);
+}
+call1and1Tracking();
+</script><!--  End Product Custom HTML Markup -->
+</body>
+</html>

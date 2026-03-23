@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Way Path Communities</title>
+  <title>One Way Path Communities | Community</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/leaf-logo.svg">
   <link rel="apple-touch-icon" href="assets/images/leaf-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,10 +86,19 @@
 
     .fitwel-heading {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 32px;
       font-weight: 600;
-      letter-spacing: 4px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-heading-sm {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
     }
 
@@ -100,15 +109,6 @@
       line-height: 28px;
     }
 
-    .fitwel-heading-sm {
-      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 18px;
-      line-height: 22px;
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
     .fitwel-hero-title {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 40px;
@@ -117,6 +117,15 @@
       letter-spacing: 6px;
       text-transform: uppercase;
       color: #b6914d;
+    }
+
+    .fitwel-stat-number {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
     }
   </style>
 </head>
@@ -214,93 +223,233 @@
     </nav>
   </header>
 
-  <main>
-    <section id="about" class="relative overflow-hidden bg-olive-50">
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-olive-50">
       <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
       <div
         class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
         <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
           <div class="flex items-start">
-            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
-              ABOUT US
+            <h1
+              class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px] lg:max-w-[320px]">
+              Community Impact
             </h1>
           </div>
           <div class="flex items-end h-auto md:h-[184px]">
             <p class="fitwel-body text-slate-300">
-              One Way Path Communities is a real estate company based in the Greater Toronto Hamilton Area dedicated to
-              designing and building healthy communities.
+              We partner locally to deliver attainable homes and sustainable systems, creating lasting economic,
+              housing, and environmental benefits.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="vision" class="bg-olive-50">
-      <div class="mx-auto max-w-6xl sm:px-8 px-4 xl:pl-6 xl:pr-1 lg:pr-12 py-20 space-y-8">
-        <div class="grid pb-1 md:pb-12 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Vision</h1>
-          <div class="space-y-2 text-slate-950">
-            <p class="fitwel-body text-slate-950">Our vision is to build the world’s most liveable communities. A
-              liveable community is a community in which people can lead lives they consider to be worthwhile and
-              enjoyable.</p>
-          </div>
-        </div>
-
-        <div class="grid pb-8 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Mission</h1>
-          <div class="space-y-2 text-slate-950">
-            <p class="fitwel-body text-slate-950">Our mission is to build living spaces and provide services that
-              promote mental and physical health.</p>
-          </div>
-        </div>
-
-        <div class="grid gap-1 pb-14 md:grid-cols-[170px_1fr] items-baseline  lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Values</h1>
+    <section class="bg-olive-50">
+      <div class="mx-auto max-w-6xl px-5 py-20 flex flex-col gap-12 md:px-8 lg:px-12 xl:pl-6 xl:pr-2">
+        <div id="homes" class="gap-12 pb-7 md:pb-12 border-b border-slate-500 flex flex-col">
           <div
-            class="text-slate-950 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-[170px_1fr] lg:gap-8 sm:gap-x-5 sm:gap-y-6 sm:items-start sm:relative sm:mt-3 md:mt-4">
-            <div
-              class="hidden sm:block absolute inset-y-0 left-[180px] lg:left-[180px] md:left-[170px] w-px bg-slate-500">
+            class="flex flex-col gap-6 xl:gap-12 grid lg:grid-cols-[190px_1fr] md:grid-cols-[170px_1fr] items-baseline">
+            <h2 class="fitwel-heading text-gold-500 md:text-2xl md:tracking-[4px]">
+              Homes
+            </h2>
+            <div class="flex flex-col gap-12 text-slate-950">
+              <p class="fitwel-body text-slate-950 lg:text-lg xl:text-xl">
+                We address the housing crisis by delivering attainable units across
+                sizes—including three-bedroom, family-friendly suites—so more households can stay and thrive in the
+                communities they love. Thoughtful floorplans, durable materials, and resident-focused amenities create
+                livable homes that support health, stability, and long-term affordability.
+              </p>
             </div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Well-being
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We strive to promote community mental and physical health
-              through building design and the services offered in our communities.</div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Quality
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We maintain high standards of service, construction,
-              design, and maintenance to deliver exceptional experiences.</div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Innovation
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We embrace innovative approaches and technologies to continuously
-              improve the quality and functionality of our communities.
-            </div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Continuous
-              Improvement</div>
-            <div class="fitwel-body text-slate-950">
-              We are dedicated to ongoing learning and improvement, seeking
-              feedback and adapting our practices.
+          </div>
+          <div class="flex flex-col gap-6 xl:pl-60 lg:pl-[215px]">
+            <h2 class="fitwel-heading-sm text-olive-500 uppercase lg:tracking-[4px] tracking-[2px] block">
+              Typical Suite Floorplans
+            </h2>
+            <div class="grid gap-6 sm:grid-cols-3 sm:divide-x sm:divide-slate-500 pb-0">
+              <div class="sm:pr-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  140
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Suites per Project
+                </p>
+              </div>
+              <div class="sm:px-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  24%
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Multi-tenant Units
+                </p>
+              </div>
+              <div class="sm:pl-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  1,000+
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Sq. Ft. Townhouses
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
+        <div id="jobs" class="gap-12 pb-7 md:pb-12 border-b border-slate-500 flex flex-col">
+          <div
+            class="flex flex-col gap-6 xl:gap-12 grid lg:grid-cols-[190px_1fr] md:grid-cols-[170px_1fr] items-baseline">
+            <h2 class="fitwel-heading text-gold-500 md:text-2xl md:tracking-[4px]">
+              Jobs
+            </h2>
+            <div class="flex flex-col gap-12 text-slate-950">
+              <p class="fitwel-body text-slate-950 lg:text-lg xl:text-xl">
+                We prioritize hiring local, well-paying construction roles and build
+                long-term partnerships with trades. Our model shortens the tender cycle, provides predictable work, and
+                channels investment directly into community crews. By co-planning pipelines with partners, we align
+                project pace and scope with available talent, helping trades grow sustainably while keeping economic
+                benefits within the community.
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 xl:pl-60 lg:pl-[215px]">
+            <h2 class="fitwel-heading-sm text-olive-500 uppercase lg:tracking-[4px] tracking-[2px] block">
+              Projected Economic Impact Per Project
+            </h2>
+            <div class="grid xl:gap-6 gap-3 sm:grid-cols-3 sm:divide-x sm:divide-slate-500 pb-0 sm:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] md:[grid-template-columns:minmax(200px,1.15fr)_minmax(0,1fr)_minmax(0,1fr)] xl:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <div class="sm:pr-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  $50 MILLION
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Investment
+                </p>
+              </div>
+              <div class="sm:px-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  235
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Direct Jobs
+                </p>
+              </div>
+              <div class="sm:pl-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  200
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Indirect Jobs
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="environment" class="gap-12 flex flex-col">
+          <div
+            class="flex flex-col gap-6 xl:gap-12 grid lg:grid-cols-[190px_1fr] md:grid-cols-[190px_1fr] items-baseline">
+            <h2 class="fitwel-heading text-gold-500 md:text-2xl md:tracking-[4px]">
+              Environment
+            </h2>
+            <div class="flex flex-col gap-12 text-slate-950">
+              <p class="fitwel-body text-slate-950 lg:text-lg xl:text-xl">
+                We integrate geothermal systems, VRF (variable refrigerant flow)
+                technology, and high-efficiency envelopes to cut energy use and carbon. VRF delivers precise heating and
+                cooling with minimal loss, improving comfort and lowering operating costs. By pairing efficient systems
+                with durable, high-performance materials, we reduce environmental impact and provide residents with
+                healthier indoor environments.
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 xl:pl-60 lg:pl-[215px]">
+            <h2 class="fitwel-heading-sm text-olive-500 uppercase lg:tracking-[4px] tracking-[2px] block">
+              Energy Efficiency Per Year of Operation On-Site
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-8 sm:gap-x-8 sm:gap-y-10 sm:divide-x sm:divide-slate-500 pb-0 sm:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] md:[grid-template-columns:minmax(200px,1.15fr)_minmax(0,1fr)_minmax(0,1fr)] xl:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <div class="sm:pr-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  40%+
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Better than NECB/NBC
+                </p>
+              </div>
+              <div class="sm:px-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  80%
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Carbon Reduction
+                </p>
+              </div>
+              <div class="sm:pl-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  120
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Tons CO₂ Avoided
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-y-8 sm:gap-x-8 sm:gap-y-10 sm:divide-x sm:divide-slate-500 pb-0 sm:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] md:[grid-template-columns:minmax(200px,1.15fr)_minmax(0,1fr)_minmax(0,1fr)] xl:[grid-template-columns:minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)]">
+              <div class="sm:pr-8 sm:col-start-1">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  1.4 Million
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Litres Water Saved
+                </p>
+              </div>
+              <div class="sm:px-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  60%+
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Energy Reduction
+                </p>
+              </div>
+              <div class="sm:pl-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap md:text-[32px] lg:text-[40px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  Zero
+                </h3>
+                <p
+                  class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-semibold lg:font-medium xl:font-normal">
+                  Combustion
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="bg-olive-50 border-t border-slate-500">
     <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
-      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
+            <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
         <div class="flex justify-center lg:justify-start">
           <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="h-14 w-auto sm:h-16">
         </div>
@@ -343,8 +492,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Bottom Section -->
       <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
         <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Communities. All
           rights reserved.</p>

@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Way Path Communities | Builders</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/leaf-logo.svg">
+  <link rel="apple-touch-icon" href="assets/images/leaf-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            gold: {
+              50: '#f7f0e4',
+              100: '#eddfc4',
+              200: '#dec592',
+              300: '#cda86a',
+              400: '#be9453',
+              500: '#B6914D',
+              600: '#9c7741',
+              700: '#7e5d34',
+              800: '#644828',
+              900: '#4e3620',
+            },
+            red: {
+              50: '#f4e8e6',
+              100: '#e9d4cf',
+              200: '#E9D1CC',
+              300: '#d5aea8',
+              400: '#8f4a46',
+              500: '#471D19',
+              600: '#3c1614',
+              700: '#31100f',
+              800: '#250b0a',
+              900: '#190706',
+            },
+            olive: {
+              50: '#F7F7F1',
+              100: '#e3e5c8',
+              200: '#ccd0a0',
+              300: '#aab37c',
+              400: '#929b5f',
+              500: '#818452',
+              600: '#696a42',
+              700: '#525233',
+              800: '#3f3e27',
+              900: '#2d2b1b',
+            },
+            slate: {
+              50: '#F9FAFB',
+              100: '#e1d9d9',
+              200: '#c3b5b6',
+              300: '#D1D5DC',
+              400: '#99a1af',
+              500: '#6A7282',
+              600: '#322829',
+              700: '#292021',
+              800: '#21191a',
+              900: '#181112',
+              950: '#030712',
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --fitwel-gold: #b6914d;
+    }
+
+    .fitwel-heading {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 28px;
+    }
+
+    .fitwel-heading-sm {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-stat-number {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-hero-title {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 40px;
+      line-height: 44px;
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #b6914d;
+    }
+  </style>
+</head>
+
+<body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
+  <header class="z-50 bg-[#FBF9F3] border-b border-slate-500">
+    <nav class="bg-transparent">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between py-5 xl:py-6 px-5 md:px-8">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="lg:h-14 lg:w-auto w-44 h-10">
+        </a>
+        <div class="items-center ml-auto flex relative gap-4 lg:gap-6">
+          <div id="desktop-menu" class="hidden lg:inline-flex flex flex-wrap items-center gap-5"></div>
+          <span id="editor-badge"
+            class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
+          <button id="user-button" type="button"
+            class="flex w-12 h-12 items-center justify-center rounded-full text-red-500 hover:bg-red-50"
+            aria-label="User account">
+            <svg class="h-5 w-5" width="20" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"
+              fill="none">
+              <path
+                d="M16.6666 17.5V15.8333C16.6666 14.9493 16.3154 14.1014 15.6903 13.4763C15.0652 12.8512 14.2173 12.5 13.3333 12.5H6.66659C5.78253 12.5 4.93468 12.8512 4.30956 13.4763C3.68444 14.1014 3.33325 14.9493 3.33325 15.8333V17.5"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M10.0001 9.16667C11.841 9.16667 13.3334 7.67428 13.3334 5.83333C13.3334 3.99238 11.841 2.5 10.0001 2.5C8.15913 2.5 6.66675 3.99238 6.66675 5.83333C6.66675 7.67428 8.15913 9.16667 10.0001 9.16667Z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div id="auth-panel"
+            class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
+            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+              <div>
+                <p
+                  class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
+                  Partner Login</p>
+              </div>
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-email"
+                  class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
+                <input id="auth-email" type="email"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
+                  placeholder="Your@example.com">
+              </div>
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-password"
+                  class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
+                <input id="auth-password" type="password"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
+                  placeholder="..................">
+              </div>
+              <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+              <div class="flex items-center self-end justify-end gap-2">
+                <button type="button" id="auth-submit"
+                  class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
+                </button>
+              </div>
+            </div>
+          </div>
+          <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
+            class="ml-auto inline-flex items-center justify-center rounded-full w-12 h-12 text-base font-semibold uppercase text-red-500 hover:bg-red-50 lg:hidden">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"  viewBox="0 0 24 24" fill="none">
+              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+        
+      </div>
+      <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
+        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
+        </div>
+      </div>
+      <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
+        <div class="w-full mx-auto max-w-6xl px-5 md:px-6 py-16 grid md:grid-cols-2 gap-12 items-start lg:px-12">
+          <div class="flex flex-col gap-3">
+            <h1 class="fitwel-heading text-gold-500">About</h1>
+            <p class="fitwel-body text-slate-950 leading-7 xl:max-w-none lg:max-w-[426px]">
+              One Way Path Communities builds multi-residential housing in liveable communities in and around the
+              Greater Toronto Hamilton Area.
+            </p>
+          </div>
+          <div id="contact" class="flex flex-col gap-3 max-w-sm space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+            <h1 class="fitwel-heading text-gold-500">Contact</h1>
+            <p class="fitwel-body leading-7 text-slate-950">One Way Path Communities<br>77 Bloor Street West, Suite
+              600<br>Toronto, Ontario | Canada M5S 1M2</p>
+            <p class="fitwel-body leading-7 text-slate-950 text-lg md:text-xl">
+              Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162
+            </p>
+            <a class="fitwel-body leading-7 text-red-500 hover:text-red-700 text-lg md:text-xl"
+              href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-olive-50">
+      <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
+      <div
+        class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
+        <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
+          <div class="flex items-start">
+            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
+              BUILDERS
+            </h1>
+          </div>
+          <div class="flex items-end h-auto md:h-[184px]">
+            <p class="fitwel-body text-slate-300">
+              Long-term partnerships that give trades predictable work, collaborative growth, and cash flow support so
+              you can focus on quality over chasing bids.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-olive-50">
+      <div class="mx-auto max-w-6xl px-5 xl:pl-6 xl:pr-2 lg:pr-12 md:px-8 py-20">
+        <div class="border-b border-slate-500 pb-12 flex flex-col gap-12">
+          <div
+            class="flex flex-col gap-6 lg:gap-0 md:grid lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] items-baseline">
+            <h2 class="fitwel-heading text-gold-500">Direct Contracts</h2>
+            <div class="flex flex-col gap-12 text-slate-950">
+              <p class="fitwel-body text-slate-950 md:text-xl lg:text-lg xl:text-xl">
+                Skip the tender grind. We work directly with trade partners on defined scopes, clear timelines, and
+                transparent expectations—reducing time lost on bids that stall and letting you keep your best people
+                productive.
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-6 lg:pl-48">
+            <h3
+              class="fitwel-heading-sm text-olive-500 text-lg md:text-base lg:text-lg tracking-normal md:leading-5 tracking-widest md:tracking-[2px] lg:tracking-[4px] ">
+              Average Meaningful Benefits
+            </h3>
+            <div class="grid gap-12 sm:grid-cols-3 sm:divide-x sm:divide-slate-500 pb-4">
+              <div class="sm:pr-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap lg:text-[40px] md:text-3xl lg:leading-[60px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  12 Month
+                </h3>
+                <p class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-normal">Pipeline Visibility
+                </p>
+              </div>
+              <div class="sm:px-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap lg:text-[40px] md:text-3xl lg:leading-[60px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  50%</h3>
+                <p class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-normal">Less Upfront Capital
+                </p>
+              </div>
+              <div class="sm:pl-8">
+                <h3
+                  class="fitwel-stat-number !text-slate-950 whitespace-nowrap lg:text-[40px] md:text-3xl lg:leading-[60px] md:leading-[40px] lg:tracking-[6px] md:tracking-[4px]">
+                  20%</h3>
+                <p class="fitwel-body text-slate-950 whitespace-nowrap font-medium md:font-normal">Higher Profits</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="grid border-b border-slate-500 py-12 lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] gap-4 md:gap-0 items-baseline">
+          <h2 class="fitwel-heading text-gold-500">Active Growth</h2>
+          <div class="space-y-6 text-slate-950">
+            <p class="fitwel-body text-slate-950 md:text-xl lg:text-lg xl:text-xl">
+              Grow with us by design, not by chance. We co-plan pipelines with our partners so you can choose the pace,
+              scope, and geography that fits your crew and specialties instead of waiting on referrals or seasonal
+              swings.</p>
+          </div>
+        </div>
+
+        <div
+          class="grid border-b border-slate-500 py-12 lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] gap-4 md:gap-0 items-baseline">
+          <h2 class="fitwel-heading text-gold-500">Higher Liquidity</h2>
+          <div class="space-y-6 text-slate-950">
+            <p class="fitwel-body text-slate-950 md:text-xl lg:text-lg xl:text-xl">
+              We purchase core materials directly and streamline approvals, which
+              lowers your upfront outlay and shortens the time between work completed and cash collected. More liquidity
+              means steadier operations, less strain on credit, and more room to invest in your team.</p>
+          </div>
+        </div>
+
+        <div class="grid pt-12 lg:grid-cols-[190px_1fr] md:grid-cols-[180px_1fr] gap-4 md:gap-0 items-baseline">
+          <h2 class="fitwel-heading text-gold-500">Scope Categories</h2>
+          <div class="text-slate-950">
+            <p class="fitwel-body text-slate-950 mb-12 lg:mb-0 md:text-xl lg:text-lg xl:text-xl">
+              We are actively building long-term partnerships across all scopes and trades to deliver our projects
+              faster, safer, and with higher quality. If you specialize in any of the categories below, we want to
+              collaborate.</p>
+            <div
+              class="text-slate-950 space-y-6 md:space-y-0 lg:mt-12 md:grid xl:grid-cols-[200px_1fr] md:grid-cols-[155px_1fr] md:gap-y-8 lg:gap-x-6 xl:gap-8 lg:items-start md:relative">
+              <div
+                class="hidden md:block absolute inset-y-0 left-[200px] xl:left-[200px] lg:left-[150px] md:left-[130px] w-px bg-slate-500">
+              </div>
+              <div
+                class="fitwel-heading-sm text-olive-500 md:leading-5 tracking-widest md:tracking-[2px] lg:tracking-[4px] md:text-base lg:text-lg">
+                Structural
+              </div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Excavation and shoring, foundations, structural concrete, reinforcing, metals, and masonry to deliver
+                stable bases and superstructures ready for fast interior progress.
+              </div>
+              <div
+                class="fitwel-heading-sm text-olive-500 md:leading-5 tracking-widest md:tracking-[2px] lg:tracking-[4px] md:text-base lg:text-lg ">
+                Mechanical</div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Plumbing and drainage, electrical distribution/lighting/controls, HVAC (including VRF and ventilation),
+                and fire protection—fully coordinated with structural and envelope requirements.</div>
+              <div
+                class="fitwel-heading-sm text-olive-500 md:leading-5 tracking-widest md:tracking-[2px] lg:tracking-[4px] md:text-base lg:text-lg">
+                Doors & Windows</div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Supply and install of doors, frames, hardware, glazing, and window systems with air/water/thermal
+                performance requirements and coordinated shop drawings.</div>
+              <div
+                class="fitwel-heading-sm text-olive-500 md:leading-5 tracking-widest md:tracking-[2px] lg:tracking-[4px] md:text-base lg:text-lg">
+                General & Finishing</div>
+              <div class="fitwel-body text-slate-950 lg:mt-2 md:text-xl lg:text-lg xl:text-xl">
+                Site prep, temp services, safety, carpentry and millwork, interior/exterior finishes, landscaping, and
+                full thermal/moisture protection to deliver tight, durable envelopes.</div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="grid border-t border-slate-500 pt-12 pb-12 md:grid-cols-[190px_1fr] items-start requires-auth hidden">
+          <h2 class="fitwel-heading text-gold-500">Partner<br>With Us</h2>
+          <div class="space-y-6">
+            <form id="partner-form" class="space-y-10 text-slate-950" action="https://formsubmit.co/info@onewaypath.com"
+              method="POST" accept-charset="UTF-8" autocomplete="on" data-lpignore="false">
+              <input type="hidden" name="_subject" value="Partner Inquiry">
+              <input type="hidden" name="_captcha" value="false">
+              <!-- LastPass hint fields -->
+              <input type="text" name="lp-username" autocomplete="username email" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <input type="text" name="lp-name" autocomplete="name" tabindex="-1" aria-hidden="true" class="hidden">
+              <input type="text" name="lp-first-name" autocomplete="given-name" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <input type="text" name="lp-last-name" autocomplete="family-name" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <input type="password" name="lp-password" autocomplete="new-password" tabindex="-1" aria-hidden="true"
+                class="hidden">
+              <div class="grid gap-6 md:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="partner-name"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Name</label>
+                  <input id="partner-name" name="name" autocomplete="name" type="text" required
+                    title="Please enter your name." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
+                <div class="space-y-2">
+                  <label for="partner-company"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Company</label>
+                  <input id="partner-company" name="company" autocomplete="organization" type="text" required
+                    title="Please enter your company." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
+              </div>
+              <div class="grid gap-6 md:grid-cols-2">
+                <div class="space-y-2">
+                  <label for="partner-position"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Position</label>
+                  <input id="partner-position" name="position" autocomplete="organization-title" type="text" required
+                    title="Please enter your position." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
+                <div class="space-y-2">
+                  <div class="flex gap-3">
+                    <div class="flex-1 space-y-1">
+                      <label for="partner-phone"
+                        class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Phone</label>
+                      <input id="partner-phone" name="phone" autocomplete="tel" type="tel" required
+                        title="Please enter a phone number in the format +1 (###) ###-####." data-lpignore="false"
+                        class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                      <p class="text-sm text-slate-500 pl-2">Format: +1 (###) ###-####</p>
+                    </div>
+                    <div class="w-28 space-y-1">
+                      <label for="partner-ext"
+                        class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Extension</label>
+                      <input id="partner-ext" name="extension" autocomplete="tel-extension" type="text"
+                        inputmode="numeric" pattern="^[0-9]{0,6}$" maxlength="6"
+                        title="Extension (numbers only, up to 6 digits)" data-lpignore="false"
+                        class="w-full rounded-md border border-slate-500 bg-white px-3 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                      <p class="text-sm text-slate-500 pl-2">Optional</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid gap-6 md:grid-cols-[1fr_170px] md:items-stretch">
+                <div class="space-y-2">
+                  <label for="partner-email"
+                    class="block text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
+                  <input id="partner-email" name="email" autocomplete="email" type="email" required
+                    title="Please enter a valid email address." data-lpignore="false"
+                    class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200">
+                </div>
+                <div class="flex items-end">
+                  <button type="submit"
+                    class="w-full inline-flex items-center justify-center rounded-md bg-olive-500 px-5 py-3 text-base font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Submit</button>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="flex flex-col gap-1">
+                  <span class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Scope(s) of Work —
+                    check all that apply</span>
+                </div>
+                <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-start">
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="General Requirements"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>General Requirements</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Thermal and Moisture Protection"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Thermal and Moisture Protection</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Doors and Windows"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Doors and Windows</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Finishes"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Finishes</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Plumbing"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Plumbing</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Fire"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Fire</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Electrical"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Electrical</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Landscaping"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Landscaping</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="HVAC"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>HVAC</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Elevators"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Elevators</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Excavation and Shoring"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Excavation and Shoring</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Carpentry and Millwork"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Carpentry and Millwork</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Metals"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Metals</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Concrete"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Concrete</span>
+                  </label>
+                  <label class="flex items-start gap-3 text-base text-slate-950">
+                    <input type="checkbox" name="scopes" value="Masonry"
+                      class="mt-1 h-4 w-4 rounded border-slate-500 text-olive-500 focus:ring-olive-400">
+                    <span>Masonry</span>
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-olive-50 border-t border-slate-500">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+            <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
+        <div class="flex justify-center lg:justify-start">
+          <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="h-14 w-auto sm:h-16">
+        </div>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">COMPANY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="index.html#about" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT US</a></li>
+              <li><a href="designers.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="administration.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ADMINISTRATION</a></li>
+              <li><a href="builders.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
+              <li><a href="#contact" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a></li>
+            </ul>
+          </div>
+          <div class="owp-footer-experience-col">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">EXPERIENCE</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="experience.html?category=residential" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">RESIDENTIAL</a></li>
+              <li><a href="experience.html?category=commercial" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">COMMERCIAL</a></li>
+              <li><a href="experience.html?category=industrial" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">INDUSTRIAL</a></li>
+              <li><a href="experience.html?category=institutional" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">INSTITUTIONAL</a></li>
+              <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ALL CATEGORIES</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">CURRENT PROJECTS</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="projects-dewitt-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT ROAD LP</a></li>
+              <li><a href="projects-millen-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN ROAD LP</a></li>
+            </ul>
+          </div>
+          <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">COMMUNITY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="wellness.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="community.html#environment" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a></li>
+              <li><a href="community.html#homes" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">HOMES</a></li>
+              <li><a href="community.html#jobs" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">JOBS</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Communities. All
+          rights reserved.</p>
+        <div
+          class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
+          <a href="privacy-policy.html" class="hover:text-gold-500 text-center sm:text-left">PRIVACY POLICY</a>
+          <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
+          <a href="terms-and-conditions.html" class="hover:text-gold-500 text-center sm:text-left">TERMS AND CONDITIONS</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const AUTH_KEY = 'owp-editor';
+      const USERS = [
+        { id: 'ayoung@onewaypath.com', pass: 'StonePine-4826' },
+        { id: 'uxrs', pass: 'OA5G9F*BwpVZ!s!h' },
+      ];
+
+      const form = document.getElementById('partner-form');
+
+      const scopedInputs = Array.from(form ? form.querySelectorAll('input[name="scopes"]') : []);
+      const firstScope = scopedInputs[0];
+      const phone = document.getElementById('partner-phone');
+      const phonePattern = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
+      let lastPhoneValue = '';
+      const userBtn = document.getElementById('user-button');
+      const authPanel = document.getElementById('auth-panel');
+      const modalSubmit = document.getElementById('auth-submit');
+      const modalEmail = document.getElementById('auth-email');
+      const modalPass = document.getElementById('auth-password');
+      const modalError = document.getElementById('auth-error');
+      const editorBadge = document.getElementById('editor-badge');
+
+      function isAuthed() {
+        return localStorage.getItem(AUTH_KEY) === 'true';
+      }
+
+      function setAuthUI(on) {
+        document.querySelectorAll('.requires-auth').forEach(el => el.classList.toggle('hidden', !on));
+        document.querySelectorAll('.auth-only').forEach(el => el.classList.toggle('hidden', !on));
+      }
+
+      function openPanel() { if (authPanel) authPanel.classList.remove('hidden'); }
+      function closePanel() {
+        if (authPanel) authPanel.classList.add('hidden');
+        if (modalError) {
+          modalError.classList.add('hidden');
+          modalError.textContent = 'Invalid credentials.';
+        }
+      }
+
+      function validateScopes() {
+        if (!firstScope) return true;
+        const hasSelection = scopedInputs.some((c) => c.checked);
+        firstScope.setCustomValidity(hasSelection ? '' : 'Please select at least one scope of work.');
+        return hasSelection;
+      }
+
+      function attachMessage(input, message) {
+        input.addEventListener('invalid', () => {
+          input.setCustomValidity('');
+          if (!input.validity.valid) {
+            input.setCustomValidity(message);
+          }
+        });
+        input.addEventListener('input', () => input.setCustomValidity(''));
+      }
+
+      ['partner-name', 'partner-company', 'partner-position', 'partner-email'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) attachMessage(el, el.title || 'Please fill out this field.');
+      });
+
+      if (phone) attachMessage(phone, phone.title || 'Please enter a valid phone number.');
+      if (phone) {
+        phone.addEventListener('input', () => {
+          const digits = phone.value.replace(/\D/g, '').replace(/^1/, ''); // strip non-digits and a leading country code if typed
+          const area = digits.slice(0, 3);
+          const prefix = digits.slice(3, 6);
+          const line = digits.slice(6, 10);
+
+          if (!area && !prefix && !line) {
+            phone.value = '';
+            lastPhoneValue = '';
+            return;
+          }
+
+          let formatted = '+1';
+          if (area) formatted += ` (${area}`;
+          if (area.length === 3) formatted += ')';
+          if (prefix) formatted += ` ${prefix}`;
+          if (line) formatted += `-${line}`;
+
+          phone.value = formatted;
+          lastPhoneValue = formatted;
+        });
+      }
+
+      if (firstScope) {
+        scopedInputs.forEach((c) => c.addEventListener('change', validateScopes));
+      }
+
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          let ok = true;
+
+          if (phone) {
+            if (!phonePattern.test(phone.value.trim())) {
+              phone.setCustomValidity(phone.title || 'Please enter a valid phone number.');
+              ok = false;
+            } else {
+              phone.setCustomValidity('');
+            }
+          }
+
+          if (!validateScopes()) ok = false;
+
+          if (!ok || !form.reportValidity()) {
+            e.preventDefault();
+          }
+        });
+      }
+
+      function handleLogin() {
+        const email = (modalEmail.value || '').trim().toLowerCase();
+        const pass = modalPass.value || '';
+        const ok = USERS.some((u) => u.id.toLowerCase() === email && u.pass === pass);
+        if (ok) {
+          localStorage.setItem(AUTH_KEY, 'true');
+          setAuthUI(true);
+          if (editorBadge) editorBadge.classList.remove('hidden');
+          closePanel();
+        } else {
+          if (modalError) {
+            modalError.classList.remove('hidden');
+          }
+        }
+      }
+
+      function handleLogout() {
+        localStorage.removeItem(AUTH_KEY);
+        setAuthUI(false);
+        if (editorBadge) editorBadge.classList.add('hidden');
+      }
+
+      if (userBtn) {
+        userBtn.addEventListener('click', () => {
+          if (isAuthed()) {
+            handleLogout();
+          } else {
+            openPanel();
+          }
+        });
+      }
+      document.addEventListener('click', (e) => {
+        if (!authPanel || authPanel.classList.contains('hidden')) return;
+        if (!authPanel.contains(e.target) && !userBtn.contains(e.target)) {
+          closePanel();
+        }
+      });
+      if (modalSubmit) modalSubmit.addEventListener('click', handleLogin);
+
+      const authed = isAuthed();
+      setAuthUI(authed);
+      if (editorBadge && authed) editorBadge.classList.remove('hidden');
+    })();
+  </script>
+  <!-- Login modal -->
+  <div id="auth-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/40 px-4">
+    <div class="w-full max-w-md rounded-lg bg-white p-6 shadow-lg space-y-6">
+      <div class="flex items-center justify-between">
+        <h3 class="fitwel-heading text-olive-500">Editor Login</h3>
+        <button type="button" id="auth-close" class="text-slate-500 hover:text-slate-950">&times;</button>
+      </div>
+      <div class="space-y-4">
+        <div class="space-y-1">
+          <label for="auth-email" class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Email</label>
+          <input id="auth-email" type="email"
+            class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200"
+            placeholder="Your@example.com">
+        </div>
+        <div class="space-y-1">
+          <label for="auth-password"
+            class="text-sm font-semibold uppercase tracking-[0.08em] text-olive-500">Password</label>
+          <input id="auth-password" type="password"
+            class="w-full rounded-md border border-slate-500 bg-white px-4 py-3 text-base text-slate-950 shadow-sm focus:border-olive-400 focus:outline-none focus:ring-2 focus:ring-olive-200"
+            placeholder="••••••••">
+        </div>
+        <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+        <div class="flex items-center justify-end gap-3">
+          <button type="button" id="auth-cancel"
+            class="rounded-md border border-slate-500 px-4 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-50">Cancel</button>
+          <button type="button" id="auth-submit"
+            class="rounded-md bg-olive-500 px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow hover:bg-olive-600 focus:outline-none focus:ring-2 focus:ring-olive-300">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <script src="assets/js/menu.js"></script>
+</body>
+
+</html>

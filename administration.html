@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Way Path Communities</title>
+  <meta name="robots" content="noindex, follow" />
+  <title>One Way Path Communities | Administration</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/leaf-logo.svg">
   <link rel="apple-touch-icon" href="assets/images/leaf-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,25 +87,25 @@
 
     .fitwel-heading {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 32px;
-      font-weight: 600;
-      letter-spacing: 4px;
+      font-weight: 700;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     .fitwel-body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Roboto', sans-serif;
       font-size: 20px;
       font-weight: 400;
-      line-height: 28px;
+      line-height: 1.65;
     }
 
     .fitwel-heading-sm {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 18px;
-      line-height: 22px;
-      font-weight: 600;
+      line-height: 26px;
+      font-weight: 700;
       letter-spacing: 1.8px;
       text-transform: uppercase;
     }
@@ -112,11 +113,15 @@
     .fitwel-hero-title {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
       font-size: 40px;
-      line-height: 44px;
-      font-weight: 600;
-      letter-spacing: 6px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: #b6914d;
+    }
+
+    .accordion {
+      font-family: 'DM Sans', sans-serif;
     }
   </style>
 </head>
@@ -177,17 +182,20 @@
           </div>
           <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
             class="ml-auto inline-flex items-center justify-center rounded-full w-12 h-12 text-base font-semibold uppercase text-red-500 hover:bg-red-50 lg:hidden">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"  viewBox="0 0 24 24" fill="none">
-              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none">
+              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
               <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </button>
         </div>
-        
+
       </div>
       <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
-        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
+        <div id="mobile-menu-list"
+          class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
         </div>
       </div>
       <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
@@ -214,93 +222,45 @@
     </nav>
   </header>
 
-  <main>
-    <section id="about" class="relative overflow-hidden bg-olive-50">
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-olive-50">
       <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
       <div
         class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
         <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
           <div class="flex items-start">
             <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
-              ABOUT US
+              Admin
             </h1>
           </div>
           <div class="flex items-end h-auto md:h-[184px]">
             <p class="fitwel-body text-slate-300">
-              One Way Path Communities is a real estate company based in the Greater Toronto Hamilton Area dedicated to
-              designing and building healthy communities.
+              Our team — spanning architecture, engineering, planning, and project leadership — transforms ideas into
+              coordinated, buildable designs, advancing projects from concept through municipal approval and
+              construction.
             </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="vision" class="bg-olive-50">
-      <div class="mx-auto max-w-6xl sm:px-8 px-4 xl:pl-6 xl:pr-1 lg:pr-12 py-20 space-y-8">
-        <div class="grid pb-1 md:pb-12 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Vision</h1>
-          <div class="space-y-2 text-slate-950">
-            <p class="fitwel-body text-slate-950">Our vision is to build the world’s most liveable communities. A
-              liveable community is a community in which people can lead lives they consider to be worthwhile and
-              enjoyable.</p>
-          </div>
+    <section class="accordion relative px-5 xl:px-[15px] lg:px-12 md:px-8 py-14 lg:py-8 md:py-6 min-h-[600px] xl:py-24">
+      <div class="max-w-[1120px] w-full mx-auto relative z-[99]">
+        <div id="administration-loading" class="py-12 text-center text-slate-500">
+          Loading administration team…
         </div>
-
-        <div class="grid pb-8 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Mission</h1>
-          <div class="space-y-2 text-slate-950">
-            <p class="fitwel-body text-slate-950">Our mission is to build living spaces and provide services that
-              promote mental and physical health.</p>
-          </div>
+        <div id="administration-list" class="hidden"></div>
+        <div id="administration-empty" class="py-12 text-center text-slate-500 hidden">
+          No team members to display.
         </div>
-
-        <div class="grid gap-1 pb-14 md:grid-cols-[170px_1fr] items-baseline  lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Values</h1>
-          <div
-            class="text-slate-950 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-[170px_1fr] lg:gap-8 sm:gap-x-5 sm:gap-y-6 sm:items-start sm:relative sm:mt-3 md:mt-4">
-            <div
-              class="hidden sm:block absolute inset-y-0 left-[180px] lg:left-[180px] md:left-[170px] w-px bg-slate-500">
-            </div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Well-being
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We strive to promote community mental and physical health
-              through building design and the services offered in our communities.</div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Quality
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We maintain high standards of service, construction,
-              design, and maintenance to deliver exceptional experiences.</div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Innovation
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We embrace innovative approaches and technologies to continuously
-              improve the quality and functionality of our communities.
-            </div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Continuous
-              Improvement</div>
-            <div class="fitwel-body text-slate-950">
-              We are dedicated to ongoing learning and improvement, seeking
-              feedback and adapting our practices.
-            </div>
-          </div>
-        </div>
-
+        <div id="administration-error" class="py-12 text-center text-red-500 hidden"></div>
       </div>
     </section>
   </main>
 
   <footer class="bg-olive-50 border-t border-slate-500">
     <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
-      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
+            <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
         <div class="flex justify-center lg:justify-start">
           <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="h-14 w-auto sm:h-16">
         </div>
@@ -343,16 +303,17 @@
           </div>
         </div>
       </div>
-
-      <!-- Bottom Section -->
       <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
-        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Communities. All
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">©
+          2026 One Way Path Communities. All
           rights reserved.</p>
         <div
           class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
-          <a href="privacy-policy.html" class="hover:text-gold-500 text-center sm:text-left">PRIVACY POLICY</a>
+          <a href="#" class="hover:text-gold-500 text-center sm:text-left">PRIVACY
+            POLICY</a>
           <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
-          <a href="terms-and-conditions.html" class="hover:text-gold-500 text-center sm:text-left">TERMS AND CONDITIONS</a>
+          <a href="terms-and-conditions.html" class="hover:text-gold-500 text-center sm:text-left">TERMS AND
+            CONDITIONS</a>
         </div>
       </div>
     </div>
@@ -431,6 +392,140 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
   <script src="assets/js/menu.js"></script>
+
+  <script>
+    function toggleAccordion(button) {
+      const item = button.parentElement;
+      const content = item.querySelector(".accordion-content");
+
+      button.classList.toggle("open");
+      content.classList.toggle("hidden");
+    }
+  </script>
+  <script>
+    (function () {
+      const candidates = (typeof window.OWP_getWebsitesApiBaseCandidates === 'function' ? window.OWP_getWebsitesApiBaseCandidates() : null) || window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
+      const sanitizeBase = window.OWP_sanitizeApiBase || ((b) => (b || '').replace(/\/+$/, ''));
+
+      const listEl = document.getElementById('administration-list');
+      const loadingEl = document.getElementById('administration-loading');
+      const emptyEl = document.getElementById('administration-empty');
+      const errorEl = document.getElementById('administration-error');
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function createAccordionItem(item) {
+        const name = [item.firstName, item.lastName].filter(Boolean).join(' ').trim() || 'Team member';
+        const title = item.title || '';
+        const company = item.company || '';
+        const bio = item.bio || '';
+        const photo = item.photo || '';
+        const logo = item.logo || '';
+        const credentials = item.credentials || '';
+
+        const isOWP = /one\s*way\s*path\s*(group\s*)?communities/i.test(company);
+        const showCompanyInHeader = company && !isOWP;
+        const showLogo = logo && !isOWP;
+
+        const bioParagraphs = bio.split(/\n\n+/).filter(Boolean);
+        const bioHtml = bioParagraphs.length
+          ? bioParagraphs.map((p) => `<p class="text-[#333E4F] text-[20px] leading-[1.6] mb-5">${escapeHtml(p)}</p>`).join('')
+          : '';
+
+        // Fixed width; height follows image aspect ratio (no square crop).
+        const photoHtml = photo
+          ? `<img src="${escapeHtml(photo)}" alt="${escapeHtml(name)}" class="float-left mr-6 mb-4 h-auto w-full max-w-full md:max-w-[358px] md:w-[358px] object-contain" onerror="this.style.display='none'">`
+          : '';
+
+        const logoHtml = showLogo
+          ? `<img src="${escapeHtml(logo)}" class="object-contain h-full" alt="${escapeHtml(company)} logo">`
+          : '';
+
+        const credentialsLgAlignClass = logoHtml ? 'lg:text-right' : 'lg:text-left';
+        const credentialsHtml = credentials
+          ? `<p class="${credentialsLgAlignClass} text-left tracking-widest leading-5 font-[600] text-[16px] uppercase text-[#6A7282]">CREDENTIALS</p>
+            <p class="${credentialsLgAlignClass} text-left font-[400] text-[18px] text-[#333E4F]">${escapeHtml(credentials)}</p>`
+          : '';
+
+        const footerHtml = (logoHtml || credentialsHtml)
+          ? `<div class="pt-4 flex flex-col lg:flex-row lg:justify-between items-start lg:items-center gap-4 text-[13px] text-gray-500 clear-both"><div class="flex flex-col gap-1 lg:order-2">${credentialsHtml}</div>${logoHtml ? `<div class="w-[168px] h-[64px] mb-2 lg:mb-0 lg:order-1">${logoHtml}</div>` : ''}</div>`
+          : '';
+
+        const contentInner = photo
+          ? `<div>${photoHtml}${bioHtml}${footerHtml}</div>`
+          : `<div>${bioHtml}${footerHtml}</div>`;
+
+        const headerNamePart = showCompanyInHeader
+          ? `<span class="block">${escapeHtml(name)}</span><span class="block mt-1">${escapeHtml(company)}</span>`
+          : `<span class="block">${escapeHtml(name)}</span>`;
+        const headerTitlePart = title ? escapeHtml(title) : '';
+
+        const div = document.createElement('div');
+        div.className = 'border-b border-gray-300';
+        div.innerHTML = `
+          <button class="w-full md:pl-0 pl-[50px] md:flex relative block items-center justify-between py-6 mt-6 text-left group" onclick="toggleAccordion(this)">
+            <div class="flex items-center gap-4">
+              <span class="w-[48px] h-[48px] md:relative absolute left-0 md:top-0 top-1/2 md:translate-y-0 -translate-y-1/2 hover:bg-[#471d1924] flex justify-center items-center">
+                <img src="./assets/images/plus.svg" class="transition-transform group-[.open]:rotate-45" alt="" aria-hidden="true">
+              </span>
+              <span class="uppercase text-[#030712] tracking-widest md:text-[24px] text-[20px] font-[600] leading-tight">${headerNamePart}</span>
+            </div>
+            <span class="font-['Roboto Condensed'] tracking-[4px] uppercase font-[600] md:text-[18px] text-[16px] text-[#6A7282] text-end">${headerTitlePart}</span>
+          </button>
+          <div class="accordion-content hidden border-t border-gray-300 py-6 md:pl-[64px]">
+            ${contentInner}
+            <div class="clear-both"></div>
+          </div>
+        `;
+        return div;
+      }
+
+      async function fetchAdministration() {
+        // Unified individuals API: filter by category=Administration; pass through view (e.g. ?view=live)
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+        const apiParams = new URLSearchParams({ category: 'Administration' });
+        if (viewParam) apiParams.set('view', viewParam);
+        const query = `?${apiParams.toString()}`;
+        for (const base of candidates) {
+          const safeBase = sanitizeBase(base);
+          if (!safeBase) continue;
+          try {
+            const res = await fetch(`${safeBase}/individuals${query}`, { headers: { Accept: 'application/json' } });
+            if (!res.ok) continue;
+            const body = await res.json();
+            if (body?.ok && Array.isArray(body.individuals)) {
+              loadingEl.classList.add('hidden');
+              errorEl.classList.add('hidden');
+              if (body.individuals.length === 0) {
+                emptyEl.classList.remove('hidden');
+                listEl.classList.add('hidden');
+              } else {
+                emptyEl.classList.add('hidden');
+                listEl.classList.remove('hidden');
+                listEl.innerHTML = '';
+                body.individuals.forEach((ind) => listEl.appendChild(createAccordionItem(ind)));
+              }
+              return;
+            }
+          } catch (err) {
+            console.warn('Administration fetch failed from', safeBase, err);
+          }
+        }
+        loadingEl.classList.add('hidden');
+        errorEl.textContent = 'Unable to load administration team. Please try again later.';
+        errorEl.classList.remove('hidden');
+      }
+
+      fetchAdministration();
+    })();
+  </script>
+
 </body>
 
 </html>

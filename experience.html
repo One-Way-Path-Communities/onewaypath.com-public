@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>One Way Path Communities | Experience</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/leaf-logo.svg">
+  <link rel="apple-touch-icon" href="assets/images/leaf-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            gold: {
+              50: '#f7f0e4',
+              100: '#eddfc4',
+              200: '#dec592',
+              300: '#cda86a',
+              400: '#be9453',
+              500: '#B6914D',
+              600: '#9c7741',
+              700: '#7e5d34',
+              800: '#644828',
+              900: '#4e3620',
+            },
+            red: {
+              50: '#f4e8e6',
+              100: '#e9d4cf',
+              200: '#E9D1CC',
+              300: '#d5aea8',
+              400: '#8f4a46',
+              500: '#471D19',
+              600: '#3c1614',
+              700: '#31100f',
+              800: '#250b0a',
+              900: '#190706',
+            },
+            olive: {
+              50: '#F7F7F1',
+              100: '#e3e5c8',
+              200: '#ccd0a0',
+              300: '#aab37c',
+              400: '#929b5f',
+              500: '#818452',
+              600: '#696a42',
+              700: '#525233',
+              800: '#3f3e27',
+              900: '#2d2b1b',
+            },
+            slate: {
+              50: '#F9FAFB',
+              100: '#e1d9d9',
+              200: '#c3b5b6',
+              300: '#D1D5DC',
+              400: '#99a1af',
+              500: '#6A7282',
+              600: '#322829',
+              700: '#292021',
+              800: '#21191a',
+              900: '#181112',
+              950: '#030712',
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --fitwel-gold: #b6914d;
+    }
+
+    .fitwel-heading {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 22px;
+      line-height: 32px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.65;
+    }
+
+    .fitwel-heading-sm {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-hero-title {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 40px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #b6914d;
+    }
+
+    .accordion {
+      font-family: 'DM Sans', sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-olive-50 text-slate-950 font-sans antialiased min-h-screen flex flex-col">
+  <header class="z-50 bg-[#FBF9F3] border-b border-slate-500">
+    <nav class="bg-transparent">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between py-5 xl:py-6 px-5 md:px-8">
+        <a href="index.html" class="flex items-center gap-3">
+          <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="lg:h-14 lg:w-auto w-44 h-10">
+        </a>
+        <div class="items-center ml-auto flex relative gap-4 lg:gap-6">
+          <div id="desktop-menu" class="hidden lg:inline-flex flex flex-wrap items-center gap-5"></div>
+          <span id="editor-badge"
+            class="auth-only hidden text-xs font-semibold uppercase tracking-[0.08em] text-olive-500">Editor</span>
+          <button id="user-button" type="button"
+            class="flex w-12 h-12 items-center justify-center rounded-full text-red-500 hover:bg-red-50"
+            aria-label="User account">
+            <svg class="h-5 w-5" width="20" height="20" stroke="currentColor" stroke-width="2" viewBox="0 0 20 20"
+              fill="none">
+              <path
+                d="M16.6666 17.5V15.8333C16.6666 14.9493 16.3154 14.1014 15.6903 13.4763C15.0652 12.8512 14.2173 12.5 13.3333 12.5H6.66659C5.78253 12.5 4.93468 12.8512 4.30956 13.4763C3.68444 14.1014 3.33325 14.9493 3.33325 15.8333V17.5"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M10.0001 9.16667C11.841 9.16667 13.3334 7.67428 13.3334 5.83333C13.3334 3.99238 11.841 2.5 10.0001 2.5C8.15913 2.5 6.66675 3.99238 6.66675 5.83333C6.66675 7.67428 8.15913 9.16667 10.0001 9.16667Z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div id="auth-panel"
+            class="absolute right-0 top-14 z-40 hidden border border-slate-500 bg-olive-50 shadow-md w-96 p-6">
+            <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+              <div>
+                <p
+                  class="fitwel-heading-sm text-[22px] font-semibold uppercase leading-7 tracking-widest text-olive-500 self-stretch">
+                  Partner Login</p>
+              </div>
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-email"
+                  class="text-lg font-semibold uppercase leading-6 tracking-widest text-olive-500 fitwel-heading-sm">Email</label>
+                <input id="auth-email" type="email"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400"
+                  placeholder="Your@example.com">
+              </div>
+              <div class="self-stretch flex flex-col justify-start items-start gap-3.5">
+                <label for="auth-password"
+                  class="text-lg font-semibold uppercase tracking-[0.08em] text-olive-500 fitwel-heading-sm">Password</label>
+                <input id="auth-password" type="password"
+                  class="w-full h-9 border-0 bg-white rounded outline outline-[0.50px] outline-offset-[-0.50px] outline-red-300 shadow-sm focus:border-red-400 focus:outline-none focus:ring-2 focus:ring-red-200 inline-flex justify-start items-center gap-1 placeholder:opacity-50 placeholder:text-slate-400 leading-5 placeholder:text-xl"
+                  placeholder="..................">
+              </div>
+              <p id="auth-error" class="hidden text-sm text-red-500">Invalid credentials.</p>
+              <div class="flex items-center self-end justify-end gap-2">
+                <button type="button" id="auth-submit"
+                  class="fitwel-heading-sm h-10 px-6 py-2 bg-red-500 inline-flex justify-center items-center gap-2 text-sm font-semibold uppercase leading-4 tracking-widest text-slate-50 shadow hover:bg-red-600 focus:outline-none focus:ring-2  focus:ring-red-300">Login
+                </button>
+              </div>
+            </div>
+          </div>
+          <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
+            class="ml-auto inline-flex items-center justify-center rounded-full w-12 h-12 text-base font-semibold uppercase text-red-500 hover:bg-red-50 lg:hidden">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"  viewBox="0 0 24 24" fill="none">
+              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+        
+      </div>
+      <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
+        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
+        </div>
+      </div>
+      <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
+        <div class="w-full mx-auto max-w-6xl px-5 md:px-6 py-16 grid md:grid-cols-2 gap-12 items-start lg:px-12">
+          <div class="flex flex-col gap-3">
+            <h1 class="fitwel-heading text-gold-500">About</h1>
+            <p class="fitwel-body text-slate-950 leading-7 xl:max-w-none lg:max-w-[426px]">
+              One Way Path Communities builds multi-residential housing in liveable communities in and around the
+              Greater Toronto Hamilton Area.
+            </p>
+          </div>
+          <div id="contact" class="flex flex-col gap-3 max-w-sm space-y-2 max-w-sm sm:justify-self-start sm:text-left">
+            <h1 class="fitwel-heading text-gold-500">Contact</h1>
+            <p class="fitwel-body leading-7 text-slate-950">One Way Path Communities<br>77 Bloor Street West, Suite
+              600<br>Toronto, Ontario | Canada M5S 1M2</p>
+            <p class="fitwel-body leading-7 text-slate-950 text-lg md:text-xl">
+              Tel: +1 (416) 848-1746<br>Fax: +1 (416) 848-1162
+            </p>
+            <a class="fitwel-body leading-7 text-red-500 hover:text-red-700 text-lg md:text-xl"
+              href="mailto:info@onewaypath.com">info@onewaypath.com</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-1">
+    <section class="relative overflow-hidden bg-olive-50">
+      <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
+      <div
+        class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
+        <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
+          <div class="flex items-start">
+            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
+              EXPERIENCE
+            </h1>
+          </div>
+          <div class="flex items-end h-auto md:h-[184px]">
+            <p class="fitwel-body text-slate-300">
+              Experienced, accountable professionals stand behind every stage of our developments — bringing proven
+              capability across design and planning through engineering, procurement, and construction. That collective
+              experience drives dependable, real-world results.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class=" pt-[100px] pb-[70px]">
+      <div
+        class="font-['Roboto_Condensed'] grid sm:grid-cols-3 max-w-[1120px] md:gap-[15px] gap-[50px] w-full mx-auto sm:divide-x sm:divide-[#6A7282]">
+        <div class="inline-flex flex-col gap-1">
+          <h3 id="stat-projects"
+            class="text-[#030712] text-[40px] font-[600] text-center leading-[48px] tracking-[4px]">—</h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] uppercase leading-4 tracking-widest text-center">
+            Completed Projects
+          </p>
+        </div>
+        <div class="inline-flex flex-col gap-1">
+          <h3 id="stat-area" class="text-[#030712] text-[40px] font-[600] text-center leading-[48px] tracking-[4px]">—
+          </h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] text-center uppercase leading-4 tracking-widest">
+            sq ft Gross Floor Area (GFA)
+          </p>
+        </div>
+        <div class="inline-flex flex-col gap-1">
+          <h3 id="stat-suites" class="text-[#030712] text-[40px] font-[600] text-center leading-[48px] tracking-[4px]">—
+          </h3>
+          <p class="text-[#4A5565] font-[600] text-[14px] uppercase leading-4 tracking-widest text-center">
+            Residential Suites
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="md:px-[50px] px-[20px] ">
+      <div id="experience-company-filter" class="hidden max-w-[1120px] w-full mx-auto pb-4"
+        aria-labelledby="experience-company-heading">
+        <h2 class="sr-only" id="experience-company-heading">Filter by company</h2>
+        <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
+          aria-label="Company">
+          <div id="company-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
+        </div>
+        <div class="md:hidden">
+          <div class="relative w-full">
+            <select id="company-filter"
+              class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
+              <!-- Options filled by JS (API /experience/filter-options) -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div id="experience-category-filter-wrap" class="hidden max-w-[1120px] w-full mx-auto pb-6">
+        <h2 class="sr-only" id="experience-category-heading">Filter by category</h2>
+        <div id="experience-category-filter" class="w-full" aria-labelledby="experience-category-heading">
+          <div class="hidden md:flex items-center gap-2 flex-wrap justify-center" role="tablist"
+            aria-label="Project category">
+            <div id="category-filter-tabs" class="flex items-center gap-2 flex-wrap justify-center"></div>
+          </div>
+          <div class="md:hidden">
+            <div class="relative w-full">
+              <select id="category-filter"
+                class="w-full border-[0.5px] border-red-300 bg-white px-3 py-2 text-[#1E2939] text-sm font-medium font-['DM_Sans'] leading-4 focus:border-red-300 focus:outline-none focus:ring-0 focus:ring-transparent inline-flex justify-start">
+                <!-- Options filled by JS (API /experience/filter-options) -->
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="experience-loading" class="max-w-[1120px] w-full mx-auto py-12 text-center text-slate-500">
+        Loading experience projects…
+      </div>
+      <div id="experience-grid"
+        class="grid sm:grid-cols-2 gap-[20px] max-w-[1120px] w-full mx-auto sm:divide-[#6A7282] pb-4 hidden"></div>
+      <div id="experience-empty" class="max-w-[1120px] w-full mx-auto py-12 text-center text-slate-500 hidden">
+        No experience projects to display.
+      </div>
+      <div id="experience-error" class="max-w-[1120px] w-full mx-auto py-12 text-center text-red-500 hidden"></div>
+    </section>
+
+    <div id="experience-pagination"
+      class="hidden flex flex-wrap px-[15px] items-center max-w-[1120px] pb-[100px] w-full mx-auto justify-between md:gap-8 gap-4 py-10 font-sans">
+      <!-- Prev -->
+      <button id="prev" aria-label="Previous page"
+        class="disabled:opacity-30 disabled:cursor-default md:w-[48px] md:h-[48px] w-[20px] h-[20px] flex justify-center items-center ">
+        <img src="./assets/images/rightArrow.svg" class="rotate-[180deg] " alt="" aria-hidden="true">
+      </button>
+
+      <!-- Pages -->
+      <div id="pages" class="flex w-fit mx-auto items-center gap-3 text-[16px] text-[#030712] "></div>
+
+      <!-- Next -->
+      <button id="next" aria-label="Next page"
+        class="disabled:opacity-30 disabled:cursor-default md:w-[48px] md:h-[48px] w-[20px] h-[20px] flex justify-center items-center">
+        <img src="./assets/images/rightArrow.svg" alt="" aria-hidden="true">
+      </button>
+    </div>
+  </main>
+
+  <footer class="bg-olive-50 border-t border-slate-500">
+    <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
+        <div class="flex justify-center lg:justify-start">
+          <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="h-14 w-auto sm:h-16">
+        </div>
+        <div class="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">COMPANY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="index.html#about" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ABOUT US</a></li>
+              <li><a href="designers.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DESIGNERS</a></li>
+              <li><a href="administration.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ADMINISTRATION</a></li>
+              <li><a href="builders.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">BUILDERS</a></li>
+              <li><a href="#contact" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">CONTACT</a></li>
+            </ul>
+          </div>
+          <div class="owp-footer-experience-col">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">EXPERIENCE</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="experience.html?category=residential" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">RESIDENTIAL</a></li>
+              <li><a href="experience.html?category=commercial" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">COMMERCIAL</a></li>
+              <li><a href="experience.html?category=industrial" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">INDUSTRIAL</a></li>
+              <li><a href="experience.html?category=institutional" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">INSTITUTIONAL</a></li>
+              <li><a href="experience.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ALL CATEGORIES</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">CURRENT PROJECTS</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="projects-dewitt-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">DEWITT ROAD LP</a></li>
+              <li><a href="projects-millen-road.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">MILLEN ROAD LP</a></li>
+            </ul>
+          </div>
+          <div class="col-span-2 sm:col-span-1 lg:col-span-1">
+            <h3 class="text-slate-500 text-sm font-semibold uppercase tracking-widest mb-3 sm:mb-4">COMMUNITY</h3>
+            <ul class="space-y-1.5 sm:space-y-2">
+              <li><a href="wellness.html" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">WELLNESS</a></li>
+              <li><a href="community.html#environment" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">ENVIRONMENT</a></li>
+              <li><a href="community.html#homes" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">HOMES</a></li>
+              <li><a href="community.html#jobs" class="text-slate-950 text-sm uppercase tracking-wide hover:text-gold-500">JOBS</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left"> 2026 One Way Path Communities. All
+          rights reserved.</p>
+        <div
+          class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
+          <a href="privacy-policy.html" class="hover:text-gold-500 text-center sm:text-left">PRIVACY
+            POLICY</a>
+          <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
+          <a href="terms-and-conditions.html" class="hover:text-gold-500 text-center sm:text-left">TERMS AND
+            CONDITIONS</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const AUTH_KEY = 'owp-editor';
+      const USERS = [
+        { id: 'ayoung@onewaypath.com', pass: 'StonePine-4826' },
+        { id: 'uxrs', pass: 'OA5G9F*BwpVZ!s!h' },
+      ];
+
+      const userBtn = document.getElementById('user-button');
+      const authPanel = document.getElementById('auth-panel');
+      const modalSubmit = document.getElementById('auth-submit');
+      const modalEmail = document.getElementById('auth-email');
+      const modalPass = document.getElementById('auth-password');
+      const modalError = document.getElementById('auth-error');
+      const editorBadge = document.getElementById('editor-badge');
+
+      function isAuthed() { return localStorage.getItem(AUTH_KEY) === 'true'; }
+      function setAuthUI(on) {
+        document.querySelectorAll('.requires-auth').forEach(el => el.classList.toggle('hidden', !on));
+        document.querySelectorAll('.auth-only').forEach(el => el.classList.toggle('hidden', !on));
+      }
+      function openPanel() { if (authPanel) authPanel.classList.remove('hidden'); }
+      function closePanel() {
+        if (authPanel) authPanel.classList.add('hidden');
+        if (modalError) {
+          modalError.classList.add('hidden');
+          modalError.textContent = 'Invalid credentials.';
+        }
+      }
+
+      function handleLogin() {
+        const email = (modalEmail.value || '').trim().toLowerCase();
+        const pass = modalPass.value || '';
+        const ok = USERS.some((u) => u.id.toLowerCase() === email && u.pass === pass);
+        if (ok) {
+          localStorage.setItem(AUTH_KEY, 'true');
+          window.OWP_isEditorAuthed = true;
+          setAuthUI(true);
+          if (editorBadge) editorBadge.classList.remove('hidden');
+          closePanel();
+        } else if (modalError) {
+          modalError.classList.remove('hidden');
+        }
+      }
+      function handleLogout() {
+        localStorage.removeItem(AUTH_KEY);
+        window.OWP_isEditorAuthed = false;
+        setAuthUI(false);
+        if (editorBadge) editorBadge.classList.add('hidden');
+      }
+
+      if (userBtn) {
+        userBtn.addEventListener('click', () => {
+          if (isAuthed()) {
+            handleLogout();
+          } else {
+            openPanel();
+          }
+        });
+      }
+      document.addEventListener('click', (e) => {
+        if (!authPanel || authPanel.classList.contains('hidden')) return;
+        if (!authPanel.contains(e.target) && !userBtn.contains(e.target)) {
+          closePanel();
+        }
+      });
+      if (modalSubmit) modalSubmit.addEventListener('click', handleLogin);
+
+      const authed = isAuthed();
+      setAuthUI(authed);
+      if (editorBadge && authed) editorBadge.classList.remove('hidden');
+      window.OWP_isEditorAuthed = authed;
+    })();
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <script src="assets/js/menu.js"></script>
+  <script src="assets/js/experience-category-filter.js"></script>
+  <script>
+    (function () {
+      const ITEMS_PER_PAGE = 6;
+      const baseCandidates = (typeof window.OWP_getWebsitesApiBaseCandidates === 'function' ? window.OWP_getWebsitesApiBaseCandidates() : null) || window.OWP_WEBSITES_API_BASE_CANDIDATES || [];
+
+      let apiBase = null;
+      let experienceData = [];
+      let totalCount = 0;
+      let currentPage = 1;
+
+      const gridEl = document.getElementById('experience-grid');
+      const loadingEl = document.getElementById('experience-loading');
+      const emptyEl = document.getElementById('experience-empty');
+      const errorEl = document.getElementById('experience-error');
+      const pagesEl = document.getElementById('pages');
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      const companyFilterEl = document.getElementById('company-filter');
+      const companyFilterWrapEl = document.getElementById('experience-company-filter');
+      const companyFilterTabsEl = document.getElementById('company-filter-tabs');
+      const categoryFilterWrapEl = document.getElementById('experience-category-filter-wrap');
+      const categoryFilterEl = document.getElementById('category-filter');
+      const categoryFilterTabsEl = document.getElementById('category-filter-tabs');
+      const normalizeCategory =
+        typeof window.OWP_normalizeExperienceCategoryParam === 'function'
+          ? window.OWP_normalizeExperienceCategoryParam
+          : function (raw) {
+            const s = String(raw || '')
+              .trim()
+              .toLowerCase();
+            if (!s || s === 'all') return '';
+            return ['residential', 'commercial', 'industrial', 'institutional'].includes(s) ? s : '';
+          };
+
+      const canonicalizeCategory =
+        typeof window.OWP_canonicalizeExperienceCategoryValue === 'function'
+          ? window.OWP_canonicalizeExperienceCategoryValue
+          : function (raw) {
+            return normalizeCategory(raw);
+          };
+
+      /** Static company filter only (API company list not used). Slugs match server legacy ?company= handling. */
+      const VALID_COMPANY_SLUGS = new Set([
+        'csp-architects',
+        'walterfedy',
+        'gladki-planning-associates',
+        'jp-samuel-associates-inc',
+      ]);
+
+      const COMPANY_SLUG_ORDER = new Map([
+        ['csp-architects', 1],
+        ['walterfedy', 2],
+        ['gladki-planning-associates', 3],
+        ['jp-samuel-associates-inc', 4],
+      ]);
+
+      const COMPANY_FILTER_OPTIONS = [
+        { slug: '', label: 'All' },
+        { slug: 'csp-architects', label: 'CS&P Architects' },
+        { slug: 'walterfedy', label: 'WalterFedy' },
+        { slug: 'gladki-planning-associates', label: 'Gladki Planning' },
+        { slug: 'jp-samuel-associates-inc', label: 'J.P. Samuel and Associates' },
+      ];
+      const COMPANY_TABS = COMPANY_FILTER_OPTIONS;
+
+      function populateCompanySelect() {
+        if (!companyFilterEl) return;
+        companyFilterEl.innerHTML = '';
+        COMPANY_FILTER_OPTIONS.forEach((opt) => {
+          const o = document.createElement('option');
+          o.value = opt.slug;
+          o.textContent = opt.label;
+          companyFilterEl.appendChild(o);
+        });
+      }
+
+      function canonicalizeCompanyValue(value) {
+        const raw = String(value || '').trim();
+        if (!raw) return '';
+        const slugs = raw
+          .split(',')
+          .map((s) => s.trim().toLowerCase())
+          .filter(Boolean);
+        if (!slugs.length) return '';
+
+        const cleaned = [];
+        for (const s of slugs) {
+          if (!VALID_COMPANY_SLUGS.has(s)) return '';
+          if (!cleaned.includes(s)) cleaned.push(s);
+        }
+        cleaned.sort((a, b) => (COMPANY_SLUG_ORDER.get(a) || 999) - (COMPANY_SLUG_ORDER.get(b) || 999));
+        return cleaned.join(',');
+      }
+
+      function isLiveProductionSite() {
+        if (typeof window.OWP_isLiveProductionSite === 'function') return window.OWP_isLiveProductionSite();
+        const hostname = (window.location.hostname || '').toLowerCase();
+        return hostname === 'onewaypath.com' || hostname === 'www.onewaypath.com';
+      }
+
+      function shouldShowCompanyFilter() {
+        if (isLiveProductionSite()) return false;
+        const features = window.OWP_FEATURES || {};
+        const flag =
+          typeof features.experienceCompanyFilter === 'undefined' ? true : features.experienceCompanyFilter;
+        if (flag === 'auth') return !!window.OWP_isEditorAuthed;
+        return !!flag;
+      }
+
+      function shouldShowCategoryFilter() {
+        const features = window.OWP_FEATURES || {};
+        const flag =
+          typeof features.experienceCategoryFilter === 'undefined' ? true : features.experienceCategoryFilter;
+        if (flag === 'auth') return !!window.OWP_isEditorAuthed;
+        return !!flag;
+      }
+
+      function renderCompanyTabs(selectedSlug) {
+        if (!companyFilterTabsEl) return;
+        companyFilterTabsEl.innerHTML = '';
+        const TAB_BTN_CLASS =
+          'border-2 border-slate-300 text-[#4A5565] font-["Roboto_Condensed"] leading-5 tracking-widest uppercase font-semibold text-base h-12 px-6 py-3 transition-colors aria-selected:bg-red-200 aria-selected:text-red-500 aria-selected:border-none';
+        COMPANY_TABS.forEach((tab) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = TAB_BTN_CLASS;
+          btn.setAttribute('role', 'tab');
+          btn.setAttribute('data-company', tab.slug);
+          btn.setAttribute('aria-selected', tab.slug === selectedSlug ? 'true' : 'false');
+          btn.textContent = tab.label;
+          btn.addEventListener('click', () => {
+            if (!companyFilterEl) return;
+            companyFilterEl.value = tab.slug;
+            companyFilterEl.dispatchEvent(new Event('change', { bubbles: true }));
+          });
+          companyFilterTabsEl.appendChild(btn);
+        });
+      }
+
+      function updateSelectedTab(selectedSlug) {
+        if (!companyFilterTabsEl) return;
+        companyFilterTabsEl.querySelectorAll('[data-company]').forEach((btn) => {
+          const slug = btn.getAttribute('data-company') || '';
+          btn.setAttribute('aria-selected', slug === selectedSlug ? 'true' : 'false');
+        });
+      }
+
+      function getSelectedCompanySlug() {
+        const params = new URLSearchParams(window.location.search);
+        const raw = (params.get('company') || '').trim();
+        return canonicalizeCompanyValue(raw);
+      }
+
+      function setCompanySlugInUrl(slug) {
+        const params = new URLSearchParams(window.location.search);
+        if (slug) params.set('company', slug);
+        else params.delete('company');
+        const nextUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+        window.history.replaceState({}, '', nextUrl);
+      }
+
+      function getCategorySlugFromUrl() {
+        const raw = new URLSearchParams(window.location.search).get('category');
+        return normalizeCategory(raw);
+      }
+
+      function setCategorySlugInUrl(slug) {
+        const params = new URLSearchParams(window.location.search);
+        if (slug) params.set('category', slug);
+        else params.delete('category');
+        const nextUrl = `${window.location.pathname}${params.toString() ? `?${params.toString()}` : ''}`;
+        window.history.replaceState({}, '', nextUrl);
+      }
+
+      /** Current category filter slug (empty = all). Kept in sync with URL. */
+      let selectedCategorySlug = '';
+
+      function syncCategoryUrlIfNeeded() {
+        const params = new URLSearchParams(window.location.search);
+        const raw = (params.get('category') || '').trim();
+        if (!raw) {
+          selectedCategorySlug = '';
+          return;
+        }
+        if (raw.toLowerCase() === 'all') {
+          selectedCategorySlug = '';
+          setCategorySlugInUrl('');
+          return;
+        }
+        const canonical = canonicalizeCategory(raw);
+        selectedCategorySlug = canonical;
+        if (canonical === '' && raw) {
+          setCategorySlugInUrl('');
+        } else if (canonical && raw.toLowerCase().replace(/[\s_]+/g, '-') !== canonical) {
+          setCategorySlugInUrl(canonical);
+        }
+      }
+
+      function stripTrailingPipes(value) {
+        return String(value || '')
+          .replace(/\s*\|\s*/g, ' ')
+          .replace(/^\s*\|+|\|+\s*$/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      function createCard(item) {
+        const imgSrc = item.coverImageUrl && String(item.coverImageUrl).trim();
+        if (!imgSrc) return null;
+
+        const box = document.createElement('div');
+        box.className = 'box border-b pb-[10px] mb-[15px] border-[#6A7282]';
+
+        const imgAlt = item.title || 'Project image';
+
+        const metaParts = [];
+        const personName = [item.firstName, item.surname].filter(Boolean).join(' ').trim();
+        if (personName || item.company) {
+          const companyName = item.company ? String(item.company).trim() : '';
+          const personHtml = personName
+            ? `<span class="text-[#333E4F]">${escapeHtml(stripTrailingPipes(personName))}</span>`
+            : '';
+          const companyHtml = companyName
+            ? `<span class="text-gray-500">${escapeHtml(stripTrailingPipes(companyName))}</span>`
+            : '';
+          const sepHtml = personName && companyName
+            ? `<span class="text-gray-500"> - </span>`
+            : '';
+          const nameAndCompanyHtml = `${personHtml}${sepHtml}${companyHtml}`;
+          metaParts.push({
+            html: `<span class="text-[14px] font-[500]">${nameAndCompanyHtml}</span>`,
+            isClient: false,
+          });
+        }
+        if (item.expertise) {
+          metaParts.push({
+            html: `<span class="text-[#333E4F] text-[14px] font-[500]">${escapeHtml(stripTrailingPipes(item.expertise))}</span>`,
+            isClient: false,
+          });
+        }
+        if (item.client) {
+          metaParts.push({
+            html: `<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Client:</span> ${escapeHtml(stripTrailingPipes(item.client))}</span>`,
+            isClient: true,
+          });
+        }
+        if (item.category && String(item.category).trim()) {
+          metaParts.push({
+            html: `<span class="text-[#333E4F] text-[14px] font-[500]"><span class="text-gray-500">Category:</span> ${escapeHtml(stripTrailingPipes(item.category))}</span>`,
+            isClient: false,
+          });
+        }
+        const metaHtml = metaParts.length
+          ? metaParts.map((p, i) => {
+            const extra = p.isClient ? ' experience-meta-client basis-full w-full' : '';
+            return `<p class="experience-meta-part${extra} text-[#6A7282] text-[14px] font-[500] border-[#6A7282]">${p.html}</p>`;
+          }).join('')
+          : '';
+
+        const stats = [];
+        if (item.stories != null) stats.push(`${item.stories} stories`);
+        const areaFormatted = formatNumberWithCommas(item.area);
+        if (item.area != null && item.area !== '' && areaFormatted && areaFormatted !== '0') stats.push(`${areaFormatted} sq. ft.`);
+        if (item.suites != null) stats.push(`${formatNumberWithCommas(item.suites)} suites`);
+        const statsHtml = stats.length
+          ? `<div class="flex flex-wrap gap-[10px]">${stats.map((s) => `<label class="font-['Roboto_Condensed'] leading-4 text-[#333E4F] text-[14px] font-[600] tracking-[2px] py-[5px] uppercase px-[8px] bg-[#D9D9BE]">${escapeHtml(s)}</label>`).join('')}</div>`
+          : '';
+
+        box.innerHTML = `
+          <img src="${escapeHtml(imgSrc)}" class="md:max-w-[548px] w-full h-[400px] object-cover" alt="${escapeHtml(imgAlt)}">
+          <div class="content flex flex-col gap-[7px] py-[10px]">
+            <h1 class="font-['Roboto_Condensed'] text-[#030712] text-[24px] font-[600] uppercase tracking-[4px] leading-8">${escapeHtml(item.title || '')}</h1>
+            <div class="experience-meta flex flex-wrap gap-x-2.5 gap-y-1">${metaHtml}</div>
+            ${statsHtml}
+          </div>
+        `;
+        return box;
+      }
+
+      function escapeHtml(str) {
+        if (!str) return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function updateMetaSeparators(root) {
+        const scope = root || document;
+        scope.querySelectorAll('.experience-meta').forEach((row) => {
+          const parts = Array.from(row.querySelectorAll('.experience-meta-part'));
+          parts.forEach((el) => {
+            el.classList.remove('border-r', 'pr-[10px]');
+          });
+
+          const getFirstRect = (el) => {
+            const rects = el.getClientRects ? el.getClientRects() : null;
+            return rects && rects.length ? rects[0] : el.getBoundingClientRect();
+          };
+          const isSingleLine = (el) => {
+            const rects = el.getClientRects ? el.getClientRects() : null;
+            return !rects || rects.length <= 1;
+          };
+
+          for (let i = 0; i < parts.length - 1; i++) {
+            const cur = parts[i];
+            const next = parts[i + 1];
+            const curTop = getFirstRect(cur).top;
+            const nextTop = getFirstRect(next).top;
+            const sameLine = Math.abs(nextTop - curTop) < 1;
+            if (sameLine && isSingleLine(cur) && isSingleLine(next)) {
+              cur.classList.add('border-r', 'pr-[10px]');
+            }
+          }
+
+          const clientIndex = parts.findIndex((el) => {
+            const t = (el.textContent || '').toLowerCase();
+            return t.includes('client:');
+          });
+          if (clientIndex > 0) {
+            const prev = parts[clientIndex - 1];
+            prev.classList.remove('border-r', 'pr-[10px]');
+          }
+        });
+      }
+
+      function scheduleSeparatorRecalc() {
+        requestAnimationFrame(() => updateMetaSeparators(gridEl));
+        setTimeout(() => updateMetaSeparators(gridEl), 250);
+        if (document.fonts && typeof document.fonts.ready?.then === 'function') {
+          document.fonts.ready.then(() => updateMetaSeparators(gridEl));
+        }
+      }
+
+      /** Format number or numeric string with thousand separators (e.g. 156000 -> "156,000"). */
+      function formatNumberWithCommas(val) {
+        if (val == null) return '';
+        const num = typeof val === 'number' ? val : parseInt(String(val).replace(/[^0-9]/g, ''), 10);
+        return Number.isNaN(num) ? String(val || '') : num.toLocaleString();
+      }
+
+      function updateSummaryStats(summary) {
+        if (!summary) return;
+        const projectsEl = document.getElementById('stat-projects');
+        const areaEl = document.getElementById('stat-area');
+        const suitesEl = document.getElementById('stat-suites');
+
+        const fmt = (n, suffix) => {
+          let s;
+          if (n >= 1e6) s = (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+          else if (n >= 1e3) s = (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'K';
+          else s = String(Math.round(n));
+          return s + (suffix && n > 0 ? '+' : '');
+        };
+        if (projectsEl) {
+          const val = summary.completedProjects;
+          const cleaned = typeof val === 'string' ? String(val).replace(/\+$/, '') : val;
+          projectsEl.textContent = String(cleaned ?? 0);
+        }
+        if (areaEl) areaEl.textContent = fmt(summary.totalAreaSqFt || 0, true);
+        if (suitesEl) suitesEl.textContent = fmt(summary.totalSuites || 0, true);
+      }
+
+      function renderGrid() {
+        const totalPages = Math.max(1, Math.ceil(totalCount / ITEMS_PER_PAGE));
+
+        gridEl.innerHTML = '';
+        experienceData.forEach((item) => {
+          const card = createCard(item);
+          if (card) gridEl.appendChild(card);
+        });
+
+        scheduleSeparatorRecalc();
+
+        gridEl.querySelectorAll('img').forEach((img) => {
+          if (img.complete) return;
+          img.addEventListener('load', scheduleSeparatorRecalc, { once: true });
+          img.addEventListener('error', scheduleSeparatorRecalc, { once: true });
+        });
+
+        renderPagination(totalPages);
+      }
+
+      function renderPagination(totalPages) {
+        if (!pagesEl) return;
+        pagesEl.innerHTML = '';
+
+        const pages = [];
+        pages.push(1);
+        if (currentPage > 3) pages.push('dots');
+        const mediaQuery = window.matchMedia('(max-width: 757px)');
+        const range = mediaQuery.matches ? 1 : 2;
+        for (let i = currentPage - range; i <= currentPage + range; i++) {
+          if (i > 1 && i < totalPages) pages.push(i);
+        }
+        if (currentPage < totalPages - 2) pages.push('dots');
+        if (totalPages > 1) pages.push(totalPages);
+
+        pages.forEach((p) => {
+          if (p === 'dots') {
+            const span = document.createElement('span');
+            span.textContent = '…';
+            span.className = 'select-none';
+            pagesEl.appendChild(span);
+          } else {
+            const btn = document.createElement('button');
+            btn.textContent = p;
+            btn.className = 'flex items-center text-[#030712] md:text-[16px] text-[12px] font-[600] justify-center md:w-[48px] md:h-[48px] w-[35px] h-[35px] text-sm ' + (p === currentPage ? 'border-[2px] border-[#030712] font-medium' : 'hover:underline');
+            btn.onclick = () => {
+              currentPage = p;
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              fetchExperience(p);
+            };
+            pagesEl.appendChild(btn);
+          }
+        });
+
+        if (prevBtn) prevBtn.disabled = currentPage <= 1;
+        if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+      }
+
+      if (prevBtn) prevBtn.onclick = () => {
+        if (currentPage > 1) {
+          currentPage--;
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          fetchExperience(currentPage);
+        }
+      };
+      if (nextBtn) nextBtn.onclick = () => {
+        const totalPages = Math.max(1, Math.ceil(totalCount / ITEMS_PER_PAGE));
+        if (currentPage < totalPages) {
+          currentPage++;
+          window.scrollTo({ top: 0, behaviour: 'smooth' });
+          fetchExperience(currentPage);
+        }
+      };
+
+      async function fetchExperience(page) {
+        const showLoading = typeof page === 'number' && page > 1;
+        if (showLoading) {
+          loadingEl.classList.remove('hidden');
+          gridEl.classList.add('hidden');
+        }
+        const basesToTry = apiBase ? [apiBase] : baseCandidates;
+        const companySlug = getSelectedCompanySlug();
+        // Pass through view query param (e.g., ?view=live) to API
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+        // Prefer URL ?category= when present so API stays in sync with the address bar (and with a restarted API).
+        let categorySlug = '';
+        if (shouldShowCategoryFilter()) {
+          categorySlug = selectedCategorySlug;
+          if (urlParams.has('category')) {
+            categorySlug = canonicalizeCategory((urlParams.get('category') || '').trim());
+          }
+        }
+        for (const base of basesToTry) {
+          const safeBase = (base || '').replace(/\/+$/, '');
+          if (!safeBase) continue;
+          try {
+            const qs = new URLSearchParams({
+              page: String(page || currentPage),
+              limit: String(ITEMS_PER_PAGE),
+            });
+            if (companySlug) qs.set('company', companySlug);
+            if (viewParam) qs.set('view', viewParam);
+            if (categorySlug) qs.set('category', categorySlug);
+            const url = `${safeBase}/experience?${qs.toString()}`;
+            const res = await fetch(url, { headers: { Accept: 'application/json' } });
+            if (!res.ok) continue;
+            const body = await res.json();
+            if (body?.ok && Array.isArray(body.experience)) {
+              if (!apiBase) apiBase = safeBase;
+
+              experienceData = body.experience;
+              totalCount = body.totalCount ?? 0;
+              currentPage = body.page ?? 1;
+              updateSummaryStats(body.summary);
+              loadingEl.classList.add('hidden');
+              const paginationEl = document.getElementById('experience-pagination');
+              if (totalCount === 0) {
+                emptyEl.classList.remove('hidden');
+                gridEl.classList.add('hidden');
+                if (paginationEl) paginationEl.classList.add('hidden');
+              } else {
+                emptyEl.classList.add('hidden');
+                gridEl.classList.remove('hidden');
+                if (paginationEl) paginationEl.classList.remove('hidden');
+                renderGrid();
+              }
+              return;
+            }
+          } catch (err) {
+            console.warn('Experience fetch failed from', safeBase, err);
+          }
+        }
+
+        loadingEl.classList.add('hidden');
+        errorEl.textContent = 'Unable to load experience projects. Please try again later.';
+        errorEl.classList.remove('hidden');
+      }
+
+      async function loadFilterOptions() {
+        if (!shouldShowCategoryFilter()) return;
+        const basesToTry = apiBase ? [apiBase] : baseCandidates;
+        const urlParams = new URLSearchParams(window.location.search);
+        const viewParam = urlParams.get('view');
+        for (const base of basesToTry) {
+          const safeBase = (base || '').replace(/\/+$/, '');
+          if (!safeBase) continue;
+          try {
+            const qs = new URLSearchParams();
+            if (viewParam) qs.set('view', viewParam);
+            const url = `${safeBase}/experience/filter-options?${qs.toString()}`;
+            const res = await fetch(url, { headers: { Accept: 'application/json' } });
+            if (!res.ok) continue;
+            const body = await res.json();
+            if (body?.ok) {
+              if (!apiBase) apiBase = safeBase;
+              if (typeof window.OWP_setExperienceCategoryOptionsFromApi === 'function') {
+                window.OWP_setExperienceCategoryOptionsFromApi(body.categories || []);
+              }
+              return;
+            }
+          } catch (err) {
+            console.warn('Experience filter-options failed from', safeBase, err);
+          }
+        }
+      }
+
+      let resizeT;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeT);
+        resizeT = setTimeout(() => updateMetaSeparators(gridEl), 100);
+      });
+
+      window.addEventListener('load', () => updateMetaSeparators(gridEl));
+
+      (async function boot() {
+        await loadFilterOptions();
+
+        const initialCompany = getSelectedCompanySlug();
+        const rawParam = (new URLSearchParams(window.location.search).get('company') || '').trim();
+        if (rawParam && canonicalizeCompanyValue(rawParam) !== rawParam) {
+          setCompanySlugInUrl(initialCompany);
+        }
+
+        if (!shouldShowCategoryFilter()) {
+          const p = new URLSearchParams(window.location.search);
+          if (p.has('category')) {
+            p.delete('category');
+            const next = `${window.location.pathname}${p.toString() ? `?${p.toString()}` : ''}`;
+            window.history.replaceState({}, '', next);
+          }
+          selectedCategorySlug = '';
+        } else {
+          syncCategoryUrlIfNeeded();
+
+          const rawCategoryParam = (new URLSearchParams(window.location.search).get('category') || '').trim();
+          const initialCategory = canonicalizeCategory(rawCategoryParam);
+          if (rawCategoryParam && initialCategory !== rawCategoryParam) {
+            setCategorySlugInUrl(initialCategory);
+            selectedCategorySlug = initialCategory;
+          }
+
+          if (
+            (categoryFilterEl || categoryFilterTabsEl) &&
+            typeof window.OWP_setupExperienceCategoryFilter === 'function'
+          ) {
+            window.OWP_setupExperienceCategoryFilter({
+              tabsEl: categoryFilterTabsEl,
+              selectEl: categoryFilterEl,
+              selectedSlug: selectedCategorySlug,
+              onSelect(slug) {
+                const next = canonicalizeCategory(slug || '');
+                selectedCategorySlug = next;
+                setCategorySlugInUrl(next);
+                if (typeof window.OWP_updateExperienceCategorySelection === 'function') {
+                  window.OWP_updateExperienceCategorySelection(
+                    categoryFilterTabsEl,
+                    categoryFilterEl,
+                    selectedCategorySlug
+                  );
+                }
+                currentPage = 1;
+                fetchExperience(1);
+              },
+            });
+          }
+        }
+
+        if (categoryFilterWrapEl) {
+          categoryFilterWrapEl.classList.toggle('hidden', !shouldShowCategoryFilter());
+        }
+
+        if (companyFilterWrapEl) {
+          const show = shouldShowCompanyFilter();
+          companyFilterWrapEl.classList.toggle('hidden', !show);
+        }
+
+        populateCompanySelect();
+        renderCompanyTabs(initialCompany);
+        if (companyFilterEl) {
+          companyFilterEl.value = initialCompany;
+          companyFilterEl.addEventListener('change', (e) => {
+            const slug = canonicalizeCompanyValue(String(e.target.value || ''));
+            setCompanySlugInUrl(slug);
+            currentPage = 1;
+            updateSelectedTab(slug);
+            fetchExperience(1);
+          });
+        }
+
+        await fetchExperience(1);
+      })();
+    })();
+  </script>
+
+</body>
+
+</html>

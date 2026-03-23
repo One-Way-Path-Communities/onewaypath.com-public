@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Way Path Communities</title>
+  <title>One Way Path Communities | Terms &amp; Conditions</title>
   <link rel="icon" type="image/svg+xml" href="assets/images/leaf-logo.svg">
   <link rel="apple-touch-icon" href="assets/images/leaf-logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,11 +47,12 @@
               700: '#31100f',
               800: '#250b0a',
               900: '#190706',
+              950: '#0A0404',
             },
             olive: {
               50: '#F7F7F1',
               100: '#e3e5c8',
-              200: '#ccd0a0',
+              200: '#D9D9BE',
               300: '#aab37c',
               400: '#929b5f',
               500: '#818452',
@@ -67,9 +68,9 @@
               300: '#D1D5DC',
               400: '#99a1af',
               500: '#6A7282',
-              600: '#322829',
-              700: '#292021',
-              800: '#21191a',
+              600: '#4A5565',
+              700: '#333E4F',
+              800: '#1E2939',
               900: '#181112',
               950: '#030712',
             },
@@ -86,10 +87,19 @@
 
     .fitwel-heading {
       font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       line-height: 32px;
       font-weight: 600;
-      letter-spacing: 4px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .fitwel-heading-sm {
+      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
     }
 
@@ -98,25 +108,6 @@
       font-size: 20px;
       font-weight: 400;
       line-height: 28px;
-    }
-
-    .fitwel-heading-sm {
-      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 18px;
-      line-height: 22px;
-      font-weight: 600;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .fitwel-hero-title {
-      font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-      font-size: 40px;
-      line-height: 44px;
-      font-weight: 600;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: #b6914d;
     }
   </style>
 </head>
@@ -177,17 +168,20 @@
           </div>
           <button data-collapse-toggle="mobile-menu" aria-controls="mobile-menu" aria-expanded="false"
             class="ml-auto inline-flex items-center justify-center rounded-full w-12 h-12 text-base font-semibold uppercase text-red-500 hover:bg-red-50 lg:hidden">
-            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2"  viewBox="0 0 24 24" fill="none">
-              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" fill="none">
+              <path d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
               <path d="M3 6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </button>
         </div>
-        
+
       </div>
       <div id="mobile-menu" class="hidden w-full border-t border-slate-500 bg-olive-50 lg:hidden">
-        <div id="mobile-menu-list" class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
+        <div id="mobile-menu-list"
+          class="mx-auto max-w-6xl px-8 py-6 text-base font-medium text-slate-950 flex flex-col gap-6">
         </div>
       </div>
       <div id="nav-panel" class="hidden w-full border-t border-slate-500 bg-olive-50">
@@ -214,93 +208,109 @@
     </nav>
   </header>
 
-  <main>
-    <section id="about" class="relative overflow-hidden bg-olive-50">
-      <div class="absolute inset-0 bg-[url('assets/images/hero-banner-v2.png')] bg-no-repeat bg-cover bg-center"></div>
-      <div
-        class="relative mx-auto max-w-6xl px-12 xl:px-6 py-12 md:py-16 min-h-[312px] h-auto md:h-[312px] flex flex-col md:flex-row items-start">
-        <div class="w-full grid md:grid-cols-2 gap-6 w-full items-start">
-          <div class="flex items-start">
-            <h1 class="fitwel-hero-title !text-slate-50 text-[36px] md:text-[48px] leading-[44px] md:leading-[60px]">
-              ABOUT US
-            </h1>
-          </div>
-          <div class="flex items-end h-auto md:h-[184px]">
-            <p class="fitwel-body text-slate-300">
-              One Way Path Communities is a real estate company based in the Greater Toronto Hamilton Area dedicated to
-              designing and building healthy communities.
-            </p>
-          </div>
+  <main class="flex-1 pt-14">
+    <div class="mx-auto max-w-6xl w-full px-5 md:px-8 lg:px-12 xl:pl-8 xl:pr-1 flex flex-col gap-10 pb-12">
+      <div class="flex flex-col gap-4">
+        <h1
+          class="text-red-900 text-5xl font-semibold font-['Roboto_Condensed'] uppercase leading-tight md:leading-[56px] tracking-[4px] md:tracking-[6px]">
+          Privacy Policy
+        </h1>
+        <p class="lg:max-w-[804px] fitwel-body text-slate-950 text-xl leading-7">
+          One Way Path Group Limited respects your privacy. This website is designed to provide general information about our company and our projects, and we aim to collect as little personal information as possible.
+        </p>
+        <div class="p-2 bg-olive-200 inline-flex justify-start items-center gap-1.5 w-fit">
+          <svg class="w-5 h-5 text-slate-700 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span class="text-slate-700 text-base md:text-lg font-medium font-['DM_Sans'] leading-6">Effective Date: February 15, 2026</span>
         </div>
       </div>
-    </section>
 
-    <section id="vision" class="bg-olive-50">
-      <div class="mx-auto max-w-6xl sm:px-8 px-4 xl:pl-6 xl:pr-1 lg:pr-12 py-20 space-y-8">
-        <div class="grid pb-1 md:pb-12 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Vision</h1>
-          <div class="space-y-2 text-slate-950">
-            <p class="fitwel-body text-slate-950">Our vision is to build the world’s most liveable communities. A
-              liveable community is a community in which people can lead lives they consider to be worthwhile and
-              enjoyable.</p>
-          </div>
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          Information We Collect</h2>
+        <p class="fitwel-body text-slate-950 text-xl leading-7">
+          We do not use cookies, analytics tools, tracking pixels, or advertising technologies.
+        </p>
+        <p class="fitwel-body text-slate-950 text-xl leading-7">
+          If you choose to contact us through email or a contact form, we may receive the information you voluntarily provide, such as your name, email address, phone number, or the contents of your message.
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          How We Use Information</h2>
+        <div class="flex flex-col gap-3">
+          <p class="fitwel-body text-slate-950 text-xl leading-7">We use the information you send us only to:</p>
+          <ul class="flex flex-col gap-3 list-disc pl-6 space-y-1 fitwel-body text-slate-950 text-xl leading-7">
+            <li>Respond to your inquiry</li>
+            <li>Communicate with you about our services or projects</li>
+            <li>Maintain our business records</li>
+          </ul>
+          <p class="fitwel-body text-slate-950 text-xl leading-7">We do not sell, rent, or trade your personal information.</p>
         </div>
+      </section>
 
-        <div class="grid pb-8 md:grid-cols-[170px_1fr] lg:items-baseline items-center gap-4 lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Mission</h1>
-          <div class="space-y-2 text-slate-950">
-            <p class="fitwel-body text-slate-950">Our mission is to build living spaces and provide services that
-              promote mental and physical health.</p>
-          </div>
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          Sharing of Information</h2>
+        <div class="flex flex-col gap-3">
+          <p class="fitwel-body text-slate-950 text-xl leading-7">We do not share your personal information with third parties except:</p>
+          <ul class="flex flex-col gap-3 list-disc pl-6 space-y-1 fitwel-body text-slate-950 text-xl leading-7">
+            <li>When required by law</li>
+            <li>When necessary to respond to your request (for example, forwarding your inquiry to a relevant team member).</li>
+          </ul>
         </div>
+      </section>
 
-        <div class="grid gap-1 pb-14 md:grid-cols-[170px_1fr] items-baseline  lg:gap-6">
-          <h1 class="fitwel-heading text-gold-500">Values</h1>
-          <div
-            class="text-slate-950 space-y-6 sm:space-y-0 sm:grid sm:grid-cols-[170px_1fr] lg:gap-8 sm:gap-x-5 sm:gap-y-6 sm:items-start sm:relative sm:mt-3 md:mt-4">
-            <div
-              class="hidden sm:block absolute inset-y-0 left-[180px] lg:left-[180px] md:left-[170px] w-px bg-slate-500">
-            </div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Well-being
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We strive to promote community mental and physical health
-              through building design and the services offered in our communities.</div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Quality
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We maintain high standards of service, construction,
-              design, and maintenance to deliver exceptional experiences.</div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Innovation
-            </div>
-            <div class="fitwel-body text-slate-950">
-              We embrace innovative approaches and technologies to continuously
-              improve the quality and functionality of our communities.
-            </div>
-            <div
-              class="fitwel-heading-sm text-lg lg:text-lg md:text-base text-olive-500 lg:tracking-[4px] tracking-widest">
-              Continuous
-              Improvement</div>
-            <div class="fitwel-body text-slate-950">
-              We are dedicated to ongoing learning and improvement, seeking
-              feedback and adapting our practices.
-            </div>
-          </div>
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          Data Security</h2>
+        <p class="fitwel-body text-slate-950 text-xl leading-7">
+          We take reasonable administrative and technical steps to protect the information you provide.
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          External Links</h2>
+        <p class="fitwel-body text-slate-950 text-xl leading-7">
+          Our website may contain links to other websites. We are not responsible for the privacy practices of those sites.
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          Your Rights</h2>
+        <p class="fitwel-body text-slate-950 text-xl leading-7">
+          You may contact us at any time to request access to or correction of the personal information you have provided to us.
+        </p>
+      </section>
+
+      <section class="flex flex-col gap-3.5">
+        <h2
+          class="text-gold-500 text-2xl font-semibold font-['Roboto_Condensed'] uppercase leading-8 tracking-[4px]">
+          Contact Us</h2>
+        <div class="flex flex-col gap-3">
+          <p class="fitwel-body text-slate-950 text-xl leading-7">If you have any questions about this Privacy Policy or how information is handled, please contact:</p>
+          <p class="fitwel-body text-slate-950 text-xl leading-7">One Way Path Group Limited</p>
+          <p class="fitwel-body text-slate-950 text-xl leading-7"><a href="mailto:info@onewaypath.com" class="hover:text-red-700">info@onewaypath.com</a></p>
+          <p class="fitwel-body text-slate-950 text-xl leading-7"><a href="tel:+14188481746" class="hover:text-red-700">418-848-1746</a></p>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
 
   <footer class="bg-olive-50 border-t border-slate-500">
     <div class="mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
-      <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
+            <div class="grid grid-cols-1 gap-8 pb-8 lg:grid-cols-[minmax(0,220px)_1fr] lg:gap-12 lg:items-start">
         <div class="flex justify-center lg:justify-start">
           <img src="assets/images/Logo.png" alt="One Way Path Communities logo" class="h-14 w-auto sm:h-16">
         </div>
@@ -343,16 +353,15 @@
           </div>
         </div>
       </div>
-
-      <!-- Bottom Section -->
       <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:justify-between sm:items-center sm:pt-8">
-        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Communities. All
+        <p class="text-slate-500 text-xs sm:text-sm text-center sm:text-left">© 2026 One Way Path Group Limited. All
           rights reserved.</p>
         <div
           class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4 text-slate-950 text-sm uppercase tracking-wide">
           <a href="privacy-policy.html" class="hover:text-gold-500 text-center sm:text-left">PRIVACY POLICY</a>
           <div class="hidden w-px self-stretch bg-slate-500 sm:block" aria-hidden="true"></div>
-          <a href="terms-and-conditions.html" class="hover:text-gold-500 text-center sm:text-left">TERMS AND CONDITIONS</a>
+          <a href="terms-and-conditions.html" class="hover:text-gold-500 text-center sm:text-left">TERMS AND
+            CONDITIONS</a>
         </div>
       </div>
     </div>
